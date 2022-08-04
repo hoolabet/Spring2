@@ -7,6 +7,6 @@
 	<title>Home</title>
 </head>
 <body>
-확인
+확인ㅋㅋ
 </body>
 </html>
