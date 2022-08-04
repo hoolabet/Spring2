@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MemberController {
 	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
-	public void Member() {
+	public String signup() {
+		return "member/signup";
+	}
+	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
+	public void signupin() {
+		System.out.println("dd");
 	}
 }
