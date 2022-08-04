@@ -10,7 +10,7 @@ public class MemberController {
 	public String signup() {
 		return "member/signup";
 	}
-	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
 	public void signupin() {
 		System.out.println("dd");
 	}

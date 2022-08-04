@@ -7,6 +7,9 @@
 	<title>Home</title>
 </head>
 <body>
-확인ㅋㅋ123llllsldsadladlsadladldsladlsadlsadlsadl
+<a href="/cart/list">장바구니</a>
+<a href="/qna/list">문의</a>
+<a href="/made/list">제작</a>
+<a href="/member/signup">로그인</a>
 </body>
 </html>
