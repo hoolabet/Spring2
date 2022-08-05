@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+table {
+	display: inline;
+}
+
+td {
+	padding: 10px;
+	margin: 10px;
+}

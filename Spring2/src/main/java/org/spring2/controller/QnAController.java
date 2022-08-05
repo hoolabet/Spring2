@@ -19,4 +19,8 @@ public class QnAController {
 	@RequestMapping(value = "/qna/write", method = RequestMethod.POST)
 	public void Write() {
 	}
+	
+	@RequestMapping(value = "/qna/content", method = RequestMethod.GET)
+	public void Content() {
+	}
 }
