@@ -1,5 +1,5 @@
 
-const write = document.querySelector('#reivew_write');
+const write = document.querySelector('#review_write');
 const writelength = document.querySelector('#writelength');
 write.addEventListener('input',()=>{
 	const length = write.value.length

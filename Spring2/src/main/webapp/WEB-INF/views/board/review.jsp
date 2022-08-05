@@ -7,40 +7,49 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/board_review.css"
 	type="text/css">
+<link rel="stylesheet" href="../resources/css/home.css">
 </head>
 <body>
-	<div id="header"></div>
-	<div id="container">
-		<h1>리뷰쓰기</h1>
-		<form action="">
-			<div id="starRate">
-				<fieldset>
-					<input type="radio" value="5" name="star" id="rate1"><label>★</label>
-					<input type="radio" value="4" name="star" id="rate2"><label>★</label>
-					<input type="radio" value="3" name="star" id="rate3"><label>★</label>
-					<input type="radio" value="2" name="star" id="rate4"><label>★</label>
-					<input type="radio" value="1" name="star" id="rate5"><label>★</label>
-					<span>평점을 남겨주세요</span>
-				</fieldset>
+	<div id="entry_area">
+		<%@ include file="../header.jsp"%>
+		<div id="content_area">
+			<div id="container">
+				<h1>리뷰쓰기</h1>
+				<form action="">
+					<div id="starRate">
+						<input type="radio" value="5" name="star" id="rate1"><label
+							for="rate1">★</label> <input type="radio" value="4" name="star"
+							id="rate2"><label for="rate2">★</label> <input
+							type="radio" value="3" name="star" id="rate3"><label
+							for="rate3">★</label> <input type="radio" value="2" name="star"
+							id="rate4"><label for="rate4">★</label> <input
+							type="radio" value="1" name="star" id="rate5"><label
+							for="rate5">★</label> <span>평점을 남겨주세요</span>
+					</div>
+					<div id="title">
+						<input type="text" name="title" placeholder="제목을 여기에 쓰세요">
+					</div>
+					<div id="img">
+						<input type="text" placeholder="파일첨부">
+						<button>찾기</button>
+					</div>
+					<div>파일이 첨부되어 미리 볼 수 있는 곳</div>
+					<div id="write">
+						<textarea rows="25%" cols="100%" id="review_write"></textarea>
+						<label id="writelength">0/100</label>
+					</div>
+					<div id="btn">
+						<button>글쓰기</button>
+					</div>
+
+				</form>
 			</div>
-			<div id="title">
-				<div>
-					<label>제목 :</label> <input type="text" name="title">
-				</div>
-			</div>
-			<div id="img">
-				<label>사진 :</label> <input type="text" placeholder="파일첨부">
-				<button>찾기</button>
-			</div>
-			<div>파일이 첨부되어 미리 볼 수 있는 곳</div>
-			<div>
-				<textarea rows="30px" cols="50px" id="reivew_write"></textarea>
-				<label id="writelength">0/100</label>
-			</div>
-			<button>글쓰기</button>
-		</form>
+		</div>
+		<%@ include file="../footer.jsp"%>
 	</div>
-	<div id="footer"></div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript" src="../resources/js/board_review.js"></script>
 </body>
 </html>
