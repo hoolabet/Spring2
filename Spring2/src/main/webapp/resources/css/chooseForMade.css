@@ -8,3 +8,17 @@ td {
 	padding: 10px;
 	margin: 10px;
 }
+
+#result {
+	border: 1px solid black;
+	color: white;
+	background-color: #abaaaa;
+	position: fixed;
+	width: 100px;
+	height: 100px;
+	bottom: 50px;
+	right: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}

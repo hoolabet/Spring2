@@ -3,6 +3,11 @@ body {
 	text-align: center;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 #entry_area {	
 	width: 1503px;
 	background-color: #e7e7e7;
@@ -10,6 +15,7 @@ body {
 }
 
 #header {
+    position: relative;
 	height: 300px;
 	width: 1503px;
 	background-color: #abaaaa;
@@ -18,9 +24,74 @@ body {
 }
 
 #footer {
+    position: relative;
 	height: 300px;
 	width: 1503px;
 	background-color: #abaaaa;
 	margin-top: 50px;
 	margin-bottom: 20px;
+}
+
+#a_list {
+    position: absolute;
+    right: 20px;
+}
+
+#a_list ul{
+    list-style: none;
+    display: inline;
+}
+
+#a_list ul li {
+    float: right;
+    margin: 20px;
+}
+
+#categori_btn img {
+	width: 100px;
+	height: 100px;
+}
+
+#categori_btn {
+	position: absolute;
+	left: 30px;
+	bottom: 30px;
+    cursor: pointer;
+}
+
+#categori {
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+    display: none;
+    list-style: none;
+    position: absolute;
+    bottom: -400px;
+    padding: 30px;
+}
+
+#categori li {
+    margin: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#categori_a_list,#categori_b_list,#categori_c_list,#categori_d_list,#categori_e_list {
+    border: 1px solid gray;
+    border-radius: 15px;
+    background-color: black;
+    color: white;
+    display: none;
+    list-style: none;
+    position: absolute;
+    top: 0px;
+    left: 120px;
+    padding: 30px;
+}
+
+#categori_a_list li,#categori_b_list li,#categori_c_list li,#categori_d_list li,#categori_e_list li {
+    margin: 20px;
+    font-size: 30px;
+    cursor: pointer;
 }
