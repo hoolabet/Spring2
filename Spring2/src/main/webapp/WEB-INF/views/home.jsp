@@ -14,7 +14,7 @@
 			<a href="/cart/list">장바구니</a> <a href="/qna/list">문의</a> 
 			<a href="/made/chooseForMade">제작</a> <a href="/member/signup">로그인</a>
 		</div>
-		hi
+		hizzz
 		<%@ include file="footer.jsp"%>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
