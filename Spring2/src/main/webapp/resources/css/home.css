@@ -1,24 +1,26 @@
 @charset "UTF-8";
 body {
 	text-align: center;
-	margin-right: 200px;
-	margin-left: 200px;
 }
 
-#entry_area {
+#entry_area {	
+	width: 1503px;
 	background-color: #e7e7e7;
+	margin: auto;
 }
 
 #header {
+	height: 300px;
+	width: 1503px;
 	background-color: #abaaaa;
 	margin-top: 20px;
-	margin-bottom: 20px;
-	padding: 100px;
+	margin-bottom: 50px;
 }
 
 #footer {
+	height: 300px;
+	width: 1503px;
 	background-color: #abaaaa;
-	margin-top: 20px;
+	margin-top: 50px;
 	margin-bottom: 20px;
-	padding: 100px;
 }

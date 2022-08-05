@@ -11,10 +11,8 @@
 	<div id="entry_area">
 		<%@ include file="header.jsp"%>
 		<div id="content_area">
-			<!-- 
 			<a href="/cart/list">장바구니</a> <a href="/qna/list">문의</a> 
-			<a href="/made/list">제작</a> <a href="/member/signup">로그인</a>
-			-->
+			<a href="/made/chooseForMade">제작</a> <a href="/member/signup">로그인</a>
 		</div>
 		<%@ include file="footer.jsp"%>
 	</div>

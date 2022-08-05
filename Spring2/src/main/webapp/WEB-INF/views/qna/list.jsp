@@ -1,32 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>QnA</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="../resources/css/home.css">
+<link rel="stylesheet" href="../resources/css/qnaList.css">
 </head>
 <body>
-	<table>
-		<tr>
-			<td>게시물 번호</td>
-			<td>제목</td>
-			<td>작성자</td>
-			<td>작성일</td>
-		</tr>
-		<tr>
-			<td>1</td>
-			<td><a href="">hi</a></td>
-			<td>hello</td>
-			<td>0000-00-00</td>
-		</tr>
-		
-	</table>
-	<form action="write" method="post">
-		<input type="submit" value="글쓰기">
-	</form>
-	<br>
-	<a href="/">메인으로</a>
+	<div id="entry_area">
+		<%@ include file="../header.jsp"%>
+		<div id="content_area">
+			<table>
+				<tr>
+					<td>게시물 번호</td>
+					<td>제목</td>
+					<td>작성자</td>
+					<td>작성일</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><a href="/qna/content">hi</a></td>
+					<td>hello</td>
+					<td>0000-00-00</td>
+				</tr>
+			</table>
+			<br><br>
+			<form action="write" method="post">
+				<input type="submit" value="글쓰기">
+			</form>
+			<br> <a href="/">메인으로</a>
+		</div>
+		<%@ include file="../footer.jsp"%>
+	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="../resources/js/home.js"></script>
 </body>
 </html>

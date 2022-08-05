@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MadeController {
-	@RequestMapping(value = "/made/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/made/chooseForMade", method = RequestMethod.GET)
 	public void made() {
 	}
 	
-	@RequestMapping(value = "/made/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/made/chooseForMade", method = RequestMethod.POST)
 	public void madePOST(String choose_1, String choose_2, String choose_3) {
 		System.out.println(choose_1);
 		System.out.println(choose_2);
