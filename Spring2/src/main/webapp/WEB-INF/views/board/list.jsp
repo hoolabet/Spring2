@@ -5,31 +5,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/list.css">
+<link rel="stylesheet" href="../resources/css/board_list.css"
+	type="text/css">
 </head>
 <body>
 	<div id="header"></div>
 	<div id="container">
 		<h1>제품리스트</h1>
-		<div>
+		<div id="p_list">
 			<ul>
-				<li>정렬
-					<ul>
-						<li>인기순</li>
-						<li>가격낮은순</li>
-						<li>가격높은순</li>
-						<li>상품평높은순</li>
-					</ul>
-				</li>
+				<li id="popular"><a href="#">거실장(10)</a></li>
+				<li id="last"><a href="#">쇼파(21)</a></li>
+				<li id="lowprice"><a href="#">장식장(13)</a></li>
+				<li id="highprice"><a href="#">진열장(12)</a></li>
 			</ul>
 		</div>
-		<div>
-			<a href="#"><img alt="chair"
-				src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
-			<a href="#"><img alt="chair"
-				src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
-			<a href="#"><img alt="chair"
-				src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
+		<div id="array">
+			<select>
+				<option value="popular"><a href="#">인기순</a></option>
+				<option value="last"><a href="#">최근등록순</a></option>
+				<option value="lowprice"><a href="#">가격낮은순</a></option>
+				<option value="highprice"><a href="#">가격높은순</a></option>
+			</select>
+		</div>
+		<div id="list">
+			<ul>
+				<li><a href="http://localhost:8080/controller/board/detail"><img alt="chair"
+						src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
+					<p><a href="http://localhost:8080/controller/board/detail">되게 좋은 침대</a></p>	
+					<p>가격문의</p>	
+				</li>
+				<li><a href="http://localhost:8080/controller/board/detail"><img alt="chair"
+						src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
+						<p><a href="http://localhost:8080/controller/board/detail">되게 좋은 침대</a></p>
+						<p>가격문의</p>
+				</li>
+				<li><a href="http://localhost:8080/controller/board/detail"><img alt="chair"
+						src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
+						<p><a href="http://localhost:8080/controller/board/detail">되게 좋은 침대</a></p>
+						<p>가격문의</p>
+				</li>
+			</ul>
 		</div>
 	</div>
 	<div id="footer"></div>
