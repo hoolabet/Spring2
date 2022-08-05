@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+.signtable{
+	height:50px;
+}
+
+td{
+	vertical-align:top;
+}
+
+.signmsg{
+	font-size:5px;
+}
+
+#idbtn{
+	font-size:5px;
+	
+}
+
+table {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+#title{
+	text-align:center;
+}
+
+#submitTd{
+	text-align:center;
+}
