@@ -11,9 +11,10 @@ public class MemberController {
 		return "member/signup";
 	}
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-	public void signupin(String id, String pw, String email, String phone, String add) {
+	public void signupin(String id, String pw, String name, String email, String phone, String add) {
 		System.out.println(id);
 		System.out.println(pw);
+		System.out.println(name);
 		System.out.println(email);
 		System.out.println(phone);
 		System.out.println(add);
