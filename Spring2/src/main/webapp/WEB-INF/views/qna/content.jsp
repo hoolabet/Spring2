@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/home.css">
-<link rel="stylesheet" href="../resources/css/qnaContent.css">
+<link rel="stylesheet" href="../resources/css/home.css?ver=1">
+<link rel="stylesheet" href="../resources/css/qnaContent.css?ver=1">
 <title>문의제목</title>
 </head>
 <body>
@@ -27,6 +27,6 @@
 		<%@ include file="../footer.jsp"%>
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="../resources/js/home.js"></script>
+		<script src="../resources/js/home.js?ver=1"></script>
 </body>
 </html>

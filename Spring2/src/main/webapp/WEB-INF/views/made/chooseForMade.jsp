@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/home.css">
-<link rel="stylesheet" href="../resources/css/chooseForMade.css">
+<link rel="stylesheet" href="../resources/css/home.css?ver=1">
+<link rel="stylesheet" href="../resources/css/chooseForMade.css?ver=1">
 <title>제작 페이지</title>
 </head>
 <body>
@@ -70,6 +70,7 @@
                     <div id="white" class="opt_color"></div>
                     <div id="black" class="opt_color"></div>
                     <br>
+                    <input type="hidden" name="color" id="value_color">
                     <input type="submit" value="submit">
                 </form>
             </div>
@@ -84,7 +85,7 @@
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="../resources/js/home.js"></script>
-	<script src="../resources/js/chooseForMade.js"></script>
+	<script src="../resources/js/home.js?ver=1"></script>
+	<script src="../resources/js/chooseForMade.js?ver=1"></script>
 </body>
 </html>

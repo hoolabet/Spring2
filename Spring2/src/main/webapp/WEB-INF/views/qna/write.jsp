@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/home.css">
-<link rel="stylesheet" href="../resources/css/qnaWrite.css">
+<link rel="stylesheet" href="../resources/css/home.css?ver=1">
+<link rel="stylesheet" href="../resources/css/qnaWrite.css?ver=1">
 <title>문의 글쓰기</title>
 </head>
 <body>
@@ -32,6 +32,6 @@
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="../resources/js/home.js"></script>
+	<script src="../resources/js/home.js?ver=1"></script>
 </body>
 </html>

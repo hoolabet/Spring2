@@ -11,9 +11,10 @@ public class MadeController {
 	}
 	
 	@RequestMapping(value = "/made/chooseForMade", method = RequestMethod.POST)
-	public void madePOST(String choose_1, String choose_2, String choose_3) {
+	public void madePOST(String choose_1, String choose_2, String choose_3, String color) {
 		System.out.println(choose_1);
 		System.out.println(choose_2);
 		System.out.println(choose_3);
+		System.out.println(color);
 	}
 }

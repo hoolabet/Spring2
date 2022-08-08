@@ -18,6 +18,7 @@ $(".opt_color").on("click",function(){
 	$(this).css("width","40px");
 	$(this).css("height","40px");
 	$(this).css("borderRadius", "20px");
+	$("#value_color").val(this.id);
 	if(this.id == "white" || this.id == "yellow"){
 		$("#result").css("color","black");
 	}else {
