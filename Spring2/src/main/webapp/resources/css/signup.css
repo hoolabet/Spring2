@@ -16,27 +16,11 @@ a {
 
 #header {
     position: relative;
-}
-
-#header_top {
-    position: relative;
-    height: 50px;
-    width: 1503px;
-    background-color: white;
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-#header_bottom {
-    position: relative;
-	height: 100px;
+	height: 300px;
 	width: 1503px;
 	background-color: #abaaaa;
+	margin-top: 20px;
 	margin-bottom: 50px;
-}
-
-#header_bottom h1 {
-    margin: 0;
 }
 
 #footer {
@@ -45,12 +29,12 @@ a {
 	width: 1503px;
 	background-color: #abaaaa;
 	margin-top: 50px;
+	margin-bottom: 20px;
 }
 
 #a_list {
     position: absolute;
     right: 20px;
-    top: 0px;
 }
 
 #a_list ul{
@@ -64,15 +48,15 @@ a {
 }
 
 #categori_btn img {
-	width: 50px;
-	height: 50px;
+	width: 100px;
+	height: 100px;
 }
 
 #categori_btn {
 	position: absolute;
-	bottom: 0;
+	left: 30px;
+	bottom: 30px;
     cursor: pointer;
-    padding: 25px;
 }
 
 #categori {
@@ -84,16 +68,12 @@ a {
     list-style: none;
     position: absolute;
     bottom: -400px;
-    left: 0px;
-    padding-left: 0;
-    margin: 0;
+    padding: 30px;
 }
 
 #categori li {
+    margin: 20px;
     font-size: 30px;
-    padding: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
     cursor: pointer;
 }
 
@@ -105,40 +85,68 @@ a {
     display: none;
     list-style: none;
     position: absolute;
-    top: 0;
-    left: 100px;
-    padding-left: 0;
+    top: 0px;
+    left: 120px;
+    padding: 30px;
 }
 
 #categori_a_list li,#categori_b_list li,#categori_c_list li,#categori_d_list li,#categori_e_list li {
+    margin: 20px;
     font-size: 30px;
     cursor: pointer;
 }
 
-#categori_a:hover .cates ,#categori_b:hover .cates,#categori_c:hover .cates,#categori_d:hover .cates,#categori_e:hover .cates{
-    display: block;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.signtable{
+	height:50px;
 }
 
-#categori_btn:hover #categori {
-    display: block;
+td{
+	vertical-align:top;
 }
 
-#search_div img{
-    width: 30px;
-    position: absolute;
-    bottom: 10px;
+.signmsg{
+	font-size:5px;
 }
 
-#search_div input{
-    height: 30px;
-    padding: 10px;
-    margin-right: 20px;
-    font-size: 20px;
+#idbtn{
+	font-size:5px;
+	
 }
 
-#search_div {
-    position: absolute;
-    right: 30px;
-    bottom: 120px;
-    cursor: pointer;
+#idInput{
+	left:30px;
 }
+
+table {
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+
+#submitTd{
+	text-align:center;
+}
+
+.tableInput{
+	
+	padding-left:30px;
+	text-align:left;
+	
+}
+

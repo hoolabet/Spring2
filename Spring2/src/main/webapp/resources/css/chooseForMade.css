@@ -22,3 +22,47 @@ td {
 	align-items: center;
 	justify-content: space-around;
 }
+
+.opt_color {
+    display: inline-block;
+	width: 30px;
+	height: 30px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#red {
+	background-color:red;
+}
+
+#orange {
+    background-color: orange;
+}
+
+#yellow {
+    background-color: yellow;
+}
+
+#green {
+	background-color:green;
+}
+
+#blue {
+	background-color:blue;
+}
+
+#navy {
+    background-color: navy;
+}
+
+#purple {
+    background-color: purple;
+}
+
+#white {
+    background-color: white;
+}
+
+#black {
+    background-color: black;
+}
