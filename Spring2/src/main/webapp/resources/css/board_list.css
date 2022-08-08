@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+#container{
+	width: 90%;
+    margin: 0 auto;
+}
+
 /* 가구 종류 카테고리 */
 #p_list > ul {
 	list-style : none;
@@ -14,9 +19,13 @@
 /* 셀렉트 정렬 */
 #array{
 	clear: both;
+	float:right;
 }
 
 /* 제품들을 나열하는 리스트 */
+#list{
+	clear:both;
+}
 #list > ul > li > a > img{
 	width: 300px;
 }

@@ -1,59 +1,80 @@
 @charset "UTF-8";
-form{
+
+#container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+form {
 	text-align: left;
-    margin: 0 auto;
-    width: 50%;
+	margin: 0 auto;
+	width: 50%;
+}
+
+form div {
+	margin-bottom: 20px;
 }
 /* 별표찍기 */
 #starRate {
-	width : 373px;
-	border : none;
-	direction:rtl;
+	border: none;
+	direction: rtl;
 }
 
 #starRate input[type="radio"] {
-	display:none;
+	display: none;
 }
 
-#starRate label{
-	font-size : 23px;
-	color : transparent;
-	text-shadow : 0 0 0 #f0f0f0;
-	margin : 0 5px;
+#starRate label {
+	font-size: 23px;
+	color: transparent;
+	text-shadow: 0 0 0 #f0f0f0;
+	margin: 0 5px;
 }
 
-#starRate label:hover{
-	font-size : 23px;
-	text-shadow : 0 0 0 rgba(250, 208, 0, 0.99);
+#starRate label:hover {
+	font-size: 23px;
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 	cursor: pointer;
 }
-#starRate label:hover ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
-   	
-}
-#starRate input[type=radio]:checked ~ label{
-    text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+
+#starRate label:hover ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
 }
 
-#starRate span{
-	margin-right:10px;
+#starRate input[type=radio]:checked ~ label {
+	text-shadow: 0 0 0 rgba(250, 208, 0, 0.99);
+}
+
+#starRate span {
+	margin-right: 10px;
 }
 /* 글쓰는 곳 */
-#title input{
-	width:95%;
+#title input {
+	width: 100%;
+	font-size: 32px;
 }
-#img input{
-	width:50%;
+
+#img input {
+	width: 50%;
+	font-size:16px;
 }
-#review_write{
+
+#img_res img {
+	width: 144px;
+	height: 144px;
+}
+
+#review_write {
 	z-index: 10;
 }
-#writelength{
-	position:relative;
+
+#writelength {
+	position: relative;
 	left: 669px;
-    bottom: 31px;
+	bottom: 31px;
 	z-index: 0;
 }
-#btn{
+
+#btn {
 	text-align: center;
 }

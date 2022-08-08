@@ -36,7 +36,7 @@
 					<div id="img_res">
 						<img alt="가구사진"
 							src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/165890122221285125.jpeg?gif=1&w=144&h=144&c=c&webp=1">
-						가구를 첨부하면 볼 수 있는 곳
+						사진을 첨부하면 볼 수 있는 곳
 					</div>
 					<div id="write">
 						<textarea rows="25%" cols="100%" id="review_write"></textarea>

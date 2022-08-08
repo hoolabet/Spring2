@@ -1,88 +1,145 @@
 @charset "UTF-8";
 
+#container {
+	width: 90%;
+	margin: 0 auto;
+}
 /* 상품과 결제테이블  */
 #d_title {
 	display: flex;
 	margin: 70px 0;
+	justify-content: center;
 }
 
 #d_title img {
-	margin-right: 100px;
+	width: 700px;
+	height: 400px;
+	margin: 0 auto;
 }
 
 #sell {
-	margin-left: 100px;
+	margin: 0 auto;
 	border: 1px solid black;
 }
-#num{
-	width:39px;
+
+#t_sell {
+	text-align: left;
+	padding: 0 15px;
 }
-.btn_p{
+
+#num {
+	width: 39px;
+}
+
+.btn_p {
 	background-color: white;
-	color:black;
+	color: black;
 	border: 1px solid #7d4f37;
 }
-.btn_p:hover{
+
+.btn_p:hover {
 	cursor: pointer;
 	background-color: #7d4f37;
 }
-/* 상세보기내용  */
-#detail{
+/* 내비게이션  */
+#detail {
 	margin: 70px 0;
 }
-#d_look ul {
+.nav{
+	position:fixed;
+	width:100%;
+	top:-43px;
+}
+nav ul {
 	list-style: none;
+	text-align: center;
 }
 
-#d_look ul li {
+nav ul li {
 	float: left;
-	padding: 0 20px;
-    border: 1px solid #e6e6e6;
-    
+	border: 1px solid black;
+	padding: 10px 120px;
+	margin: 28px 0;
 }
-#d_look ul li a{
+
+nav ul li a {
 	text-decoration: none;
 }
+.navfocused{
+	color:blue;
+}
+.marker {
+  content: "";
+  position: absolute;
+  bottom: 1.2rem;
+  left: 50%;
+  width: 0%;
+  height: 3px;
+  background-color: purple;
+  transition: 0.2s;
+}
+/* 상세보기내용  */
 #d_img {
 	clear: both;
 }
 
-#d_img> img {
+#d_img>img {
 	width: 700px;
 	height: 500px;
 }
 
 /* 리뷰  */
-#reviewlist{
-	margin: 70px 0;
+#reviewlist {
+	
 }
-#totalRe{
-	border : 1px solid black;
+
+#totalRe {
+	border: 1px solid black;
 	padding: 10px 0;
 	margin: 10px 0;
 }
-#privRe_title{
-	border-top : 1px solid #c0c0c0;
-	border-bottom : 1px solid black;
+
+.title {
+	border-top: 1px solid #c0c0c0;
+	border-bottom: 1px solid black;
 	margin: 20px 0;
-	padding : 10px 0;
+	padding: 10px 0;
 }
-#privRe img{
-	width:181px;
-	height:144px;
+
+#privRe table {
+	margin: 0 auto;
+	text-align: left;
 }
-#privRe img:hover{
+
+#privRe img {
+	width: 181px;
+	height: 144px;
+}
+
+#privRe img:hover {
 	cursor: pointer;
 }
-/* 교환 환불사항 */
-#exchange> div{
-	border-top : 1px solid #c0c0c0;
-	border-bottom : 1px solid black;
-	margin-bottom : 20px;
-	padding : 10px 0;
+/* 상품문의 */
+#t_privqna {
+	margin: 0 auto;
+	border-collapse: collapse;
 }
+
+#t_privqna tr {
+	border: 1px solid black;
+}
+
+#t_privqna td {
+	border: 1px solid black;
+	padding: 10px 20px;
+	width: 20%;
+}
+/* 교환 환불사항 */
 #t_exchange {
 	border-collapse: collapse;
+	text-align: left;
+	margin: 0 auto;
+	pading: 10px;
 }
 
 #t_exchange tr {
@@ -91,4 +148,5 @@
 
 #t_exchange td {
 	border: 0.2px solid #c0c0c0;
+	padding: 10px;
 }
