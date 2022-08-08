@@ -43,8 +43,9 @@
 								<tr>
 									<td>구매수량</td>
 									<td><input type="text" value="1" id="num">
+										<button id="btn_minus" type="button">-</button>
 										<button id="btn_plus" type="button">+</button>
-										<button id="btn_minus" type="button">-</button></td>
+									</td>
 								</tr>
 								<tr>
 									<td>총가격</td>
@@ -86,6 +87,8 @@
 					<div id="privRe">
 						<div id="privRe_title">리뷰보기</div>
 						<div>개별평점 ★★★★★(10)</div>
+						<div><span>아이디</span><span>등록일</span></div>
+						<div>제품이름</div>
 						<img alt="가구사진"
 							src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/165890122221285125.jpeg?gif=1&w=144&h=144&c=c&webp=1">
 						<p>잘쓰고 있습니다.</p>
@@ -132,7 +135,7 @@
 							<td colspan="3">4.구매자의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우</td>
 						</tr>
 						<tr>
-							<td colspan="3">5.고객의 경과에 의하여 재판매가 곤란할 정도로 상품 드의 가치가 현저히 감소한
+							<td colspan="3">5.고객의 경과에 의하여 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한
 								경우</td>
 						</tr>
 						<tr>

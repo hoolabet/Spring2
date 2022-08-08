@@ -33,7 +33,7 @@
 				</div>
 				<div id="list">
 					<ul>
-						<li><a href="http://localhost:8080/controller/board/detail"><img
+						<li><a href="http://localhost:8080/board/detail"><img
 								alt="chair"
 								src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
 							<p>
@@ -41,7 +41,7 @@
 									좋은 침대</a>
 							</p>
 							<p>가격문의</p></li>
-						<li><a href="http://localhost:8080/controller/board/detail"><img
+						<li><a href="http://localhost:8080/board/detail"><img
 								alt="chair"
 								src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
 							<p>
@@ -49,7 +49,7 @@
 									좋은 침대</a>
 							</p>
 							<p>가격문의</p></li>
-						<li><a href="http://localhost:8080/controller/board/detail"><img
+						<li><a href="http://localhost:8080/board/detail"><img
 								alt="chair"
 								src="https://image.ohou.se/i/bucketplace-v2-development/uploads/productions/165580847056056090.jpg?gif=1&w=640&h=640&c=c&webp=1"></a>
 							<p>

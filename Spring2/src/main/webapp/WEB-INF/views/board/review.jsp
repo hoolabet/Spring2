@@ -33,7 +33,11 @@
 						<input type="text" placeholder="파일첨부">
 						<button>찾기</button>
 					</div>
-					<div>파일이 첨부되어 미리 볼 수 있는 곳</div>
+					<div id="img_res">
+						<img alt="가구사진"
+							src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/165890122221285125.jpeg?gif=1&w=144&h=144&c=c&webp=1">
+						가구를 첨부하면 볼 수 있는 곳
+					</div>
 					<div id="write">
 						<textarea rows="25%" cols="100%" id="review_write"></textarea>
 						<label id="writelength">0/100</label>
