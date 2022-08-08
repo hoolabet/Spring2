@@ -31,7 +31,7 @@
 					</div>
 					<div id="img">
 						<input type="text" placeholder="파일첨부">
-						<button>찾기</button>
+						<input type="file">
 					</div>
 					<div id="img_res">
 						<img alt="가구사진"

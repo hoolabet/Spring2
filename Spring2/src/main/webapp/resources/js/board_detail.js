@@ -39,7 +39,7 @@ window.addEventListener("scroll",()=>{
         const sectionTop = window.scrollY + section.getBoundingClientRect().top;
       
       // 누적된 스크롤이 section의 top위치에 도달했거나 section의 안에 위치할 경우
-        if(window.scrollY >= sectionTop) {
+        if(window.scrollY >= sectionTop-100) {
            current = section.getAttribute("id");
            //console.log(current);
         }

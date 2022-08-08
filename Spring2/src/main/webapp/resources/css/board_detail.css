@@ -44,12 +44,10 @@
 /* 내비게이션  */
 #detail {
 	margin: 70px 0;
+	position: sticky;
+	top:-26px;
 }
-.nav{
-	position:fixed;
-	width:100%;
-	top:-43px;
-}
+
 nav ul {
 	list-style: none;
 	text-align: center;
@@ -57,7 +55,8 @@ nav ul {
 
 nav ul li {
 	float: left;
-	border: 1px solid black;
+	border: 1px solid #c0c0c0;
+	background-color: white;
 	padding: 10px 120px;
 	margin: 28px 0;
 }
@@ -66,7 +65,7 @@ nav ul li a {
 	text-decoration: none;
 }
 .navfocused{
-	color:blue;
+	color: blue;
 }
 .marker {
   content: "";
@@ -75,7 +74,6 @@ nav ul li a {
   left: 50%;
   width: 0%;
   height: 3px;
-  background-color: purple;
   transition: 0.2s;
 }
 /* 상세보기내용  */
