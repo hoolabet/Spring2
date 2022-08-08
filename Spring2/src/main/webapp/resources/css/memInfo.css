@@ -2,6 +2,7 @@
 
 
 
+
 .signtable{
 	height:50px;
 }
@@ -14,16 +15,12 @@ td{
 	font-size:5px;
 }
 
-#idbtn{
-	font-size:5px;
-}
-
 table {
     margin-left:auto; 
     margin-right:auto;
 }
 
-.tableInput{	
+.tableInput{
 	padding-left:30px;
 	text-align:left;
 	

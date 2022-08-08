@@ -42,5 +42,31 @@ public class MemberController {
 	public String memInfo() {
 		return "member/memInfo";
 	}
+	@RequestMapping(value = "/member/memInfo", method = RequestMethod.POST)
+	public void modify(String id,String pw) {
+		System.out.println(id);
+		System.out.println(pw);
+	}
 	
+	
+	@RequestMapping(value = "/member/shippingAdd", method = RequestMethod.GET)
+	public String shippingAdd() {
+		return "member/shippingAdd";
+	}
+	@RequestMapping(value = "/member/shippingAdd", method = RequestMethod.POST)
+	public void shippingAddin(String id,String pw) {
+		System.out.println(id);
+		System.out.println(pw);
+	}
+	
+	
+	@RequestMapping(value = "/member/modifyAdd", method = RequestMethod.GET)
+	public String modifyAdd() {
+		return "member/modifyAdd";
+	}
+	@RequestMapping(value = "/member/modifyAdd", method = RequestMethod.POST)
+	public void modifyAddid(String id,String pw) {
+		System.out.println(id);
+		System.out.println(pw);
+	}
 }
