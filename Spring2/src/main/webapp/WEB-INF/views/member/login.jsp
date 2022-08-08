@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="../resources/css/home.css">
 <script type="text/javascript"src="/resources/js/login.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css"></link>
 
@@ -40,7 +40,7 @@
 					</table>
 				</div>
 				<div id="link">
-					<a href="/member/signup">회원가입</a><a href=""></a>
+					<a href="/member/signup">회원가입</a>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="">아이디/비밀번호 찾기</a>
 				</div>
 			</form>	
 
@@ -51,7 +51,9 @@
 
 
 		</div>
-		<%@ include file="../footer.jsp"%>	
+		<%@ include file="../footer.jsp"%>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="../resources/js/home.js"></script>
 </body>
 </html>

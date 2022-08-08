@@ -6,28 +6,26 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/home.css">
-<link rel="stylesheet" type="text/css" href="/resources/css/mypage.css"></link>
+<link rel="stylesheet" type="text/css" href="/resources/css/modifyAdd.css"></link>
 </head>
 <body>
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 		
-		
-		
-			
-			<h1>마이페이지</h1>
-			
-			<a href="/member/memInfo">회원정보수정</a><br>
-			<a href="">주문목록</a><br>
-			<a href="/member/shippingAdd">배송지 관리</a><br>
-			<a href="">배송조회</a>
+
+
+
+
+			<h1>배송지 수정페이지</h1>
+
+
 
 
 
 
 		</div>
-		<%@ include file="../footer.jsp"%>	
+		<%@ include file="../footer.jsp"%>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>

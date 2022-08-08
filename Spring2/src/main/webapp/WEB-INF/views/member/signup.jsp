@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"src="/resources/js/signup.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/signup.css"></link>
 </head>
 <body>
@@ -74,7 +74,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2" id="submitTd">
+						<td colspan="2">
 							<input type="submit" value="회원가입" id="signsub">
 						</td>
 					</tr>
@@ -87,7 +87,9 @@
 
 
 		</div>
-		<%@ include file="../footer.jsp"%>	
+		<%@ include file="../footer.jsp"%>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="../resources/js/home.js"></script>
 </body>
 </html>
