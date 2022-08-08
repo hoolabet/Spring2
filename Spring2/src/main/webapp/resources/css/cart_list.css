@@ -1,14 +1,67 @@
 @charset "UTF-8";
 
-#left {
-	background-color : red;
-	float : left;
+#content_area {
+	width : 1503px;
 }
 
-#right {
-	float : right;
+table {
+	margin-left : 10px;
 }
 
-#red {
-	color : red;
+.info {
+	width : 350px;
+}
+
+.select {
+    font-size: 16px;
+    width : 50px;
+    height : 30px;
+    cursor: pointer;
+}
+
+.coupon_td {
+    width : 250px;
+}
+
+.coupon {
+    font-size : 15px;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.st_content {
+    display: none;
+}
+
+#paybox {
+    border : solid 1px;
+    background-color : #e7e7e7;
+	position : fixed;
+    width : 500px;
+	height : 500px;
+    bottom : 100px;
+    right : 220px;
+    display: none;
+}
+
+#pay {
+	background-color : #ffffff;
+	font-size : 20px;
+    position : absolute;
+    width : 250px;
+    height : 70px;
+    left : 30px;
+    bottom : 50px;
+}
+
+#tot {
+    position : fixed;
+    bottom : 100px;
+    right : 50px;
+    cursor: pointer;
+}
+
+#tot img {
+    width : 80px;
 }

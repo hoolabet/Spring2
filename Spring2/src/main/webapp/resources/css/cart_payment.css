@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#content_area {
+	width : 1503px;
+	height : 1000px;
+	margin : 0 auto;
+}
+
+table {
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#td_left {
+    padding-right: 50px;
+}
+
+#match {
+    font-size : 18px;
+    margin-left: 200px;
+}
+
+hr {
+	border : solid 3px rgb(241, 177, 177);
+    margin-top : 30px;
+    margin-bottom : 30px;
+}
+
+.pay_img {
+    cursor: pointer;
+}
+
+input {
+    font-size: 30px;
+}
