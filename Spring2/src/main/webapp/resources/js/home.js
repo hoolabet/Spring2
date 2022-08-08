@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 if ($("#entry_area").height() < "1000") {
     $("#content_area").height(800);
 }
@@ -29,4 +25,6 @@ if ($("#entry_area").height() < "1000") {
 // }
 // )
 
-
+$("#search_btn").on("click", function(){
+    alert("'"+$("#search_input").val()+"' 를 찾습니다.");
+})

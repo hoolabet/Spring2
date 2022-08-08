@@ -16,11 +16,27 @@ a {
 
 #header {
     position: relative;
-	height: 300px;
+}
+
+#header_top {
+    position: relative;
+    height: 50px;
+    width: 1503px;
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#header_bottom {
+    position: relative;
+	height: 100px;
 	width: 1503px;
 	background-color: #abaaaa;
-	margin-top: 20px;
 	margin-bottom: 50px;
+}
+
+#header_bottom h1 {
+    margin: 0;
 }
 
 #footer {
@@ -29,12 +45,12 @@ a {
 	width: 1503px;
 	background-color: #abaaaa;
 	margin-top: 50px;
-	margin-bottom: 20px;
 }
 
 #a_list {
     position: absolute;
     right: 20px;
+    top: 0px;
 }
 
 #a_list ul{
@@ -48,15 +64,15 @@ a {
 }
 
 #categori_btn img {
-	width: 100px;
-	height: 100px;
+	width: 50px;
+	height: 50px;
 }
 
 #categori_btn {
 	position: absolute;
 	bottom: 0;
     cursor: pointer;
-    padding: 30px;
+    padding: 25px;
 }
 
 #categori {
@@ -67,7 +83,8 @@ a {
     display: none;
     list-style: none;
     position: absolute;
-    bottom: -600px;
+    bottom: -400px;
+    left: 0px;
     padding-left: 0;
     margin: 0;
 }
@@ -75,6 +92,8 @@ a {
 #categori li {
     font-size: 30px;
     padding: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     cursor: pointer;
 }
 
@@ -102,4 +121,24 @@ a {
 
 #categori_btn:hover #categori {
     display: block;
+}
+
+#search_div img{
+    width: 30px;
+    position: absolute;
+    bottom: 10px;
+}
+
+#search_div input{
+    height: 30px;
+    padding: 10px;
+    margin-right: 20px;
+    font-size: 20px;
+}
+
+#search_div {
+    position: absolute;
+    right: 30px;
+    bottom: 120px;
+    cursor: pointer;
 }
