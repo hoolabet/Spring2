@@ -54,9 +54,9 @@ a {
 
 #categori_btn {
 	position: absolute;
-	left: 30px;
-	bottom: 30px;
+	bottom: 0;
     cursor: pointer;
+    padding: 30px;
 }
 
 #categori {
@@ -67,13 +67,14 @@ a {
     display: none;
     list-style: none;
     position: absolute;
-    bottom: -400px;
-    padding: 30px;
+    bottom: -600px;
+    padding-left: 0;
+    margin: 0;
 }
 
 #categori li {
-    margin: 20px;
     font-size: 30px;
+    padding: 40px;
     cursor: pointer;
 }
 
@@ -85,13 +86,20 @@ a {
     display: none;
     list-style: none;
     position: absolute;
-    top: 0px;
-    left: 120px;
-    padding: 30px;
+    top: 0;
+    left: 100px;
+    padding-left: 0;
 }
 
 #categori_a_list li,#categori_b_list li,#categori_c_list li,#categori_d_list li,#categori_e_list li {
-    margin: 20px;
     font-size: 30px;
     cursor: pointer;
+}
+
+#categori_a:hover .cates ,#categori_b:hover .cates,#categori_c:hover .cates,#categori_d:hover .cates,#categori_e:hover .cates{
+    display: block;
+}
+
+#categori_btn:hover #categori {
+    display: block;
 }
