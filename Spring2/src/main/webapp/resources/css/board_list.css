@@ -26,15 +26,21 @@
 #list{
 	clear:both;
 }
+
 #list > ul > li > a > img{
 	width: 300px;
 }
+
 #list > ul{
 	list-style: none;
 }
 
 #list > ul > li{
 	float: left;
-	margin: 10px;
-	list-sytl:none;
+	margin: 12px;
+	border: 1px solid black;
+}
+
+#list > ul > li > p > a:hover{
+	text-decoration: underline;
 }

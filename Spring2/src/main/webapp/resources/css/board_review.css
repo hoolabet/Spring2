@@ -48,6 +48,15 @@ form div {
 #starRate span {
 	margin-right: 10px;
 }
+/* 파일첨부 */
+.preview ol{
+	list-style: none;
+}
+.preview ol li img{
+	width : 181px;
+	height : 144px;
+}
+
 /* 글쓰는 곳 */
 #title input {
 	width: 100%;

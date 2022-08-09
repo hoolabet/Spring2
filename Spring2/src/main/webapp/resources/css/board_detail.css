@@ -65,7 +65,8 @@ nav ul li a {
 	text-decoration: none;
 }
 .navfocused{
-	color: blue;
+	height: 30px;
+	border-bottom:none;
 }
 .marker {
   content: "";
