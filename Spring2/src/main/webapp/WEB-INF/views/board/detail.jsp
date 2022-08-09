@@ -107,6 +107,7 @@
 								<td>잘 쓰고 있습니다.</td>
 							</tr>
 						</table>
+					</div>
 				</section>
 				<section id="privqna">
 					<div class="title">상품문의</div>
@@ -180,7 +181,6 @@
 		</div>
 
 		<%@ include file="../footer.jsp"%>
-	</div>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

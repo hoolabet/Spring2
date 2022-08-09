@@ -8,6 +8,12 @@ a {
     color: black;
 }
 
+input[type="submit"] {
+    background-color: #abaaaa;
+    border: 1px solid black;
+    padding: 15px;
+}
+
 #entry_area {	
 	width: 1503px;
 	background-color: #e7e7e7;

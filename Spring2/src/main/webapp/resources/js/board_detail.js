@@ -27,8 +27,9 @@ function setMarker(e) {
     marker.style.width = e.offsetWidth+"px";
 }
 const sections = document.querySelectorAll("section");
-const menus = document.querySelectorAll(".nav__menu > li > a")
-const nav = document.querySelector('#nav')
+const menus = document.querySelectorAll(".nav__menu > li > a");
+const nav = document.querySelector('#nav');
+const list = document.querySelectorAll(".nav__menu > li");
 window.addEventListener("scroll",()=>{
   // 현재 영역의 id 값
     let current=""
@@ -44,16 +45,30 @@ window.addEventListener("scroll",()=>{
            //console.log(current);
         }
         menus.forEach(menu=>{
-            menu.classList.remove("navfocused");
+            menu.parentNode.classList.remove("navfocused");
             const href = menu.getAttribute("href").substring(1);
             //console.log(href);
             if(href===current) {
                 // 현재 있는 영역의 id와 메뉴의 링크주소가 일치할때
-                menu.classList.add("navfocused");
+                menu.parentNode.classList.add("navfocused");
                 setMarker(menu);
             }
         })
+        
     })
 })
+
+//리뷰쓰기 버튼 클릭시 리뷰페이지 이동
+const gotoreview = document.querySelector('#totalRe > button');
+gotoreview.addEventListener('click', ()=>{
+	location.href="http://localhost:8080/board/review";
+})
+
+
+
+
+
+
+
 
 

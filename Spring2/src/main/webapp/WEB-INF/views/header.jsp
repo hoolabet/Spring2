@@ -9,7 +9,7 @@
 			<ul>
 				<li><a href="/cart/list">장바구니</a></li>
 				<li><a href="">마이페이지</a></li>
-				<li><a href="">로그인</a></li>
+				<li><a href="/member/login">로그인</a></li>
 				<li><a href="/member/signup">회원가입</a></li>
 			</ul>
 		</div>

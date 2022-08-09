@@ -30,13 +30,10 @@
 						<input type="text" name="title" placeholder="제목을 여기에 쓰세요">
 					</div>
 					<div id="img">
-						<input type="text" placeholder="파일첨부">
-						<input type="file">
-					</div>
-					<div id="img_res">
-						<img alt="가구사진"
-							src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/165890122221285125.jpeg?gif=1&w=144&h=144&c=c&webp=1">
-						사진을 첨부하면 볼 수 있는 곳
+						<input multiple type="file" id="image_uploads" accept="image/*">
+						<div class="preview">
+							<p>No files currently selected for upload</p>
+						</div>
 					</div>
 					<div id="write">
 						<textarea rows="25%" cols="100%" id="review_write"></textarea>

@@ -14,10 +14,10 @@
 		<div id="content_area">
 			<table>
 				<tr>
-					<td>게시물 번호</td>
-					<td>제목</td>
-					<td>작성자</td>
-					<td>작성일</td>
+					<td id="td_1">게시물 번호</td>
+					<td id="td_2">제목</td>
+					<td id="td_3">작성자</td>
+					<td id="td_4">작성일</td>
 				</tr>
 				<tr>
 					<td>1</td>

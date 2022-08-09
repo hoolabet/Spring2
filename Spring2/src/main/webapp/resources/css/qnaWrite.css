@@ -4,6 +4,13 @@ table {
 	display: inline-block;
 }
 
-textarea {
+#input_content {
 	resize: none;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#input_title {
+    padding: 10px;
+    font-size: 20px;
 }
