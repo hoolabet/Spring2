@@ -20,7 +20,6 @@
 			
 			<a href="/member/memInfo">회원정보수정</a><br>
 			<a href="">주문목록</a><br>
-			<a href="/member/shippingAdd">배송지 관리</a><br>
 			<a href="">배송조회</a>
 
 

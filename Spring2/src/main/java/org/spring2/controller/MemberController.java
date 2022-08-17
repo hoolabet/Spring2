@@ -11,13 +11,8 @@ public class MemberController {
 		return "member/signup";
 	}
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
-	public void signupin(String id, String pw, String name, String email, String phone, String add) {
-		System.out.println(id);
-		System.out.println(pw);
-		System.out.println(name);
-		System.out.println(email);
-		System.out.println(phone);
-		System.out.println(add);
+	public void signupin(String id, String pw, String name, String email, String phone, String address1) {
+
 	}
 	
 	
@@ -49,24 +44,5 @@ public class MemberController {
 	}
 	
 	
-	@RequestMapping(value = "/member/shippingAdd", method = RequestMethod.GET)
-	public String shippingAdd() {
-		return "member/shippingAdd";
-	}
-	@RequestMapping(value = "/member/shippingAdd", method = RequestMethod.POST)
-	public void shippingAddin(String id,String pw) {
-		System.out.println(id);
-		System.out.println(pw);
-	}
-	
-	
-	@RequestMapping(value = "/member/modifyAdd", method = RequestMethod.GET)
-	public String modifyAdd() {
-		return "member/modifyAdd";
-	}
-	@RequestMapping(value = "/member/modifyAdd", method = RequestMethod.POST)
-	public void modifyAddid(String id,String pw) {
-		System.out.println(id);
-		System.out.println(pw);
-	}
+
 }

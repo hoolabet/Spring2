@@ -64,7 +64,21 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="signtable">주소</td>
+					<td class="signtable">주소1</td>
+					<td class="tableInput">
+						<input type="text" name="add" id="adchk" value="가입한 주소">
+						<p class="signmsg" id="admsg"></p>
+					</td>
+				</tr>
+				<tr>
+					<td class="signtable">주소2</td>
+					<td class="tableInput">
+						<input type="text" name="add" id="adchk" value="가입한 주소">
+						<p class="signmsg" id="admsg"></p>
+					</td>
+				</tr>
+				<tr>
+					<td class="signtable">주소3</td>
 					<td class="tableInput">
 						<input type="text" name="add" id="adchk" value="가입한 주소">
 						<p class="signmsg" id="admsg"></p>

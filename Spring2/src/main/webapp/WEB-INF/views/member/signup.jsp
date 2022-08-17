@@ -69,7 +69,7 @@
 					<tr>
 						<td class="signtable">주소</td>
 						<td class="tableInput">
-							<input type="text" name="add" id="adchk">
+							<input type="text" name="address1" id="adchk">
 							<p class="signmsg" id="admsg"></p>
 						</td>
 					</tr>
