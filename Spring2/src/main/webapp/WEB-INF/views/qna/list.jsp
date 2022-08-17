@@ -32,6 +32,7 @@
 			</form>
 			<br> <a href="/">메인으로</a>
 		</div>
+		${list}
 		<%@ include file="../footer.jsp"%>
 	</div>
 	<script

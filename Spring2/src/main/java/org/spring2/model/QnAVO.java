@@ -1,6 +1,6 @@
 package org.spring2.model;
 
-public class qnaVO {
+public class QnAVO {
 	private String title;
 	private String content;
 	public String getTitle() {
@@ -17,7 +17,7 @@ public class qnaVO {
 	}
 	@Override
 	public String toString() {
-		return "qnaVO [title=" + title + ", content=" + content + "]";
+		return "QnAVO [title=" + title + ", content=" + content + "]";
 	}
 	
 	
