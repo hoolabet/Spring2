@@ -1,5 +1,6 @@
 package org.spring2.controller;
 
+import org.spring2.model.qnaVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,9 +12,10 @@ public class QnAController {
 	}
 	
 	@RequestMapping(value = "/qna/list", method = RequestMethod.POST)
-	public void QnA(String title,String content) {
-		System.out.println(title);
-		System.out.println(content);
+	public void QnA(qnaVO qvo) {
+		System.out.println(qvo.getTitle());
+		System.out.println(qvo.getContent());
+		
 	}
 	
 	@RequestMapping(value = "/qna/write", method = RequestMethod.POST)
