@@ -34,7 +34,7 @@
 					<tr>
 						<td class="signtable">비밀번호</td>
 						<td class="tableInput">
-							<input type="password" name="pw" id="pwchk">
+							<input type="password" name="password" id="pwchk">
 							<p class="signmsg" id="pwmsg"></p>
 						</td>
 					</tr>
@@ -57,6 +57,21 @@
 						<td class="tableInput">
 							<input type="text" name="email" id="emchk">
 							<p class="signmsg" id="emmsg"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="signtable">성별</td>
+						<td class="tableInput">
+							<input type="radio" name="gender" value="m">남
+							<input type="radio" name="gender" value="f">여
+							<p class="signmsg" id="genmsg"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="signtable">출생년월</td>
+						<td class="tableInput">
+							<input type="text" name="birth" id="bichk">
+							<p class="signmsg" id="bimsg"></p>
 						</td>
 					</tr>
 					<tr>
