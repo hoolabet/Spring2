@@ -5,4 +5,8 @@ import org.spring2.model.MemberVO;
 public interface MemberService {
 
 	public void signUp(MemberVO member);
+
+	public MemberVO login(MemberVO member);
+	
+	public MemberVO idchk(MemberVO member);
 }

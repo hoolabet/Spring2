@@ -29,7 +29,7 @@
 							<td><input type="text" placeholder="아이디" name="id" class="idpwInput" id="idchk"></td>
 						</tr>
 						<tr>
-							<td><input type="password" placeholder="비밀번호" name="pw" class="idpwInput" id="pwchk"></td>
+							<td><input type="password" placeholder="비밀번호" name="password" class="idpwInput" id="pwchk"></td>
 						</tr>
 						<tr>
 							<td><p id="msg"></p></td>

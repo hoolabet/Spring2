@@ -1,4 +1,4 @@
-window.onload=function(){
+
 	
 	
 	
@@ -27,6 +27,7 @@ window.onload=function(){
 	var id = false;
 	$("#idchk").on("blur",function(){ 
 		const idid=/^[a-z0-9-_]{5,20}$/g;
+		console.log($("#idchk").val());
 		if($("#idchk").val()==""){
 			$("#idmsg").text("필수입력정보입니다.");
 			$("#idmsg").css("color","red");
@@ -42,6 +43,27 @@ window.onload=function(){
 		}
 		
 	})
+	
+	
+	$("#idbtn").on("click",function(e){
+		
+		e.preventDefault();
+		var idchk=$("#idchk").val();
+		idcheck(idchk);
+	})
+	
+function idcheck(id){
+	
+	$.getJSON("/member/signup/"+id+".json",function(data){
+		console.log(data)  //디테일 콘솔확인하기
+		
+	
+	
+	});
+		
+	
+}
+	
 	
 	
 //	var pwchk=document.querySelector("#pwchk");
@@ -264,4 +286,3 @@ window.onload=function(){
 	
 	
 
-}

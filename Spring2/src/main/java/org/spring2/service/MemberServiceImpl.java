@@ -12,4 +12,11 @@ public class MemberServiceImpl implements MemberService{
 	public void signUp(MemberVO member) {
 		mm.signUp(member);
 	}
+	
+	public MemberVO login(MemberVO member) {
+		return mm.login(member);
+	}
+	public MemberVO idchk(MemberVO member) {
+		return mm.idchk(member);
+	}
 }
