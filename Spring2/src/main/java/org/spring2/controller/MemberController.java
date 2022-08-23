@@ -25,13 +25,18 @@ public class MemberController {
 	}
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
 	public String signupin(MemberVO member) {
-		ms.signUp(member);
-		return "member/login";
+		try {
+			ms.signUp(member);
+			return "member/login";
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "member/signup";
+		}
 	}
 	
-	@RequestMapping(value = "/member/signup/{idchk}", method = RequestMethod.GET)
-	public ResponseEntity<MemberVO> idchk(@PathVariable MemberVO member) {
-		return new ResponseEntity<>(ms.idchk(member),HttpStatus.OK);
+	@RequestMapping(value = "/member/signup/{id}", method = RequestMethod.GET)
+	public ResponseEntity<MemberVO> idchk(@PathVariable String id) {
+		return new ResponseEntity<>(ms.idchk(id),HttpStatus.OK);
 	}
 	
 	

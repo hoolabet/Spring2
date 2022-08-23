@@ -27,7 +27,6 @@
 	var id = false;
 	$("#idchk").on("blur",function(){ 
 		const idid=/^[a-z0-9-_]{5,20}$/g;
-		console.log($("#idchk").val());
 		if($("#idchk").val()==""){
 			$("#idmsg").text("필수입력정보입니다.");
 			$("#idmsg").css("color","red");
@@ -46,22 +45,25 @@
 	
 	
 	$("#idbtn").on("click",function(e){
-		
 		e.preventDefault();
-		var idchk=$("#idchk").val();
-		idcheck(idchk);
+		var id=$("#idchk").val();
+		idcheck(id);
 	})
 	
 function idcheck(id){
-	
-	$.getJSON("/member/signup/"+id+".json",function(data){
-		console.log(data)  //디테일 콘솔확인하기
-		
-	
-	
-	});
-		
-	
+
+	$.ajax({
+		type: "get",
+		url: "/member/signup/"+id+".json",
+		data: id,
+		contentType: "application/json; charset=utf-8",
+		success:function(r){
+			alert("사용가능한 id 입니다.");
+		},
+		error:function(r){
+			alert("중복된 id 입니다.");
+		}
+	})
 }
 	
 	

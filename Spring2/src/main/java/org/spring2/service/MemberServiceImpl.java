@@ -16,7 +16,7 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO login(MemberVO member) {
 		return mm.login(member);
 	}
-	public MemberVO idchk(MemberVO member) {
-		return mm.idchk(member);
+	public MemberVO idchk(String id) {
+		return mm.idchk(id);
 	}
 }

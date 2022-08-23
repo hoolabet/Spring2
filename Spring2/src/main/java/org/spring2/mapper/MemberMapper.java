@@ -7,5 +7,5 @@ public interface MemberMapper {
 
 	public MemberVO login(MemberVO member);
 	
-	public MemberVO idchk(MemberVO member);
+	public MemberVO idchk(String id);
 }
