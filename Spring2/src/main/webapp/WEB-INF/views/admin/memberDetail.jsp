@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/admin/memberDetail.css">
+<link rel="stylesheet" href="../resources/css/adminMain.css">
 <title>회원상세정보</title>
 </head>
 <body>

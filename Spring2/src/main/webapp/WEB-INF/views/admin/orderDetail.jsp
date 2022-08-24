@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/admin/orderDetail.css">
+<link rel="stylesheet" href="../resources/css/adminMain.css">
 <title>주문 상세</title>
 </head>
 <body>
