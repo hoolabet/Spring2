@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/home.css">
-<script type="text/javascript"src="/resources/js/login.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/css/login.css"></link>
+<link rel="stylesheet" type="text/css" href="/resources/css/findId.css"></link>
 
 </head>
 <body>
@@ -21,26 +20,30 @@
 
 
 
-			<h1 id="title">login</h1>
+			<h1 id="title">아이디 찾기</h1>
 			<form action="/member/findId" method="post">
+				<div>
+					<input type="radio" name="findId" value="p" checked="checked">전화번호로 찾기
+					<input type="radio" name="findId" value="e">이메일로 찾기
+				</div>
 				<div id="loginTable">
 					<table>
 						<tr>
-							<td><input type="text" placeholder="아이디" name="id" class="idpwInput" id="idchk"></td>
+							<td>
+							<input type="text" placeholder="이름" name="name" class="findIdInput" id="findIdName">
+							<p id="namsg"></p>
+							</td>
 						</tr>
 						<tr>
-							<td><input type="password" placeholder="비밀번호" name="password" class="idpwInput" id="pwchk"></td>
+							<td id="EorP"></td>
 						</tr>
 						<tr>
-							<td><p id="msg"></p></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="로그인" id="loginsub"></td>
+							<td><input type="submit" value="아이디 찾기" id="findIdsub"></td>
 						</tr>
 					</table>
 				</div>
 				<div id="link">
-					<a href="/member/signup">회원가입</a>&emsp;&emsp;&emsp;&emsp;&emsp;<a href="/member/findId">아이디/비밀번호 찾기</a>
+					<a href="">비밀번호 찾기</a>
 				</div>
 			</form>	
 
@@ -55,5 +58,6 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
+	<script type="text/javascript"src="/resources/js/findId.js"></script>
 </body>
 </html>

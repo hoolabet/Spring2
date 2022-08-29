@@ -31,6 +31,7 @@
 		if($("#idchk").val()==""){
 			$("#idmsg").text("필수입력정보입니다.");
 			$("#idmsg").css("color","red");
+			$("#idchk").css("border-color","red");
 			idd = false;
 		}else if(idid.test($("#idchk").val())){ 
 			$("#idmsg").text("");
@@ -72,6 +73,7 @@ function idcheck(idc){
 		alert("사용가능한 id 입니다.");
 		$("#idmsg").text("사용가능한 id 입니다.");
 		$("#idmsg").css("color","green");
+		id = true;
 	})
 }
 	
@@ -240,7 +242,7 @@ function idcheck(idc){
 			$("#pmsg").text("");
 			ph = true;
 		}else{
-			$("#pmsg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
+			$("#pmsg").text("전화번호를 다시 확인해 주세요.").css("color","red");
 			ph = false;
 		}
 	})

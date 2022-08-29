@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,6 +64,25 @@ public class MemberController {
 			return "member/login";
 		}		
 	}
+	
+	@RequestMapping(value = "/member/findId", method = RequestMethod.GET)
+	public String findIdGet() {
+		return "member/findId";
+	}
+	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
+	public String findIdPost(MemberVO member,Model model) {
+		System.out.println(member);
+		try {
+			ms.findId(member);
+			System.out.println(ms.findId(member));
+			model.addAttribute("id",ms.findId(member).getId());
+			return "member/findId";
+		}catch (Exception e) {
+			e.printStackTrace();
+			return "member/findId";
+		}
+	}
+
 	
 	
 	@RequestMapping(value = "/member/mypage", method = RequestMethod.GET)

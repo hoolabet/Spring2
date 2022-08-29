@@ -9,4 +9,6 @@ public interface MemberService {
 	public MemberVO login(MemberVO member);
 	
 	public MemberVO idchk(String id);
+
+	public MemberVO findId(MemberVO member);
 }
