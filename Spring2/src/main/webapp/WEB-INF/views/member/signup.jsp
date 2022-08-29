@@ -12,15 +12,8 @@
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
-		
-		
-		
-		
-
-
 			<h1 id="title">sign up</h1>
 			<form action="/member/signup" method="post">
-			
 				<table>
 					<tr>
 						<td class="signtable">아이디</td>
@@ -104,7 +97,7 @@
 		<%@ include file="../footer.jsp"%>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript"src="/resources/js/signup.js"></script>
+	<script type="text/javascript"src="/resources/js/signup.js?ver=1"></script>
 	<script src="../resources/js/home.js"></script>
 </body>
 </html>

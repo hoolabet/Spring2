@@ -25,20 +25,20 @@
 	
 	
 	var id = false;
+	let idd = false;
 	$("#idchk").on("blur",function(){ 
 		const idid=/^[a-z0-9-_]{5,20}$/g;
 		if($("#idchk").val()==""){
 			$("#idmsg").text("필수입력정보입니다.");
 			$("#idmsg").css("color","red");
-			id = false;
+			idd = false;
 		}else if(idid.test($("#idchk").val())){ 
-			$("#idmsg").text("사용가능한 아이디 입니다.");
-			$("#idmsg").css("color","green");
-			id = true;
+			$("#idmsg").text("");
+			idd = true;
 		}else{ 
 			$("#idmsg").text("5~20의 소문자 숫자 특수기호 (-)(_)만 사용하여 입력하세요.");
 			$("#idmsg").css("color","red");
-			id = false;
+			idd = false;
 		}
 		
 	})
@@ -46,23 +46,32 @@
 	
 	$("#idbtn").on("click",function(e){
 		e.preventDefault();
-		var id=$("#idchk").val();
-		idcheck(id);
+		if(idd){
+			var idc=$("#idchk").val();
+			idcheck(idc);
+		}else{
+			alert("부적절한 id 입니다.")
+		}
 	})
 	
-function idcheck(id){
+function idcheck(idc){
 
 	$.ajax({
 		type: "get",
-		url: "/member/signup/"+id+".json",
-		data: id,
-		contentType: "application/json; charset=utf-8",
-		success:function(r){
-			alert("사용가능한 id 입니다.");
-		},
-		error:function(r){
-			alert("중복된 id 입니다.");
-		}
+		url: "/member/signup/"+idc,
+		data: idc,
+		contentType: "application/json; charset=utf-8"
+	})
+	.done(function(r){
+		alert("중복된 id 입니다.");
+		$("#idmsg").text("중복된 id 입니다.");
+		$("#idmsg").css("color","red");
+		id = false;
+	})
+	.fail(function(){
+		alert("사용가능한 id 입니다.");
+		$("#idmsg").text("사용가능한 id 입니다.");
+		$("#idmsg").css("color","green");
 	})
 }
 	

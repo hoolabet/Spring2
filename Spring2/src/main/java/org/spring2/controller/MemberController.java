@@ -35,8 +35,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/member/signup/{id}", method = RequestMethod.GET)
-	public ResponseEntity<MemberVO> idchk(@PathVariable String id) {
-		return new ResponseEntity<>(ms.idchk(id),HttpStatus.OK);
+	public ResponseEntity<String> idchk(@PathVariable String id) {
+		try{
+			System.out.println(ms.idchk(id).getId());
+			return new ResponseEntity<>(ms.idchk(id).getId(),HttpStatus.OK);
+		}catch (Exception e) {
+			// TODO: handle exception
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 	
 	
