@@ -22,7 +22,7 @@
 
 
 			<h1 id="title">login</h1>
-			<form action="/member/findId" method="post">
+			<form action="/member/login" method="post">
 				<div id="loginTable">
 					<table>
 						<tr>
