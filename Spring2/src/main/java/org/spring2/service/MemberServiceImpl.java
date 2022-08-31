@@ -26,6 +26,10 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO emchk(String str) {
 		return mm.emchk(str);
 	}
+	// 전화번호 중복확인
+	public MemberVO phchk(String str) {
+		return mm.phchk(str);
+	}
 	// 아이디 찾기
 	public MemberVO findId(MemberVO member) {
 		return mm.findId(member);

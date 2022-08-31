@@ -30,6 +30,11 @@
 		select * from member where
 		email=#{str};
 	</select>
+	<!-- 전화번호 중복확인 -->
+	<select id="phchk" resultType="org.spring2.model.MemberVO">
+		select * from member where
+		phone=#{str};
+	</select>
 	<!-- 아이디 찾기 -->
 	<select id="findId" resultType="org.spring2.model.MemberVO">
 		 select * from member where name=#{name} and phone=#{phone};

@@ -268,21 +268,59 @@ function emcheck(emc){
 //}
 //}
 
-var ph =false;
+
+
+var ph = false;
+let phh =false;
 $("#pchk").on("blur",function(){
 	const phone = /^[0-9]{8,13}$/g;
 	if($("#pchk").val()==""){
 		$("#pmsg").text("필수입력정보입니다.").css("color","red");
-		ph = false;
+		phh = false;
 	}else if(phone.test($("#pchk").val())){
 		$("#pmsg").text("");
-		ph = true;
+		phh = true;
 	}else{
 		$("#pmsg").text("전화번호를 다시 확인해 주세요.").css("color","red");
-		ph = false;
+		phh = false;
 	}
 })
 
+
+$("#phbtn").on("click",function(e){
+	e.preventDefault();
+	if(phh){
+		$("input[name='phone']").val($("#front_num").val()+$("#pchk").val())
+		var phc=$("input[name='phone']").val();
+		
+
+		phcheck(phc);
+	}else{
+		alert("부적절한 이메일 입니다.")
+	}
+})
+
+function phcheck(phc){
+	console.log(phc);
+	$.ajax({
+		type: "get",
+		url: "/member/signup/"+phc,
+		data: phc,
+		contentType: "application/json; charset=utf-8"
+	})
+	.done(function(r){
+		alert("중복된 전화번호 입니다.");
+		$("#pmsg").text("중복된 전화번호 입니다.");
+		$("#pmsg").css("color","red");
+		ph = false;
+	})
+	.fail(function(){
+		alert("사용가능한 전화번호 입니다.");
+		$("#pmsg").text("사용가능한 전화번호 입니다.");
+		$("#pmsg").css("color","green");
+		ph = true;
+	})
+}
 
 //var adchk=document.querySelector("#adchk");
 //var admsg=document.querySelector("#admsg");
@@ -325,10 +363,13 @@ $("#adchk").on("blur",function(){
 $("#signsub").on("click",function(e){
 	if(!(id && pw && pw2 && na && em && ph && ad)){
 		e.preventDefault();
+		
 		alert('입력해');
 	}else{
 		e.preventDefault();
 		$("#email").val($("#email").val().slice(0,$("#email").val().length-4));
+		
+		
 		alert('가입됨');
 		$("form[action='/member/signup']").submit();
 	}

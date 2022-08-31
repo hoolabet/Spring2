@@ -70,7 +70,11 @@
 					<tr>
 						<td class="signtable">전화번호</td>
 						<td class="tableInput">
-							<input type="text" name="phone" id="pchk">
+						<input type="hidden" name="phone">
+							<select id="front_num">
+								<option value="!010">010</option>
+							</select>
+							<input type="text" id="pchk">
 							<input type="submit" value="문자 인증" id="phbtn">
 							<p class="signmsg" id="pmsg"></p>
 						</td>

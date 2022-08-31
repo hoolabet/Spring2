@@ -45,7 +45,12 @@ public class MemberController {
 		try{
 			if(str.contains("@")) {
 				return new ResponseEntity<>(ms.emchk(str).getEmail(),HttpStatus.OK);
-			}else {
+			}else if(str.contains("!")) {
+				str= str.substring(1,str.length());
+				System.out.println(str);
+				return new ResponseEntity<>(ms.phchk(str).getPhone(),HttpStatus.OK);
+			}
+			else {
 				return new ResponseEntity<>(ms.idchk(str).getId(),HttpStatus.OK);
 			}
 		}catch (Exception e) {
@@ -72,6 +77,12 @@ public class MemberController {
 		} else {
 			return "member/login";
 		}		
+	}
+	// 로그아웃
+	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
+	public String logoutget(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 	// 아이디찾기

@@ -11,6 +11,8 @@ public interface MemberService {
 	public MemberVO idchk(String str);
 	// 이메일 중복확인
 	public MemberVO emchk(String str);
+	// 전화번호 중복확인
+	public MemberVO phchk(String str);
 	// 아이디 찾기
 	public MemberVO findId(MemberVO member);
 	// 개인정보 수정을 위한 비밀번호 확인
