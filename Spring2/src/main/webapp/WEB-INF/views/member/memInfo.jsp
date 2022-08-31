@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript"src="/resources/js/memInfo.js"></script>
+
 <link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/memInfo.css"></link>
 </head>
@@ -22,72 +22,59 @@
 			<form action="/member/memInfo" method="post">
 			<table>
 				<tr>
-					<td class="signtable">아이디</td>
+					<td colspan="2"><p>기본 정보</p></td>
+				</tr>
+				<tr>
+					<td class="signtable">아이디hidden할거</td>
 					<td class="tableInput">
-						<input type="text" name="id" id="idchk" readonly value="수정불가">
+						<input type="text" name="id" id="id" readonly value="${userInfo.id}">
 						<p class="signmsg" id="idmsg"></p>
-					</td>
-				</tr>
-				<tr>
-					<td class="signtable">비밀번호</td>
-					<td class="tableInput">
-						<input type="password" name="pw" id="pwchk" value="비밀번호">
-						<p class="signmsg" id="pwmsg"></p>
-					</td>
-				</tr>
-				<tr>
-					<td class="signtable">비밀번호 확인</td>
-					<td class="tableInput">
-						<input type="password" name="pw2" id="pwchk2">
-						<p class="signmsg" id="pwmsg2"></p>
-					</td>
-				</tr>
-				<tr>
-					<td class="signtable">이름</td>
-					<td class="tableInput">
-						<input type="text" name="name" id="nachk" value="가입한 이름">
-						<p class="signmsg" id="namsg"></p>
 					</td>
 				</tr>
 				<tr>
 					<td class="signtable">이메일</td>
 					<td class="tableInput">
-						<input type="text" name="email" id="emchk" value="가입한 이메일">
-						<p class="signmsg" id="emmsg"></p>
+						<input type="text" name="email" id="email_val" value="${userInfo.email}">
+						<input type="button" value="수정" id="email_btn">
+						<p class="signmsg" id="email_msg"></p>
 					</td>
 				</tr>
 				<tr>
 					<td class="signtable">전화번호</td>
 					<td class="tableInput">
-						<input type="text" name="phone" id="pchk" value="가입한 전화번호">
-						<p class="signmsg" id="pmsg"></p>
+						<input type="text" name="phone" id="phone_val" value="${userInfo.phone}">
+						<input type="button" value="수정" id="phone_btn">
+						<p class="signmsg" id="phone_msg"></p>
 					</td>
 				</tr>
 				<tr>
-					<td class="signtable">주소1</td>
+					<td colspan="2"><p>비밀번호 변경</p></td>
+				</tr>
+						
+				<tr>
+					<td class="signtable">새 비밀번호</td>
 					<td class="tableInput">
-						<input type="text" name="add" id="adchk" value="가입한 주소">
-						<p class="signmsg" id="admsg"></p>
+						<input type="password" name="password" id="pw_val">
+						<p class="signmsg" id="pw_msg"></p>
 					</td>
 				</tr>
 				<tr>
-					<td class="signtable">주소2</td>
+					<td class="signtable">비밀번호 확인</td>
 					<td class="tableInput">
-						<input type="text" name="add" id="adchk" value="가입한 주소">
-						<p class="signmsg" id="admsg"></p>
+						<input type="password" name="password2" id="pw_val2">
+						<p class="signmsg" id="pw_msg2"></p>
 					</td>
 				</tr>
+
+
 				<tr>
-					<td class="signtable">주소3</td>
-					<td class="tableInput">
-						<input type="text" name="add" id="adchk" value="가입한 주소">
-						<p class="signmsg" id="admsg"></p>
+					<td colspan="2" class="signtable">
+						<input type="button" value="비밀번호 수정" id="pw_btn">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="수정하기" id="modify">
-						<input type="submit" value="계정삭제" id="delete">
+						<input type="button" value="계정삭제" id="delete">
 						<a href="/member/mypage">마이페이지</a><br>
 					</td>
 				</tr>
@@ -103,5 +90,6 @@
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
+	<script type="text/javascript"src="/resources/js/memInfo.js"></script>
 </body>
 </html>

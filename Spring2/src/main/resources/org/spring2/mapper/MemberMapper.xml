@@ -4,24 +4,64 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.spring2.mapper.MemberMapper">
+	<!-- 회원가입 -->
 	<insert id="signUp">
 		insert into member
 		(id,password,name,email,phone,gender,birth,address1)
 		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth},#{address1})
 	</insert>
-
+	<insert id="createDes">
+		insert into destination
+		(id,name,phone,address)
+		values(#{id},#{name},#{phone},#{address1})
+	</insert>
+	<!-- 로그인 -->
 	<select id="login" resultType="org.spring2.model.MemberVO">
 		select * from member where
 		id=#{id} and password=#{password};
 	</select>
+	<!-- 아이디 중복확인 -->
 	<select id="idchk" resultType="org.spring2.model.MemberVO">
 		select * from member where
 		id=#{id};
 	</select>
-		
+	<!-- 이메일 중복확인 -->
+	<select id="emchk" resultType="org.spring2.model.MemberVO">
+		select * from member where
+		email=#{email};
+	</select>
+	<!-- 아이디 찾기 -->
 	<select id="findId" resultType="org.spring2.model.MemberVO">
 		 select * from member where name=#{name} and phone=#{phone};
 	</select>
+	<!-- 개인정보 수정을 위한 비밀번호 확인 -->
+	<select id="modify" resultType="org.spring2.model.MemberVO">
+		select * from member where
+		id=#{id} and password=#{password};
+	</select>
+	<!-- 이메일 수정 -->
+	<update id="modifyEmail">
+		update member
+ 		set email = #{email}
+		where id=#{id};
+	</update>
+	<!-- 전화번호 수정 -->
+	<update id="modifyPhone">
+		update member
+ 		set phone = #{phone}
+		where id=#{id};
+	</update>
+	<!-- 비밀번호 수정 -->
+	<update id="modifyPw">
+		update member
+ 		set password = #{password}
+		where id=#{id};
+	</update>
+	<!-- 계정삭제 -->
+	<delete id="modifyDelete">
+		delete from member
+		where id=#{id};
+	</delete>
 
 
 </mapper>

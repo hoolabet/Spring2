@@ -47,8 +47,9 @@
 					<tr>
 						<td class="signtable">이메일</td>
 						<td class="tableInput">
-							<input type="text" name="email" id="emchk">
-							<p class="signmsg" id="emmsg"></p>
+							<input type="text" name="email" id="email">
+							<input type="submit" value="이메일 인증" id="email_btn">
+							<p class="signmsg" id="email_msg"></p>
 						</td>
 					</tr>
 					<tr>
@@ -70,6 +71,7 @@
 						<td class="signtable">전화번호</td>
 						<td class="tableInput">
 							<input type="text" name="phone" id="pchk">
+							<input type="submit" value="문자 인증" id="phbtn">
 							<p class="signmsg" id="pmsg"></p>
 						</td>
 					</tr>
@@ -89,7 +91,7 @@
 				
 			</form>
 
-
+<input type="hidden" value="${error}" id="error">
 
 
 
@@ -97,7 +99,7 @@
 		<%@ include file="../footer.jsp"%>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript"src="/resources/js/signup.js?ver=1"></script>
+	<script type="text/javascript"src="/resources/js/signup.js?ver=1.1"></script>
 	<script src="../resources/js/home.js"></script>
 </body>
 </html>
