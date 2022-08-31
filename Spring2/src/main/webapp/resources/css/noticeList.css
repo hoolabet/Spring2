@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+table {
+	display: inline;
+	border-collapse: collapse;
+}
+
+td {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+#td_1 {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#td_2 {
+	padding-left: 500px;
+	padding-right: 500px;
+}
+
+#td_3 {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#td_4 {
+	padding-left: 30px;
+	padding-right: 30px;
+}

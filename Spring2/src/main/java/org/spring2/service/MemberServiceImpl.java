@@ -19,12 +19,12 @@ public class MemberServiceImpl implements MemberService{
 		return mm.login(member);
 	}
 	// 아이디 중복확인
-	public MemberVO idchk(MemberVO mvo) {
-		return mm.idchk(mvo);
+	public MemberVO idchk(String str) {
+		return mm.idchk(str);
 	}
 	// 이메일 중복확인
-	public MemberVO emchk(MemberVO mvo) {
-		return mm.emchk(mvo);
+	public MemberVO emchk(String str) {
+		return mm.emchk(str);
 	}
 	// 아이디 찾기
 	public MemberVO findId(MemberVO member) {

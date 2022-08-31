@@ -40,14 +40,13 @@ public class MemberController {
 	// 아이디 중복체크
 
 	// 이메일 중복체크
-	@RequestMapping(value = "/member/signup/{mvo}", method = RequestMethod.GET)
-	public ResponseEntity<String> emchk(@PathVariable MemberVO mvo) {
-		System.out.println(mvo);
+	@RequestMapping(value = "/member/signup/{str}", method = RequestMethod.GET)
+	public ResponseEntity<String> emchk(@PathVariable String str) {
 		try{
-			if(mvo.getId()==null) {
-				return new ResponseEntity<>(ms.emchk(mvo).getEmail(),HttpStatus.OK);
+			if(str.contains("@")) {
+				return new ResponseEntity<>(ms.emchk(str).getEmail(),HttpStatus.OK);
 			}else {
-				return new ResponseEntity<>(ms.idchk(mvo).getId(),HttpStatus.OK);
+				return new ResponseEntity<>(ms.idchk(str).getId(),HttpStatus.OK);
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

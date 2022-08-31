@@ -8,7 +8,7 @@ a {
     color: black;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
     background-color: #abaaaa;
     border: 1px solid black;
     padding: 15px;

@@ -57,12 +57,11 @@ $("#idbtn").on("click",function(e){
 })
 
 function idcheck(idc){
-	var idid ={id:idc}
 	console.log(idc);
 	$.ajax({
 		type: "get",
 		url: "/member/signup/"+idc,
-		data: JSON.stringify(idid),
+		data: idc,
 		contentType: "application/json; charset=utf-8"
 	})
 	.done(function(r){
@@ -202,16 +201,16 @@ var em = false;
 let emm = false;
 $("#email").on("blur",function(){
 	const Email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
-//	if($("#email").val()==""){
-//	$("#email_msg").text("필수입력정보입니다.").css("color","red");
-//	emm = false;
-//	}else if(Email.test($("#email").val())){
-//	$("#email_msg").text("");
-//	emm = true;
-//	}else{
-//	$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
-//	emm = false;
-//	}
+	if($("#email").val()==""){
+	$("#email_msg").text("필수입력정보입니다.").css("color","red");
+	emm = false;
+	}else if(Email.test($("#email").val())){
+	$("#email_msg").text("");
+	emm = true;
+	}else{
+	$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
+	emm = false;
+	}
 	emm=true;
 })
 
@@ -219,7 +218,7 @@ $("#email_btn").on("click",function(e){
 	e.preventDefault();
 	if(emm){
 		var emc=$("#email").val();
-//		emc=emc.slice(0,emc.length-4)
+		emc=emc.slice(0,emc.length-4)
 		
 		emcheck(emc);
 	}else{
@@ -229,12 +228,10 @@ $("#email_btn").on("click",function(e){
 
 function emcheck(emc){
 	console.log(emc);
-	var emem={email:emc}
-	console.log(emem);
 	$.ajax({
 		type: "get",
 		url: "/member/signup/"+emc,
-		data: JSON.stringify(emem),
+		data: emc,
 		contentType: "application/json; charset=utf-8"
 	})
 	.done(function(r){

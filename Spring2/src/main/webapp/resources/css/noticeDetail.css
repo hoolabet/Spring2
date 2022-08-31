@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.modify_tr{
+	display: none;
+}
+
+table{
+	display: inline;
+}
