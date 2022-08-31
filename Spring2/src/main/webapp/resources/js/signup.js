@@ -48,9 +48,9 @@ $("#idbtn").on("click",function(e){
 	e.preventDefault();
 	if(idd){
 		var idc=$("#idchk").val();
-		
+
 		idcheck(idc);
-		
+
 	}else{
 		alert("부적절한 id 입니다.")
 	}
@@ -202,14 +202,14 @@ let emm = false;
 $("#email").on("blur",function(){
 	const Email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
 	if($("#email").val()==""){
-	$("#email_msg").text("필수입력정보입니다.").css("color","red");
-	emm = false;
+		$("#email_msg").text("필수입력정보입니다.").css("color","red");
+		emm = false;
 	}else if(Email.test($("#email").val())){
-	$("#email_msg").text("");
-	emm = true;
+		$("#email_msg").text("");
+		emm = true;
 	}else{
-	$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
-	emm = false;
+		$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
+		emm = false;
 	}
 	emm=true;
 })
@@ -219,7 +219,7 @@ $("#email_btn").on("click",function(e){
 	if(emm){
 		var emc=$("#email").val();
 		emc=emc.slice(0,emc.length-4)
-		
+
 		emcheck(emc);
 	}else{
 		alert("부적절한 이메일 입니다.")
@@ -327,7 +327,10 @@ $("#signsub").on("click",function(e){
 		e.preventDefault();
 		alert('입력해');
 	}else{
+		e.preventDefault();
+		$("#email").val($("#email").val().slice(0,$("#email").val().length-4));
 		alert('가입됨');
+		$("form[action='/member/signup']").submit();
 	}
 })
 
