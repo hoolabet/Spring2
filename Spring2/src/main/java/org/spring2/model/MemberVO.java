@@ -1,6 +1,13 @@
 package org.spring2.model;
 
 public class MemberVO {
+	private boolean admin;
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	private String id;
 	private String password;
 	private String name;
@@ -69,9 +76,9 @@ public class MemberVO {
 	}
 	@Override
 	public String toString() {
-		return "MemberVO [id=" + id + ", password=" + password + ", name=" + name + ", email=" + email + ", phone="
-				+ phone + ", gender=" + gender + ", birth=" + birth + ", address=" + address + ", sign_date="
-				+ sign_date + "]";
+		return "MemberVO [admin=" + admin + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
+				+ email + ", phone=" + phone + ", gender=" + gender + ", birth=" + birth + ", address=" + address
+				+ ", sign_date=" + sign_date + "]";
 	}
 	
 	
