@@ -25,5 +25,6 @@ public interface MemberService {
 	public int modifyPw(MemberVO member);
 	// 계정삭제
 	public int modifyDelete(MemberVO member);
-	
+	// 수정된 회원정보 불러오기
+	public MemberVO modifyNewInfo(MemberVO member);
 }

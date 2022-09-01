@@ -217,8 +217,9 @@ $("#email").on("blur",function(){
 $("#email_btn").on("click",function(e){
 	e.preventDefault();
 	if(emm){
-		var emc=$("#email").val();
-		emc=emc.slice(0,emc.length-4)
+		$("input[name='email']").val($("#email").val()+$("#email_address").val())
+		var emc=$("input[name='email']").val();
+		
 
 		emcheck(emc);
 	}else{
@@ -247,6 +248,8 @@ function emcheck(emc){
 		em = true;
 	})
 }
+
+$("#email_address")
 
 //var pchk=document.querySelector("#pchk");ms.emchk(email).getEmail(),HttpStatus.OK
 //var pmsg=document.querySelector("#pmsg");
@@ -296,7 +299,7 @@ $("#phbtn").on("click",function(e){
 
 		phcheck(phc);
 	}else{
-		alert("부적절한 이메일 입니다.")
+		alert("부적절한 전화번호 입니다.")
 	}
 })
 
@@ -367,7 +370,7 @@ $("#signsub").on("click",function(e){
 		alert('입력해');
 	}else{
 		e.preventDefault();
-		$("#email").val($("#email").val().slice(0,$("#email").val().length-4));
+		$("input[name='email']").val();
 		
 		
 		alert('가입됨');

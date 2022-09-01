@@ -54,4 +54,8 @@ public class MemberServiceImpl implements MemberService{
 	public int modifyDelete(MemberVO member) {
 		return mm.modifyDelete(member);
 	}
+	// 수정된 회원정보 불러오기
+	public MemberVO modifyNewInfo(MemberVO member) {
+		return mm.modifyNewInfo(member);
+	}
 }

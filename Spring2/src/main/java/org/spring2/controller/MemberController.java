@@ -29,21 +29,22 @@ public class MemberController {
 	@RequestMapping(value = "/member/signup", method = RequestMethod.POST)
 	public String signupin(MemberVO member) {
 		try {
+			member.setPhone(member.getPhone().substring(1,member.getPhone().length()));
 			ms.signUp(member);
 			return "member/login";
 		}catch (Exception e) {
-
 			e.printStackTrace();
 			return "member/signup";
 		}
 	}
-	// 아이디 중복체크
+	
 
-	// 이메일 중복체크
+	// 아이디, 이메일, 전화번호 중복체크
 	@RequestMapping(value = "/member/signup/{str}", method = RequestMethod.GET)
 	public ResponseEntity<String> emchk(@PathVariable String str) {
 		try{
 			if(str.contains("@")) {
+				System.out.println(str);
 				return new ResponseEntity<>(ms.emchk(str).getEmail(),HttpStatus.OK);
 			}else if(str.contains("!")) {
 				str= str.substring(1,str.length());
@@ -134,26 +135,27 @@ public class MemberController {
 	}
 	// 이메일 수정
 	@RequestMapping(value = "/member/modifyEmail", method = RequestMethod.PUT)
-	public ResponseEntity<String> modifyEmail(@RequestBody MemberVO member) {
+	public ResponseEntity<String> modifyEmail(@RequestBody MemberVO member, HttpSession session) {
 		System.out.println(member);
-
+		
+		
 		int result=ms.modifyEmail(member);
 		System.out.println(result);
 
-
+		session.setAttribute("userInfo", ms.modifyNewInfo(member));
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	// 전화번호 수정
 	@RequestMapping(value = "/member/modifyPhone", method = RequestMethod.PUT)
-	public ResponseEntity<String> modifyPhone(@RequestBody MemberVO member) {
+	public ResponseEntity<String> modifyPhone(@RequestBody MemberVO member, HttpSession session) {
 		System.out.println(member);
-
+		
 		int result=ms.modifyPhone(member);
 		System.out.println(result);
 
-
+		session.setAttribute("userInfo", ms.modifyNewInfo(member));
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -162,7 +164,7 @@ public class MemberController {
 	@RequestMapping(value = "/member/modifyPw", method = RequestMethod.PUT)
 	public ResponseEntity<String> modifyPw(@RequestBody MemberVO member,HttpSession session) {
 		System.out.println(member);
-
+		
 		int result=ms.modifyPw(member);
 		System.out.println(result);
 

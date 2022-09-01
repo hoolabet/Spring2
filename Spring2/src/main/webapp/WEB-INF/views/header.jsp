@@ -9,7 +9,7 @@
 		<div id="a_list">
 			<ul>
 				<li><a href="/cart/list">장바구니</a></li>
-				<li><a href="">마이페이지</a></li>
+				<li><a href="/member/mypage">마이페이지</a></li>
 				<c:choose>
 				<c:when test="${userInfo eq null }">
 					<li><a href="/member/login">로그인</a></li>

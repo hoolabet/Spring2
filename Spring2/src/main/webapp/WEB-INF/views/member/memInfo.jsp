@@ -19,6 +19,7 @@
 
 
 			<h1>회원정보수정</h1>
+
 			<form action="/member/memInfo" method="post">
 			<table>
 				<tr>
@@ -34,7 +35,15 @@
 				<tr>
 					<td class="signtable">이메일</td>
 					<td class="tableInput">
-						<input type="text" name="email" id="email_val" value="${userInfo.email}">
+						<input type="hidden" value="${userInfo.email}" name="email" id="email_all">
+						<input type="text" id="email_val">@
+						<input type="text" id="direct">
+						<select id="email_address">
+							<option id="user_email" value="@user">직접입력</option>
+							<option class="NG_email" value="@gmail.com">gmail.com</option>
+							<option class="NG_email" value="@naver.com">naver.com</option>
+						</select>
+						
 						<input type="button" value="수정" id="email_btn">
 						<p class="signmsg" id="email_msg"></p>
 					</td>
@@ -42,7 +51,14 @@
 				<tr>
 					<td class="signtable">전화번호</td>
 					<td class="tableInput">
-						<input type="text" name="phone" id="phone_val" value="${userInfo.phone}">
+						<input type="hidden" value="${userInfo.phone}" name="phone" id="phone_all">
+						<select id="phone_number">
+							<option value="!010">010</option>
+							<option value="!011">011</option>
+							<option value="!018">018</option>
+							<option value="!019">019</option>
+						</select>
+						<input type="text" id="phone_val">
 						<input type="button" value="수정" id="phone_btn">
 						<p class="signmsg" id="phone_msg"></p>
 					</td>

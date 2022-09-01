@@ -47,7 +47,14 @@
 					<tr>
 						<td class="signtable">이메일</td>
 						<td class="tableInput">
-							<input type="text" name="email" id="email">
+							<input type="hidden" name="email">
+							<input type="text" id="email">@
+							<span id="new_email"></span>
+							<select id="email_address">
+								<option value="@naver.com">naver.com</option>
+								<option value="@gmail.com">gmail.com</option>
+								<option id="user_email">직접입력</option>
+							</select>
 							<input type="submit" value="이메일 인증" id="email_btn">
 							<p class="signmsg" id="email_msg"></p>
 						</td>

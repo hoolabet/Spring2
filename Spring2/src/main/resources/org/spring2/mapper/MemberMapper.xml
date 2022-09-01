@@ -7,13 +7,13 @@
 	<!-- 회원가입 -->
 	<insert id="signUp">
 		insert into member
-		(id,password,name,email,phone,gender,birth,address1)
-		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth},#{address1})
+		(id,password,name,email,phone,gender,birth,address)
+		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth},#{address})
 	</insert>
 	<insert id="createDes">
 		insert into destination
 		(id,name,phone,address)
-		values(#{id},#{name},#{phone},#{address1})
+		values(#{id},#{name},#{phone},#{address})
 	</insert>
 	<!-- 로그인 -->
 	<select id="login" resultType="org.spring2.model.MemberVO">
@@ -28,7 +28,7 @@
 	<!-- 이메일 중복확인 -->
 	<select id="emchk" resultType="org.spring2.model.MemberVO">
 		select * from member where
-		email=#{str};
+		email like concat(#{str},'%');
 	</select>
 	<!-- 전화번호 중복확인 -->
 	<select id="phchk" resultType="org.spring2.model.MemberVO">
@@ -62,6 +62,9 @@
  		set password = #{password}
 		where id=#{id};
 	</update>
+	<select id="modifyNewInfo" resultType="org.spring2.model.MemberVO">
+		select * from member where id=#{id};
+	</select>
 	<!-- 계정삭제 -->
 	<delete id="modifyDelete">
 		delete from member

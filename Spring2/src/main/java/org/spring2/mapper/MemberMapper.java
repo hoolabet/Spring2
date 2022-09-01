@@ -24,6 +24,8 @@ public interface MemberMapper {
 	public int modifyPhone(MemberVO member);
 	// 비밀번호 수정
 	public int modifyPw(MemberVO member);
+	// 수정된 회원정보 불러오기
+	public MemberVO modifyNewInfo(MemberVO member);
 	// 계정삭제
 	public int modifyDelete(MemberVO member);
 	

@@ -1,13 +1,46 @@
 
+const emailArr=$("#email_all").val().split("@")	
+$("#email_val").val(emailArr[0]);
+$("#email_address").val($("#user_email").val());
+
+let emailAddChk = true;
+$(".NG_email").each(function(i,mm){
+	if(mm.value.includes(emailArr[1])){
+		$("#email_address").val(mm.value);
+		$("#direct").val(emailArr[1])
+		emailAddChk = false;
+	}
+})
+console.log(emailAddChk)
+if(emailAddChk){
 	
+	$("#direct").val(emailArr[1])
+}else{
+	
+}
 
 
-	
+
+
+$("#email_address").on("change",function(){
+	$("#direct").val(this.value.slice(1));
+	if($("#email_address").val()==$("#user_email").val()){
+		$("#direct").val(emailArr[1]);
+		$("#direct").attr("readonly","false");
+		$("#direct").css("background-color","white");
+	}else{
+		$("#direct").attr("readonly","true");
+		$("#direct").css("background-color","#e7e7e7");
+	}
+})
+
+
+
 // 이메일 수정
 	
 	var email_chk = true;
 	$("#email_val").on("blur",function(){
-		const Email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
+		const Email = /^([a-z0-9_\.-]+)$/g;
 		if($("#email_val").val()==""){
 			$("#email_msg").text("필수입력정보입니다.").css("color","red");
 			email_chk = false;
@@ -23,15 +56,37 @@
 	$("#email_btn").on("click",function(){
 		
 		if(email_chk){
-			var id=$("#id").val();
-			var email=$("#email_val").val();
-			alert("id="+id+", email="+email);
-			modifyEmail({id:id,email:email});
+			$("input[name='email']").val($("#email_val").val()+"@"+$("#direct").val());
+			const emc=$("input[name='email']").val()
+			console.log(emc);
+			emcheck(emc);
+			
+
 		}else{
 			alert("이메일 주소를 다시 확인해 주세요.");
 		}
 	})
 	
+	function emcheck(emc){
+	console.log(emc);
+	$.ajax({
+		type: "get",
+		url: "/member/signup/"+emc,
+		data: emc,
+		contentType: "application/json; charset=utf-8"
+	})
+	.done(function(r){
+		alert("중복된 이메일 입니다.");
+		$("#email_msg").text("중복된 이메일 입니다.");
+		$("#email_msg").css("color","red");
+	})
+	.fail(function(){
+		var id=$("#id").val();
+		var email=$("input[name='email']").val();
+		alert("id="+id+", email="+email);
+		modifyEmail({id:id,email:email});
+	})
+}
 	function modifyEmail(member){
 		console.log(member);
 		$.ajax({
@@ -51,7 +106,10 @@
 	
 	
 // 전화번호 수정
-	
+
+	let userPhoneNum=($("input[name='phone']").val()).slice(3);
+	let userPhone=($("input[name='phone']").val());
+	$("#phone_val").val(userPhoneNum);
 	var phone_chk =true;
 	$("#phone_val").on("blur",function(){
 		const phone = /^[0-9]{8,13}$/g;
@@ -67,18 +125,39 @@
 		}
 	})
 	
-	
 	$("#phone_btn").on("click",function(){
 		
-		if(email_chk){
-			var id=$("#id").val();
-			var phone=$("#phone_val").val();
-			alert("id="+id+", phone="+phone);
-			modifyPhone({id:id,phone:phone});
+		if(phone_chk){
+			$("input[name='phone']").val($("#phone_number").val()+$("#phone_val").val());
+			const pmc=$("input[name='phone']").val()
+			console.log(pmc);
+			phcheck(pmc);
+			
+
 		}else{
 			alert("전화번호를 다시 확인해 주세요.");
 		}
 	})
+	function phcheck(pmc){
+	console.log(pmc);
+	$.ajax({
+		type: "get",
+		url: "/member/signup/"+pmc,
+		data: pmc,
+		contentType: "application/json; charset=utf-8"
+	})
+	.done(function(r){
+		alert("중복된 전화번호 입니다.");
+		$("#phone_msg").text("중복된 전화번호 입니다.");
+		$("#phone_msg").css("color","red");
+	})
+	.fail(function(){
+		var id=$("#id").val();
+		var phone=($("input[name='phone']").val()).slice(1);
+		alert("id="+id+", phone="+phone);
+		modifyPhone({id:id,phone:phone});
+	})
+}
 	
 	function modifyPhone(member){
 		console.log(member);
