@@ -2,12 +2,7 @@ package org.spring2.model;
 
 public class MemberVO {
 	private boolean admin;
-	public boolean isAdmin() {
-		return admin;
-	}
-	public void setAdmin(boolean admin) {
-		this.admin = admin;
-	}
+	
 	private String id;
 	private String password;
 	private String name;
@@ -16,9 +11,14 @@ public class MemberVO {
 	private String gender;
 	private String birth;
 	private String address;
-	
 	private String sign_date;
 	
+	public boolean isAdmin() {
+		return admin;
+	}
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
 	public String getId() {
 		return id;
 	}
