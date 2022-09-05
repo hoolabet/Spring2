@@ -49,11 +49,11 @@
 						<td class="tableInput">
 							<input type="hidden" name="email">
 							<input type="text" id="email">@
-							<span id="new_email"></span>
+							<input type="text" id="direct">
 							<select id="email_address">
-								<option value="@naver.com">naver.com</option>
-								<option value="@gmail.com">gmail.com</option>
-								<option id="user_email">직접입력</option>
+								<option id="user_email" value="@user">직접입력</option>
+								<option class="NG_email" value="@gmail.com">gmail.com</option>
+								<option class="NG_email" value="@naver.com">naver.com</option>
 							</select>
 							<input type="submit" value="이메일 인증" id="email_btn">
 							<p class="signmsg" id="email_msg"></p>
@@ -80,6 +80,9 @@
 						<input type="hidden" name="phone">
 							<select id="front_num">
 								<option value="!010">010</option>
+								<option value="!011">011</option>
+								<option value="!018">018</option>
+								<option value="!019">019</option>
 							</select>
 							<input type="text" id="pchk">
 							<input type="submit" value="문자 인증" id="phbtn">

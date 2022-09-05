@@ -12,7 +12,14 @@ public class MemberVO {
 	private String birth;
 	private String address;
 	private String sign_date;
+	private String userImg;
 	
+	public String getUserImg() {
+		return userImg;
+	}
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
+	}
 	public boolean isAdmin() {
 		return admin;
 	}
@@ -78,7 +85,7 @@ public class MemberVO {
 	public String toString() {
 		return "MemberVO [admin=" + admin + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
 				+ email + ", phone=" + phone + ", gender=" + gender + ", birth=" + birth + ", address=" + address
-				+ ", sign_date=" + sign_date + "]";
+				+ ", sign_date=" + sign_date + ", userImg=" + userImg + "]";
 	}
 	
 	

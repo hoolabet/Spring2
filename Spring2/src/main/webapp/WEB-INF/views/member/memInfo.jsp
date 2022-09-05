@@ -19,17 +19,29 @@
 
 
 			<h1>회원정보수정</h1>
-
-			<form action="/member/memInfo" method="post">
+			<input type="text" id="admin_check" value="${userInfo.admin}"><br>
+			
+			<div id="form"></div>
+		
+			
 			<table>
 				<tr>
 					<td colspan="2"><p>기본 정보</p></td>
 				</tr>
 				<tr>
-					<td class="signtable">아이디hidden할거</td>
+					<td class="signtable">
+					<div id="user_img" style="background-image:url('${userInfo.userImg}')">
+						<div id="modify_img" style="background-image:url('https://illustoon.com/photo/dl/3122.png')">
+						</div>
+						<input type="file" id="user_imgfile">
+					</div>
+					
+					
+					</td>
 					<td class="tableInput">
 						<input type="text" name="id" id="id" readonly value="${userInfo.id}">
 						<p class="signmsg" id="idmsg"></p>
+						<input type="button" value="프로필사진 수정" id="modify_u_img">
 					</td>
 				</tr>
 				<tr>
@@ -95,7 +107,11 @@
 					</td>
 				</tr>
 			</table>
-			</form>
+		
+			
+			<table id="mypage_list">
+				
+			</table>
 
 	
 	
@@ -107,5 +123,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript"src="/resources/js/memInfo.js"></script>
+	<script type="text/javascript"src="/resources/js/memberList.js?ver=1.1"></script>
 </body>
 </html>

@@ -30,9 +30,9 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO phchk(String str) {
 		return mm.phchk(str);
 	}
-	// 아이디 찾기
-	public MemberVO findId(MemberVO member) {
-		return mm.findId(member);
+	// 아이디 비밀번호 찾기
+	public MemberVO find(MemberVO member) {
+		return mm.find(member);
 	}
 	// 개인정보 수정을 위한 비밀번호 확인
 	public MemberVO modify(MemberVO member) {
@@ -57,5 +57,8 @@ public class MemberServiceImpl implements MemberService{
 	// 수정된 회원정보 불러오기
 	public MemberVO modifyNewInfo(MemberVO member) {
 		return mm.modifyNewInfo(member);
+	}
+	public int modifyimg(MemberVO member) {
+		return mm.modifyimg(member);
 	}
 }

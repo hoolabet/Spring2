@@ -35,10 +35,35 @@
 		select * from member where
 		phone=#{str};
 	</select>
-	<!-- 아이디 찾기 -->
-	<select id="findId" resultType="org.spring2.model.MemberVO">
-		 select * from member where name=#{name} and phone=#{phone};
+	
+	<!-- 아이디 비밀번호 찾기 -->
+	<select id="find" resultType="org.spring2.model.MemberVO">
+		select * from member
+		<choose>
+		<when test="id==null">
+			<choose>
+				<when test="phone==null">
+					where name=#{name} and email=#{email};
+				</when>
+				<otherwise>
+					where name=#{name} and phone=#{phone};
+				</otherwise>
+			</choose>
+		</when>
+		<otherwise>
+			<choose>
+				<when test="phone==null">
+					where id=#{id} and name=#{name} and email=#{email};
+				</when>
+				<otherwise>
+					where id=#{id} and name=#{name} and phone=#{phone};
+				</otherwise>
+			</choose>
+		</otherwise>
+		</choose>
 	</select>
+	
+	
 	<!-- 개인정보 수정을 위한 비밀번호 확인 -->
 	<select id="modify" resultType="org.spring2.model.MemberVO">
 		select * from member where
@@ -70,6 +95,12 @@
 		delete from member
 		where id=#{id};
 	</delete>
+	<!-- 비밀번호 수정 -->
+	<update id="modifyimg">
+		update member
+ 		set userImg = #{userImg}
+		where id=#{id};
+	</update>
 
 
 </mapper>

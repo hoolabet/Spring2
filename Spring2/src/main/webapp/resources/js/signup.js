@@ -197,6 +197,19 @@ $("#nachk").on("blur",function(){
 //}
 //}
 
+$("#email_address").on("change",function(){
+	$("#direct").val(this.value.slice(1));
+	if($("#email_address").val()=="@user"){
+		$("#direct").val("");
+		$("#direct").attr("readonly",false);
+		$("#direct").css("background-color","white");
+	}else{
+		$("#direct").val(this.value.slice(1));
+		$("#direct").attr("readonly",true);
+		$("#direct").css("background-color","#e7e7e7");
+	}
+})
+
 var em = false;
 let emm = false;
 $("#email").on("blur",function(){
@@ -217,7 +230,7 @@ $("#email").on("blur",function(){
 $("#email_btn").on("click",function(e){
 	e.preventDefault();
 	if(emm){
-		$("input[name='email']").val($("#email").val()+$("#email_address").val())
+		$("input[name='email']").val($("#email").val()+"@"+$("#direct").val());
 		var emc=$("input[name='email']").val();
 		
 

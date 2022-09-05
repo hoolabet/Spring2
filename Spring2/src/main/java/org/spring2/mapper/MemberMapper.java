@@ -14,8 +14,8 @@ public interface MemberMapper {
 	public MemberVO emchk(String str);
 	// 전화번호 중복확인
 	public MemberVO phchk(String str);
-	// 아이디 찾기
-	public MemberVO findId(MemberVO member);
+	// 아이디 비밀번호 찾기
+	public MemberVO find(MemberVO member);
 	// 개인정보 수정을 위한 비밀번호 확인
 	public MemberVO modify(MemberVO member);
 	// 이메일 수정
@@ -28,5 +28,6 @@ public interface MemberMapper {
 	public MemberVO modifyNewInfo(MemberVO member);
 	// 계정삭제
 	public int modifyDelete(MemberVO member);
+	public int modifyimg(MemberVO member);
 	
 }
