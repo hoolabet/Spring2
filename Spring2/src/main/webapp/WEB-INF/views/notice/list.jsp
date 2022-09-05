@@ -55,7 +55,9 @@
 			</c:if>
 			<a
 				href="/notice/list?pageNum=${paging.realEnd}&amount=${paging.cri.amount}&type=${paging.cri.type}&search=${paging.cri.search}">맨끝으로</a>
+			<c:if test="${userInfo.admin}">
 			<br> <a href="write">글쓰기</a>
+			</c:if>
 		</div>
 		<%@ include file="../footer.jsp"%>
 	</div>

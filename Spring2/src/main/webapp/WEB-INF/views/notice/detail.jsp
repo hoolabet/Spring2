@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +23,13 @@
 						<td>내용</td>
 						<td>${detail.content}</td>
 					</tr>
+					<c:if test="${userInfo.admin}">
 					<tr class="content_tr">
 						<td colspan="2">
 							<div class="files"></div> <input type="button" value="수정" id="modi">
 						</td>
 					</tr>
-
+					</c:if>
 					<tr class="modify_tr">
 						<td>제목</td>
 						<td><input type="text" name="title" value="${detail.title}"><br></td>
@@ -35,7 +37,7 @@
 					<tr class="modify_tr">
 						<td>내용</td>
 						<td><div id="modi_editor" contenteditable="true"
-								style="width: 500px; height: 500px; background-color: white;">${detail.content}</div></td>
+								style="overflow:scroll; width: 500px; height: 500px; background-color: white;">${detail.content}</div></td>
 					</tr>
 					<tr class="modify_tr">
 						<td colspan="2">
@@ -51,11 +53,13 @@
 					</tr>
 				</table>
 			</form>
+			<c:if test="${userInfo.admin}">
 			<br>
 			<form action="remove" method="post">
 				<input type="submit" value="삭제"> <input type="hidden"
 					name="nono" value="${detail.nono}">
 			</form>
+			</c:if>
 			<a
 				href="/notice/list?pageNum=${criValue.cri.pageNum}&amount=${criValue.cri.amount}&type=${criValue.cri.type}&search=${criValue.cri.search}">목록으로</a>
 		</div>

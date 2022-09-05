@@ -2,13 +2,15 @@
  * 
  */
 
-const choose = ["1","2","3"];
+const choose = ["1","2","3","4","5"];
 
 choose.forEach((x) => {
 	$(".choose_" + x).on("change",function(){
 		$("#result_" + x).text(this.value);
 	})
 })
+
+let checkColor = false
 
 $(".opt_color").on("click",function(){
 	$(".opt_color").css("width","30px");
@@ -24,5 +26,25 @@ $(".opt_color").on("click",function(){
 	}else {
 		$("#result").css("color","white");
 	}
+	checkColor = true;
 })
 
+$("#sub").on("click",function(e){
+	e.preventDefault();
+	let checkSelect = true;
+	choose.forEach((x) => {
+		if($("#result_"+x).text() == "" || !checkColor){
+			checkSelect = false;
+		}
+	})
+	if(checkSelect){
+		try {
+			alert("장바구니에 담겼습니다.");
+			$('form[action="/made/chooseForMade"]').submit();
+		} catch (e) {
+
+		}
+	}else{
+		alert("옵션을 선택해주세요.");
+	}
+})

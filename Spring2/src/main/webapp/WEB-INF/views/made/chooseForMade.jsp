@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/home.css?ver=1">
-<link rel="stylesheet" href="../resources/css/chooseForMade.css?ver=1">
+<link rel="stylesheet" href="../resources/css/chooseForMade.css?ver=1.1">
 <title>제작 페이지</title>
 </head>
 <body>
@@ -17,43 +17,43 @@
                 <form action="/made/chooseForMade" method="post">
                     <table>
                         <tr>
-                            <td colspan="3">선택1</td>
+                            <td colspan="3">가구선택</td>
                         </tr>
                         <tr>
-                            <td>a</td>
-                            <td>b</td>
-                            <td>c</td>
+                            <td>TABLE</td>
+                            <td>CHAIR</td>
+                            <td>etc</td>
                         </tr>
                         <tr>
-                            <td><input class="choose_1" type="radio" name="choose_1" value="a"></td>
-                            <td><input class="choose_1" type="radio" name="choose_1" value="b"></td>
-                            <td><input class="choose_1" type="radio" name="choose_1" value="c"></td>
+                            <td><input class="choose_1" type="radio" name="kind" value="table"></td>
+                            <td><input class="choose_1" type="radio" name="kind" value="chair"></td>
+                            <td><input class="choose_1" type="radio" name="kind" value="etc"></td>
                         </tr>
                         <tr>
-                            <td colspan="3">선택2</td>
+                            <td colspan="3">재료</td>
                         </tr>
                         <tr>
-                            <td>d</td>
-                            <td>e</td>
-                            <td>f</td>
+                            <td>나무</td>
+                            <td>철재</td>
+                            <td>etc</td>
                         </tr>
                         <tr>
-                            <td><input class="choose_2" type="radio" name="choose_2" value="d"></td>
-                            <td><input class="choose_2" type="radio" name="choose_2" value="e"></td>
-                            <td><input class="choose_2" type="radio" name="choose_2" value="f"></td>
+                            <td><input class="choose_2" type="radio" name="ingre" value="wood"></td>
+                            <td><input class="choose_2" type="radio" name="ingre" value="iron"></td>
+                            <td><input class="choose_2" type="radio" name="ingre" value="etc"></td>
                         </tr>
                         <tr>
-                            <td colspan="3">선택3</td>
+                            <td colspan="3">치수</td>
                         </tr>
                         <tr>
-                            <td>g</td>
-                            <td>h</td>
-                            <td>i</td>
+                            <td>가로</td>
+                            <td>세로</td>
+                            <td>높이</td>
                         </tr>
                         <tr>
-                            <td><input class="choose_3" type="radio" name="choose_3" value="g"></td>
-                            <td><input class="choose_3" type="radio" name="choose_3" value="h"></td>
-                            <td><input class="choose_3" type="radio" name="choose_3" value="i"></td>
+                            <td><input class="choose_3" type="text" name="len1" placeholder="가로"></td>
+                            <td><input class="choose_4" type="text" name="len2" placeholder="세로"></td>
+                            <td><input class="choose_5" type="text" name="len3" placeholder="높이"></td>
                         </tr>
                         <tr>
                             <td colspan="3">선택4</td>
@@ -71,15 +71,17 @@
                     <div id="black" class="opt_color"></div>
                     <br>
                     <input type="hidden" name="color" id="value_color">
-                    <input type="submit" value="submit">
+                    <input type="submit" value="장바구니에 담기" id="sub">
                 </form>
             </div>
             <br> <a href="/">메인으로</a>
         </div>
         <div id="result">
-            <span id="result_1"></span>
-            <span id="result_2"></span>
-            <span id="result_3"></span>
+            <div id="result_1"></div>
+            <div id="result_2"></div>
+            <div id="result_3"></div>
+            <div id="result_4"></div>
+            <div id="result_5"></div>
         </div>
 		<%@ include file="../footer.jsp"%>
 	</div>

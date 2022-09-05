@@ -21,7 +21,7 @@
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><div id="editor" contenteditable="true" style="width:500px; height:500px;background-color:white;"></div>
+						<td><div id="editor" contenteditable="true" style="overflow:scroll; width:500px; height:500px;background-color:white;"></div>
 						</td>
 					</tr>
 					<tr>
