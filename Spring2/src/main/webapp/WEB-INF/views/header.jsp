@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <div id="header">
 	<div id="header_top">
 		<h1>
@@ -26,7 +27,14 @@
 							<li><a href="/member/logout">로그아웃</a></li>
 						</ul>
 					</li>
+					<c:choose>
+					<c:when test="${fn:contains(userInfo.userImg,'http')}">
+					<li class="header_login_li"><div id="header_user_img" style="background-image:url(https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMTRfMjYy%2FMDAxNDg0MzcxOTkxNzA4._N73NTpWleCLp8M6gXR8vpdDAZoAQ2mTJLimKBYFtRwg.5LEqnsukFugxlrTdlYk5hkxEKoVdUbTVsjL6gqJ03vIg.PNG.koomarin%2F%253F%253F%253F%253F%257B%253F_%253F%253F%253F%253F%253F%253F%253F.png&type=sc960_832)"></li>
+					</c:when>
+					<c:otherwise>
 					<li class="header_login_li"><div id="header_user_img" style="background-image:url(/member/${userInfo.userImg})"></li>
+					</c:otherwise>
+					</c:choose>
 				</ul>
 				</c:otherwise>
 				</c:choose>
