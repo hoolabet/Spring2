@@ -7,19 +7,29 @@
 			<a href="/">title</a>
 		</h1>
 		<div id="a_list">
-			<ul>
-				<li><a href="/cart/list">장바구니</a></li>
-				<li><a href="/member/mypage">마이페이지</a></li>
+				
 				<c:choose>
 				<c:when test="${userInfo eq null }">
+				<ul id="header_parents_ul">
+					<li><a href="/cart/list">장바구니</a></li>
+					<li><a href="/member/mypage">마이페이지</a></li>
 					<li><a href="/member/login">로그인</a></li>
 					<li><a href="/member/signup">회원가입</a></li>
+				</ul>
 				</c:when>
 				<c:otherwise>
-					<li><a href="/member/logout">로그아웃</a></li>
+				<ul id="header_login_ul">
+					<li class="header_login_li" id="header_user_id">${userInfo.id}
+						<ul id="header_user_menu">
+							<li><a href="/cart/list">장바구니</a></li>
+							<li><a href="/member/mypage">마이페이지</a></li>
+							<li><a href="/member/logout">로그아웃</a></li>
+						</ul>
+					</li>
+					<li class="header_login_li"><div id="header_user_img" style="background-image:url(/member/${userInfo.userImg})"></li>
+				</ul>
 				</c:otherwise>
 				</c:choose>
-			</ul>
 		</div>
 	</div>
 	<div id="header_bottom">

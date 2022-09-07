@@ -21,7 +21,7 @@
 			</div>
 			
 			<a href="/member/modifyInfoPWCheck">회원정보수정</a><br>
-			<a href="">배송지</a><br>
+			<a href="/member/destination">배송지</a><br>
 			<a href="">주문목록</a><br>
 			<a href="">배송조회</a>
 

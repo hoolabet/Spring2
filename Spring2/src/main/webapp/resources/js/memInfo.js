@@ -360,8 +360,12 @@ function checkExtension(fileName, fileSize){
 
 $("#modify_u_img").on("click",function(){
 	const id=$("#id").val();
-	const userImg=`display?fileName=${$("#fullPath").val()}`;
+	let userImg;
 	if($("#fullPath").val()==null){
+		alert("사진을 업로드 하세요.");
+		return false;
+	}else{
+		userImg=`display?fileName=${$("#fullPath").val()}`;
 		
 	}
 	const D={id:id,userImg:userImg};

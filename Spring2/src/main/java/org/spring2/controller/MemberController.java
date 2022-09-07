@@ -155,6 +155,14 @@ public class MemberController {
 			return "member/findPw";
 		}
 	}
+	
+	// 배송지 관리
+	@RequestMapping(value = "/member/destination", method = RequestMethod.GET)
+	public String destinationGet() {
+
+		return "member/destination";
+	}
+	
 
 	// 비밀번호 수정하기
 	@RequestMapping(value = "/member/modifyPassword", method = RequestMethod.GET)
