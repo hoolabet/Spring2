@@ -15,30 +15,26 @@
 		<div id="content_area">
 			<div id="container">
 				<h1>상품상세페이지</h1>
+				<input type="hidden" value="${detail.pno}" name="pno">
 				<div id="d_title">
-					<img alt="chicken"
-						src="http://dhcdn.design.co.kr/cms/img/2018/01/M.1517374741.1643.3.jpg">
+					<span id="uploadimg"></span>
 					<div id="sell">
-						<form action="">
+						<form id="s_form">
 							<table id="t_sell">
 								<tr>
-									<td colspan="2"><h3>엄청좋은 쇼파</h3></td>
+									<td colspan="2"><h3>${detail.pname}</h3></td>
 								</tr>
 								<tr>
 									<td>판매가</td>
-									<td>가격문의</td>
+									<td id="price">${detail.price}</td>
 								</tr>
 								<tr>
 									<td>배송방법</td>
-									<td>배송/조립</td>
-								</tr>
-								<tr>
-									<td>사이즈</td>
-									<td>100x200x300</td>
+									<td>${detail.delivery}</td>
 								</tr>
 								<tr>
 									<td>소재</td>
-									<td>가죽</td>
+									<td>${detail.quality}</td>
 								</tr>
 								<tr>
 									<td>구매수량</td>
@@ -48,18 +44,18 @@
 								</tr>
 								<tr>
 									<td>총가격</td>
-									<td>가격문의</td>
+									<td><span id="totalPrice">${detail.price}</span></td>
 								</tr>
 								<tr>
 									<td colspan="2"><button class="btn_p">구매하기</button>
 										<button class="btn_p">장바구니</button>
 										<button class="btn_p">관심상품</button>
 								</tr>
-
 							</table>
 						</form>
 					</div>
 				</div>
+
 				<div id="detail">
 					<nav id="nav">
 						<ul class="nav__menu">
@@ -71,15 +67,16 @@
 						</ul>
 					</nav>
 				</div>
-				<section id="d_img">
-					<img alt="chicken"
-						src="http://dhcdn.design.co.kr/cms/img/2018/01/M.1517374741.1643.3.jpg">
-					<p>
-						제품의 상세 내용이 들어갈 페이지 입니다.<br> 제품을 구매하도록 잘 작성해 주세요
-					</p>
 
+				<section id="d_img">
+					<div>${detail.content}</div>
 					<div id="back">
-						<a href="#">수정하기</a> <a href="#">삭제하기</a> <a href="#">목록보기</a>
+						<form method="post">
+							<a href="/board/modify?pno=${detail.pno}">수정하기</a> 
+							<input type="hidden" value="${detail.pno}" name="pno"> 
+							<input type="submit" value="삭제" formaction="/board/remove"> 
+							<a href="/board/list">목록보기</a>
+						</form>
 					</div>
 				</section>
 				<section id="reviewlist">

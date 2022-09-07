@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.spring2.mapper.BoardMapper">
+	<insert id="write">
+		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
+			select max(pno)+1 pno
+			from product
+		</selectKey>
+		insert into
+		product(pname,price,content,quantity,delivery,quality,category_area,category_type)
+		values(#{pname},#{price},#{content},#{quantity},#{delivery},#{quality},#{category_area},#{category_type})
+	</insert>
+	<select id="list" resultType="org.spring2.model.BoardVO">
+		select *
+		from (
+		select @rownum:=@rownum+1 rownum, p.*
+		from product p,
+		(select @rownum:=0) as tmp
+		order by pno desc
+		)as boardlist
+		<![CDATA[
+		where rownum>(#{pageNum}-1)*#{amount} and rownum <=#{pageNum}*#{amount}
+		]]>
+	</select>
+	<select id="detail" resultType="org.spring2.model.BoardVO">
+		select*
+		from product
+		where
+		pno=#{pno}
+	</select>
+	<update id="modify">
+		update product
+		set pname = #{pname}, price = #{price},
+		content = #{content}, quantity = #{quantity},
+		delivery=#{delivery},
+		quality=#{quality}, category_area = #{category_area},
+		category_type=#{category_type}
+		where pno = #{pno};
+	</update>
+	<delete id="remove">
+		delete from product
+		where pno=#{pno};
+	</delete>
+	<select id="total" resultType="int">
+		select count(*)
+		from product
+	</select>
+</mapper>

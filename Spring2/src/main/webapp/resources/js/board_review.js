@@ -35,6 +35,7 @@ function updateImageDisplay() {
     }
   }
 }
+
 const fileTypes = [
 	  "image/apng",
 	  "image/bmp",

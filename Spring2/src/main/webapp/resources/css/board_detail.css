@@ -14,17 +14,21 @@
 #d_title img {
 	width: 700px;
 	height: 400px;
-	margin: 0 auto;
+	margin: 0 45px;
 }
 
 #sell {
+	width : 400px;
 	margin: 0 auto;
 	border: 1px solid black;
 }
-
+#s_form{
+	width: 300px;
+    margin: 0 auto;
+}
 #t_sell {
 	text-align: left;
-	padding: 0 15px;
+	padding: 15px;
 }
 
 #num {
@@ -35,6 +39,9 @@
 	background-color: white;
 	color: black;
 	border: 1px solid #7d4f37;
+	width: 271px;
+    height: 50px;
+    margin: 2px auto;
 }
 
 .btn_p:hover {
@@ -65,8 +72,8 @@ nav ul li a {
 	text-decoration: none;
 }
 .navfocused{
-	height: 30px;
 	border-bottom:none;
+	font-weight: bold;
 }
 .marker {
   content: "";
@@ -82,9 +89,12 @@ nav ul li a {
 	clear: both;
 }
 
-#d_img>img {
+#d_img > div > img {
 	width: 700px;
 	height: 500px;
+}
+#d_img > div{
+	font-size:30px;
 }
 
 /* 리뷰  */

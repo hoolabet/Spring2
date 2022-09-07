@@ -1,11 +1,43 @@
-//장바구니 플러스 마이너스버튼
+//상세페이지 이미지 불러오기
+const pno = $("input[name='pno']").val();
+$.getJSON("/attachlist", {pno:pno},function(attachlist){
+	console.log(attachlist)
+	var str="";
+	$(attachlist).each(function(i,attach){
+		//만약 image결과가 true이면
+		if(attach.image){
+			//아래를 실행
+			var filePath = encodeURIComponent(attach.uploadPath+"/" + attach.uuid + "_" + attach.fileName); 
+			console.log(filePath)
+			str+=`<img src = "/display?fileName=${filePath}" id="img">`;
+		}else{//그렇지 않으면
+			//다운로드 할 수 있도록 실행
+			var filePath = encodeURIComponent(attach.uploadPath+"/" + attach.uuid + "_" + attach.fileName); 
+			str = `<a href="/download?fileName=${filePath}">${attach.fileName}</a>`
+		}//if문 끝
+	})//each문 끝
+	$("#uploadimg").html(str);	
+})//getJSON끝	
+
+
+//장바구니 플러스 마이너스버튼, 총가격 변화시키기
 const num = document.querySelector('#num');
 
 const plus = document.querySelector('#btn_plus');
 
+const price = document.querySelector("#price");
+
+const totalPrice = document.querySelector("#totalPrice");
+
+const total = parseInt(totalPrice.innerText);
+
+const p = parseInt(price.innerText);
+
 plus.addEventListener('click',()=>{
 	let quantity = parseInt(num.value);
 	num.value = quantity+ 1;
+	
+	totalPrice.innerText = p * num.value;
 })
 
 const minus = document.querySelector('#btn_minus');
@@ -14,11 +46,15 @@ minus.addEventListener('click',()=>{
 	let quantity = parseInt(num.value);
 	num.value = quantity - 1;
 	if(quantity<1){
-		num.value =0;
+		num.value = 1;
+		totalPrice.innerText = p;
 	}else{
 		num.value = quantity -1;
+		totalPrice.innerText = p * num.value;
 	}
 })
+
+
 
 // 스크롤에 따라 고정되는 내비게이션바
 const marker=document.querySelector(".marker");
@@ -45,12 +81,12 @@ window.addEventListener("scroll",()=>{
            //console.log(current);
         }
         menus.forEach(menu=>{
-            menu.parentNode.classList.remove("navfocused");
+            menu.classList.remove("navfocused");
             const href = menu.getAttribute("href").substring(1);
             //console.log(href);
             if(href===current) {
                 // 현재 있는 영역의 id와 메뉴의 링크주소가 일치할때
-                menu.parentNode.classList.add("navfocused");
+                menu.classList.add("navfocused");
                 setMarker(menu);
             }
         })
@@ -63,12 +99,6 @@ const gotoreview = document.querySelector('#totalRe > button');
 gotoreview.addEventListener('click', ()=>{
 	location.href="http://localhost:8080/board/review";
 })
-
-
-
-
-
-
 
 
 
