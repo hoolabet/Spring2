@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.spring2.mapper.InquiryMapper">
+	<select id="list" resultType="org.spring2.model.InquiryVO">
+		select *
+		from(
+			select @rownum:=@rownum+1 rownum, i.*
+		    from inquiry i,(select @rownum:=0) as tmp
+			where pno=1 <!-- 나중에 변경 -->
+		    order by ino desc
+		) as inquirylist
+		<![CDATA[
+		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
+		]]>
+	</select>
+	
+	<select id="total" resultType="int">
+  		select count(*) from inquiry
+  	</select>
+	
+	<insert id="write">
+  		insert into inquiry(pno,id,question)
+		values(#{pno},#{id},#{question})
+  	</insert> 
+</mapper>

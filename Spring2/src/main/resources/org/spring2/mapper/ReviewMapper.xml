@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.spring2.mapper.ReviewMapper">
+  	
+	<select id="list" resultType="org.spring2.model.ReviewVO">
+		select *
+		from(
+			select @rownum:=@rownum+1 rownum, r.*
+		    from review r,(select @rownum:=0) as tmp
+			where pno=1 <!-- 나중에 변경 -->
+		    order by rno desc
+		) as reviewlist
+		<![CDATA[
+		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
+		]]>
+  	</select>
+  
+  	<select id="total" resultType="int">
+  		select count(*) from review
+  	</select>
+  	
+  	<insert id="write">
+  		insert into review(pno, id, scope, content)
+		values(#{pno},#{id},#{scope},#{content}) 
+  	</insert>
+  	
+  	<select id="scope1cnt" resultType="int">
+	  	select count(*) from review
+		where scope = 1
+	</select>	
+  	<select id="scope2cnt" resultType="int">
+	  	select count(*) from review
+		where scope = 2
+	</select>	
+  	<select id="scope3cnt" resultType="int">
+	  	select count(*) from review
+		where scope = 3
+	</select>	
+  	<select id="scope4cnt" resultType="int">
+	  	select count(*) from review
+		where scope = 4
+	</select>	
+  	<select id="scope5cnt" resultType="int">
+	  	select count(*) from review
+		where scope = 5
+	</select>	
+	
+	<select id="scopeavg" resultType="float">
+		select avg(scope) from review
+	</select>
+  		
+</mapper>

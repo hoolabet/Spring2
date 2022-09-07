@@ -1,0 +1,52 @@
+@charset "UTF-8";
+#inquiry{
+	height: 100%;
+	width: 80%;	
+	outline: 1px solid black;
+	margin: 0 auto;
+}
+#list, #write{
+	height: 100%;
+	width:80%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	outline:1px solid black;
+	background-color: white;
+}
+
+#list>table, #write>form>table{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: white;
+}
+table,tr,td,th{
+	border : 1px solid black;
+  	border-collapse : collapse;
+}
+#answer{
+	background-color: #c2e7fc;
+}
+h3, #paging{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+input[type="text"]{
+	height: 100%;
+	width: 97%;
+	border: 0;
+}
+textarea{
+	height: 150px;
+	width: 99%;
+	resize: none;
+	border: 0;
+}
+#wbtn{
+	margin-top:10px;
+	margin-bottom:10px;
+	height: 30px;
+	width: 70px;
+}
