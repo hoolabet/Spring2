@@ -5,15 +5,9 @@
 <mapper namespace="org.spring2.mapper.BoardMapper">
 	<insert id="write">
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
-			<choose>
-				<when test="pno !=null">
-					select max(pno)+1 pno
-					from product
-				</when>
-				<otherwise>
-					select 1
-				</otherwise>
-			</choose>
+			select 
+				ifnull (max(pno)+1 , 1)
+			from product
 		</selectKey>
 		insert into
 		product(pno,pname,price,content,quantity,delivery,quality,category_area,category_type)
@@ -27,7 +21,8 @@
 		(select @rownum:=0) as tmp
 		<if test="search != null">
 			where pname like concat('%',#{search},'%')
-			or content like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%')
 		</if>
 		<choose>
 			<when test="array =='lowprice'">
