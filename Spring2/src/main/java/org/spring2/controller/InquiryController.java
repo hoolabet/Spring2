@@ -30,13 +30,13 @@ public class InquiryController {
 		return "/board/inquiry";
 	}
 	// 문의 작성(get)
-	@RequestMapping(value = "/inquiry/write", method = RequestMethod.GET)
+	@RequestMapping(value = "/board/inquirywrite", method = RequestMethod.GET)
 	public String writeGet() {
 		System.out.println("write연결 get");
-		return "/board/newreview";
+		return "/board/inquirywrite";
 	}
 	// 문의 작성(post)
-	@RequestMapping(value = "/inquiry/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/board/inquirywrite", method = RequestMethod.POST)
 	public ResponseEntity<String> write(@RequestBody InquiryVO ivo){
 		int result = is.write(ivo);
 		
@@ -45,4 +45,5 @@ public class InquiryController {
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
 }

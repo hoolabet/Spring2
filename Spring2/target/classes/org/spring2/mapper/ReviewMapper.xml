@@ -17,15 +17,30 @@
 		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
 		]]>
   	</select>
-  
+  	
+  	<!-- <select id="imglist" resultType="org.spring2.model.ReviewVO">
+  		select * from reviewattach 
+		where rno=343
+		이걸로 바꾸기 : where rno=#{}
+  	</select> -->
+  	
   	<select id="total" resultType="int">
   		select count(*) from review
   	</select>
   	
   	<insert id="write">
-  		insert into review(pno, id, scope, content)
-		values(#{pno},#{id},#{scope},#{content}) 
+  		<selectKey keyProperty="rno" order="BEFORE" resultType="int">
+  			select max(rno)+1 rno
+			from review
+  		</selectKey>
+  		insert into review(pno, id, scope, content,rno)
+		values(#{pno},#{id},#{scope},#{content},#{rno}) 
   	</insert>
+  	
+  	<insert id="uploadimg">
+  		insert into reviewattach(uuid, uploadpath, filename, image, rno)
+		values(#{uuid},#{uploadpath},#{filename},#{image},#{rno})
+  	</insert>	
   	
   	<select id="scope1cnt" resultType="int">
 	  	select count(*) from review

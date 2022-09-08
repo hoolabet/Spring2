@@ -51,11 +51,12 @@
 				<!-- 리뷰 목록  -->
 				<div id="list">
 					<h3>리뷰 목록</h3>
+					<a href="/board/reviewwrite">리뷰 작성하기</a>
 					<c:forEach items="${list}" var="list">
 						<table>
 							<tr>
 								<th>리뷰번호</th>
-								<td colspan="3">${list.rno}</td>
+								<td colspan="3" id="${list.rno}">${list.rno}</td>
 							</tr>
 							<tr>
 								<th>아이디</th><td>${list.id}</td>
@@ -67,7 +68,7 @@
 							</tr>
 							<tr>
 								<th>사진</th>
-								<td colspan="3">img</td>
+								<td colspan="3" id="thumbnail"></td>
 							</tr>
 							<tr>
 								<th>내용</th>
@@ -87,39 +88,6 @@
 							<a href="/board/newreview?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
 						</c:if>
 					</div>
-				</div>
-				
-				<div id="write">
-					 <h3>리뷰 작성</h3>
-					 <form method="post" enctype="multipart/form-data">
-						<table>
-							<tr>
-								<th>아이디</th>
-								<td><input type="text" name="id"></td>
-								<th>제품번호</th>
-								<td><input type="text" name="pno"></td>
-							</tr>
-							<tr>
-								<th>평점</th>
-								<td colspan="3">
-									<input type="radio" value="1" name="scope">1
-									<input type="radio" value="2" name="scope">2
-									<input type="radio" value="3" name="scope">3
-									<input type="radio" value="4" name="scope">4
-									<input type="radio" value="5" name="scope">5
-								</td>
-							</tr>
-							<tr>
-								<th>내용</th>
-								<td colspan="3"><textarea name="content"></textarea></td>
-							</tr>
-							<tr>
-								<th>이미지첨부</th>
-								<td colspan="3"><input type="file" name="uploadFile" multiple></td>
-							</tr>
-						</table>
-						<input type="button" value="작성" id="wbtn">
-					</form>
 				</div>
 			</div>
 			<!-- 리뷰 끝 -->

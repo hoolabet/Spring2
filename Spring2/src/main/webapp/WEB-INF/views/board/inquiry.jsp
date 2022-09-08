@@ -19,6 +19,7 @@
 				<label>문의</label>
 				<div id="list">
 					<h3>문의 목록</h3>
+					<a href="/board/inquirywrite">문의하기</a>
 					<c:forEach items="${list}" var="list">
 						<table id="question">
 							<tr>
@@ -47,24 +48,6 @@
 							<a href="/board/inquiry?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
 						</c:if>
 					</div>
-				</div>
-				<div id="write">
-					<h3>문의 작성</h3>
-					<form method="post">
-						<table>
-							<tr>
-								<th>아이디</th>
-								<td><input type="text" name="id"></td>
-								<th>제품번호</th>
-								<td><input type="text" name="pno"></td>
-							</tr>
-							<tr>
-								<th>문의사항</th>
-								<td colspan="3"><textarea name="question"></textarea></td>
-							</tr>
-						</table>
-						<input type="button" value="작성" id="wbtn">
-					</form>
 				</div>
 			</div>
 			

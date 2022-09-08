@@ -1,39 +1,99 @@
 /**
- * 리뷰
+ * 리뷰 이미지 업로드
  */
 $(document).ready(function(){
-	// 리뷰 작성 함수 호출
-	$("#wbtn").on("click",function(){
+	
+
+	// 업로드 파일 확장자 제한
+	var reg =  new RegExp("(.*?)\.(jpg|jpeg|png)$")
+	var maxSize=5242880;
+	function checkExtension(fileName, fileSize){
+		if(fileSize >= maxSize){
+			alert("파일 사이즈 초과");
+			return false;
+		}
+		if(!reg.test(fileName)){
+			alert("해당 종류의 파일은 업로드 할 수 없습니다.");
+			return false;
+		}
+		return true;
+	}
+	
+	var str="";
+	
+	$("#file").change(function upload(e){
+		e.preventDefault();
 		
+		var formData = new FormData();
+		var inputFile=$("input[name='uploadFile']");
+		
+		var files=inputFile[0].files;
+		
+		for(var i=0;i<files.length;i++){
+			if(!checkExtension(files[i].name,files[i].size)){
+				return false;
+			}
+			
+			formData.append("uploadFile",files[i]);
+		}
+		$.ajax({
+			type:"post",
+			url:"/imgupload",
+			data:formData,
+			contentType:false,
+			processData:false,
+			dataType:"json",
+			success: function(result){
+				console.log(result)
+				
+				
+					
+				$(result).each(function(i,obj){
+					console.log(obj);
+					console.log("이름"+obj.filename);
+					
+					str+="<input type='hidden' name='attach["+i+"].filename' value='"+obj.filename+"' >";
+					str+="<input type='hidden' name='attach["+i+"].uuid' value='"+obj.uuid+"'>";
+					str+="<input type='hidden' name='attach["+i+"].uploadpath' value='"+obj.uploadpath+"'>";
+					str+="<input type='hidden' name='attach["+i+"].image' value='"+obj.image+"'>";
+					str+="<input type='hidden' name='attach["+i+"].rno' value='"+obj.rno+"'>";
+					
+					if(obj.image){
+						var filePath = encodeURIComponent(obj.uploadpath+"/s_"+obj.uuid+"_"+obj.filename);
+						console.log(filePath);
+						
+						str+="<img src='\display?filename="+filePath+"'>"
+					}else{ 
+						return false;
+					}	
+					$("#uploadResult").html(str);
+				})
+			
+			}
+			
+		})
+	}) // change end
+	
+	// click
+	$("#wbtn").on("click",function(){
 		var idVal=$("input[name=id]").val();
 		var pnoVal=$("input[name=pno]").val();
 		var scopeVal=$("input[type=radio]:checked").val();
 		var contentVal=$("textarea[name=content]").val();
-		var fileVal=$("input[type=file]").val();
-		
-		
 		
 		if(idVal=="" || pnoVal=="" || scopeVal=="" || contentVal==""){
 			alert("평점과 내용을 입력해 주세요")
 		}else{
-			add({id:idVal,pno:pnoVal,scope:scopeVal,content:contentVal,file:fileVal})
-		}
-	})
-	
-	// 리뷰 작성 함수 선언
-	function add(review){
-		$.ajax({
-			type:"post",
-			url:"/newreview/write",
-			data: JSON.stringify(review),
-			contentType:"application/json; charset=utf-8",
-			success:function(result){
-				if(result=="success"){
-					location.reload();
-				}
+			if(confirm("완료")){
+				$("#form").submit();
+			}else{
+				return false
 			}
-		})
-	}
+			
+		}
+		
+		
+	}) // click end
 	
 	
-})
+})	// end

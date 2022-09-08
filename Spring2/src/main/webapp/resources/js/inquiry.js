@@ -23,7 +23,7 @@ $(document).ready(function(){
 	function add(inquiry){
 		$.ajax({
 			type:"post",
-			url:"/inquiry/write",
+			url:"/board/inquirywrite",
 			data: JSON.stringify(inquiry),
 			contentType:"application/json; charset=utf-8",
 			success:function(result){

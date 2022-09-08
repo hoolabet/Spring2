@@ -1,8 +1,11 @@
 package org.spring2.model;
 
+
 public class RICriteriaVO {
 	private int pageNum;	// 페이지번호
 	private int amount;		// 한 페이지당 게시물 갯수
+	private int rno;
+	
 	
 		// 생성자
 		public RICriteriaVO() {
@@ -26,11 +29,16 @@ public class RICriteriaVO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	
-	
+
 	@Override
 	public String toString() {
-		return "CriteriaVO [pageNum=" + pageNum + ", amount=" + amount + "]";
+		return "RICriteriaVO [pageNum=" + pageNum + ", amount=" + amount + ", rno=" + rno + "]";
+	}
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
 	
 	

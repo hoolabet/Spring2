@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spring2.mapper.ReviewMapper;
 import org.spring2.model.RICriteriaVO;
+import org.spring2.model.ReviewAttachVO;
 import org.spring2.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +17,28 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	// 리뷰 리스트 구현
 	public ArrayList<ReviewVO> list(RICriteriaVO cri){
-		// System.out.println("리뷰service="+cri);
+		System.out.println("리뷰service="+cri);
 		return rm.list(cri);
 	}
 	
 	// 리뷰 전체건수 구현
 	public int total(RICriteriaVO cri) {
 		return rm.total(cri);
+		
 	}
 	
 	// 리뷰 작성 구현
-	public int write(ReviewVO rvo) {
+	public void write(ReviewVO rvo) {
 		// System.out.println("리뷰서비스 impl");
-		return rm.write(rvo);
+		rm.write(rvo);
+	
+		// System.out.println("attach : "+rvo.getAttach());
+		rvo.getAttach().forEach(attach->{
+			// System.out.println("이미지업로드 impl :"+rvo.getRno());
+			attach.setRno(rvo.getRno());
+			rm.uploadimg(attach);
+		});
+			
 	}
 	// 평점1 건수 구현
 	public int scope1cnt(RICriteriaVO cri) {
@@ -56,4 +66,5 @@ public class ReviewServiceImpl implements ReviewService{
 	public float scopeavg(RICriteriaVO cri){
 		return rm.scopeavg(cri);
 	}
+	
 }
