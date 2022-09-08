@@ -5,30 +5,19 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	const admin=$("#admin_check").val();
-	console.log(admin);
-
-
-	let str="";
-	if(admin=="true"){
-		alert("관리자다.");
-		str+=`<tr><td>회원목록</a></td></tr>`
-		
-	}$("#mypage_list").html(str);
+	
+	
+	$.ajax({
+		type:"get",
+		url:"/memberList/select.json",
+		contentType:"application/json; charset=utf-8"
+	})
+	.done(function(list){
+		let mem='';
+		list.forEach(function(m){
+			mem+=`
+				<p><img src="${m.userImg}" width="100px"> <a href="memberDetail?id=${m.id}">${m.id}</a></p>
+				`
+		})
+		$("#member_list").html(mem);
+	})

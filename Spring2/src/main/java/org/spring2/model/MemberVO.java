@@ -10,7 +10,7 @@ public class MemberVO {
 	private String phone;
 	private String gender;
 	private String birth;
-	private String address;
+	
 	private String sign_date;
 	private String userImg;
 	
@@ -75,17 +75,12 @@ public class MemberVO {
 	public void setSign_date(String sign_date) {
 		this.sign_date = sign_date;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [admin=" + admin + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
-				+ email + ", phone=" + phone + ", gender=" + gender + ", birth=" + birth + ", address=" + address
-				+ ", sign_date=" + sign_date + ", userImg=" + userImg + "]";
+				+ email + ", phone=" + phone + ", gender=" + gender + ", birth=" + birth + ", sign_date=" + sign_date
+				+ ", userImg=" + userImg + "]";
 	}
 	
 	

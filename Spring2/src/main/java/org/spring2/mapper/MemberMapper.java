@@ -1,5 +1,8 @@
 package org.spring2.mapper;
 
+import java.util.ArrayList;
+
+import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 
 public interface MemberMapper {
@@ -29,5 +32,10 @@ public interface MemberMapper {
 	// 계정삭제
 	public int modifyDelete(MemberVO member);
 	public int modifyimg(MemberVO member);
-	
+	public ArrayList<DestinationVO> destinationGet(String id);
+	public int destinationPost(DestinationVO des);
+	public int destinationPut(DestinationVO des);
+	public int destinationDelete(int dno);
+	public ArrayList<MemberVO> memberListGet();
+	public MemberVO memberDetail(String id);
 }

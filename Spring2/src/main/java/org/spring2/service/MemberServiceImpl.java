@@ -1,6 +1,9 @@
 package org.spring2.service;
 
+import java.util.ArrayList;
+
 import org.spring2.mapper.MemberMapper;
+import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +15,6 @@ public class MemberServiceImpl implements MemberService{
 	// 회원가입
 	public void signUp(MemberVO member) {
 		mm.signUp(member);
-		mm.createDes(member);
 	}
 	// 로그인
 	public MemberVO login(MemberVO member) {
@@ -60,5 +62,23 @@ public class MemberServiceImpl implements MemberService{
 	}
 	public int modifyimg(MemberVO member) {
 		return mm.modifyimg(member);
+	}
+	public ArrayList<DestinationVO> destinationGet(String id){
+		return mm.destinationGet(id);
+	}
+	public int destinationPost(DestinationVO des) {
+		return mm.destinationPost(des);
+	}
+	public int destinationPut(DestinationVO des) {
+		return mm.destinationPut(des);
+	}
+	public int destinationDelete(int dno) {
+		return mm.destinationDelete(dno);
+	}
+	public ArrayList<MemberVO> memberListGet(){
+		return mm.memberListGet();
+	}
+	public MemberVO memberDetail(String id) {
+		return mm.memberDetail(id);
 	}
 }

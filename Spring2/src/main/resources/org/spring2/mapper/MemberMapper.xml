@@ -7,8 +7,8 @@
 	<!-- 회원가입 -->
 	<insert id="signUp">
 		insert into member
-		(id,password,name,email,phone,gender,birth,address)
-		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth},#{address})
+		(id,password,name,email,phone,gender,birth)
+		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth})
 	</insert>
 	<insert id="createDes">
 		insert into destination
@@ -101,6 +101,33 @@
  		set userImg = #{userImg}
 		where id=#{id};
 	</update>
-
+	<select id="destinationGet" resultType="org.spring2.model.DestinationVO">
+		select *
+		from destination
+		where id=#{id};
+	</select>
+	<insert id="destinationPost">
+		insert into destination(id,dname,name,phone,address,dmemo)
+		values(#{id},#{dname},#{name},#{phone},#{address},#{dmemo});
+	</insert>
+	<update id="destinationPut">
+		update destination
+		set dname=#{dname},name=#{name},phone=#{phone},address=#{address},dmemo=#{dmemo}
+		where dno=#{dno};
+	</update>
+	<delete id="destinationDelete">
+		delete from destination
+		where dno=#{dno};
+	</delete>
+	<select id="memberListGet" resultType="org.spring2.model.MemberVO">
+		select *
+		from member
+		where admin=false;
+	</select>
+	<select id="memberDetail" resultType="org.spring2.model.MemberVO">
+		select *
+		from member
+		where id=#{id};
+	</select>
 
 </mapper>

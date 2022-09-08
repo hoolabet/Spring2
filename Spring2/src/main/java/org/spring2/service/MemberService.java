@@ -1,5 +1,8 @@
 package org.spring2.service;
 
+import java.util.ArrayList;
+
+import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 
 public interface MemberService {
@@ -29,4 +32,10 @@ public interface MemberService {
 	// 수정된 회원정보 불러오기
 	public MemberVO modifyNewInfo(MemberVO member);
 	public int modifyimg(MemberVO member);
+	public ArrayList<DestinationVO> destinationGet(String id);
+	public int destinationPost(DestinationVO des);
+	public int destinationPut(DestinationVO des);
+	public int destinationDelete(int dno);
+	public ArrayList<MemberVO> memberListGet();
+	public MemberVO memberDetail(String id);
 }

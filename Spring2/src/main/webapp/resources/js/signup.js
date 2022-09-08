@@ -338,32 +338,7 @@ function phcheck(phc){
 	})
 }
 
-//var adchk=document.querySelector("#adchk");
-//var admsg=document.querySelector("#admsg");
-//var ad = false;
-//adchk.onblur=function(){
-//const add = /.{1,}/;
-//if (!add.test(adchk.value)){
-//admsg.innerHTML="필수입력정보입니다."
-//admsg.style.color="red";
-//ad = false;
-//}else {
-//admsg.innerHTML="";
-//admsg.style.color="green";
-//ad = true;
-//}
-//}
 
-var ad = false;
-$("#adchk").on("blur",function(){
-	if($("#adchk").val()==""){
-		$("#admsg").text("필수입력정보입니다.").css("color","red");
-		ad = false;
-	}else{
-		$("#admsg").text("");
-		ad = true;
-	}
-})
 
 
 //var signsub=document.querySelector("#signsub");
@@ -377,7 +352,7 @@ $("#adchk").on("blur",function(){
 //}
 
 $("#signsub").on("click",function(e){
-	if(!(id && pw && pw2 && na && em && ph && ad)){
+	if(!(id && pw && pw2 && na && em && ph)){
 		e.preventDefault();
 		
 		alert('입력해');

@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.modi_input{
+	cursor:pointer;
+}
+
+.modi_div{
+	border:1px black solid;
+	display:inline-block;
+	margin:50px;
+}

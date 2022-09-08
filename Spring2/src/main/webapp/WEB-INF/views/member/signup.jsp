@@ -90,13 +90,6 @@
 						</td>
 					</tr>
 					<tr>
-						<td class="signtable">주소</td>
-						<td class="tableInput">
-							<input type="text" name="address" id="adchk">
-							<p class="signmsg" id="admsg"></p>
-						</td>
-					</tr>
-					<tr>
 						<td colspan="2">
 							<input type="submit" value="회원가입" id="signsub">
 						</td>

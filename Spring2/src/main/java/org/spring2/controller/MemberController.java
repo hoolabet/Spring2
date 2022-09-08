@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 import org.spring2.model.UploadFileVO;
 import org.spring2.service.MemberService;
@@ -155,14 +156,55 @@ public class MemberController {
 			return "member/findPw";
 		}
 	}
-	
-	// 배송지 관리
 	@RequestMapping(value = "/member/destination", method = RequestMethod.GET)
-	public String destinationGet() {
+	public void destination() {
+		
+	}
+	// 배송지 목록 관리
+	@RequestMapping(value = "/destination/select/{id}", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<DestinationVO>> destinationGet(@PathVariable String id) {
+		
+		return new ResponseEntity<>(ms.destinationGet(id),HttpStatus.OK);
+	}
+	@RequestMapping(value = "/destination/insert", method = RequestMethod.POST)
+	public ResponseEntity<String> destinationPost(@RequestBody DestinationVO des) {
+		int result=ms.destinationPost(des);
 
-		return "member/destination";
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	@RequestMapping(value = "/destination/update", method = RequestMethod.PUT)
+	public ResponseEntity<String> destinationPut(@RequestBody DestinationVO des) {
+		int result=ms.destinationPut(des);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@RequestMapping(value = "/destination/delete", method = RequestMethod.DELETE)
+	public ResponseEntity<String> destinationDelete(@RequestBody int dno) {
+		System.out.println(dno);
+		int result=ms.destinationDelete(dno);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	// 회뭔목록
+	@RequestMapping(value = "/member/memberList", method = RequestMethod.GET)
+	public void memberList() {
+		
+	}
+	@RequestMapping(value = "/memberList/select", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<MemberVO>> memberListGet() {
+		
+		return new ResponseEntity<>(ms.memberListGet(),HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/member/memberDetail", method = RequestMethod.GET)
+	public void memberDetail(String id, Model model) {
+		model.addAttribute("detail",ms.memberDetail(id));
+	}
 
 	// 비밀번호 수정하기
 	@RequestMapping(value = "/member/modifyPassword", method = RequestMethod.GET)
