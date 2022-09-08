@@ -16,7 +16,9 @@
 	height: 400px;
 	margin: 0 45px;
 }
-
+h3{
+	text-align:center;
+}
 #sell {
 	width : 400px;
 	margin: 0 auto;
@@ -90,13 +92,20 @@ nav ul li a {
 }
 
 #d_img > div > img {
-	width: 700px;
-	height: 500px;
+	width: 45%;
+	height: auto;
 }
 #d_img > div{
-	font-size:30px;
+	font-size:25px;
 }
-
+/* 수정,삭제하기 */
+#form_back{
+	font-size:15px;
+	margin-top:15px;
+}
+#remove{
+	
+}
 /* 리뷰  */
 #reviewlist {
 	
@@ -104,8 +113,9 @@ nav ul li a {
 
 #totalRe {
 	border: 1px solid black;
-	padding: 10px 0;
-	margin: 10px 0;
+	width : 700px;
+	padding : 10px 0;
+	margin : 15px auto;
 }
 
 .title {
@@ -129,6 +139,11 @@ nav ul li a {
 	cursor: pointer;
 }
 /* 상품문의 */
+#btn_qna{
+	position: relative;
+    left: 557px;
+    margin-bottom: 10px;
+}
 #t_privqna {
 	margin: 0 auto;
 	border-collapse: collapse;

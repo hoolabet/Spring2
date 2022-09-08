@@ -5,12 +5,19 @@
 <mapper namespace="org.spring2.mapper.BoardMapper">
 	<insert id="write">
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
-			select max(pno)+1 pno
-			from product
+			<choose>
+				<when test="pno !=null">
+					select max(pno)+1 pno
+					from product
+				</when>
+				<otherwise>
+					select 1
+				</otherwise>
+			</choose>
 		</selectKey>
 		insert into
-		product(pname,price,content,quantity,delivery,quality,category_area,category_type)
-		values(#{pname},#{price},#{content},#{quantity},#{delivery},#{quality},#{category_area},#{category_type})
+		product(pno,pname,price,content,quantity,delivery,quality,category_area,category_type)
+		values(#{pno},#{pname},#{price},#{content},#{quantity},#{delivery},#{quality},#{category_area},#{category_type})
 	</insert>
 	<select id="list" resultType="org.spring2.model.BoardVO">
 		select *
@@ -18,7 +25,24 @@
 		select @rownum:=@rownum+1 rownum, p.*
 		from product p,
 		(select @rownum:=0) as tmp
-		order by pno desc
+		<if test="search != null">
+			where pname like concat('%',#{search},'%')
+			or content like concat('%',#{search},'%')
+		</if>
+		<choose>
+			<when test="array =='lowprice'">
+				order by price
+			</when>
+			<when test="array =='highprice'">
+				order by price desc
+			</when>
+			<when test="array == 'popular'">
+				order by s_quantity desc
+			</when>
+			<otherwise>
+				order by pno desc
+			</otherwise>
+		</choose>
 		)as boardlist
 		<![CDATA[
 		where rownum>(#{pageNum}-1)*#{amount} and rownum <=#{pageNum}*#{amount}

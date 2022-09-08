@@ -8,6 +8,11 @@
 #p_write{
 	float: right;
 }
+#btn_Write{
+	margin-bottom: 5px;
+    position: relative;
+    right: 20px
+}
 /* 가구 종류 카테고리 */
 #p_list > ul {
 	list-style : none;
@@ -23,6 +28,8 @@
 #array{
 	clear: both;
 	float:right;
+	position: relative;
+    right: 20px;
 }
 
 /* 제품들을 나열하는 리스트 */
@@ -47,4 +54,7 @@
 
 #list > ul > li > p > a:hover{
 	text-decoration: underline;
+}
+#paging{
+	clear:both;
 }

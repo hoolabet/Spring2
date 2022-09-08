@@ -67,14 +67,13 @@
 						</ul>
 					</nav>
 				</div>
-
 				<section id="d_img">
 					<div>${detail.content}</div>
 					<div id="back">
-						<form method="post">
+						<form action="/board/remove" method="post" id="form_back">
 							<a href="/board/modify?pno=${detail.pno}">수정하기</a> 
-							<input type="hidden" value="${detail.pno}" name="pno"> 
-							<input type="submit" value="삭제" formaction="/board/remove"> 
+							<input type="hidden" value="${detail.pno}" name="pno">
+							<button id="remove">삭제</button>
 							<a href="/board/list">목록보기</a>
 						</form>
 					</div>
@@ -108,6 +107,7 @@
 				</section>
 				<section id="privqna">
 					<div class="title">상품문의</div>
+					<button id="btn_qna">문의하기</button>
 					<table id="t_privqna">
 						<tr>
 							<td>글내용</td>

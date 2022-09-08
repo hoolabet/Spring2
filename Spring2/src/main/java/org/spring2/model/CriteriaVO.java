@@ -5,11 +5,13 @@ public class CriteriaVO {
 	private int amount;
 	private String search;
 	private String type;
+	private String array;
 	
 	public CriteriaVO() {
 		pageNum = 1;
 		amount = 10;
 		search = "";
+		array = "last";
 	}
 	public CriteriaVO(String search) {
 		this();
@@ -19,9 +21,6 @@ public class CriteriaVO {
 		this.pageNum = pageNum;
 		this.amount = amount;
 	}
-	
-	
-	
 	
 	public String getType() {
 		return type;
@@ -47,9 +46,16 @@ public class CriteriaVO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	public String getArray() {
+		return array;
+	}
+	public void setArray(String array) {
+		this.array = array;
+	}
 	@Override
 	public String toString() {
-		return "CriteriaVO [pageNum=" + pageNum + ", amount=" + amount + ", search=" + search + ", type=" + type + "]";
+		return "CriteriaVO [pageNum=" + pageNum + ", amount=" + amount + ", search=" + search + ", type=" + type + ", array=" + array + "]";
 	}
 	
 	

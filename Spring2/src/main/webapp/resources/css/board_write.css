@@ -19,16 +19,24 @@ table,tr{
 td{
 	border-left:1px solid black;
 	text-align: left;
+	height: 33px;
 }
 table input{
-	width : 300px;
+	width : 500px;
 	height: 33px;
 	border:none;
 }
+select{
+	width : 504px;
+	height: 33px;
+	border:none;
+}
+
 #content{
 	border: none;
-    width: 300px;
+    width: 500px;
 }
 #btn{
+	margin-top:10px;
 	text-align: center;
 }
