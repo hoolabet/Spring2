@@ -43,6 +43,11 @@
 		where rownum>(#{pageNum}-1)*#{amount} and rownum <=#{pageNum}*#{amount}
 		]]>
 	</select>
+	
+	
+	
+	
+	
 	<select id="detail" resultType="org.spring2.model.BoardVO">
 		select*
 		from product

@@ -47,9 +47,9 @@
 									<td><span id="totalPrice">${detail.price}</span></td>
 								</tr>
 								<tr>
-									<td colspan="2"><button class="btn_p">구매하기</button>
-										<button class="btn_p">장바구니</button>
-										<button class="btn_p">관심상품</button>
+									<td colspan="2"><button class="btn_p" id="buy">구매하기</button>
+										<button class="btn_p" id="cart">장바구니</button>
+										<!-- <button class="btn_p">관심상품</button> -->
 								</tr>
 							</table>
 						</form>

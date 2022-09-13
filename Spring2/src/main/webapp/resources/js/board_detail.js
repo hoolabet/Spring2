@@ -37,7 +37,8 @@ plus.addEventListener('click',()=>{
 	let quantity = parseInt(num.value);
 	num.value = quantity+ 1;
 	
-	totalPrice.innerText = p * num.value;
+	totalPrice.innerText = priceToString(p * num.value);
+	
 })
 
 const minus = document.querySelector('#btn_minus');
@@ -50,9 +51,16 @@ minus.addEventListener('click',()=>{
 		totalPrice.innerText = p;
 	}else{
 		num.value = quantity -1;
-		totalPrice.innerText = p * num.value;
+		totalPrice.innerText = priceToString(p * num.value);
 	}
 })
+
+function priceToString(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+price.innerText = priceToString(price.innerText);
+
+totalPrice.innerText = priceToString(totalPrice.innerText);
 
 
 

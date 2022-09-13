@@ -48,7 +48,8 @@
 								<p>
 									<a href="/board/detail?pno=${boardlist.pno}">${boardlist.pname}</a>
 								</p>
-								<p >가격 : <span id="priceformat">${boardlist.price}</span></p> 
+								<p >가격 : <span class="priceformat">${boardlist.price}</span></p> 
+								 
 								<input type="text" value="${boardlist.pno}" name="pno"></li>
 						</c:forEach>
 					</ul>
