@@ -7,8 +7,8 @@
 	<!-- 회원가입 -->
 	<insert id="signUp">
 		insert into member
-		(id,password,name,email,phone,gender,birth)
-		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth})
+		(id,password,name,email,phone,gender,birth_y,birth_m,birth_d)
+		values(#{id},#{password},#{name},#{email},#{phone},#{gender},#{birth_y},#{birth_m},#{birth_d})
 	</insert>
 	<insert id="createDes">
 		insert into destination

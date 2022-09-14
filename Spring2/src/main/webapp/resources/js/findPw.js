@@ -6,6 +6,7 @@
 
 
 $("input[type=radio]").on("change", function(){
+	$("#findPwEP").val("");
 	findPw();
 })
 

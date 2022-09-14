@@ -190,7 +190,7 @@ public class MemberController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	// 회뭔목록
+	// 회원목록
 	@RequestMapping(value = "/member/memberList", method = RequestMethod.GET)
 	public void memberList() {
 		
@@ -226,34 +226,39 @@ public class MemberController {
 	// 마이페이지
 	@RequestMapping(value = "/member/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
-		if(session.getAttribute("userInfo") == null) {
-			return "redirect:/";
-		} else {
+//		if(session.getAttribute("userInfo") == null) {
+//			
+//			return "redirect:/member/login";
+//		} else {
 			return "member/mypage";
-		}
+//		}
 
 	}
 
 	// 개인정보 수정 전 비밀번호 확인
 	@RequestMapping(value = "/member/modifyInfoPWCheck", method = RequestMethod.GET)
-	public String modifyGet() {
-		return "member/modifyInfoPWCheck";
+	public String modifyGet(HttpSession session) {
+		if(session.getAttribute("userInfo") == null) {
+			return "redirect:/member/login";
+		}else {
+			return "member/modifyInfoPWCheck";
+		}
 	}
 	@RequestMapping(value = "/member/modifyInfoPWCheck", method = RequestMethod.POST)
 	public String modifyPost(MemberVO member,HttpSession session) {
 		System.out.println(ms.modify(member));
-
 		if(ms.modify(member) != null) {
 			return "redirect:/member/memInfo";
 		} else {
 			return "member/modifyInfoPWCheck";
 		}
+		
 	}
 	// 개인정보 수정
 	@RequestMapping(value = "/member/memInfo", method = RequestMethod.GET)
 	public String memInfoGet(HttpSession session) {
 		if(session.getAttribute("userInfo") == null) {
-			return "redirect:/";
+			return "redirect:/member/login";
 		} else {
 			return "member/memInfo";
 		}

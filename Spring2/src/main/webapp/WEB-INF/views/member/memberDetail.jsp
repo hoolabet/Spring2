@@ -19,14 +19,22 @@
 
 			<h1>회원 상세</h1>
 			<div id="member_detail">
-			<table border="1">
+			<table border="0">
 				<tr>
-					<td><img src="${detail.userImg}" width="100px"></td>
+					<td rowspan="4" id="user_img_td"><img src="${detail.userImg}" width="120px"></td>
 					<td>아이디 : ${detail.id}</td>
-					<td>이름 : ${detail.name}</td>
+					<td colspan="2">이름 : ${detail.name}</td>
 				</tr>
 				<tr>
-					<td>이메일 : ${ }</td>
+					<td colspan="3">이메일 : ${detail.email}</td>
+				</tr>
+				<tr>
+					<td>전화번호 : ${detail.phone}</td>
+					<td>성별 : ${detail.gender}</td>
+					<td>생년월일 : ${detail.birth_y}년${detail.birth_m}월${detail.birth_d}일</td>
+				</tr>
+				<tr>
+					<td colspan="3">가입일 : ${detail.sign_date}</td>
 				</tr>
 			</table>
 			
