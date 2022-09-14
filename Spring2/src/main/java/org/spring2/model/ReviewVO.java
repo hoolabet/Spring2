@@ -1,6 +1,5 @@
 package org.spring2.model;
 
-import java.util.ArrayList;
 
 public class ReviewVO {
 	
@@ -11,7 +10,10 @@ public class ReviewVO {
 	private float scope;	// 별점
 	private String regdate;	// 등록일
 	
-	private ArrayList<ReviewAttachVO> attach;
+	private String uuid; // uuid
+	private String uploadpath; // 파일경로
+	private String filename; // 파일명
+	private boolean image; // 이미지여부
 	
 	public int getRno() {
 		return rno;
@@ -50,15 +52,35 @@ public class ReviewVO {
 		this.regdate = regdate;
 	}
 	
-	public ArrayList<ReviewAttachVO> getAttach() {
-		return attach;
+	
+	public String getUuid() {
+		return uuid;
 	}
-	public void setAttach(ArrayList<ReviewAttachVO> attach) {
-		this.attach = attach;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+	public String getUploadpath() {
+		return uploadpath;
+	}
+	public void setUploadpath(String uploadpath) {
+		this.uploadpath = uploadpath;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public boolean isImage() {
+		return image;
+	}
+	public void setImage(boolean image) {
+		this.image = image;
 	}
 	@Override
 	public String toString() {
 		return "ReviewVO [rno=" + rno + ", pno=" + pno + ", id=" + id + ", content=" + content + ", scope=" + scope
-				+ ", regdate=" + regdate + ", attach=" + attach + "]";
+				+ ", regdate=" + regdate + ", uuid=" + uuid + ", uploadpath=" + uploadpath + ", filename=" + filename
+				+ ", image=" + image + "]";
 	}
 }

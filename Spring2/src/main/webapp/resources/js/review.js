@@ -3,7 +3,7 @@
  */
 $(document).ready(function(){
 	
-
+	
 	// 업로드 파일 확장자 제한
 	var reg =  new RegExp("(.*?)\.(jpg|jpeg|png)$")
 	var maxSize=5242880;
@@ -21,6 +21,7 @@ $(document).ready(function(){
 	
 	var str="";
 	
+	// change
 	$("#file").change(function upload(e){
 		e.preventDefault();
 		
@@ -52,17 +53,17 @@ $(document).ready(function(){
 					console.log(obj);
 					console.log("이름"+obj.filename);
 					
-					str+="<input type='hidden' name='attach["+i+"].filename' value='"+obj.filename+"' >";
-					str+="<input type='hidden' name='attach["+i+"].uuid' value='"+obj.uuid+"'>";
-					str+="<input type='hidden' name='attach["+i+"].uploadpath' value='"+obj.uploadpath+"'>";
-					str+="<input type='hidden' name='attach["+i+"].image' value='"+obj.image+"'>";
-					str+="<input type='hidden' name='attach["+i+"].rno' value='"+obj.rno+"'>";
+					str+="<input type='text' name='filename' value='"+obj.filename+"' >";
+					str+="<input type='text' name='uuid' value='"+obj.uuid+"'>";
+					str+="<input type='text' name='uploadpath' value='"+obj.uploadpath+"'>";
+					str+="<input type='text' name='image' value='"+obj.image+"'>";
 					
 					if(obj.image){
 						var filePath = encodeURIComponent(obj.uploadpath+"/s_"+obj.uuid+"_"+obj.filename);
 						console.log(filePath);
 						
 						str+="<img src='\display?filename="+filePath+"'>"
+						str+="<input type='text' value="+filePath+">" 
 					}else{ 
 						return false;
 					}	

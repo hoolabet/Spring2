@@ -25,9 +25,14 @@
 table,tr,td,th{
 	border : 1px solid black;
   	border-collapse : collapse;
+  	word-break: break-all;
 }
+th{
+	width: 20%;
+}
+
 #answer{
-	background-color: #c2e7fc;
+	background-color: #e7f5fe;
 }
 h3, #paging{
 	margin-top: 10px;

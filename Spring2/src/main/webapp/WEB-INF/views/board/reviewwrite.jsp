@@ -41,7 +41,7 @@
 						</tr>
 						<tr>
 							<th>사진 첨부</th>
-							<td colspan="3"><input type="file" id="file" name="uploadFile" accept=".jpg,.jpeg,.png" multiple></td>
+							<td colspan="3"><input type="file" id="file" name="uploadFile" accept=".jpg,.jpeg,.png"></td>
 						</tr>
 						<tr>
 							<th>사진 미리보기</th>

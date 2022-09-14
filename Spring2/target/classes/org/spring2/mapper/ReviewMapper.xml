@@ -18,12 +18,6 @@
 		]]>
   	</select>
   	
-  	<!-- <select id="imglist" resultType="org.spring2.model.ReviewVO">
-  		select * from reviewattach 
-		where rno=343
-		이걸로 바꾸기 : where rno=#{}
-  	</select> -->
-  	
   	<select id="total" resultType="int">
   		select count(*) from review
   	</select>
@@ -33,14 +27,9 @@
   			select max(rno)+1 rno
 			from review
   		</selectKey>
-  		insert into review(pno, id, scope, content,rno)
-		values(#{pno},#{id},#{scope},#{content},#{rno}) 
+  		insert into review(pno, id, scope, content,rno, uuid, uploadpath, filename, image)
+		values(#{pno},#{id},#{scope},#{content},#{rno},#{uuid},#{uploadpath},#{filename},#{image}) 
   	</insert>
-  	
-  	<insert id="uploadimg">
-  		insert into reviewattach(uuid, uploadpath, filename, image, rno)
-		values(#{uuid},#{uploadpath},#{filename},#{image},#{rno})
-  	</insert>	
   	
   	<select id="scope1cnt" resultType="int">
 	  	select count(*) from review

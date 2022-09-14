@@ -12,7 +12,6 @@ import java.util.UUID;
 
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.RIPageVO;
-import org.spring2.model.ReviewAttachVO;
 import org.spring2.model.ReviewVO;
 import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +38,7 @@ public class ReviewController {
 	public String list(Model model,RICriteriaVO cri) {
 		// 리스트
 		model.addAttribute("list",rs.list(cri));
-		// System.out.println(rs.list(cri));
+		System.out.println("controller"+rs.list(cri));
 		
 		// 전체 평점 건수
 		int total = rs.total(cri);
@@ -68,15 +67,14 @@ public class ReviewController {
 	public String writePost (ReviewVO rvo) {
 		rs.write(rvo);
 		System.out.println("write post");
+		
 		return "redirect:/board/newreview";
 	}
 	
 	// 파일 업로드 폴더 생성
 	private String getFolder() {
 		Date date = new Date();
-//		System.out.println("현재 날짜 : "+date);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		System.out.println("format 현재날짜 : "+sdf);
 		String str = sdf.format(date);
 		
 		return str.replace("-", "\\");
@@ -98,31 +96,31 @@ public class ReviewController {
 	
 	// 업로드(post)
 	@RequestMapping(value = "/imgupload", method = RequestMethod.POST)
-	public ResponseEntity<ArrayList<ReviewAttachVO>> insertimg(MultipartFile[] uploadFile,ReviewVO rvo){
+	public ResponseEntity<ArrayList<ReviewVO>> insertimg(MultipartFile[] uploadFile,ReviewVO rvo){
 		
-		ArrayList<ReviewAttachVO> attachlist = new ArrayList<>();
+		System.out.println("imgupload 연결완료");
+		ArrayList<ReviewVO> attachlist = new ArrayList<>();
 		
-		String uploadFolder="D:\\01-STUDY\\upload";
+		String uploadFolder="D:\\01-STUDY\\Spring2\\upload";
 		
 		File uploadPath = new File(uploadFolder,getFolder());
 		
 		if(uploadPath.exists()==false) {
 			uploadPath.mkdirs();
 		}
-		
+	
 		for(MultipartFile multipartFile : uploadFile) {
 			
-			ReviewAttachVO ravo = new ReviewAttachVO();
 			
 			System.out.println(multipartFile.getOriginalFilename());
 			System.out.println(multipartFile.getSize());
 			
 			UUID uuid = UUID.randomUUID();
-			// System.out.println(uuid.toString());
+			System.out.println(uuid.toString());
 			
-			ravo.setUploadpath(getFolder());
-			ravo.setFilename(multipartFile.getOriginalFilename());
-			ravo.setUuid(uuid.toString());
+			rvo.setUploadpath(getFolder());
+			rvo.setFilename(multipartFile.getOriginalFilename());
+			rvo.setUuid(uuid.toString());
 			
 			File saveFile = new File(uploadPath,uuid.toString()+"_"+multipartFile.getOriginalFilename());
 			
@@ -130,7 +128,7 @@ public class ReviewController {
 				multipartFile.transferTo(saveFile);
 				
 				if(checkImageType(saveFile)) {
-					ravo.setImage(true);
+					rvo.setImage(true);
 					
 					FileOutputStream thumnail = new FileOutputStream(new File(uploadPath,"s_"+uuid.toString()+"_"+multipartFile.getOriginalFilename()));
 					
@@ -138,7 +136,7 @@ public class ReviewController {
 					
 					thumnail.close();
 				}
-				attachlist.add(ravo);
+				attachlist.add(rvo);
 			}catch(Exception e) {
 				System.out.println(e.getMessage());
 			}
@@ -149,9 +147,7 @@ public class ReviewController {
 	@RequestMapping(value = "/board/display", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getFile(String filename){
 		
-//		System.out.println("이름"+filename);
-		
-		File file = new File("D:\\01-STUDY\\upload\\"+filename);
+		File file = new File("D:\\01-STUDY\\Spring2\\upload\\"+filename);
 		
 		ResponseEntity<byte[]> result = null;
 		

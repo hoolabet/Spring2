@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.spring2.mapper.ReviewMapper;
 import org.spring2.model.RICriteriaVO;
-import org.spring2.model.ReviewAttachVO;
 import org.spring2.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,16 +28,7 @@ public class ReviewServiceImpl implements ReviewService{
 	
 	// 리뷰 작성 구현
 	public void write(ReviewVO rvo) {
-		// System.out.println("리뷰서비스 impl");
 		rm.write(rvo);
-	
-		// System.out.println("attach : "+rvo.getAttach());
-		rvo.getAttach().forEach(attach->{
-			// System.out.println("이미지업로드 impl :"+rvo.getRno());
-			attach.setRno(rvo.getRno());
-			rm.uploadimg(attach);
-		});
-			
 	}
 	// 평점1 건수 구현
 	public int scope1cnt(RICriteriaVO cri) {

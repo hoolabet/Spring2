@@ -45,9 +45,9 @@
 					</table>
 				</div>
 				<div id="index">
-					<a href="/board/newreview">최신순</a>
-					<a href="">베스트순</a>
-				</div>
+					<a href="/board/newreview">최신순 /</a>
+					<a href=""> 베스트순</a>
+				</div> 
 				<!-- 리뷰 목록  -->
 				<div id="list">
 					<h3>리뷰 목록</h3>
@@ -56,7 +56,14 @@
 						<table>
 							<tr>
 								<th>리뷰번호</th>
-								<td colspan="3" id="${list.rno}">${list.rno}</td>
+								<td colspan="3">
+									<input type="hidden" name="rno" value="${list.rno}" id="rno">
+									<input type="hidden" name="uuid" value="${list.uuid}">
+									<input type="hidden" name="uploadpath" value="${list.uploadpath}">
+									<input type="hidden" name="filename" value="${list.filename}">
+									<input type="hidden" name="image" value="${list.image}">
+									${list.rno}
+								</td>
 							</tr>
 							<tr>
 								<th>아이디</th><td>${list.id}</td>
@@ -66,10 +73,23 @@
 								<th>평점</th>
 								<td colspan="3">${list.scope}</td>
 							</tr>
-							<tr>
-								<th>사진</th>
-								<td colspan="3" id="thumbnail"></td>
-							</tr>
+							
+							<c:choose>
+								<c:when test="${empty list.uuid }">
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<th>사진</th>
+										<td colspan="3">
+											<c:url value="http://localhost:8080/board/display?" var="url">
+												<c:param name="filename" value="${list.uploadpath}/s_${list.uuid}_${list.filename}" />
+											</c:url>
+											<img src="${url}">
+										</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+							
 							<tr>
 								<th>내용</th>
 								<td colspan="3">${list.content}</td>
@@ -96,7 +116,4 @@
 	<%@ include file="../footer.jsp"%>
 </div>
 </body>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/resources/js/review.js"></script>
 </html>

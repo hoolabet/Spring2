@@ -21,12 +21,12 @@
 					<h3>문의 목록</h3>
 					<a href="/board/inquirywrite">문의하기</a>
 					<c:forEach items="${list}" var="list">
-						<table id="question">
+						<table>
 							<tr>
 								<th>아이디</th><td>${list.id}</td>
 								<th>등록일</th><td>${list.regdate}</td>
 							</tr>
-							<tr>
+							<tr id="question">
 								<th>질문</th>
 								<td colspan="3">${list.question}</td>
 							</tr>
