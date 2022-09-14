@@ -70,7 +70,17 @@
 					<tr>
 						<td class="signtable">출생년월</td>
 						<td class="tableInput">
-							<input type="text" name="birth" id="bichk">
+							
+							<select id="birth_year" class="birth_date" name="birth_y">
+								<option>년도</option>
+							</select>
+							<select id="birth_month" class="birth_date" name="birth_m">
+								<option>월</option>
+							</select>
+							<select id="birth_date" class="birth_date" name="birth_d">
+								<option>일</option>
+								
+							</select>
 							<p class="signmsg" id="bimsg"></p>
 						</td>
 					</tr>

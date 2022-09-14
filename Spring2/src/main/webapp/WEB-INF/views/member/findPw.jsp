@@ -39,7 +39,6 @@
 						<tr>
 							<td>
 							<input type="text" placeholder="이름" name="name" class="findPwInput" id="findPwName">
-							<p id="namsg"></p>
 							</td>
 						</tr>
 						<tr>

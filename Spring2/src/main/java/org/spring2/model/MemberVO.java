@@ -9,7 +9,9 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private String gender;
-	private String birth;
+	private String birth_y;
+	private String birth_m;
+	private String birth_d;
 	
 	private String sign_date;
 	private String userImg;
@@ -62,13 +64,26 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBirth() {
-		return birth;
-	}
-	public void setBirth(String birth) {
-		this.birth = birth;
-	}
+	
 
+	public String getBirth_y() {
+		return birth_y;
+	}
+	public void setBirth_y(String birth_y) {
+		this.birth_y = birth_y;
+	}
+	public String getBirth_m() {
+		return birth_m;
+	}
+	public void setBirth_m(String birth_m) {
+		this.birth_m = birth_m;
+	}
+	public String getBirth_d() {
+		return birth_d;
+	}
+	public void setBirth_d(String birth_d) {
+		this.birth_d = birth_d;
+	}
 	public String getSign_date() {
 		return sign_date;
 	}
@@ -79,8 +94,8 @@ public class MemberVO {
 	@Override
 	public String toString() {
 		return "MemberVO [admin=" + admin + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
-				+ email + ", phone=" + phone + ", gender=" + gender + ", birth=" + birth + ", sign_date=" + sign_date
-				+ ", userImg=" + userImg + "]";
+				+ email + ", phone=" + phone + ", gender=" + gender + ", birth_y=" + birth_y + ", birth_m=" + birth_m
+				+ ", birth_d=" + birth_d + ", sign_date=" + sign_date + ", userImg=" + userImg + "]";
 	}
 	
 	

@@ -1,22 +1,56 @@
 @charset "UTF-8";
 
 
-table {
-    margin-left:auto; 
-    margin-right:auto;
+
+
+#mypage_user{
+	position:relative;
+	height:120px;
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+	top:5%;
+	
 }
 
+#mypage_list{
+	position:relative;
+	height:120px;
+	width:300px;
+	margin-left:auto;
+	margin-right:auto;
+	top:15%;
+}
 
 #user_img{
-	border-radius:50px;
-	width:100px;
-	height:100px;
+	border-radius:60px;
+	width:120px;
+	height:120px;
 	background-size:cover;
+	position:absolute;
 }
 
 
 
+#user_name{
+	position:absolute;
+	width:150px;
+	height:50px;
+	left:150px;
+	cursor:pointer;
+}
 
+#user_name > p{
+	font-size:25px;
+	text-align:left;
+	margin:10px 0px;
+}
+
+#modi_icon{
+	color:gray;
+	font-weight:bold;
+	font-size:30px;
+}
 
 
 

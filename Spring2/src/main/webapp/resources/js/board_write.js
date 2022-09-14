@@ -117,5 +117,11 @@ $("#uploadThumb").on("change",function(){
 					}
 		})// ajax끝
 })
-
-
+$("#btn").on("click",function(e){
+	e.preventDefault();
+	if(isNaN($("#num1").val())||isNaN($("#num2").val())){
+		alert('숫자만 입력하세요')
+	}else{
+		$("#form").submit();
+	}
+})

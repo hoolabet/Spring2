@@ -14,8 +14,8 @@ public class BoardVO {
 	private String quality;
 	private int t_estimate;
 	private String refund;
-	private String category_area;
-	private String category_type;
+	private int category_area;
+	private int category_type;
 	private ArrayList<ImageVO> image;
 	
 	public int getPno() {
@@ -84,16 +84,16 @@ public class BoardVO {
 	public void setRefund(String refund) {
 		this.refund = refund;
 	}
-	public String getCategory_area() {
+	public int getCategory_area() {
 		return category_area;
 	}
-	public void setCategory_area(String category_area) {
+	public void setCategory_area(int category_area) {
 		this.category_area = category_area;
 	}
-	public String getCategory_type() {
+	public int getCategory_type() {
 		return category_type;
 	}
-	public void setCategory_type(String category_type) {
+	public void setCategory_type(int category_type) {
 		this.category_type = category_type;
 	}
 	public ArrayList<ImageVO> getImage() {

@@ -91,7 +91,7 @@ $("#input_toggle").on("click",function(){
 })
 
 
-let dn = false;
+let dn = true;
 $("#dname").on("blur",function(){
 	if($(this).val()==""){
 		dn=false;
@@ -127,7 +127,7 @@ $("#address").on("blur",function(){
 	}
 })
 
-let dm = false;
+let dm = true;
 $("#dmemo").on("blur",function(){
 	if($(this).val()==""){
 		dm=false;
@@ -161,9 +161,9 @@ function addDes(a){
 		contentType:"application/json; charset=utf-8",
 		success:function(){
 			alert("성공");
-//			setTimeout(function(){
-//			getDes();
-//			},1000)
+			setTimeout(function(){
+			getDes();
+			},1000)
 			getDes();
 		}
 	})

@@ -15,16 +15,18 @@
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<div id="container">
-				<h1>제품리스트</h1>
+			<c:if test="${caa.cname == null }">
+				<h1>모든제품</h1>
+			</c:if>
+				<h1>${caa.cname}</h1>
 				<div id="p_write">
 					<button id="btn_Write">상품등록</button>
 				</div>
 				<div id="p_list">
 					<ul>
-						<li id="popular"><a href="#">거실장(10)</a></li>
-						<li id="last"><a href="#">쇼파(21)</a></li>
-						<li id="lowprice"><a href="#">장식장(13)</a></li>
-						<li id="highprice"><a href="#">진열장(12)</a></li>
+					<c:forEach items="${category}" var="category">
+						<li id="popular"><a href="/board/list?category_area=${paging.cri.category_area}&category_type=${category.cno}">${category.cname}</a></li>
+					</c:forEach>
 					</ul>
 				</div>
 				<div>
@@ -37,6 +39,8 @@
 				</div>
 				<%-- ${paging.cri.array} --%>
 				<input type="hidden" id="searchValue" value="${paging.cri.search}">
+				<input type="hidden" id="catValue" value="${paging.cri.category_type}">
+				<input type="hidden" id="caValue" value="${paging.cri.category_area}">
 				<%-- ${paging.cri.search} --%>
 				<div id="list">
 					<ul>
@@ -44,34 +48,36 @@
 							<li><a href="/board/detail?pno=${boardlist.pno}"></a>
 								<div id="${boardlist.pno}">
 									<input class="pno" type="hidden" value="${boardlist.pno}">
+									<input type="hidden" value="${boardlist.category_area}" name="category_area">
 								</div>
 								<p>
 									<a href="/board/detail?pno=${boardlist.pno}">${boardlist.pname}</a>
 								</p>
-								<p >가격 : <span class="priceformat">${boardlist.price}</span></p> 
+								<p >가격 : <span class="priceformat">${boardlist.price} 원</span></p> 
 								 
 								<input type="text" value="${boardlist.pno}" name="pno"></li>
+								</li>
 						</c:forEach>
 					</ul>
 				</div>
 				<div id="paging">
-					<%-- ${paging} --%>
+					 <%-- ${paging} --%>
 					<%-- ${num} --%>
 					<!-- prev(이전)이 true이면 이전버튼 활성화 -->
 					<c:if test="${paging.prev}">
 						<a
-							href="/board/list?pageNum=${paging.startPage-1}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}"
+							href="/board/list?pageNum=${paging.startPage-1}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}"
 							>이전</a>
 					</c:if>
 					<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
 						var="num">
-						<a href="/board/list?pageNum=${num}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}"
+						<a href="/board/list?pageNum=${num}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}"
 							>${num}</a>
 					</c:forEach>
 					<!-- next(다음)이 true이면 다음버튼 활성화 -->
 					<c:if test="${paging.next}">
 						<a
-							href="/board/list?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}"
+							href="/board/list?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}"
 							>다음</a>
 					</c:if>
 				</div>

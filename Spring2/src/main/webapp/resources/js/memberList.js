@@ -21,3 +21,8 @@
 		})
 		$("#member_list").html(mem);
 	})
+	
+	
+	$("input[type='button']").on("click",function(){
+	alert("aaa");
+})

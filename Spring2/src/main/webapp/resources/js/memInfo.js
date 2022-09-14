@@ -201,11 +201,16 @@ $("#pw_val").on("blur",function(){
 
 var pw_chk2=false;
 $("#pw_val2").on("keyup",function(){
-	if($("#pw_val2").val()===$("#pw_val").val()){
-		$("#pw_msg2").text("정상입니다.").css("color","green");
-		pw_chk2 = true;
+	if(pw_chk){
+		if($("#pw_val2").val()===$("#pw_val").val()){
+			$("#pw_msg2").text("정상입니다.").css("color","green");
+			pw_chk2 = true;
+		}else{
+			$("#pw_msg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+			pw_chk2 = false
+		}
 	}else{
-		$("#pw_msg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+		$("#pw_msg2").text("비밀번호를 다시 확인해주세요.").css("color","red");
 		pw_chk2 = false
 	}
 })	

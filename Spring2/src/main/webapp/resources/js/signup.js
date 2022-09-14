@@ -133,12 +133,17 @@ $("#pwchk").on("blur",function(){
 
 var pw2=false;
 $("#pwchk2").on("keyup",function(){
-	if($("#pwchk2").val()===$("#pwchk").val()){
-		$("#pwmsg2").text("정상입니다.").css("color","green");
-		pw2 = true;
+	if(pw){
+		if($("#pwchk2").val()===$("#pwchk").val()){
+			$("#pwmsg2").text("정상입니다.").css("color","green");
+			pw2 = true;
+		}else{
+			$("#pwmsg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+			pw2 = false
+		}
 	}else{
-		$("#pwmsg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
-		pw2 = false
+		$("#pwmsg2").text("비밀번호를 다시 확인해주세요.").css("color","red");
+		pw_chk2 = false
 	}
 })
 
@@ -213,7 +218,7 @@ $("#email_address").on("change",function(){
 var em = false;
 let emm = false;
 $("#email").on("blur",function(){
-	const Email = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/g;
+	const Email = /^([a-z0-9_\.-]+)$/g;
 	if($("#email").val()==""){
 		$("#email_msg").text("필수입력정보입니다.").css("color","red");
 		emm = false;
@@ -229,10 +234,15 @@ $("#email").on("blur",function(){
 
 $("#email_btn").on("click",function(e){
 	e.preventDefault();
+	
+	if($("#direct").val()==""){
+		$("#email_msg").text("필수입력정보입니다.").css("color","red");
+		emm = false;
+	}
 	if(emm){
 		$("input[name='email']").val($("#email").val()+"@"+$("#direct").val());
 		var emc=$("input[name='email']").val();
-		
+
 
 		emcheck(emc);
 	}else{
@@ -263,6 +273,15 @@ function emcheck(emc){
 }
 
 $("#email_address")
+
+
+
+
+
+
+
+
+
 
 //var pchk=document.querySelector("#pchk");ms.emchk(email).getEmail(),HttpStatus.OK
 //var pmsg=document.querySelector("#pmsg");
@@ -308,7 +327,7 @@ $("#phbtn").on("click",function(e){
 	if(phh){
 		$("input[name='phone']").val($("#front_num").val()+$("#pchk").val())
 		var phc=$("input[name='phone']").val();
-		
+
 
 		phcheck(phc);
 	}else{
@@ -351,22 +370,107 @@ function phcheck(phc){
 //}
 //}
 
-$("#signsub").on("click",function(e){
-	if(!(id && pw && pw2 && na && em && ph)){
-		e.preventDefault();
+
+const years=new Date().getFullYear();
+
+for(i=years;i>years-100;i--){
+	const year = `<option value='${i}'>${i}</option>`
+		$("#birth_year").append(year);
+}
+
+for(i=1;i<=12;i++){
+	const month = `<option value='${i}'>${i}</option>`
+		$("#birth_month").append(month);
+}
+$("#birth_year").on("change",function(){
+	$(this).val()
+	$("#bichk").val($("#birth_year").val()+"-"+$("#birth_month").val()+"-"+$("#birth_date").val())
+})
+
+$("#birth_month").on("change",function(){
+	
+	let j=0;
+	switch(Number($("#birth_month").val())){
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		j=31;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		j=30;
+		break;
+	default:
+		j=29;
 		
-		alert('입력해');
-	}else{
-		e.preventDefault();
-		$("input[name='email']").val();
-		
-		
-		alert('가입됨');
-		$("form[action='/member/signup']").submit();
 	}
+	if($(".days")!=null){
+		$(".days").remove();
+	}
+	for(i=1;i<=j;i++){
+		const date = `<option class="days" value='${i}'>${i}</option>`
+			$("#birth_date").append(date);
+			
+	}
+	$("#bichk").val($("#birth_year").val()+"-"+$("#birth_month").val()+"-"+$("#birth_date").val())
+})
+
+$("#birth_date").on("change",function(){
+	$("#bichk").val($("#birth_year").val()+"-"+$("#birth_month").val()+"-"+$("#birth_date").val())
+})
+
+
+let ge = false;
+function genderCheck(){
+	if($("input[name=gender]:radio:checked").length<1){
+		
+		ge = false;
+	}else{
+		ge = true;
+	}
+}
+
+
+let bi=false;
+$(".birth_date").on("change",function(){
+	if(isNaN($(this).val())){
+			$(this).removeClass("check");
+		
+	}else{
+		$(this).addClass("check");
+	}
+	$(".birth_date").each(function(){
+		if($(this).attr("class") == "birth_date check"){
+			bi=true;
+		}else{
+			bi=false;
+			return false;
+		}
+		
+	})
 })
 
 
 
+$("#signsub").on("click",function(e){
+	e.preventDefault();
+
+	genderCheck();
+	
+	if(!(id && pw && pw2 && na && em && ge && bi && ph)){
+
+		alert('입력해');
+	}else{
+		$("input[name='email']").val();
 
 
+		alert('가입됨');
+		$("form[action='/member/signup']").submit();
+	}
+})

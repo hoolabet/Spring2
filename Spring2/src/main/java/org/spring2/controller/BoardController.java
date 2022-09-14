@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import org.spring2.model.BoardVO;
+import org.spring2.model.CategoryVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.PageVO;
@@ -24,13 +25,16 @@ public class BoardController {
 		
 	// 상품목록리스트
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public String BoardList(Model model, CriteriaVO cri) {
+	public String BoardList(Model model, CriteriaVO cri, CategoryVO cat) {
 		cri.setAmount(12);
-		System.out.println(cri);
+		//System.out.println(bs.cat());
 		model.addAttribute("list", bs.list(cri));
 		int total = bs.total(cri);
 		//System.out.println(total);
 		model.addAttribute("paging", new PageVO(cri,total));
+		model.addAttribute("category", bs.cat());
+		System.out.println(bs.caa(cri));
+		model.addAttribute("caa", bs.caa(cri));
 		return "board/list";
 	}
 
