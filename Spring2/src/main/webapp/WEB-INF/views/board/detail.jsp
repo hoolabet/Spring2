@@ -14,7 +14,8 @@
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<div id="container">
-				<h1>상품상세페이지</h1>
+				<h1>상품상세페이지 </h1>
+				
 				<input type="hidden" value="${userInfo.id}" id="id">
 				<input type="hidden" value="${detail.pno}" id="pno">
 				<div id="d_title">
@@ -72,9 +73,11 @@
 					<div>${detail.content}</div>
 					<div id="back">
 						<form action="/board/remove" method="post" id="form_back">
-							<a href="/board/modify?pno=${detail.pno}">수정하기</a> 
 							<input type="hidden" value="${detail.pno}" name="pno">
+							<c:if test="${userInfo.id ne null}">
+							<a href="/board/modify?pno=${detail.pno}">수정하기</a> 
 							<button id="remove">삭제</button>
+							</c:if>
 							<a href="/board/list">목록보기</a>
 						</form>
 					</div>

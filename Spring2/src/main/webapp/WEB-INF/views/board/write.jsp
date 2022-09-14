@@ -23,11 +23,11 @@
 						</tr>
 						<tr>
 							<td><label>가격</label></td>
-							<td><input type="text" name="price"></td>
+							<td><input type="text" name="price" id="num1"></td>
 						</tr>
 						<tr>
 							<td><label>총수량</label></td>
-							<td><input type="text" name="quantity"></td>
+							<td><input type="text" name="quantity" id="num2"></td>
 						</tr>
 						<tr>
 							<td><label>배송방법</label></td>

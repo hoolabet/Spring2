@@ -48,6 +48,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
 	public void BoardDetail(BoardVO bvo, Model model) {
 		model.addAttribute("detail", bs.detail(bvo));
+		
 	}
 
 	// 상품등록

@@ -24,7 +24,8 @@
   	
   	<insert id="write">
   		<selectKey keyProperty="rno" order="BEFORE" resultType="int">
-  			select max(rno)+1 rno
+  			select 
+  			ifnull (max(pno)+1 , 1)
 			from review
   		</selectKey>
   		insert into review(pno, id, scope, content,rno, uuid, uploadpath, filename, image)

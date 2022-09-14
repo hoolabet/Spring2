@@ -137,7 +137,7 @@ input[type="submit"], input[type="button"] {
 	left: 0px;
 	padding-left: 0;
 	margin: 0;
-	width: 184px;
+	width: 201px;
 }
 #cat{
 	font-size: 15px;
@@ -148,7 +148,7 @@ input[type="submit"], input[type="button"] {
 }
 #categori li {
 	font-size: 15px;
-	padding: 40px;
+	padding: 50px;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	cursor: pointer;
