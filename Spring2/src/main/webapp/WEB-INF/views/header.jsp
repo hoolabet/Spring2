@@ -8,7 +8,6 @@
 			<a href="/">title</a>
 		</h1>
 		<div id="a_list">
-				
 				<c:choose>
 				<c:when test="${userInfo eq null }">
 				<ul id="header_parents_ul">
@@ -45,49 +44,93 @@
 			<img id="categori_btn_img"
 				src="https://cdn3.iconfinder.com/data/icons/text/100/list-512.png">
 			<ul id="categori">
-				<li id="categori_a">a
+			<li id="categori_0"><a href="/board/list" id="cat">모든제품</a></li>
+				<li id="categori_a">거실
 					<ul id="categori_a_list" class="cates">
-						<li>a</li>
-						<li>b</li>
-						<li>c</li>
-						<li>d</li>
-						<li>e</li>
+						<li><a href="/board/list?category_area=10&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=10&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=10&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=10&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=10&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=10&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=10&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_b">b
+				<li id="categori_b">주방
 					<ul id="categori_b_list" class="cates">
-						<li>1</li>
-						<li>2</li>
-						<li>3</li>
-						<li>4</li>
-						<li>5</li>
+						<li><a href="/board/list?category_area=20&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=20&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=20&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=20&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=20&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=20&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=20&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_c">c
+				<li id="categori_c">옷방,드레스룸
 					<ul id="categori_c_list" class="cates">
-						<li>ㄱ</li>
-						<li>ㄴ</li>
-						<li>ㄷ</li>
-						<li>ㄹ</li>
-						<li>ㅁ</li>
+						<li><a href="/board/list?category_area=30&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=30&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=30&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=30&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=30&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=30&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=30&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_d">d
+				<li id="categori_d">침실
 					<ul id="categori_d_list" class="cates">
-						<li>ㅏ</li>
-						<li>ㅑ</li>
-						<li>ㅓ</li>
-						<li>ㅕ</li>
-						<li>ㅗ</li>
+						<li><a href="/board/list?category_area=40&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=40&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=40&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=40&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=40&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=40&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=40&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_e">e
+				<li id="categori_e">화장실
 					<ul id="categori_e_list" class="cates">
-						<li>가</li>
-						<li>나</li>
-						<li>다</li>
-						<li>라</li>
-						<li>마</li>
+						<li><a href="/board/list?category_area=50&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=50&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=50&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=50&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=50&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=50&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=50&category_type=7">기타소품</a></li>
+					</ul>
+				</li>
+				<li id="categori_b">서재
+					<ul id="categori_b_list" class="cates">
+						<li><a href="/board/list?category_area=60&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=60&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=60&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=60&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=60&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=60&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=60&category_type=7">기타소품</a></li>
+					</ul>
+				</li>
+				<li id="categori_b">아이방
+					<ul id="categori_b_list" class="cates">
+						<li><a href="/board/list?category_area=70&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=70&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=70&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=70&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=70&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=70&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=70&category_type=7">기타소품</a></li>
+					</ul>
+				</li>
+				<li id="categori_b">야외
+					<ul id="categori_b_list" class="cates">
+						<li><a href="/board/list?category_area=80&category_type=1">테이블</a></li>
+						<li><a href="/board/list?category_area=80&category_type=2">의자</a></li>
+						<li><a href="/board/list?category_area=80&category_type=3">침대</a></li>
+						<li><a href="/board/list?category_area=80&category_type=4">쇼파</a></li>
+						<li><a href="/board/list?category_area=80&category_type=5">서랍,수납장</a></li>
+						<li><a href="/board/list?category_area=80&category_type=6">진열장</a></li>
+						<li><a href="/board/list?category_area=80&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
 			</ul>

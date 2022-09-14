@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.spring2.mapper.BoardImageMapper;
 import org.spring2.mapper.BoardMapper;
 import org.spring2.model.BoardVO;
+import org.spring2.model.CategoryVO;
+import org.spring2.model.Category_AreaVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,10 @@ public class BoardServiceImpl implements BoardService{
 	public int total(CriteriaVO cri) {
 		return bm.total(cri);
 	}
-	
+	public ArrayList<CategoryVO> cat(){
+		return bm.category();
+	}
+	public Category_AreaVO caa(CriteriaVO cri){
+		return bm.caa(cri);
+	}
 }

@@ -5,25 +5,59 @@
 <mapper namespace="org.spring2.mapper.BoardMapper">
 	<insert id="write">
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
-			select 
-				ifnull (max(pno)+1 , 1)
+			select
+			ifnull (max(pno)+1 , 1)
 			from product
 		</selectKey>
 		insert into
 		product(pno,pname,price,content,quantity,delivery,quality,category_area,category_type)
 		values(#{pno},#{pname},#{price},#{content},#{quantity},#{delivery},#{quality},#{category_area},#{category_type})
 	</insert>
+
 	<select id="list" resultType="org.spring2.model.BoardVO">
 		select *
 		from (
 		select @rownum:=@rownum+1 rownum, p.*
 		from product p,
 		(select @rownum:=0) as tmp
-		<if test="search != null">
+		
+		<choose>
+		<when test="search != ''.toString() and category_area == 0 and category_type == 0">
 			where pname like concat('%',#{search},'%')
 			or content like
 			concat('%',#{search},'%')
-		</if>
+		</when>
+		<when test="search == ''.toString() and category_area != 0 and category_type ==0">
+			where category_area = #{category_area}
+		</when>
+		<when test="search == ''.toString() and category_area == 0 and category_type !=0">
+			where category_type = #{category_type}
+		</when>
+		<when test="search != ''.toString() and category_area != 0 and category_type ==0">
+			where (pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%'))
+			and category_area = #{category_area}
+		</when>
+		<when test="search == ''.toString() and category_area != 0 and category_type !=0">
+			where category_area = #{category_area}
+			and category_type = #{category_type}
+		</when>
+		<when test="search != ''.toString() and category_area == 0 and category_type !=0">
+			where (pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%'))
+			and category_type = #{category_type}
+		</when>
+		<when test="search != ''.toString() and category_area != 0 and category_type != 0">
+			where (pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%'))
+			and category_area = #{category_area}
+			and category_type = #{category_type}
+		</when>
+		</choose>
+		
 		<choose>
 			<when test="array =='lowprice'">
 				order by price
@@ -43,11 +77,7 @@
 		where rownum>(#{pageNum}-1)*#{amount} and rownum <=#{pageNum}*#{amount}
 		]]>
 	</select>
-	
-	
-	
-	
-	
+
 	<select id="detail" resultType="org.spring2.model.BoardVO">
 		select*
 		from product
@@ -63,12 +93,59 @@
 		category_type=#{category_type}
 		where pno = #{pno};
 	</update>
+	
 	<delete id="remove">
 		delete from product
 		where pno=#{pno};
 	</delete>
+	
 	<select id="total" resultType="int">
 		select count(*)
 		from product
+		<choose>
+		<when test="search != ''.toString() and category_area == 0 and category_type == 0">
+			where pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%')
+		</when>
+		<when test="search == ''.toString() and category_area != 0 and category_type ==0">
+			where category_area = #{category_area}
+		</when>
+		<when test="search == ''.toString() and category_area == 0 and category_type !=0">
+			where category_type = #{category_type}
+		</when>
+		<when test="search != ''.toString() and category_area != 0 and category_type ==0">
+			where (pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%'))
+			and category_area = #{category_area}
+		</when>
+		<when test="search == ''.toString() and category_area != 0 and category_type !=0">
+			where category_area = #{category_area}
+			and category_type = #{category_type}
+		</when>
+		<when test="search != ''.toString() and category_area == 0 and category_type !=0">
+			where (pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%'))
+			and category_type = #{category_type}
+		</when>
+		<when test="search != ''.toString() and category_area != 0 and category_type != 0">
+			where (pname like concat('%',#{search},'%')
+			or content like
+			concat('%',#{search},'%'))
+			and category_area = #{category_area}
+			and category_type = #{category_type}
+		</when>
+		</choose>
+	</select>
+	<select id="category" resultType="org.spring2.model.CategoryVO">
+		select *
+		from category_type;
+	</select>
+	<select id="caa" resultType="org.spring2.model.Category_AreaVO">
+		select *
+		from category_area
+		where cno = #{category_area}
 	</select>
 </mapper>

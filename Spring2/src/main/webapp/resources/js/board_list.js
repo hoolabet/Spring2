@@ -8,10 +8,11 @@ $("#btn_Write").on("click",function(){
 
 const searchValue = $("#searchValue").val();
 //console.log(searchValue)
-
+const caValue = $("#caValue").val();
+const catValue = $("#catValue").val();
 $("#array").on("change",function(){
 	console.log(this.value)
-	location.href=`list?pageNum=1&amount=12&search=${searchValue}&type=&array=${this.value}`;
+	location.href=`list?pageNum=1&amount=12&search=${searchValue}&type=&array=${this.value}&category_area=${caValue}&category_type=${catValue}`;
 })
 
 $(".priceformat").each(function(i, price){

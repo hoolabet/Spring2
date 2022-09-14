@@ -3,6 +3,8 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.model.BoardVO;
+import org.spring2.model.CategoryVO;
+import org.spring2.model.Category_AreaVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 
@@ -21,4 +23,8 @@ public interface BoardService {
 	public void remove(BoardVO bvo);
 	//상품테이블 전체건수
 	public int total(CriteriaVO cri);
+	//카테고리리스트
+	public ArrayList<CategoryVO> cat();
+	//장소카테고리 리스트
+	public Category_AreaVO caa(CriteriaVO cri);
 }

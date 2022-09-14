@@ -1,40 +1,41 @@
 @charset "UTF-8";
+
 body {
 	text-align: center;
 }
 
 a {
-    text-decoration: none;
-    color: black;
+	text-decoration: none;
+	color: black;
 }
 
 input[type="submit"], input[type="button"] {
-    background-color: #abaaaa;
-    border: 1px solid black;
-    padding: 15px;
+	background-color: #abaaaa;
+	border: 1px solid black;
+	padding: 15px;
 }
 
-#entry_area {	
+#entry_area {
 	width: 1503px;
 	background-color: #e7e7e7;
 	margin: auto;
 }
 
 #header {
-    position: relative;
+	position: relative;
 }
 
 #header_top {
-    position: relative;
-    height: 50px;
-    width: 1503px;
-    background-color: white;
-    padding-top: 50px;
-    padding-bottom: 50px;
+	position: relative;
+	height: 50px;
+	width: 1503px;
+	background-color: white;
+	padding-top: 50px;
+	padding-bottom: 50px;
 }
 
 #header_bottom {
-    position: relative;
+	position: relative;
 	height: 100px;
 	width: 1503px;
 	background-color: #abaaaa;
@@ -42,11 +43,11 @@ input[type="submit"], input[type="button"] {
 }
 
 #header_bottom h1 {
-    margin: 0;
+	margin: 0;
 }
 
 #footer {
-    position: relative;
+	position: relative;
 	height: 300px;
 	width: 1503px;
 	background-color: #abaaaa;
@@ -54,73 +55,63 @@ input[type="submit"], input[type="button"] {
 }
 
 #a_list {
-    position: absolute;
-    right: 20px;
-    top: 0px;
+	position: absolute;
+	right: 20px;
+	top: 0px;
 }
 
-#header_parents_ul{
-    list-style: none;
-    display: inline;
+#header_parents_ul {
+	list-style: none;
+	display: inline;
 }
 
 #a_list #header_parents_ul li {
-    float: right;
-    margin: 20px;
-}
-
-#header_user_img{
-	border:1px #abaaaa solid;
-	width:50px;
-	height:50px;
-	border-radius:25px;
-	background-size:cover;
-	
-}
-
-
-
-
-#header_user_menu{
-	list-style: none;
-	display:none;
-    position:absolute;
-    top:70px;
-    right:10px;
-    z-index:10;
-    background-color:white;
-    border:1px black solid;
-    padding:0px;
-}
-
-#header_login_ul{
-	list-style: none;
-    display: inline;	
-}
-
-.header_login_li{
 	float: right;
-    margin: 20px;
+	margin: 20px;
 }
 
-#header_user_menu li{
-	margin:15px;
+#header_user_img {
+	border: 1px #abaaaa solid;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background-size: cover;
+}
+
+#header_user_menu {
+	list-style: none;
+	display: none;
+	position: absolute;
+	top: 70px;
+	right: 10px;
+	z-index: 10;
+	background-color: white;
+	border: 1px black solid;
+	padding: 0px;
+}
+
+#header_login_ul {
+	list-style: none;
+	display: inline;
+}
+
+.header_login_li {
+	float: right;
+	margin: 20px;
+}
+
+#header_user_menu li {
+	margin: 15px;
 }
 
 #header_user_id:hover #header_user_menu {
-    display: inline;
+	display: inline;
 }
 
-#header_user_id{
-	
-	margin-top:35px;
-	padding:0px 50px 20px 0px;
+#header_user_id {
+	margin-top: 35px;
+	padding: 0px 50px 20px 0px;
 }
-
-
-
-
-
 
 #categori_btn img {
 	width: 50px;
@@ -130,74 +121,86 @@ input[type="submit"], input[type="button"] {
 #categori_btn {
 	position: absolute;
 	bottom: 0;
-    cursor: pointer;
-    padding: 25px;
+	cursor: pointer;
+	padding: 25px;
 }
 
 #categori {
-    border: 1px solid gray;
-    border-radius: 15px;
-    background-color: black;
-    color: white;
-    display: none;
-    list-style: none;
-    position: absolute;
-    bottom: -400px;
-    left: 0px;
-    padding-left: 0;
-    margin: 0;
+	border: 1px solid gray;
+	border-radius: 15px;
+	background-color: black;
+	color: white;
+	display: none;
+	list-style: none;
+	position: absolute;
+	bottom:  -542px;
+	left: 0px;
+	padding-left: 0;
+	margin: 0;
+	width: 184px;
 }
-
+#cat{
+	font-size: 15px;
+	cursor: pointer;
+	width: 100px;
+	color:white;
+	display:block;
+}
 #categori li {
-    font-size: 30px;
-    padding: 40px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    cursor: pointer;
+	font-size: 15px;
+	padding: 40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	cursor: pointer;
+	width: 100px;
 }
 
-#categori_a_list,#categori_b_list,#categori_c_list,#categori_d_list,#categori_e_list {
-    border: 1px solid gray;
-    border-radius: 15px;
-    background-color: black;
-    color: white;
-    display: none;
-    list-style: none;
-    position: absolute;
-    top: 0;
-    left: 100px;
-    padding-left: 0;
+#categori_a_list, #categori_b_list, #categori_c_list, #categori_d_list,
+	#categori_e_list {
+	border: 1px solid gray;
+	border-radius: 15px;
+	background-color: black;
+	color: white;
+	display: none;
+	list-style: none;
+	position: absolute;
+	top: 0;
+	left: 184px;
+	padding-left: 0;
 }
 
-#categori_a_list li,#categori_b_list li,#categori_c_list li,#categori_d_list li,#categori_e_list li {
-    font-size: 30px;
-    cursor: pointer;
+#categori_a_list li a, #categori_b_list li a, #categori_c_list li a,
+	#categori_d_list li a, #categori_e_list li a {
+	font-size: 15px;
+	cursor: pointer;
+	color: white;
 }
 
-#categori_a:hover .cates ,#categori_b:hover .cates,#categori_c:hover .cates,#categori_d:hover .cates,#categori_e:hover .cates{
-    display: block;
+#categori_a:hover .cates, #categori_b:hover .cates, #categori_c:hover .cates,
+	#categori_d:hover .cates, #categori_e:hover .cates {
+	display: block;
 }
 
 #categori_btn:hover #categori {
-    display: block;
+	display: block;
 }
 
-#search_div img{
-    width: 30px;
-    position: absolute;
-    bottom: 10px;
+#search_div img {
+	width: 30px;
+	position: absolute;
+	bottom: 10px;
 }
 
-#search_div input{
-    height: 30px;
-    padding: 10px;
-    margin-right: 20px;
-    font-size: 20px;
+#search_div input {
+	height: 30px;
+	padding: 10px;
+	margin-right: 20px;
+	font-size: 20px;
 }
 
 #search_div {
-    position: absolute;
-    right: 30px;
-    bottom: 120px;
-    cursor: pointer;
+	position: absolute;
+	right: 30px;
+	bottom: 120px;
+	cursor: pointer;
 }
