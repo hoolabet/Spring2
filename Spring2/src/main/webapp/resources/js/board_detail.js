@@ -114,4 +114,47 @@ gotoqna.addEventListener("click",()=>{
 	location.href=`/inquiry/write?pno=${pno}`;
 })
 
+$("#add_cart").on("click",function(){
+	const data_ = {
+			pno:$("#pno").val(),
+			id:$("#id").val(),
+			quantity:$("#num").val()
+	}
+
+	$.getJSON("/cartcheck", data_,function(){
+		if(confirm("이미 장바구니에 담긴 상품입니다. 수량을 추가하시겠습니까?")){
+			$.ajax({
+				type:"put",
+				url:"/cartupdate",
+				data:JSON.stringify(data_),
+				contentType:"application/json; charset=utf-8",
+				success:function(){
+					if(confirm("추가되었습니다. 장바구니로 가시겠습니까?")){
+						location.href = "/cart/list";
+					}
+				},
+				error:function(){
+					alert("추가하는데 실패했습니다.")
+				}
+			})
+		}
+	})
+	.fail(function() {
+		$.ajax({
+			type:"post",
+			url:"/cartadd",
+			data:JSON.stringify(data_),
+			contentType:"application/json; charset=utf-8",
+			success:function(){
+				if(confirm("장바구니로 가시겠습니까?")){
+					location.href = "/cart/list";
+				}
+			},
+			error:function(){
+				alert("장바구니 담기 실패")
+			}
+		})
+	})
+})
+
 

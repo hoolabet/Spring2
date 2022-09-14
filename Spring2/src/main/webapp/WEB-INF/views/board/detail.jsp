@@ -15,11 +15,12 @@
 		<div id="content_area">
 			<div id="container">
 				<h1>상품상세페이지</h1>
-				<input type="hidden" value="${detail.pno}" name="pno">
+				<input type="hidden" value="${userInfo.id}" id="id">
+				<input type="hidden" value="${detail.pno}" id="pno">
 				<div id="d_title">
 					<span id="uploadimg"></span>
 					<div id="sell">
-						<form id="s_form">
+						<div id="s_form">
 							<table id="t_sell">
 								<tr>
 									<td colspan="2"><h3>${detail.pname}</h3></td>
@@ -47,12 +48,12 @@
 									<td><span id="totalPrice">${detail.price}</span></td>
 								</tr>
 								<tr>
-									<td colspan="2"><button class="btn_p" id="buy">구매하기</button>
-										<button class="btn_p" id="cart">장바구니</button>
-										<!-- <button class="btn_p">관심상품</button> -->
+									<td colspan="2"><button class="btn_p">구매하기</button>
+										<button class="btn_p" id="add_cart">장바구니</button>
+										<button class="btn_p">관심상품</button>
 								</tr>
 							</table>
-						</form>
+						</div>
 					</div>
 				</div>
 

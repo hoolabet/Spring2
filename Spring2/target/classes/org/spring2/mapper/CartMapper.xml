@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.spring2.mapper.CartMapper">
+	<select id="cartList" resultType="org.spring2.model.CartVO">
+		select
+			id,cart.pno,price,pname,fullPath,quantity
+		from
+			cart
+		join
+			(
+				select
+					product.pno,price,pname,fullPath
+				from
+					product
+				join
+					p_image
+				on
+					product.pno = p_image.pno
+			) joined
+		on
+			cart.pno = joined.pno
+		where
+			id=#{id}
+		ORDER BY
+			add_date desc
+		;
+	</select>
+
+	<insert id="cartAdd">
+		INSERT INTO cart(id,pno,quantity)
+		VALUES(#{id},#{pno},#{quantity})
+	</insert>
+
+	<update id="cartUpdate">
+		UPDATE cart SET quantity = quantity + #{quantity}
+		WHERE id=#{id} and pno=#{pno}
+	</update>
+	
+	<select id="cartCheck" resultType="org.spring2.model.CartVO">
+		SELECT * FROM cart WHERE id=#{id} and pno=#{pno}
+	</select>
+	
+	<delete id="cartRemove">
+		DELETE FROM cart WHERE id=#{id} and pno=#{pno}
+	</delete>
+	
+</mapper>
