@@ -137,8 +137,14 @@
 		</div>
 	</div>
 	<div id="search_div">
-		<input id="search_input" type="text" placeholder="search.."> <img
+	<form action="/board/list" id="searchform">
+		<input id="search_input" type="text" placeholder="search.." name="search"> <img
 			id="search_btn"
 			src="https://cdn-icons-png.flaticon.com/512/61/61088.png">
+			</form>
+	</div>
+	<div id='btnTop'>
+		<img src="https://mblogthumb-phinf.pstatic.net/MjAyMDA1MDlfMTc0/MDAxNTg5MDIzMzk2NzUy.A1DMXCFhK3j8q3ToQ9YboTCvJURAVWcA-UUr8bmGH9Mg.CphZh7RRsg1eZ5UO4HLvul4S1nRE_f8nSBHNYYiHvEUg.PNG.awspro/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7_2020-05-09_%EC%98%A4%ED%9B%84_8.22.14.png?type=w800"
+						id="btnTopImg">
 	</div>
 </div>

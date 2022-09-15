@@ -204,3 +204,14 @@ input[type="submit"], input[type="button"] {
 	bottom: 120px;
 	cursor: pointer;
 }
+#btnTop{
+	position: fixed;
+    right: 3px;
+    bottom: 52px;
+    z-index: 999;
+    cursor: pointer;
+}
+#btnTopImg{
+	width: 37px;
+    height: 33px;
+}

@@ -29,4 +29,3 @@ const price = document.querySelectorAll(".priceformat");
 for(let p of price){
 	p.innerText = priceToString(p.innerText);
 }
-

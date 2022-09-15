@@ -25,6 +25,25 @@ if ($("#entry_area").height() < "1000") {
 // }
 // )
 
-$("#search_btn").on("click", function(){
-    alert("'"+$("#search_input").val()+"' 를 찾습니다.");
+$("#searchform").on("submit",function(e){
+	e.preventDefault();
+	if($("#search_input").val().length < 2){
+		alert("두자이상 입력하세요")
+	}else{
+		this.submit();
+	}
+})
+
+$("#search_btn").on("click", function(e){
+	e.preventDefault();
+	if($("#search_input").val().length < 2){
+		alert("두자이상 입력하세요")
+	}else{
+		//alert("'"+$("#search_input").val()+"' 를 찾습니다.");
+		$("#searchform").submit();
+	}
+	
+})
+$("#btnTopImg").on("click",function(){
+	$('html, body').animate({scrollTop:0}, '300');
 })

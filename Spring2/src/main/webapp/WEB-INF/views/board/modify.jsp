@@ -25,11 +25,11 @@
 						</tr>
 						<tr>
 							<td><label>가격</label></td>
-							<td><input type="text" name="price" value="${detail.price}"></td>
+							<td><input type="text" name="price" value="${detail.price}" id="num1"></td>
 						</tr>
 						<tr>
 							<td><label>총수량</label></td>
-							<td><input type="text" name="quantity" value="${detail.quantity}"></td>
+							<td><input type="text" name="quantity" value="${detail.quantity}" id="num2"></td>
 						</tr>
 						<tr>
 							<td><label>배송방법</label></td>

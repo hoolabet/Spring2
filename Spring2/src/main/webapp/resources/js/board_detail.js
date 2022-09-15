@@ -1,7 +1,7 @@
 //상세페이지 이미지 불러오기
 const pno = $("input[name='pno']").val();
 $.getJSON("/attachlist", {pno:pno},function(attachlist){
-	console.log(attachlist)
+	//console.log(attachlist)
 	var str="";
 	$(attachlist).each(function(i,attach){
 		//만약 image결과가 true이면
@@ -114,6 +114,12 @@ gotoqna.addEventListener("click",()=>{
 	location.href=`/board/inquirywrite?pno=${pno}`;
 })
 
+//구매하기 버튼 클릭시 구매페이지 이동
+$("#btn_pay").on("click",function(){
+	location.href = `/cart/payment`
+})
+
+//장바구니 클릭시 장바구니담기
 $("#add_cart").on("click",function(){
 	const data_ = {
 			pno:$("#pno").val(),

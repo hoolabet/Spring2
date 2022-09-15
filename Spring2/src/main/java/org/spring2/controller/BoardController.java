@@ -9,6 +9,7 @@ import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.PageVO;
 import org.spring2.service.BoardService;
+import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class BoardController {
 		//System.out.println(total);
 		model.addAttribute("paging", new PageVO(cri,total));
 		model.addAttribute("category", bs.cat());
-		System.out.println(bs.caa(cri));
+		//System.out.println(bs.caa(cri));
 		model.addAttribute("caa", bs.caa(cri));
 		return "board/list";
 	}
@@ -50,7 +51,7 @@ public class BoardController {
 		model.addAttribute("detail", bs.detail(bvo));
 		
 	}
-
+	
 	// 상품등록
 	@RequestMapping(value = "/board/write", method = RequestMethod.GET)
 	public String BoardWrite() {
