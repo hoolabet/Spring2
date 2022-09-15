@@ -12,10 +12,12 @@
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
-			<form>
-				<input type="hidden" value="${userInfo.id}" id="id">
-				<div id="cart_list"></div>
-			</form>
+			<input type="hidden" value="${userInfo.id}" name="id" id="id">
+			<input type="text" id="price"> 
+			<input type="button" value="전체 주문하기" id="all_btn"> 
+			<input type="button" value="선택 주문하기" id="select_btn">
+			<br>
+			<div id="cart_list"></div>
 		</div>
 		<%@ include file="../footer.jsp"%>
 	</div>

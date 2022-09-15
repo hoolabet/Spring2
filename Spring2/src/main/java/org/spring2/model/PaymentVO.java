@@ -6,12 +6,27 @@ public class PaymentVO {
 	private String name;
 	private String id;
 	private String address;
+	private int phone;
+	private String dmemo;
 	private String state;
 	private int delivery_cost;
 	private String coupon;
 	private int point;
 	private String order_date;
 	
+	
+	public int getPhone() {
+		return phone;
+	}
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	public String getDmemo() {
+		return dmemo;
+	}
+	public void setDmemo(String dmemo) {
+		this.dmemo = dmemo;
+	}
 	public int getPayno() {
 		return payno;
 	}
@@ -75,8 +90,8 @@ public class PaymentVO {
 	@Override
 	public String toString() {
 		return "PaymentVO [payno=" + payno + ", price=" + price + ", name=" + name + ", id=" + id + ", address="
-				+ address + ", state=" + state + ", delivery_cost=" + delivery_cost + ", coupon=" + coupon + ", point="
-				+ point + ", order_date=" + order_date + "]";
+				+ address + ", phone=" + phone + ", dmemo=" + dmemo + ", state=" + state + ", delivery_cost="
+				+ delivery_cost + ", coupon=" + coupon + ", point=" + point + ", order_date=" + order_date + "]";
 	}
 	
 }

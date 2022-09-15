@@ -5,31 +5,45 @@ public class CartVO {
 	private int pno;
 	private int quantity;
 	private String add_date;
-	private String pname;
-	private String price;
-	private String fullPath;
+//	private String pname;
+//	private String price;
+//	private String fullPath;
+	private ImageVO ivo;
+	private BoardVO bvo;
 	
+//	public String getPname() {
+//		return pname;
+//	}
+//	public void setPname(String pname) {
+//		this.pname = pname;
+//	}
+//	public String getPrice() {
+//		return price;
+//	}
+//	public void setPrice(String price) {
+//		this.price = price;
+//	}
+//	public String getFullPath() {
+//		return fullPath;
+//	}
+//	public void setFullPath(String fullPath) {
+//		this.fullPath = fullPath;
+//	}
 	
-	public String getPname() {
-		return pname;
-	}
-	public void setPname(String pname) {
-		this.pname = pname;
-	}
-	public String getPrice() {
-		return price;
-	}
-	public void setPrice(String price) {
-		this.price = price;
-	}
-	public String getFullPath() {
-		return fullPath;
-	}
-	public void setFullPath(String fullPath) {
-		this.fullPath = fullPath;
-	}
 	public String getId() {
 		return id;
+	}
+	public ImageVO getIvo() {
+		return ivo;
+	}
+	public void setIvo(ImageVO ivo) {
+		this.ivo = ivo;
+	}
+	public BoardVO getBvo() {
+		return bvo;
+	}
+	public void setBvo(BoardVO bvo) {
+		this.bvo = bvo;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -54,8 +68,8 @@ public class CartVO {
 	}
 	@Override
 	public String toString() {
-		return "CartVO [id=" + id + ", pno=" + pno + ", quantity=" + quantity + ", add_date=" + add_date + ", pname="
-				+ pname + ", price=" + price + ", fullPath=" + fullPath + "]";
+		return "CartVO [id=" + id + ", pno=" + pno + ", quantity=" + quantity + ", add_date=" + add_date + ", ivo="
+				+ ivo + ", bvo=" + bvo + "]";
 	}
 	
 	
