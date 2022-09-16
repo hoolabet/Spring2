@@ -10,9 +10,19 @@ $(document).ready(function(){
 	
 	// 리뷰 리스트 함수 선언
 	function list(pno){
+		
+		var str=""
+		
+		str+="<div class='title'>리뷰보기</div>";
+		
+		str+="<div id='Rwritelink'>";	
+		str+="<a href='/board/reviewwrite?pno="+pno+"'>리뷰 작성하기</a>"
+		str+="</div>"
+		
+		
 		$.getJSON("/reviewlist/"+pno+".json",function(data){
 //			$.getJSON("/reviewlist.json",pno,function(data){
-			var str="";
+			/*var str="";*/
 			
 			console.log(data)
 			
@@ -48,28 +58,26 @@ $(document).ready(function(){
 			  }
 			}
 			
-			str+="<div class='title'>리뷰보기</div>";
+			
 			
 			str+="<div id='Rscopecnt'>";
 			str+="<table>";
-				str+="<tr><td rowspan='5'>평균평점</td>"
+				str+="<tr><td rowspan='5' class='RStitle'>평균평점</td>"
 				str+="<td rowspan='5'>"+avg+"</td>"
-				str+="<td>5점</td>"
+				str+="<td class='RStitle'>5점</td>"
 				str+="<td>"+sc5+"</td></tr>"
-				str+="<td>4점</td>"
+				str+="<td class='RStitle'>4점</td>"
 				str+="<td>"+sc4+"</td></tr>"
-				str+="<td>3점</td>"
+				str+="<td class='RStitle'>3점</td>"
 				str+="<td>"+sc3+"</td></tr>"
-				str+="<td>2점</td>"
+				str+="<td class='RStitle'>2점</td>"
 				str+="<td>"+sc2+"</td></tr>"
-				str+="<td>1점</td>"
+				str+="<td class='RStitle'>1점</td>"
 				str+="<td>"+sc1+"</td></tr>"
 			str+="</table>"
 			str+="</div>"
 			
-			str+="<div id='Rwritelink'>";	
-			str+="<a href='/board/reviewwrite?pno="+pno+"'>리뷰 작성하기</a>"
-			str+="</div>"
+			
 				
 				
 			str+="<div id='Rlist'>";
@@ -97,11 +105,11 @@ $(document).ready(function(){
 			str+="<a href='/board/newreview?pno="+pno+"'>리뷰 더보기</a>"
 			str+="</div>"
 			
-			$("#reviewlist").html(str);
+				$("#reviewlist").html(str);
 			
 		})
 		
-		
+		$("#reviewlist").html(str);
 		
 	} // list 끝
 	

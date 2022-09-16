@@ -1,0 +1,30 @@
+@charset "UTF-8";
+/* 리뷰 평점 */
+#Rscopecnt>table{
+	height: 100%;
+	width: 90%;
+}
+#Rscopecnt>table,tr,td{
+	border : 1px solid black;
+  	border-collapse : collapse;
+  	word-break: break-all;
+  	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+/* 리뷰 작성 링크 */
+
+/* 리뷰 리스트 */
+
+#Rlist>table{
+	height: 100%;
+	width: 90%;
+}
+#Rlist>table,tr,td{
+	border : 1px solid black;
+  	border-collapse : collapse;
+  	word-break: break-all;
+  	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}

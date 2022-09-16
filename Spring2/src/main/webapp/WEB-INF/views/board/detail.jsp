@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="../resources/css/board_detail.css"
 	type="text/css">
 <link rel="stylesheet" href="../resources/css/home.css">
+<link rel="stylesheet" href="../resources/css/reviewInDetail.css">
 </head>
 <body>
 	<div id="entry_area">
