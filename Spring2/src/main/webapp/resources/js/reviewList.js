@@ -82,35 +82,39 @@ $(document).ready(function(){
 				str+="</table>"
 				str+="</div>"
 				
-				
-					
-					
 				str+="<div id='Rlist'>";
-				for(var i=0; i<5; i++){
 					
-					sum+=data[i].scope;
+				
+				
+				for(var i=0; i<data.length; i++){
+					
 					
 					var filePath = encodeURIComponent(data[i].uploadpath+"/s_"+data[i].uuid+"_"+data[i].filename);
 					
+					
 					str+="<table border='1'>";
-						/*str+="<tr><th>리뷰번호</th>";
-						str+="<td colspan='3'>"+data[i].rno+"</td></tr>";*/
+						str+="<tr><th>리뷰번호</th>";
+						str+="<td colspan='3'>"+data[i].rno+"</td></tr>";
 						str+="<tr><th>아이디</th>";
 						str+="<td>"+data[i].id+"</td>";
 						str+="<th>등록일</th>";
 						str+="<td>"+data[i].regdate+"</td></tr>";
 						str+="<tr><th>평점</th>";
 						str+="<td colspan='3'>"+data[i].scope+"</td></tr>";
-						/*str+="<tr><th>사진</th>";										// 사진 경로 오류
-						str+="<td colspan='3'><img src='"+filePath+"'></td></tr>";*/
+//						str+="<tr><th>사진</th>";										// 사진 경로 오류
+//						str+="<td colspan='3'><img src='"+filePath+"'></td></tr>";
 						str+="<tr><th>내용</th>";
 						str+="<td colspan='3'>"+data[i].content+"</td></tr>";
 					str+="</table>";
+					if(i==4){
+						break;
+					}
 				}
-				str+="</div>"
-				str+="<div id='Rmore'>"
-				str+="<a href='/board/newreview?pno="+pno+"'>리뷰 더보기</a>"
-				str+="</div>"
+				
+				str+="</div>";
+				str+="<div id='Rmore'>";
+				str+="<a href='/board/newreview?pno="+pno+"'>리뷰 더보기</a>";
+				str+="</div>";
 			}
 				$("#reviewlist").html(str);
 			
