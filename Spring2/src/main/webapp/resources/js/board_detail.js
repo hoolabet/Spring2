@@ -102,11 +102,6 @@ window.addEventListener("scroll",()=>{
     })
 })
 
-//리뷰쓰기 버튼 클릭시 리뷰페이지 이동
-const gotoreview = document.querySelector('#totalRe > button');
-gotoreview.addEventListener('click', ()=>{
-	location.href=`/board/reviewwrite?pno=${pno}`;
-})
 
 //문의하기 버튼 클릭시 문의작성페이지 이동
 const gotoqna = document.querySelector("#btn_qna");
