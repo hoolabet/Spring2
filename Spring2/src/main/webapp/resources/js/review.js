@@ -1,5 +1,5 @@
 /**
- * 리뷰 이미지 업로드
+ * 리뷰 작성 이미지 업로드
  */
 $(document).ready(function(){
 	

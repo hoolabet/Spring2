@@ -26,6 +26,7 @@
   	
   	<select id="total" resultType="int">
   		select count(*) from review
+  		where pno=#{pno}
   	</select>
   	
   	<insert id="write">
@@ -37,6 +38,11 @@
   		insert into review(pno, id, scope, content,rno, uuid, uploadpath, filename, image)
 		values(#{pno},#{id},#{scope},#{content},#{rno},#{uuid},#{uploadpath},#{filename},#{image}) 
   	</insert>
+  	
+  	<select id="pro" resultType="org.spring2.model.BoardVO">
+  		select * from product
+  		where pno=#{pno}
+  	</select>
   	
   	<select id="scope1cnt" resultType="int">
 	  	select count(*) from review

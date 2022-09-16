@@ -17,7 +17,6 @@
 			<!-- 리뷰 시작 -->
 			<div id="write">
 				<h3>리뷰 작성</h3>
-				<input type="text"  value="${Rlist.pno}" name="pno">${Rlist.pno}
 				<form method="post" id="form" action="/board/reviewwrite">
 					<table>
 						<tr>

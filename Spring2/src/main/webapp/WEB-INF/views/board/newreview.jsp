@@ -18,33 +18,18 @@
 			<!-- 리뷰 시작 -->
 			<div id="review">
 				<label>리뷰</label>
-				<div id="scopecnt">
+				<div id="pro">
 					<table>
 						<tr>
-							<td rowspan="5">평균 평점</td>
-							<td rowspan="5">${savg}</td>
-							<td>5점</td>
-							<td>${sc5}</td>
-						</tr>
-						<tr>
-							<td>4점</td>
-							<td>${sc4}</td>
-							
-							
-						</tr>
-						<tr>
-							<td>3점</td>
-							<td>${sc3}</td>
-						</tr>
-						<tr>
-							<td>2점</td>
-							<td>${sc2}</td>
-						</tr>
-						<tr>
-							<td>1점</td>
-							<td>${sc1}</td>
+							<th>상품 번호</th>
+							<td>${pro.pno}</td>
+							<th>상품명</th>
+							<td><a href="/board/detail?pno=${pro.pno}">${pro.pname}</td>
 						</tr>
 					</table>
+				</div>
+				<div id="scopecnt">
+				
 				</div>
 				<div id="index">
 					<a href="/board/newreview">최신순 /</a>
@@ -101,13 +86,13 @@
 					
 					<div id="paging">
 						<c:if test="${paging.prev}">
-							<a href="/board/newreview?pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
+							<a href="/board/newreview?pno=${paging.cri.pno}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-							<a href="/board/newreview?pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
+							<a href="/board/newreview?pno=${paging.cri.pno}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
 						</c:forEach>
 						<c:if test="${paging.next}">
-							<a href="/board/newreview?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
+							<a href="/board/newreview?pno=${paging.cri.pno}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
 						</c:if>
 					</div>
 				</div>
@@ -116,6 +101,10 @@
 		</div>
 	</div>
 	<%@ include file="../footer.jsp"%>
+	
 </div>
 </body>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="/resources/js/newreview.js"></script>
 </html>

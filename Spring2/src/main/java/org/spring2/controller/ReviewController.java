@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import org.spring2.model.BoardVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.RIPageVO;
 import org.spring2.model.ReviewVO;
@@ -34,7 +35,7 @@ public class ReviewController {
 	@Autowired
 	ReviewService rs;
 	
-	// 리뷰리스트, 페이징
+	// 리뷰리스트 in 디테일
 	@RequestMapping(value = "/reviewlist/{pno}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<ReviewVO>> getList(@PathVariable int pno){
 		
@@ -50,6 +51,11 @@ public class ReviewController {
 		
 		// 전체 평점 건수
 		int total = rs.total(cri);
+		
+		// 상품정보
+		model.addAttribute("pro",rs.pro(cri));
+		
+		System.out.println("상품정보"+cri);
 		
 		// 각 평점 건수
 		model.addAttribute("sc1", rs.scope1cnt(cri));

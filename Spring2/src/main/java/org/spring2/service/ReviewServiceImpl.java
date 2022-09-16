@@ -3,6 +3,7 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.mapper.ReviewMapper;
+import org.spring2.model.BoardVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,13 @@ public class ReviewServiceImpl implements ReviewService{
 	public void write(ReviewVO rvo) {
 		rm.write(rvo);
 	}
+	
+	// 상품점보 가져오는 구현
+	public BoardVO pro(RICriteriaVO cri) {
+		return rm.pro(cri);
+	}
+	
+	
 	// 평점1 건수 구현
 	public int scope1cnt(RICriteriaVO cri) {
 //		System.out.println("serviceimpl 평점1 건수 : "+cri);

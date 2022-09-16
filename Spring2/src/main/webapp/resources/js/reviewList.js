@@ -1,9 +1,8 @@
 /**
- * 리뷰 리스트
+ * 리뷰 리스트 in detail
  */
 $(document).ready(function(){
 	
-//	var pnoVal={pno:$("#pno").val()};
 	var pnoVal=$("#pno").val();
 	
 	list(pnoVal);

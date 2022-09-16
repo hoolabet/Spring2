@@ -2,6 +2,7 @@ package org.spring2.mapper;
 
 import java.util.ArrayList;
 
+import org.spring2.model.BoardVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewVO;
 
@@ -15,6 +16,9 @@ public interface ReviewMapper {
 	
 	// 리뷰 작성 DB설계
 	public void write(ReviewVO rvo);
+	
+	// 상품정보 가져오는 DB설계
+	public BoardVO pro(RICriteriaVO cri);
 	
 	// 이미지 업로드 DB설계
 //	public void uploadimg(ReviewVO rvo);
