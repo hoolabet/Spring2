@@ -13,7 +13,14 @@
 	margin-bottom: 10px;
 }
 /* 리뷰 작성 링크 */
-
+#Rwritelink{
+	text-align: right;
+	margin-right: 5%;
+}
+#Rwritelink>a, #Rmore>a{
+	color:#808080;
+	font-weight: bold;
+}
 /* 리뷰 리스트 */
 
 #Rlist>table{
