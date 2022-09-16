@@ -30,13 +30,8 @@
   	</select>
   	
   	<insert id="write">
-  		<selectKey keyProperty="rno" order="BEFORE" resultType="int">
-  			select 
-  			ifnull (max(pno)+1 , 1)
-			from review
-  		</selectKey>
-  		insert into review(pno, id, scope, content,rno, uuid, uploadpath, filename, image)
-		values(#{pno},#{id},#{scope},#{content},#{rno},#{uuid},#{uploadpath},#{filename},#{image}) 
+  		insert into review(pno, id, scope, content, uuid, uploadpath, filename, image)
+		values(#{pno},#{id},#{scope},#{content},#{uuid},#{uploadpath},#{filename},#{image}) 
   	</insert>
   	
   	<select id="pro" resultType="org.spring2.model.BoardVO">
