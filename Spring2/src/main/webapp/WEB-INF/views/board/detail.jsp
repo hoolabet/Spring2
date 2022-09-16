@@ -83,31 +83,7 @@
 					</div>
 				</section>
 				<section id="reviewlist">
-					<div id="totalRe">
-						<div>총평점 ★★★★★(5)</div>
-						<button>리뷰쓰기</button>
-					</div>
-					<div id="privRe">
-						<div class="title">리뷰보기</div>
-						<table>
-							<tr>
-								<td>개별평점 ★★★★★(5)</td>
-							</tr>
-							<tr>
-								<td><span>아이디</span><span>등록일</span></td>
-							</tr>
-							<tr>
-								<td>제품이름</td>
-							</tr>
-							<tr>
-								<td><img alt="가구사진"
-									src="https://image.ohou.se/i/bucketplace-v2-development/uploads/cards/snapshots/165890122221285125.jpeg?gif=1&w=144&h=144&c=c&webp=1"></td>
-							</tr>
-							<tr>
-								<td>잘 쓰고 있습니다.</td>
-							</tr>
-						</table>
-					</div>
+				
 				</section>
 				<section id="privqna">
 					<div class="title">상품문의</div>
@@ -187,6 +163,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript" src="../resources/js/board_detail.js"></script>
+	<script type="text/javascript" src="../resources/js/reviewList.js"></script>
 </body>
 
 </html>
