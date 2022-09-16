@@ -103,12 +103,6 @@ window.addEventListener("scroll",()=>{
 })
 
 
-//문의하기 버튼 클릭시 문의작성페이지 이동
-const gotoqna = document.querySelector("#btn_qna");
-gotoqna.addEventListener("click",()=>{
-	location.href=`/board/inquirywrite?pno=${pno}`;
-})
-
 //구매하기 버튼 클릭시 구매페이지 이동
 $("#btn_pay").on("click",function(){
 	location.href = `/cart/payment`

@@ -78,7 +78,7 @@
 						</tr>
 						<tr>
 							<td><label>썸네일</label></td>
-							<td><input type="file" name="thumbnailFile" multiple
+							<td><input type="file" name="thumbnailFile" 
 								id="uploadThumb">
 								<div id="thumbImg"></div>
 								<div id="thumb"></div></td>
