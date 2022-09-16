@@ -36,6 +36,6 @@ public interface MemberService {
 	public int destinationPost(DestinationVO des);
 	public int destinationPut(DestinationVO des);
 	public int destinationDelete(int dno);
-	public ArrayList<MemberVO> memberListGet();
+	public ArrayList<MemberVO> memberListGet(MemberVO member);
 	public MemberVO memberDetail(String id);
 }

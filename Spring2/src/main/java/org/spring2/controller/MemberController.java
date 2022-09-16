@@ -33,6 +33,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 public class MemberController {
 	@Autowired
 	MemberService ms;
+	
 	// 회원가입
 	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
 	public String signup() {
@@ -163,7 +164,7 @@ public class MemberController {
 	// 배송지 목록 관리
 	@RequestMapping(value = "/destination/select/{id}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<DestinationVO>> destinationGet(@PathVariable String id) {
-		
+		System.out.println(id);
 		return new ResponseEntity<>(ms.destinationGet(id),HttpStatus.OK);
 	}
 	@RequestMapping(value = "/destination/insert", method = RequestMethod.POST)
@@ -196,11 +197,14 @@ public class MemberController {
 		
 	}
 	@RequestMapping(value = "/memberList/select", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<MemberVO>> memberListGet() {
-		
-		return new ResponseEntity<>(ms.memberListGet(),HttpStatus.OK);
+	public ResponseEntity<ArrayList<MemberVO>> memberListGet(MemberVO member) {
+		System.out.println(member.getId());
+		return new ResponseEntity<>(ms.memberListGet(member),HttpStatus.OK);
 	}
 	
+	
+	
+	// 회원 상세정보
 	@RequestMapping(value = "/member/memberDetail", method = RequestMethod.GET)
 	public void memberDetail(String id, Model model) {
 		model.addAttribute("detail",ms.memberDetail(id));
@@ -455,6 +459,9 @@ public class MemberController {
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
+	
 
 
 

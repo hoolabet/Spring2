@@ -122,7 +122,12 @@
 	<select id="memberListGet" resultType="org.spring2.model.MemberVO">
 		select *
 		from member
-		where admin=false;
+		where admin=false
+		
+		<if test="id != null">		
+		and id like concat('%',#{id},'%')
+		</if>
+		;
 	</select>
 	<select id="memberDetail" resultType="org.spring2.model.MemberVO">
 		select *

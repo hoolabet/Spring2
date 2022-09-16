@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
+import org.springframework.web.bind.annotation.PathVariable;
 
 public interface MemberMapper {
 	// 회원가입
@@ -36,6 +37,6 @@ public interface MemberMapper {
 	public int destinationPost(DestinationVO des);
 	public int destinationPut(DestinationVO des);
 	public int destinationDelete(int dno);
-	public ArrayList<MemberVO> memberListGet();
+	public ArrayList<MemberVO> memberListGet(MemberVO member);
 	public MemberVO memberDetail(String id);
 }

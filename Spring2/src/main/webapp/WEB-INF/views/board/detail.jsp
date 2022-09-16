@@ -52,7 +52,7 @@
 								<tr>
 									<td colspan="2"><button class="btn_p">구매하기</button>
 										<button class="btn_p" id="add_cart">장바구니</button>
-										<button class="btn_p">관심상품</button>
+										<button class="btn_p" id="add_wishlist">관심상품</button>
 								</tr>
 							</table>
 						</div>

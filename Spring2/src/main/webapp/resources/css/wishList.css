@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+#wish_title{
+margin-bottom:50px;	
+}
+
+#list{
+	clear:both;
+	padding-left:150px;
+	padding-right:150px;
+}
+
+#list > ul{
+	list-style: none;
+}
+
+.each_wishlist{
+	width:250px;
+	height:350px;
+	float: left;
+	margin: 15px;
+	border: 1px solid black;
+}
+
+.img_wishlist{
+	width:250px;
+	height:250px;
+	position:relative;
+}
+
+.remove_icon{
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	cursor:pointer;
+}
+
+.each_wishlist > li > p{
+	text-align:left;
+	padding-left:20px;
+	margin:12px 0px;
+}
+
+.wish_pname{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.wish_pname > a:hover{
+	text-decoration: underline;
+}
+
+.wish_price{
+	color:gray;
+}

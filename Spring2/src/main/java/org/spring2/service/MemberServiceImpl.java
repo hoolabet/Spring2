@@ -75,8 +75,8 @@ public class MemberServiceImpl implements MemberService{
 	public int destinationDelete(int dno) {
 		return mm.destinationDelete(dno);
 	}
-	public ArrayList<MemberVO> memberListGet(){
-		return mm.memberListGet();
+	public ArrayList<MemberVO> memberListGet(MemberVO member){
+		return mm.memberListGet(member);
 	}
 	public MemberVO memberDetail(String id) {
 		return mm.memberDetail(id);

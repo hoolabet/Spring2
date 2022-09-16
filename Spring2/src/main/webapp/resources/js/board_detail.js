@@ -159,3 +159,43 @@ $("#add_cart").on("click",function(){
 })
 
 
+// 괸심상품 클릭시 위시리스트담기
+$("#add_wishlist").on("click",function(){
+	const data_ = {
+			pno:$("#pno").val(),
+			id:$("#id").val()
+	}
+
+	console.log(data_);
+	$.getJSON("/wishListcheck", data_,function(s){
+		console.log(s);
+		if(confirm("이미 관심상품에 등록되어있습니다. 관심상품에서 삭제하시겠습니까?")){
+			$.ajax({
+				type:"DELETE",
+				url:"/wishListremove",
+				data:JSON.stringify(data_),
+				contentType:"application/json; charset=utf-8",
+				success:function(){
+					alert("삭제되었습니다.")
+				},
+				error:function(){
+					alert("삭제하는데 실패했습니다.")
+				}
+			})
+		}
+	})
+	.fail(function() {
+		$.ajax({
+			type:"post",
+			url:"/wishListadd",
+			data:JSON.stringify(data_),
+			contentType:"application/json; charset=utf-8",
+			success:function(){
+				alert("관심상품 등록완료")
+			},
+			error:function(){
+				alert("실패")
+			}
+		})
+	})
+})
