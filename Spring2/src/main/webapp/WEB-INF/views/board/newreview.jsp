@@ -14,7 +14,7 @@
 <div id="entry_area">
 	<%@ include file="../header.jsp"%>
 	<div id="content_area">
-		<div id="container">
+		<div id="container">	
 			<!-- 리뷰 시작 -->
 			<div id="review">
 				<label>리뷰</label>
@@ -53,12 +53,12 @@
 				<!-- 리뷰 목록  -->
 				<div id="list">
 					<h3>리뷰 목록</h3>
-					<a href="/board/reviewwrite">리뷰 작성하기</a>
 					<c:forEach items="${list}" var="list">
 						<table>
 							<tr>
 								<th>리뷰번호</th>
 								<td colspan="3">
+									<input type="hidden" name="pno" value="${list.pno}" id="pno">
 									<input type="hidden" name="rno" value="${list.rno}" id="rno">
 									<input type="hidden" name="uuid" value="${list.uuid}">
 									<input type="hidden" name="uploadpath" value="${list.uploadpath}">

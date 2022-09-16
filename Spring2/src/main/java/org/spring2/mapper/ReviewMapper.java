@@ -7,6 +7,7 @@ import org.spring2.model.ReviewVO;
 
 public interface ReviewMapper {
 	// 리뷰 리스트 DB설계
+	public ArrayList<ReviewVO> Rlist(int pno);
 	public ArrayList<ReviewVO> list(RICriteriaVO cri);
 	
 	// 리뷰 전체건수 DB설계

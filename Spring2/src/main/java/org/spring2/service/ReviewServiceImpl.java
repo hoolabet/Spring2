@@ -15,6 +15,10 @@ public class ReviewServiceImpl implements ReviewService{
 	ReviewMapper rm;
 	
 	// 리뷰 리스트 구현
+	public ArrayList<ReviewVO> Rlist(int pno){
+		System.out.println("Rlist service="+pno);
+		return rm.Rlist(pno);
+	}
 	public ArrayList<ReviewVO> list(RICriteriaVO cri){
 		System.out.println("리뷰service="+cri);
 		return rm.list(cri);

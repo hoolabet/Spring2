@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +33,13 @@ public class ReviewController {
 	
 	@Autowired
 	ReviewService rs;
+	
+	// 리뷰리스트, 페이징
+	@RequestMapping(value = "/reviewlist/{pno}", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<ReviewVO>> getList(@PathVariable int pno){
+		
+		return new ResponseEntity<>(rs.Rlist(pno),HttpStatus.OK);
+	}
 	
 	// 리뷰리스트, 페이징
 	@RequestMapping(value = "/board/newreview", method = RequestMethod.GET)
@@ -59,8 +67,9 @@ public class ReviewController {
 	}
 	// 리뷰 작성(get)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.GET)
-	public void writeGet() {
-		System.out.println("write연결 get");
+	public void writeGet(int pno) {
+		rs.Rlist(pno);
+		System.out.println("write연결 get="+pno);
 	}	
 	// 리뷰 작성(post)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.POST)
@@ -68,7 +77,7 @@ public class ReviewController {
 		rs.write(rvo);
 		System.out.println("write post");
 		
-		return "redirect:/board/newreview";
+		return "redirect:/board/detail";
 	}
 	
 	// 파일 업로드 폴더 생성

@@ -17,13 +17,14 @@
 			<!-- 리뷰 시작 -->
 			<div id="write">
 				<h3>리뷰 작성</h3>
+				<input type="text"  value="${Rlist.pno}" name="pno">${Rlist.pno}
 				<form method="post" id="form" action="/board/reviewwrite">
 					<table>
 						<tr>
 							<th>아이디</th>
 							<td><input type="text" name="id"></td>
 							<th>제품번호</th>
-							<td><input type="text" name="pno"></td>
+							<td><input type="text"  value="${write.pno}" name="pno">${write.pno}</td>
 						</tr>
 						<tr>
 							<th>평점</th>
@@ -48,13 +49,7 @@
 							<td colspan="3"><div id="uploadResult"></div></td>
 						</tr>
 					</table>
-					<!-- 지워야함 -->
-					<!-- <div id="uploadResult">
-					
-							<ul>
-							</ul>
-					</div> -->
-					<!-- 지워야함 -->
+				
 					
 					<input type="button" value="작성" id="wbtn">
 				</form>

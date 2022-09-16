@@ -82,7 +82,7 @@ $(document).ready(function(){
 		var scopeVal=$("input[type=radio]:checked").val();
 		var contentVal=$("textarea[name=content]").val();
 		
-		if(idVal=="" || pnoVal=="" || scopeVal=="" || contentVal==""){
+		if(idVal=="" || scopeVal=="" || contentVal==""){
 			alert("평점과 내용을 입력해 주세요")
 		}else{
 			if(confirm("완료")){

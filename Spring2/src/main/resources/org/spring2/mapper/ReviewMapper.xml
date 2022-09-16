@@ -5,12 +5,18 @@
   
 <mapper namespace="org.spring2.mapper.ReviewMapper">
   	
+	<select id="Rlist" resultType="org.spring2.model.ReviewVO">
+		select @rownum:=@rownum+1 rownum, r.*
+	    from review r,(select @rownum:=0) as tmp
+		where pno=#{pno}
+	    order by rno desc
+  	</select>
 	<select id="list" resultType="org.spring2.model.ReviewVO">
 		select *
 		from(
 			select @rownum:=@rownum+1 rownum, r.*
 		    from review r,(select @rownum:=0) as tmp
-			where pno=1 <!-- 나중에 변경 -->
+			where pno=#{pno}
 		    order by rno desc
 		) as reviewlist
 		<![CDATA[
