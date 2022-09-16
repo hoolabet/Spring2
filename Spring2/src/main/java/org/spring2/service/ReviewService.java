@@ -20,18 +20,6 @@ public interface ReviewService {
 	// 상품정보 가져오는 설계
 	public BoardVO pro(RICriteriaVO cri);
 	
-	// 평점1 건수  설계
-	public int scope1cnt(RICriteriaVO cri);
-	// 평점2 건수  설계
-	public int scope2cnt(RICriteriaVO cri);
-	// 평점3 건수  설계
-	public int scope3cnt(RICriteriaVO cri);
-	// 평점4 건수  설계
-	public int scope4cnt(RICriteriaVO cri);
-	// 평점5 건수  설계
-	public int scope5cnt(RICriteriaVO cri);
-	
-	// 평점 평균 건수 설계
-	public float scopeavg(RICriteriaVO cri);
+
 	
 }	

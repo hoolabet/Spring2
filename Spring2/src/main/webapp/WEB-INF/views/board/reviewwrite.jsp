@@ -17,13 +17,18 @@
 			<!-- 리뷰 시작 -->
 			<div id="write">
 				<h3>리뷰 작성</h3>
+				<div id="pro">
+					<input type="text"  value="${pro.pno}" name="pno" placeholder="${pro.pno}">
+					<input type="text"  value="${pro.pno}" name="pno" placeholder="${pro.pno}">
+				</div>
+				
 				<form method="post" id="form" action="/board/reviewwrite">
 					<table>
 						<tr>
 							<th>아이디</th>
 							<td><input type="text" name="id"></td>
 							<th>제품번호</th>
-							<td><input type="text"  value="${write.pno}" name="pno">${write.pno}</td>
+							<td><input type="text"  value="${Rlist.cri.pno}" name="pno">${Rlist.cri.pno}</td>
 						</tr>
 						<tr>
 							<th>평점</th>

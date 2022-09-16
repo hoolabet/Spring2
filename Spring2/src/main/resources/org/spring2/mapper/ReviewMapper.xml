@@ -39,29 +39,6 @@
   		where pno=#{pno}
   	</select>
   	
-  	<select id="scope1cnt" resultType="int">
-	  	select count(*) from review
-		where scope = 1
-	</select>	
-  	<select id="scope2cnt" resultType="int">
-	  	select count(*) from review
-		where scope = 2
-	</select>	
-  	<select id="scope3cnt" resultType="int">
-	  	select count(*) from review
-		where scope = 3
-	</select>	
-  	<select id="scope4cnt" resultType="int">
-	  	select count(*) from review
-		where scope = 4
-	</select>	
-  	<select id="scope5cnt" resultType="int">
-	  	select count(*) from review
-		where scope = 5
-	</select>	
-	
-	<select id="scopeavg" resultType="float">
-		select avg(scope) from review
-	</select>
+  	
   		
 </mapper>

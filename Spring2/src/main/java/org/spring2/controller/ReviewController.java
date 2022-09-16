@@ -57,15 +57,6 @@ public class ReviewController {
 		
 		System.out.println("상품정보"+cri);
 		
-		// 각 평점 건수
-		model.addAttribute("sc1", rs.scope1cnt(cri));
-		model.addAttribute("sc2", rs.scope2cnt(cri));
-		model.addAttribute("sc3", rs.scope3cnt(cri));
-		model.addAttribute("sc4", rs.scope4cnt(cri));
-		model.addAttribute("sc5", rs.scope5cnt(cri));
-		
-		// 평점 평균
-		model.addAttribute("savg",rs.scopeavg(cri));
 		
 		// 페이징
 		model.addAttribute("paging",new RIPageVO(cri, total));
@@ -73,16 +64,17 @@ public class ReviewController {
 	}
 	// 리뷰 작성(get)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.GET)
-	public void writeGet(int pno) {
-		rs.Rlist(pno);
-		System.out.println("write연결 get="+pno);
+	public void writeGet(RICriteriaVO cri,Model model) {
+		model.addAttribute(rs.pro(cri));
+		
+		System.out.println("write연결 get="+cri);
 	}	
 	// 리뷰 작성(post)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.POST)
-	public String writePost (ReviewVO rvo) {
+	public String writePost (ReviewVO rvo,Model model,RICriteriaVO cri) {
 		rs.write(rvo);
 		System.out.println("write post");
-		
+		model.addAttribute(rs.pro(cri));
 		return "redirect:/board/detail";
 	}
 	
@@ -116,7 +108,7 @@ public class ReviewController {
 		System.out.println("imgupload 연결완료");
 		ArrayList<ReviewVO> attachlist = new ArrayList<>();
 		
-		String uploadFolder="D:\\01-STUDY\\Spring2\\upload";
+		String uploadFolder="D:\\01-STUDY\\upload";
 		
 		File uploadPath = new File(uploadFolder,getFolder());
 		
@@ -162,7 +154,7 @@ public class ReviewController {
 	@RequestMapping(value = "/board/display", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getFile(String filename){
 		
-		File file = new File("D:\\01-STUDY\\Spring2\\upload\\"+filename);
+		File file = new File("D:\\01-STUDY\\upload\\"+filename);
 		
 		ResponseEntity<byte[]> result = null;
 		

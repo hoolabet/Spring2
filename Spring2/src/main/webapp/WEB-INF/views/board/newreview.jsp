@@ -24,17 +24,17 @@
 							<th>상품 번호</th>
 							<td>${pro.pno}</td>
 							<th>상품명</th>
-							<td><a href="/board/detail?pno=${pro.pno}">${pro.pname}</td>
+							<td><a href="/board/detail?pno=${pro.pno}" id="Rwrite">${pro.pname}</td>
 						</tr>
 					</table>
+					<a href='/board/reviewwrite?pno=${pro.pno}'>리뷰 작성하기</a>
 				</div>
-				<div id="scopecnt">
-				
-				</div>
+				<div id="scopecnt">	</div>
 				<div id="index">
 					<a href="/board/newreview">최신순 /</a>
 					<a href=""> 베스트순</a>
 				</div> 
+				
 				<!-- 리뷰 목록  -->
 				<div id="list">
 					<h3>리뷰 목록</h3>
@@ -107,4 +107,5 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/newreview.js"></script>
+<script type="text/javascript" src="/resources/js/reviewWrite.js"></script>
 </html>

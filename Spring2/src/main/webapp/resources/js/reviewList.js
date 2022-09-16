@@ -101,8 +101,8 @@ $(document).ready(function(){
 						str+="<td>"+data[i].regdate+"</td></tr>";
 						str+="<tr><th>평점</th>";
 						str+="<td colspan='3'>"+data[i].scope+"</td></tr>";
-//						str+="<tr><th>사진</th>";										// 사진 경로 오류
-//						str+="<td colspan='3'><img src='"+filePath+"'></td></tr>";
+						str+="<tr><th>사진</th>";										// 사진 경로 오류
+						str+="<td colspan='3'><img src='/display?fileName="+filePath+"'></td></tr>";
 						str+="<tr><th>내용</th>";
 						str+="<td colspan='3'>"+data[i].content+"</td></tr>";
 					str+="</table>";
