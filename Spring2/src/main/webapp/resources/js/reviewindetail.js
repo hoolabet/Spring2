@@ -4,28 +4,31 @@
 $(document).ready(function(){
 	
 	var pnoVal=$("#pno").val();
+	var idVal=$("#id").val();
 	
+	// 리뷰 리스트 in detail함수 사용
 	list(pnoVal);
 	
-	// 리뷰 리스트 함수 선언
+	
+	
+	// 리뷰 리스트 in detail 함수 선언
 	function list(pno){
 		
 		var str=""
 		
 		str+="<div class='title'>리뷰보기</div>";
 		
-		str+="<div id='Rwritelink'>";	
-		str+="<a href='/board/reviewwrite?pno="+pno+"'>리뷰 작성하기</a>"
-		str+="</div>"
-		
-			
-			
-			
 		
 		$.getJSON("/reviewlist/"+pno+".json",function(data){
-
 			
-			console.log(data)
+			if(idVal!=""){	// 주문내역이 있는 경우 보이게 추가해야함
+				str+="<div id='Rwritelink'>";	
+				str+="<a href='/board/reviewwrite?pno="+pno+"' id='rwlink'>리뷰 작성하기</a>";
+				str+="</div>";
+			}
+			
+			
+			console.log(data);
 			
 			if(data==""){
 				str+=`<p>작성된 리뷰가 없습니다.`;
@@ -63,8 +66,6 @@ $(document).ready(function(){
 				  }
 				}
 				
-				
-				
 				str+="<div id='Rscopecnt'>";
 				str+="<table>";
 					str+="<tr><td rowspan='5' class='RStitle'>평균평점</td>"
@@ -84,13 +85,9 @@ $(document).ready(function(){
 				
 				str+="<div id='Rlist'>";
 					
-				
-				
 				for(var i=0; i<data.length; i++){
 					
-					
 					var filePath = encodeURIComponent(data[i].uploadpath+"/s_"+data[i].uuid+"_"+data[i].filename);
-					
 					
 					str+="<table border='1'>";
 						str+="<tr><th>리뷰번호</th>";

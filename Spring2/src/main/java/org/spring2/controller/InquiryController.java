@@ -1,6 +1,11 @@
 package org.spring2.controller;
 
 import org.spring2.model.RICriteriaVO;
+
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
+
 import org.spring2.model.InquiryVO;
 import org.spring2.model.RIPageVO;
 import org.spring2.model.ReviewVO;
@@ -10,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +25,16 @@ public class InquiryController {
 	
 	@Autowired
 	InquiryService is;
+	
+	// 문의리스트 in 디테일
+	@RequestMapping(value = "/inquirylist/{pno}", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<InquiryVO>> getList(@PathVariable int pno,HttpSession session,Model model){
+		model.addAttribute("userinfo",session.getAttribute("userInfo"));
+		System.out.println("문의in디테일 컨트롤러 pno 값 = "+pno);
+		System.out.println("문의in디테일 컨트롤러 user 값 = "+session.getAttribute("userInfo"));
+		return new ResponseEntity<>(is.Ilist(pno),HttpStatus.OK);
+	}
+	
 	
 	// 문의 목록, 페이징
 	@RequestMapping(value = "/board/inquiry", method = RequestMethod.GET)

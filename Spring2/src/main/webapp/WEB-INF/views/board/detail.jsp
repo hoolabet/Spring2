@@ -87,22 +87,7 @@
 				
 				</section>
 				<section id="privqna">
-					<div class="title">상품문의</div>
-					<button id="btn_qna">문의하기</button>
-					<table id="t_privqna">
-						<tr>
-							<td>글내용</td>
-							<td>글쓴이</td>
-							<td>글등록일</td>
-							<td>답변상태</td>
-						</tr>
-						<tr>
-							<td>상품크기가 어떻게 되나요?</td>
-							<td>aaaa</td>
-							<td>2022-08-08</td>
-							<td>답변</td>
-						</tr>
-					</table>
+				
 
 				</section>
 				<section id="exchange">
@@ -164,7 +149,8 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript" src="../resources/js/board_detail.js"></script>
-	<script type="text/javascript" src="../resources/js/reviewList.js"></script>
+	<script type="text/javascript" src="../resources/js/reviewindetail.js"></script>
+	<script type="text/javascript" src="../resources/js/inquiryindetail.js"></script>	
 </body>
 
 </html>

@@ -53,10 +53,10 @@ $(document).ready(function(){
 					console.log(obj);
 					console.log("이름"+obj.filename);
 					
-					str+="<input type='text' name='filename' value='"+obj.filename+"' >";
-					str+="<input type='text' name='uuid' value='"+obj.uuid+"'>";
-					str+="<input type='text' name='uploadpath' value='"+obj.uploadpath+"'>";
-					str+="<input type='text' name='image' value='"+obj.image+"'>";
+					str="<input type='text' name='filename' value='"+obj.filename+"' >";
+					str="<input type='text' name='uuid' value='"+obj.uuid+"'>";
+					str="<input type='text' name='uploadpath' value='"+obj.uploadpath+"'>";
+					str="<input type='text' name='image' value='"+obj.image+"'>";
 					
 					if(obj.image){
 						var filePath = encodeURIComponent(obj.uploadpath+"/s_"+obj.uuid+"_"+obj.filename);

@@ -7,8 +7,10 @@ import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewVO;
 
 public interface ReviewService {
-	// 리뷰 리스트 설계
+	// 리뷰 리스트 in 디테일 설계
 	public ArrayList<ReviewVO> Rlist(int pno);
+	
+	// 리뷰 리스트 설계
 	public ArrayList<ReviewVO> list(RICriteriaVO cri);
 	
 	// 리뷰 전체건수 설계

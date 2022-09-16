@@ -1,8 +1,8 @@
 /**
- * 문의
+ * 문의 작성
  */
 $(document).ready(function(){
-/*	// 문의 작성 함수 호출
+	// 문의 작성 함수 호출
 	$("#wbtn").on("click",function(){
 		var idVal=$("input[name=id]").val();
 		var pnoVal=$("input[name=pno]").val();
@@ -28,11 +28,11 @@ $(document).ready(function(){
 			contentType:"application/json; charset=utf-8",
 			success:function(result){
 				if(result=="success"){
-					location.reload();
+					window.location.href = '/board/inquiry';
 				}
 			}
 		})
 	}
-	*/
+	
 	
 })

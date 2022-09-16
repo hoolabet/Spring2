@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.spring2.model.BoardVO;
+import org.spring2.model.MemberVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.RIPageVO;
 import org.spring2.model.ReviewVO;
@@ -37,8 +40,8 @@ public class ReviewController {
 	
 	// 리뷰리스트 in 디테일
 	@RequestMapping(value = "/reviewlist/{pno}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<ReviewVO>> getList(@PathVariable int pno){
-		
+	public ResponseEntity<ArrayList<ReviewVO>> getList(@PathVariable int pno,HttpSession session,Model model){
+		model.addAttribute("userinfo",session.getAttribute("userInfo"));
 		return new ResponseEntity<>(rs.Rlist(pno),HttpStatus.OK);
 	}
 	
@@ -64,18 +67,15 @@ public class ReviewController {
 	}
 	// 리뷰 작성(get)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.GET)
-	public void writeGet(RICriteriaVO cri,Model model) {
-		model.addAttribute(rs.pro(cri));
-		
-		System.out.println("write연결 get="+cri);
+	public void writeGet(Model model,RICriteriaVO cri,HttpSession session) {
+		model.addAttribute("userinfo",session.getAttribute("userInfo"));
+		model.addAttribute("pro",rs.pro(cri));
 	}	
 	// 리뷰 작성(post)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.POST)
 	public String writePost (ReviewVO rvo,Model model,RICriteriaVO cri) {
 		rs.write(rvo);
-		System.out.println("write post");
-		model.addAttribute(rs.pro(cri));
-		return "redirect:/board/detail";
+		return "redirect:/board/detail?pno="+cri.getPno();
 	}
 	
 	// 파일 업로드 폴더 생성
