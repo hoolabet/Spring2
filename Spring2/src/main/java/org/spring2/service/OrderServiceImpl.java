@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spring2.mapper.OrderMapper;
 import org.spring2.model.CartVO;
+import org.spring2.model.OrderVO;
 import org.spring2.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,11 +14,31 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	OrderMapper om;
 	
-	public void orderPay(PaymentVO pvo) {
-		om.orderPay(pvo);
+	public int orderPay(PaymentVO pvo) {
+		return om.orderPay(pvo);
 	}
 	
 	public CartVO orderList(CartVO cvo){
 		return om.orderList(cvo);
+	}
+	
+	public int orderAdd(OrderVO ovo) {
+		return om.orderAdd(ovo);
+	}
+	
+	public int orderReady(CartVO cvo) {
+		return om.orderReady(cvo);
+	}
+	
+	public ArrayList<CartVO> orderReadyList(String id){
+		return om.orderReadyList(id);
+	}
+	
+	public ArrayList<OrderVO> orderCheck(OrderVO ovo) {
+		return om.orderCheck(ovo);
+	}
+	
+	public int orderAfter(OrderVO ovo) {
+		return om.orderAfter(ovo);
 	}
 }

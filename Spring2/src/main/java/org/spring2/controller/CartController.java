@@ -52,7 +52,7 @@ public class CartController {
 	@RequestMapping(value = "/cartremove", method = RequestMethod.DELETE)
 	public ResponseEntity<String> cartRemove(@RequestBody CartVO cvo) {
 		int result=cs.cartRemove(cvo);
-
+		
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

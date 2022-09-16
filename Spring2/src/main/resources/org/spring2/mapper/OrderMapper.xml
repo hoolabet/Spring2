@@ -4,10 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.spring2.mapper.OrderMapper">
 	<insert	id="orderPay">
-		INSERT INTO payment (price, name, id, address, phone, dmemo)
-		VALUES (#{price},#{name},#{id},#{address},#{phone},#{dmemo})
+	<selectKey keyProperty="payno" order="BEFORE" resultType="int">
+			select
+			ifnull (max(payno)+1 , 1)
+			from payment
+	</selectKey>
+		INSERT INTO payment (payno,price, name, id, address, phone, dmemo)
+		VALUES (#{payno},#{price},#{name},#{id},#{address},#{phone},#{dmemo})
 	</insert>
-	<!-- 
+	<insert id="orderAdd">
+	<selectKey keyProperty="payno" order="BEFORE" resultType="int">
+			select
+				max(payno)
+			from payment
+	</selectKey>
+		INSERT INTO orderP (payno,pno,quantity,id)
+		VALUES (#{payno},#{pno},#{quantity},#{id})
+	</insert>
+	
+	<select id="orderList" resultType="org.spring2.model.CartVO">
+		SELECT * FROM cart WHERE id=#{id} and pno=#{pno}
+	</select>
+	
+	<update id="orderReady">
+		UPDATE cart SET doOrder = true, quantity = #{quantity} WHERE id=#{id} and pno=#{pno}
+	</update>
+ 
 	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
 		<result column="price" property="price" />
 		<result column="pname" property="pname" />
@@ -25,7 +47,7 @@
 		<collection property="ivo" resultMap="ImageVO" />
 	</resultMap>
 	
-	<select id="orderList" resultMap="CartVO">
+	<select id="orderReadyList" resultMap="CartVO">
 		select
 			id,cart.pno,price,pname,fullPath,quantity
 		from
@@ -44,13 +66,25 @@
 		on
 			cart.pno = joined.pno
 		where
-			id=#{id} and cart.pno=#{pno}
+			id=#{id} and doOrder=true
 		ORDER BY
 			add_date desc
 		;
 		</select>
-		-->
-		<select id="orderList" resultType="org.spring2.model.CartVO">
-			SELECT * FROM cart WHERE id=#{id} and pno=#{pno}
+		
+		<select id="orderCheck" resultType="org.spring2.model.OrderVO">
+			SELECT 
+				* 
+			FROM 
+				orderP 
+			WHERE 
+				id=#{id}
+			and
+				payno=(SELECT MAX(payno) FROM payment);
 		</select>
+		
+		<update id="orderAfter">
+			UPDATE product SET quantity=quantity - #{quantity}, s_quantity = s_quantity + #{quantity} 
+			WHERE pno=#{pno}
+		</update>
 </mapper>

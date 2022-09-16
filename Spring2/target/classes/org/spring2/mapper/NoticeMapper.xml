@@ -75,7 +75,9 @@
   	
   	<insert id="noWrite">
   		<selectKey keyProperty="nono" order="BEFORE" resultType="int">
-			select MAX(nono)+1 nono from notice
+			select 
+				ifnull(MAX(nono)+1,1)
+			from notice
 		</selectKey>
   		INSERT INTO notice(title, content, nono) 
   		VALUES(#{title},#{content},#{nono})

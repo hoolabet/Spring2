@@ -1,6 +1,6 @@
 const id = $("#id").val();
 let str = '';
-
+let indexArr = [];
 loadCart();
 
 function loadCart() {
@@ -12,10 +12,11 @@ function loadCart() {
 		contentType:"application/json; charset=utf-8",
 		success:function(res){
 			res.forEach(function(r,i) {
+				indexArr = [...indexArr,i];
 				str += `
-					<table id="${i}" border="1" style="display:inline-block;border-collapse:collapse;">
+					<table border="1" style="display:inline-block;border-collapse:collapse;">
 					<tr>
-					<td style="width:200px"><input type="checkbox" checked class="select_p"></td>
+					<td style="width:200px"><input type="checkbox" checked id="${i}" class="select_p" data-pno="${r.pno}"></td>
 					<td><a href="/board/detail?pno=${r.pno}"><img src="/display?fileName=${r.ivo.fullPath}" style="width:200px; height:200px;"></a></td>
 					<td style="width: 800px;">
 					<p>${r.bvo.pname}</p>
@@ -32,7 +33,7 @@ function loadCart() {
 					</table>
 					`;
 			})
-
+			console.log(indexArr);
 			$("#cart_list").html(str);
 			calcProduct();
 			str = '';
@@ -71,11 +72,6 @@ function loadCart() {
 				}
 			})
 			$(".select_p").on("change",function() {
-//				if(this.checked){
-//					calcProduct();
-//				}else{
-//					calcProduct();
-//				}
 				calcProduct();
 			})
 		}
@@ -85,14 +81,39 @@ function loadCart() {
 function calcProduct (){
 	let price = 0;
 	$(".prices").each(function(i,p) {
-		price += Number(p.innerText);
+		if($(`#${i}`).prop("checked")){
+			price += Number(p.innerText);
+		}
 	})
-	console.log(price);
 	$("#price").val(price);
 }
 
+
 $("#all_btn").on("click", function() {
-	location.href = "/order/ready";
+	let howManyChecked = 0;
+	indexArr.forEach(function(i) {
+		if($(`#${i}`).prop("checked")){
+			howManyChecked++;
+			const cData = {
+					id:id,
+					pno:$(`#${i}`).data("pno"),
+					quantity:$(`#d${i}i`).val()
+			}
+			$.ajax({
+				type:"put",
+				url:"/orderready",
+				data:JSON.stringify(cData),
+				contentType:"application/json; charset=utf-8"
+			})
+		}
+	})
+	if(howManyChecked == 0){
+		alert("구매할 상품을 선택하세요.");
+	}else{
+		setTimeout(() => {
+			location.href = "/order/ready";
+		}, 100);
+	}
 })
 
 

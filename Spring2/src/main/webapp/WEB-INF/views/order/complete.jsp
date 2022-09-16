@@ -11,6 +11,7 @@
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
+			<input type="hidden" value="${userInfo.id}" id="id">
 			<p>
 				결제가 완료되었습니다.
 			</p>
@@ -24,5 +25,6 @@
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js?ver=1"></script>
+	<script src="../resources/js/order_complete.js?ver=1"></script>
 </body>
 </html>

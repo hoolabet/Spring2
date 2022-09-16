@@ -10,9 +10,7 @@ public class PaymentVO {
 	private String dmemo;
 	private String state;
 	private int delivery_cost;
-	private String coupon;
-	private int point;
-	private String order_date;
+	private String payment_date;
 	
 	
 	public int getPhone() {
@@ -69,29 +67,18 @@ public class PaymentVO {
 	public void setDelivery_cost(int delivery_cost) {
 		this.delivery_cost = delivery_cost;
 	}
-	public String getCoupon() {
-		return coupon;
+	
+	public String getPayment_date() {
+		return payment_date;
 	}
-	public void setCoupon(String coupon) {
-		this.coupon = coupon;
-	}
-	public int getPoint() {
-		return point;
-	}
-	public void setPoint(int point) {
-		this.point = point;
-	}
-	public String getOrder_date() {
-		return order_date;
-	}
-	public void setOrder_date(String order_date) {
-		this.order_date = order_date;
+	public void setPayment_date(String payment_date) {
+		this.payment_date = payment_date;
 	}
 	@Override
 	public String toString() {
 		return "PaymentVO [payno=" + payno + ", price=" + price + ", name=" + name + ", id=" + id + ", address="
 				+ address + ", phone=" + phone + ", dmemo=" + dmemo + ", state=" + state + ", delivery_cost="
-				+ delivery_cost + ", coupon=" + coupon + ", point=" + point + ", order_date=" + order_date + "]";
+				+ delivery_cost + ", payment_date=" + payment_date + "]";
 	}
 	
 }
