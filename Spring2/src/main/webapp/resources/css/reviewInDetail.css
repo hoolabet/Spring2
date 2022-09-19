@@ -13,21 +13,25 @@
 	margin-bottom: 10px;
 }
 /* 리뷰 작성 링크 */
-#Rwritelink{
+#Rwritelink, #Iwritelink{
 	text-align: right;
 	margin-right: 5%;
 }
-#Rwritelink>a, #Rmore>a{
-	color:#808080;
+#Rwritelink>p, #Iwritelink>p{
+	color:black;
+}
+#Rwritelink>a, #Rwritelink>p>a, #Rmore>a, #Iwritelink>a, #Iwritelink>p>a, #Imore>a{
+	color:#8bace9;
 	font-weight: bold;
 }
+
 /* 리뷰 리스트 */
 
-#Rlist>table{
+#Rlist>table, #Ilist>table{
 	height: 100%;
 	width: 90%;
 }
-#Rlist>table,tr,td{
+#Rlist>table,tr,td, #Ilist>table,tr,td{
 	border : 1px solid black;
   	border-collapse : collapse;
   	word-break: break-all;

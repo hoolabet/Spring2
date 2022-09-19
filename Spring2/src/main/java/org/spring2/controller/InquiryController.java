@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.spring2.model.InquiryVO;
 import org.spring2.model.RIPageVO;
-import org.spring2.model.ReviewVO;
 import org.spring2.service.InquiryService;
+import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +25,8 @@ public class InquiryController {
 	
 	@Autowired
 	InquiryService is;
+	@Autowired
+	ReviewService rs;
 	
 	// 문의리스트 in 디테일
 	@RequestMapping(value = "/inquirylist/{pno}", method = RequestMethod.GET)
@@ -42,12 +44,16 @@ public class InquiryController {
 		model.addAttribute("list",is.list(cri));
 		int total = is.total(cri);
 		// System.out.println("문의 : "+total);
+		model.addAttribute("pro",rs.pro(cri));
+		System.out.println("상품정보"+cri);
 		model.addAttribute("paging",new RIPageVO(cri, total));
 		return "/board/inquiry";
 	}
 	// 문의 작성(get)
 	@RequestMapping(value = "/board/inquirywrite", method = RequestMethod.GET)
-	public String writeGet() {
+	public String writeGet(Model model,RICriteriaVO cri,HttpSession session) {
+		model.addAttribute("userinfo",session.getAttribute("userInfo"));
+		model.addAttribute("pro",rs.pro(cri));
 		System.out.println("write연결 get");
 		return "/board/inquirywrite";
 	}

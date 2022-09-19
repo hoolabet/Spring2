@@ -19,8 +19,21 @@
 				<label>문의</label>
 				<div id="list">
 					<h3>문의 목록</h3>
-					<a href="/board/inquirywrite">문의하기</a>
+					<div id="pro">
+						<table>
+							<tr>
+								<th>상품 번호</th>
+								<td>${pro.pno}</td>
+								<th>상품명</th>
+								<td><a href="/board/detail?pno=${pro.pno}" id="Iwrite">${pro.pname}</td>
+							</tr>
+						</table>
+						<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
+					</div>
+					<!-- 문의사항 목록 -->
+					<div id="list">
 					<c:forEach items="${list}" var="list">
+					<input type="text" name="pno" value="${list.pno}" id="pno">
 						<table>
 							<tr>
 								<th>아이디</th><td>${list.id}</td>
@@ -30,22 +43,25 @@
 								<th>질문</th>
 								<td colspan="3">${list.question}</td>
 							</tr>
-							<tr id="answer">
-								<th>답변</th>
-								<td colspan="3">${list.answer}</td>
-							</tr>
+							<c:if test="${not empty list.answer}">
+								<tr id="answer">
+									<th>답변</th>
+									<td colspan="3">${list.answer}</td>
+								</tr>
+							</c:if>
 						</table>
 					</c:forEach> 
+					</div>
 					
 					<div id="paging">
 						<c:if test="${paging.prev}">
-							<a href="/board/inquiry?pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
+							<a href="/board/inquiry?pno=${paging.cri.pno}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-							<a href="/board/inquiry?pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
+							<a href="/board/inquiry?pno=${paging.cri.pno}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
 						</c:forEach>
 						<c:if test="${paging.next}">
-							<a href="/board/inquiry?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
+							<a href="/board/inquiry?pno=${paging.cri.pno}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
 						</c:if>
 					</div>
 				</div>

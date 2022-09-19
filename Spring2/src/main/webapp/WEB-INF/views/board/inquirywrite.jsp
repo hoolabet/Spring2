@@ -15,13 +15,14 @@
 		<div id="container">
 			<div id="write">
 				<h3>문의 작성</h3>
-				<form method="post">
+				<form method="post" action="/board/inquirywrite">
+					<input type="text" name="id" value="${userinfo.id}">
 					<table>
 						<tr>
-							<th>아이디</th>
-							<td><input type="text" name="id"></td>
 							<th>제품번호</th>
-							<td><input type="text" name="pno"></td>
+							<td><input type="text" value="${pro.pno}" name="pno"></td>
+							<th>제품이름</th>
+							<td><input type="text"  value="${pro.pname}" name="pname"></td>
 						</tr>
 						<tr>
 							<th>문의사항</th>
@@ -37,5 +38,5 @@
 </div>				
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/resources/js/inquiry.js"></script>
+<script type="text/javascript" src="/resources/js/inquiryWrite.js"></script>
 </html>
