@@ -2,16 +2,14 @@
  * 문의 작성
  */
 $(document).ready(function(){
+	var idVal=$("input[name=id]").val();
+	var pnoVal=$("input[name=pno]").val();
+
+	
+	
 	// 문의 작성 함수 호출
 	$("#wbtn").on("click",function(){
-		var idVal=$("input[name=id]").val();
-		var pnoVal=$("input[name=pno]").val();
 		var questionVal=$("textarea[name=question]").val();
-		
-		alert(idVal);
-		alert(pnoVal);
-		alert(questionVal);
-		
 		if(idVal=="" || pnoVal=="" || questionVal==""){
 			alert("문의사항을 입력해 주세요")
 		}else{
@@ -28,11 +26,11 @@ $(document).ready(function(){
 			contentType:"application/json; charset=utf-8",
 			success:function(result){
 				if(result=="success"){
-					window.location.href = '/board/inquiry';
+					window.location.href = '/board/inquiry?pno='+pnoVal;
 				}
 			}
 		})
 	}
 	
-	
+
 })

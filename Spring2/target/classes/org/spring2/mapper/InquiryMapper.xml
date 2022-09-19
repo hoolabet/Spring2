@@ -17,7 +17,7 @@
 		from(
 			select @rownum:=@rownum+1 rownum, i.*
 		    from inquiry i,(select @rownum:=0) as tmp
-			where pno=1 <!-- 나중에 변경 -->
+			where pno=#{pno} 
 		    order by ino desc
 		) as inquirylist
 		<![CDATA[
