@@ -7,7 +7,7 @@
 		<h1>
 			<a href="/">title</a>
 		</h1>
-		<div id="a_list">
+		<div id="a_list"> 
 				<c:choose>
 				<c:when test="${userInfo eq null }">
 				<ul id="header_parents_ul">
