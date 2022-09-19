@@ -19,6 +19,7 @@
 				
 				<input type="hidden" value="${userInfo.id}" id="id">
 				<input type="hidden" value="${detail.pno}" id="pno">
+				<input type="hidden" value="${detail.quantity}" id="quantity">
 				<div id="d_title">
 					<span id="uploadimg"></span>
 					<div id="sell">
@@ -41,7 +42,7 @@
 								</tr>
 								<tr>
 									<td>구매수량</td>
-									<td><input type="text" value="1" id="num">
+									<td><input type="text" value="1" id="num" readonly>
 										<button id="btn_minus" type="button">-</button>
 										<button id="btn_plus" type="button">+</button></td>
 								</tr>

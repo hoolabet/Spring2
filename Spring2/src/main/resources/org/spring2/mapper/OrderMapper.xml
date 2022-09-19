@@ -18,8 +18,8 @@
 				max(payno)
 			from payment
 	</selectKey>
-		INSERT INTO orderP (payno,pno,quantity,id)
-		VALUES (#{payno},#{pno},#{quantity},#{id})
+		INSERT INTO orderP (payno,pno,b_quantity,id)
+		VALUES (#{payno},#{pno},#{b_quantity},#{id})
 	</insert>
 	
 	<select id="orderList" resultType="org.spring2.model.CartVO">
@@ -27,12 +27,13 @@
 	</select>
 	
 	<update id="orderReady">
-		UPDATE cart SET doOrder = true, quantity = #{quantity} WHERE id=#{id} and pno=#{pno}
+		UPDATE cart SET doOrder = true, b_quantity = #{b_quantity} WHERE id=#{id} and pno=#{pno}
 	</update>
  
 	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
 		<result column="price" property="price" />
 		<result column="pname" property="pname" />
+		<result column="quantity" property="quantity" />
 	</resultMap>
 	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
 		<result column="fullPath" property="fullPath" />
@@ -41,7 +42,7 @@
 	<resultMap type="org.spring2.model.CartVO" id="CartVO">
 		<result column="id" property="id" />
 		<result column="pno" property="pno" />
-		<result column="quantity" property="quantity" />
+		<result column="b_quantity" property="b_quantity" />
 		<result column="add_date" property="add_date" />
 		<collection property="bvo" resultMap="BoardVO" />
 		<collection property="ivo" resultMap="ImageVO" />
@@ -49,13 +50,13 @@
 	
 	<select id="orderReadyList" resultMap="CartVO">
 		select
-			id,cart.pno,price,pname,fullPath,quantity
+			id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity
 		from
 			cart
 		join
 			(
 				select
-					product.pno,price,pname,fullPath
+					product.pno,price,pname,fullPath,quantity
 				from
 					product
 				join
@@ -84,7 +85,7 @@
 		</select>
 		
 		<update id="orderAfter">
-			UPDATE product SET quantity=quantity - #{quantity}, s_quantity = s_quantity + #{quantity} 
+			UPDATE product SET quantity=quantity - #{b_quantity}, s_quantity = s_quantity + #{b_quantity} 
 			WHERE pno=#{pno}
 		</update>
 </mapper>

@@ -63,7 +63,7 @@ $("#pay").on("click", function() {
 						const oData={
 								id:res.id,
 								pno:res.pno,
-								quantity:res.quantity
+								b_quantity:res.b_quantity
 						}
 						$.ajax({
 							type:"post",

@@ -7,7 +7,7 @@ $.getJSON("/ordercheck",{id:id},function(res){
 	res.forEach(function(r){
 		const rData = {
 				pno:r.pno,
-				quantity:r.quantity
+				b_quantity:r.b_quantity
 		}
 		$.ajax({
 			type:"put",

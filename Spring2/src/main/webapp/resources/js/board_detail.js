@@ -35,9 +35,13 @@ const p = parseInt(price.innerText);
 
 plus.addEventListener('click',()=>{
 	let quantity = parseInt(num.value);
-	num.value = quantity+ 1;
-	
-	totalPrice.innerText = priceToString(p * num.value);
+	if(quantity == $("#quantity").val()){  // 수정
+		alert("재고가 부족합니다.");
+	}else{
+		num.value = quantity+ 1;
+		
+		totalPrice.innerText = priceToString(p * num.value);
+	}
 	
 })
 
@@ -113,7 +117,7 @@ $("#add_cart").on("click",function(){
 	const data_ = {
 			pno:$("#pno").val(),
 			id:$("#id").val(),
-			quantity:$("#num").val()
+			b_quantity:$("#num").val()
 	}
 
 	$.getJSON("/cartcheck", data_,function(){

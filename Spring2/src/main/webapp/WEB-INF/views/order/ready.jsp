@@ -48,10 +48,10 @@
 								가격 : <span>${cart.bvo.price}</span>
 							</p>
 							<p>
-								<input type="text" value="${cart.quantity}" size="2" readonly>
+								<input type="text" value="${cart.b_quantity}" size="2" readonly>
 							</p>
 							<p>
-								합계 : <span class="prices">${cart.bvo.price*cart.quantity}</span>
+								합계 : <span class="prices">${cart.bvo.price*cart.b_quantity}</span>
 							</p>
 							<p>
 								<input type="button" value="쿠폰 사용">

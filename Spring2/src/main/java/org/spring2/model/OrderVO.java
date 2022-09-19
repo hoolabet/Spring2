@@ -4,7 +4,7 @@ public class OrderVO {
 	private int ono;
 	private int payno;
 	private int pno;
-	private int quantity;
+	private int b_quantity;
 	private int point;
 	private String id;
 	private String coupon;
@@ -27,11 +27,12 @@ public class OrderVO {
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
-	public int getQuantity() {
-		return quantity;
+	
+	public int getB_quantity() {
+		return b_quantity;
 	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setB_quantity(int b_quantity) {
+		this.b_quantity = b_quantity;
 	}
 	public int getPoint() {
 		return point;
@@ -59,7 +60,7 @@ public class OrderVO {
 	}
 	@Override
 	public String toString() {
-		return "OrderVO [ono=" + ono + ", payno=" + payno + ", pno=" + pno + ", quantity=" + quantity + ", point="
+		return "OrderVO [ono=" + ono + ", payno=" + payno + ", pno=" + pno + ", b_quantity=" + b_quantity + ", point="
 				+ point + ", id=" + id + ", coupon=" + coupon + ", order_date=" + order_date + "]";
 	}
 	

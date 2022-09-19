@@ -8,6 +8,7 @@
 	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
 		<result column="price" property="price" />
 		<result column="pname" property="pname" />
+		<result column="quantity" property="quantity" />
 	</resultMap>
 	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
 		<result column="fullPath" property="fullPath" />
@@ -16,7 +17,7 @@
 	<resultMap type="org.spring2.model.CartVO" id="CartVO">
 		<result column="id" property="id" />
 		<result column="pno" property="pno" />
-		<result column="quantity" property="quantity" />
+		<result column="b_quantity" property="b_quantity" />
 		<result column="add_date" property="add_date" />
 		<collection property="bvo" resultMap="BoardVO" />
 		<collection property="ivo" resultMap="ImageVO" />
@@ -24,13 +25,13 @@
 	
 	<select id="cartList" resultMap="CartVO">
 		select
-			id,cart.pno,price,pname,fullPath,quantity
+			id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity
 		from
 			cart
 		join
 			(
 				select
-					product.pno,price,pname,fullPath
+					product.pno,price,pname,fullPath,quantity
 				from
 					product
 				join
@@ -48,12 +49,12 @@
 	</select>
 
 	<insert id="cartAdd">
-		INSERT INTO cart(id,pno,quantity)
-		VALUES(#{id},#{pno},#{quantity})
+		INSERT INTO cart(id,pno,b_quantity)
+		VALUES(#{id},#{pno},#{b_quantity})
 	</insert>
 
 	<update id="cartUpdate">
-		UPDATE cart SET quantity = quantity + #{quantity}
+		UPDATE cart SET b_quantity = b_quantity + #{b_quantity}
 		WHERE id=#{id} and pno=#{pno}
 	</update>
 	

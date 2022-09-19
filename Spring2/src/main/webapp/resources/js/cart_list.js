@@ -22,11 +22,11 @@ function loadCart() {
 					<p>${r.bvo.pname}</p>
 					<p>
 					<input type="button" value="▼" class="d${i}i" id="d${i}">
-					<input type="text" value="${r.quantity}" size="2" readonly id="d${i}i">
-					<input type="button" value="▲" class="d${i}i" id="${i}i">
+					<input type="text" value="${r.b_quantity}" size="2" readonly id="d${i}i">
+					<input type="button" value="▲" class="d${i}i" id="${i}i" data-quan="${r.bvo.quantity}">
 					<input type="hidden" value="${r.bvo.price}" id="d${i}i_price">
 					</p>
-					<p>가격 : <span class="prices" id="d${i}i_price_quan">${r.bvo.price*r.quantity}</span></p>
+					<p>가격 : <span class="prices" id="d${i}i_price_quan">${r.bvo.price*r.b_quantity}</span></p>
 					<p><input type="button" value="빼기" class="remove_btn" data-pno="${r.pno}"></p>
 					</td>
 					</tr>
@@ -45,9 +45,13 @@ function loadCart() {
 				}
 			})
 			$("input[value='▲']").on("click", function() {
-				$(`#d${$(this).attr("id")}`).val(Number($(`#d${$(this).attr("id")}`).val())+1);
-				$(`#d${$(this).attr("id")}_price_quan`).html($(`#d${$(this).attr("id")}`).val()*$(`#d${$(this).attr("id")}_price`).val());
-				calcProduct();
+				if($(`#d${$(this).attr("id")}`).val() == $(this).data("quan")){
+					alert("재고가 부족합니다.")
+				}else{
+					$(`#d${$(this).attr("id")}`).val(Number($(`#d${$(this).attr("id")}`).val())+1);
+					$(`#d${$(this).attr("id")}_price_quan`).html($(`#d${$(this).attr("id")}`).val()*$(`#d${$(this).attr("id")}_price`).val());
+					calcProduct();
+				}
 			})
 			$(".remove_btn").on("click", function() {
 				if(confirm("장바구니에서 삭제하시겠습니까?")){
@@ -97,7 +101,7 @@ $("#all_btn").on("click", function() {
 			const cData = {
 					id:id,
 					pno:$(`#${i}`).data("pno"),
-					quantity:$(`#d${i}i`).val()
+					b_quantity:$(`#d${i}i`).val()
 			}
 			$.ajax({
 				type:"put",
