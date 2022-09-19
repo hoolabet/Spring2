@@ -9,6 +9,21 @@ public class OrderVO {
 	private String id;
 	private String coupon;
 	private String order_date;
+	private ImageVO ivo;
+	private BoardVO bvo;
+	
+	public ImageVO getIvo() {
+		return ivo;
+	}
+	public void setIvo(ImageVO ivo) {
+		this.ivo = ivo;
+	}
+	public BoardVO getBvo() {
+		return bvo;
+	}
+	public void setBvo(BoardVO bvo) {
+		this.bvo = bvo;
+	}
 	public int getOno() {
 		return ono;
 	}
@@ -61,7 +76,8 @@ public class OrderVO {
 	@Override
 	public String toString() {
 		return "OrderVO [ono=" + ono + ", payno=" + payno + ", pno=" + pno + ", b_quantity=" + b_quantity + ", point="
-				+ point + ", id=" + id + ", coupon=" + coupon + ", order_date=" + order_date + "]";
+				+ point + ", id=" + id + ", coupon=" + coupon + ", order_date=" + order_date + ", ivo=" + ivo + ", bvo="
+				+ bvo + "]";
 	}
 	
 	

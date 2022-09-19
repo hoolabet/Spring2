@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import org.spring2.model.CartVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.MemberVO;
 import org.spring2.model.OrderVO;
+import org.spring2.model.PageVO;
 import org.spring2.model.PaymentVO;
 import org.spring2.service.CartService;
 import org.spring2.service.MemberService;
@@ -90,4 +92,19 @@ public class OrderController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@RequestMapping(value = "/order/research", method = RequestMethod.GET)
+	public void orderResearch(HttpSession session,Model model, CriteriaVO cri) {
+		MemberVO mvo = new MemberVO();
+		mvo = (MemberVO)session.getAttribute("userInfo");
+		cri.setSearch(mvo.getId());
+		cri.setAmount(20);
+		model.addAttribute("payment",os.payResearch(cri));
+		model.addAttribute("paging",new PageVO(cri, os.maxNumSearch(cri)));
+	}
+	
+	@RequestMapping(value = "/order/detail", method = RequestMethod.GET)
+	public void orderDetail(Model model, int payno) {
+		model.addAttribute("detail",os.orderDetail(payno));
+		model.addAttribute("payment",os.payment(payno));
+	}
 }

@@ -3,6 +3,7 @@ package org.spring2.mapper;
 import java.util.ArrayList;
 
 import org.spring2.model.CartVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.OrderVO;
 import org.spring2.model.PaymentVO;
 
@@ -21,5 +22,13 @@ public interface OrderMapper {
 	public ArrayList<OrderVO> orderCheck(OrderVO ovo);
 
 	public int orderAfter(OrderVO ovo);
+
+	public ArrayList<PaymentVO> payResearch(CriteriaVO cri);
+
+	public int maxNumSearch(CriteriaVO cri);
+
+	public ArrayList<OrderVO> orderDetail(int payno);
+
+	public PaymentVO payment(int payno);
 
 }

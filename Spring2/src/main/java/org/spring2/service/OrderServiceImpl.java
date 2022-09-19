@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spring2.mapper.OrderMapper;
 import org.spring2.model.CartVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.OrderVO;
 import org.spring2.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,21 @@ public class OrderServiceImpl implements OrderService{
 	
 	public int orderAfter(OrderVO ovo) {
 		return om.orderAfter(ovo);
+	}
+	
+	public ArrayList<PaymentVO> payResearch(CriteriaVO cri){
+		return om.payResearch(cri);
+	}
+	
+	public int maxNumSearch(CriteriaVO cri) {
+		return om.maxNumSearch(cri);
+	}
+	
+	public ArrayList<OrderVO> orderDetail(int payno){
+		return om.orderDetail(payno);
+	}
+	
+	public PaymentVO payment(int payno) {
+		return om.payment(payno);
 	}
 }

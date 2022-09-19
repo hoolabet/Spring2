@@ -3,33 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.spring2.mapper.OrderMapper">
-	<insert	id="orderPay">
-	<selectKey keyProperty="payno" order="BEFORE" resultType="int">
+	<insert id="orderPay">
+		<selectKey keyProperty="payno" order="BEFORE"
+			resultType="int">
 			select
 			ifnull (max(payno)+1 , 1)
 			from payment
-	</selectKey>
+		</selectKey>
 		INSERT INTO payment (payno,price, name, id, address, phone, dmemo)
 		VALUES (#{payno},#{price},#{name},#{id},#{address},#{phone},#{dmemo})
 	</insert>
 	<insert id="orderAdd">
-	<selectKey keyProperty="payno" order="BEFORE" resultType="int">
+		<selectKey keyProperty="payno" order="BEFORE"
+			resultType="int">
 			select
-				max(payno)
+			max(payno)
 			from payment
-	</selectKey>
+		</selectKey>
 		INSERT INTO orderP (payno,pno,b_quantity,id)
-		VALUES (#{payno},#{pno},#{b_quantity},#{id})
+		VALUES
+		(#{payno},#{pno},#{b_quantity},#{id})
 	</insert>
-	
+
 	<select id="orderList" resultType="org.spring2.model.CartVO">
-		SELECT * FROM cart WHERE id=#{id} and pno=#{pno}
+		SELECT * FROM cart WHERE
+		id=#{id} and pno=#{pno}
 	</select>
-	
+
 	<update id="orderReady">
-		UPDATE cart SET doOrder = true, b_quantity = #{b_quantity} WHERE id=#{id} and pno=#{pno}
+		UPDATE cart SET doOrder = true, b_quantity =
+		#{b_quantity} WHERE id=#{id} and pno=#{pno}
 	</update>
- 
+
 	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
 		<result column="price" property="price" />
 		<result column="pname" property="pname" />
@@ -47,12 +52,106 @@
 		<collection property="bvo" resultMap="BoardVO" />
 		<collection property="ivo" resultMap="ImageVO" />
 	</resultMap>
-	
+
 	<select id="orderReadyList" resultMap="CartVO">
 		select
-			id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity
 		from
-			cart
+		cart
+		join
+		(
+		select
+		product.pno,price,pname,fullPath,quantity
+		from
+		product
+		join
+		p_image
+		on
+		product.pno = p_image.pno
+		) joined
+		on
+		cart.pno = joined.pno
+		where
+		id=#{id} and doOrder=true
+		ORDER BY
+		add_date desc
+		;
+	</select>
+
+	<select id="orderCheck" resultType="org.spring2.model.OrderVO">
+		SELECT
+		*
+		FROM
+		orderP
+		WHERE
+		id=#{id}
+		and
+		payno=(SELECT MAX(payno) FROM payment);
+	</select>
+
+	<update id="orderAfter">
+		UPDATE product SET quantity=quantity - #{b_quantity}, s_quantity =
+		s_quantity + #{b_quantity}
+		WHERE pno=#{pno}
+	</update>
+	
+	<select id="payResearch" resultType="org.spring2.model.PaymentVO">
+		<if test='search != ""'>
+		SELECT
+			*
+		FROM(
+			SELECT 
+				*, 
+				ROW_NUMBER() OVER(ORDER BY payno DESC) as num
+			FROM 
+				payment
+			WHERE
+				id=#{search}
+    		ORDER BY
+				payno DESC
+		) add_pan_payment
+		<![CDATA[
+		WHERE
+			num > (#{pageNum} - 1)*#{amount} and num <= #{pageNum}*#{amount}
+		]]>
+		</if>
+	</select>
+	
+	<select id="maxNumSearch" resultType="int">
+		<if test='search !=""'>
+		SELECT
+			MAX(num)
+		FROM(
+			SELECT 
+				*, 
+				ROW_NUMBER() OVER(ORDER BY payno DESC) as num
+			FROM 
+				payment
+			WHERE
+				id=#{search}
+    		ORDER BY
+				payno DESC
+		) add_pan_payment
+		</if>
+	</select>
+	
+	<resultMap type="org.spring2.model.OrderVO" id="OrderVO">
+		<result column="id" property="id" />
+		<result column="ono" property="ono" />
+		<result column="payno" property="payno" />
+		<result column="pno" property="pno" />
+		<result column="b_quantity" property="b_quantity" />
+		<result column="order_date" property="order_date" />
+		<collection property="bvo" resultMap="BoardVO" />
+		<collection property="ivo" resultMap="ImageVO" />
+	</resultMap>
+	
+	<select id="orderDetail" resultMap="OrderVO">
+		
+		SELECT 
+			orderP.* ,price,pname,fullPath
+		FROM
+			orderP
 		join
 			(
 				select
@@ -65,27 +164,14 @@
 					product.pno = p_image.pno
 			) joined
 		on
-			cart.pno = joined.pno
+			orderP.pno = joined.pno
 		where
-			id=#{id} and doOrder=true
+			payno=#{payno}
 		ORDER BY
-			add_date desc
-		;
-		</select>
-		
-		<select id="orderCheck" resultType="org.spring2.model.OrderVO">
-			SELECT 
-				* 
-			FROM 
-				orderP 
-			WHERE 
-				id=#{id}
-			and
-				payno=(SELECT MAX(payno) FROM payment);
-		</select>
-		
-		<update id="orderAfter">
-			UPDATE product SET quantity=quantity - #{b_quantity}, s_quantity = s_quantity + #{b_quantity} 
-			WHERE pno=#{pno}
-		</update>
+			order_date desc
+	</select>
+	
+	<select id="payment" resultType="org.spring2.model.PaymentVO">
+		SELECT * FROM payment WHERE payno=#{payno}
+	</select>
 </mapper>

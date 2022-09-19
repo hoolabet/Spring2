@@ -23,6 +23,7 @@
 						<ul id="header_user_menu">
 							<li><a href="/cart/list">장바구니</a></li>
 							<li><a href="/member/mypage">마이페이지</a></li>
+							<li><a href="/order/research">주문 내역</a></li>
 							<li><a href="/member/logout">로그아웃</a></li>
 						</ul>
 					</li>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ㅋ</title>
+<title>주문 내역</title>
 <link rel="stylesheet" href="../resources/css/home.css?ver=1">
 </head>
 <body>
@@ -12,12 +12,7 @@
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<input type="hidden" value="${userInfo.id}" id="id">
-			<p>
-				결제가 완료되었습니다.
-			</p>
-			<p>
-				<input type="button" value="주문 내역 조회">
-				<input type="button" value="홈으로">
+			<p id="result">
 			</p>
 		</div>
 		<%@ include file="../footer.jsp"%>
