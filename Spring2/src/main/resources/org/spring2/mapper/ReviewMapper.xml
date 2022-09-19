@@ -39,6 +39,33 @@
   		where pno=#{pno}
   	</select>
   	
+  	<select id="findLike" resultType = "int">
+  	select rno from review_like
+	where rno = #{rno} and id = #{id}
+  	</select>
+  	<insert id="likeAdd">
+  	insert into review_like(id,rno)
+  	values(#{id},#{rno})
+  	</insert>
   	
+  	<delete id="likeRemove">
+  		DELETE FROM	review_like WHERE id=#{id} and rno=#{rno}
+  	</delete>
+  	
+  	<update id="likeUpdate">
+  		UPDATE 
+  			review 
+  		SET 
+  		<choose>
+  			<when test="uuid == 'u'.toString()">
+  			likeNum = likeNum + 1 
+  			</when>
+  			<otherwise>
+  			likeNum = likeNum - 1
+  			</otherwise>
+  		</choose>
+  		WHERE
+  			rno=#{rno}
+  	</update>
   		
 </mapper>

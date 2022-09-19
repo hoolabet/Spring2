@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.spring2.mapper.ReviewMapper;
 import org.spring2.model.BoardVO;
 import org.spring2.model.RICriteriaVO;
+import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,20 @@ public class ReviewServiceImpl implements ReviewService{
 		return rm.pro(cri);
 	}
 	
+	//좋아요 여부 가져오는 구현
+	public int findLike(ReviewLikeVO rvo) {
+		return rm.findLike(rvo);
+	}
+	public int likeAdd(ReviewLikeVO rvo) {
+		return rm.likeAdd(rvo);
+	}
 	
+	public int likeRemove(ReviewLikeVO rvo) {
+		return rm.likeRemove(rvo);
+	}
 	
+	public int likeUpdate(ReviewVO rvo) {
+		return rm.likeUpdate(rvo);
+	}
 	
 }

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import org.spring2.model.BoardVO;
 import org.spring2.model.RICriteriaVO;
+import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
+
 
 public interface ReviewMapper {
 	
@@ -26,6 +28,13 @@ public interface ReviewMapper {
 	// 이미지 업로드 DB설계
 //	public void uploadimg(ReviewVO rvo);
 	
-	
+	// 리뷰 좋아요 여부 DB설계
+	public int findLike(ReviewLikeVO rvo);
+
+	public int likeAdd(ReviewLikeVO rvo);
+
+	public int likeRemove(ReviewLikeVO rvo);
+
+	public int likeUpdate(ReviewVO rvo); 
 	
 }

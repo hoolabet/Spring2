@@ -21,6 +21,7 @@
 					
 				</div>
 				<label>리뷰</label>
+				<input type="hidden" value="${userInfo.id}" id="userId">
 				<div id="pro">
 					<table>
 						<tr>
@@ -46,8 +47,8 @@
 							<tr>
 								<th>리뷰번호</th>
 								<td colspan="3">
-									<input type="hidden" name="pno" value="${list.pno}" id="pno">
-									<input type="hidden" name="rno" value="${list.rno}" id="rno">
+									<input type="hidden" name="pno" value="${list.pno}" id="pno" class="pno">
+									<input type="hidden" name="rno" value="${list.rno}" id="rno" class="rno">
 									<input type="hidden" name="uuid" value="${list.uuid}">
 									<input type="hidden" name="uploadpath" value="${list.uploadpath}">
 									<input type="hidden" name="filename" value="${list.filename}">
@@ -56,7 +57,10 @@
 								</td>
 							</tr>
 							<tr>
-								<th>아이디</th><td>${list.id}</td>
+								<th>아이디</th><td>${list.id}
+								<input type="hidden" value="${list.id}" class="id">
+								
+								</td>
 								<th>등록일</th><td>${list.regdate}</td>
 							</tr>
 								<tr>
@@ -84,6 +88,9 @@
 								<th>내용</th>
 								<td colspan="3">${list.content}</td>
 							</tr>
+							<tr><td colspan="4">
+							<img data-rno="${list.rno}" style ="width:30px" class="btn_like" id="${list.rno}_btn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png">
+							</td></tr>
 						</table>
 					</c:forEach>
 					

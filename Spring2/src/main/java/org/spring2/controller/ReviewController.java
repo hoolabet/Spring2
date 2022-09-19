@@ -13,9 +13,11 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.spring2.model.BoardVO;
+import org.spring2.model.ImageVO;
 import org.spring2.model.MemberVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.RIPageVO;
+import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
 import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,10 +50,10 @@ public class ReviewController {
 	
 	// 리뷰리스트, 페이징
 	@RequestMapping(value = "/board/newreview", method = RequestMethod.GET)
-	public String list(Model model,RICriteriaVO cri) {
+	public String list(Model model,RICriteriaVO cri,ReviewVO rvo) {
 		// 리스트
 		model.addAttribute("list",rs.list(cri));
-		System.out.println("controller"+rs.list(cri));
+		
 		
 		// 전체 평점 건수
 		int total = rs.total(cri);
@@ -59,12 +62,42 @@ public class ReviewController {
 		model.addAttribute("pro",rs.pro(cri));
 		
 		System.out.println("상품정보"+cri);
-		
+		System.out.println(rvo);
 		
 		// 페이징
 		model.addAttribute("paging",new RIPageVO(cri, total));
 		return "/board/newreview";
 	}
+	//좋아요
+	@RequestMapping(value = "/likecheck", method = RequestMethod.GET)
+	public ResponseEntity<Integer> likelist(ReviewLikeVO rvo) {
+		return new ResponseEntity<>(rs.findLike(rvo), HttpStatus.OK);
+	}
+	@RequestMapping(value = "/likeadd", method = RequestMethod.POST)
+	public ResponseEntity<String> likeAdd(@RequestBody ReviewLikeVO rvo) {
+		int result=rs.likeAdd(rvo);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(value = "/likeremove", method = RequestMethod.DELETE)
+	public ResponseEntity<String> likeRemove(@RequestBody ReviewLikeVO rvo) {
+		int result=rs.likeRemove(rvo);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	@RequestMapping(value = "/likeupdate", method = RequestMethod.PUT)
+	public ResponseEntity<String> likeUpdate(@RequestBody ReviewVO rvo) {
+		System.out.println(rvo);
+		int result=rs.likeUpdate(rvo);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
 	// 리뷰 작성(get)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.GET)
 	public void writeGet(Model model,RICriteriaVO cri,HttpSession session) {

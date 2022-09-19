@@ -9,7 +9,7 @@ public class ReviewVO {
 	private String content;	// 내용
 	private float scope;	// 별점
 	private String regdate;	// 등록일
-	
+	private int likeNum;
 	private String uuid; // uuid
 	private String uploadpath; // 파일경로
 	private String filename; // 파일명
@@ -77,10 +77,16 @@ public class ReviewVO {
 	public void setImage(boolean image) {
 		this.image = image;
 	}
+	public int getLikeNum() {
+		return likeNum;
+	}
+	public void setLikeNum(int likeNum) {
+		this.likeNum = likeNum;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVO [rno=" + rno + ", pno=" + pno + ", id=" + id + ", content=" + content + ", scope=" + scope
-				+ ", regdate=" + regdate + ", uuid=" + uuid + ", uploadpath=" + uploadpath + ", filename=" + filename
-				+ ", image=" + image + "]";
+				+ ", regdate=" + regdate + ", likeNum=" + likeNum + ", uuid=" + uuid + ", uploadpath=" + uploadpath
+				+ ", filename=" + filename + ", image=" + image + "]";
 	}
 }
