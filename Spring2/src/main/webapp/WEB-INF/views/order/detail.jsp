@@ -17,7 +17,7 @@
 			<c:forEach items="${detail}" var="detail">
 				<tr>
 					<td><img src="/display?fileName=${detail.ivo.fullPath}" style="width:100px; height:100px;"></td>
-					<td>상품명 : ${detail.bvo.pname}</td>
+					<td><a href="/board/detail?pno=${detail.pno}">상품명 : ${detail.bvo.pname}</a></td>
 					<td>가격 : ${detail.bvo.price}</td>
 					<td>수량 : ${detail.b_quantity}</td>
 					<td>합계 : ${detail.bvo.price*detail.b_quantity}</td>
