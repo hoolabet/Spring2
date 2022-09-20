@@ -10,9 +10,11 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.spring2.model.CouponTargetVO;
 import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 import org.spring2.model.UploadFileVO;
+import org.spring2.service.CouponService;
 import org.spring2.service.MailSendService;
 import org.spring2.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,8 @@ public class MemberController {
 	@Autowired
 	private MailSendService mailService;
 	
+	@Autowired
+	CouponService cs;
 	
 	// 회원가입
 	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
@@ -51,6 +55,9 @@ public class MemberController {
 		try {
 			member.setPhone(member.getPhone().substring(1,member.getPhone().length()));
 			ms.signUp(member);
+			CouponTargetVO ctvo=new CouponTargetVO(member.getId());
+			System.out.println(ctvo);
+			cs.signUpCoupon(ctvo);
 			return "member/login";
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -60,6 +67,8 @@ public class MemberController {
 
 
 	
+
+
 
 	
 
@@ -126,6 +135,15 @@ public class MemberController {
 	public String findIdGet() {
 		return "member/findId";
 	}
+	
+	@RequestMapping(value = "/member/emailchkID/{email}", method = RequestMethod.GET)
+	@ResponseBody
+	public String emailchkID(@PathVariable String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail(email);		
+	}
+	
 	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
 	public String findIdPost(MemberVO member,Model model) {
 		try {
@@ -137,7 +155,7 @@ public class MemberController {
 			}else {
 				System.out.println("번호로 아이디 찾기");
 				System.out.println(ms.find(member));
-				model.addAttribute("id",ms.find(member).getId());
+				model.addAttribute("email",ms.find(member).getEmail());
 				return mailService.findIdEmail(ms.find(member));
 			}
 		}catch (Exception e) {
@@ -445,7 +463,7 @@ public class MemberController {
 	// 전화번호 수정
 	@RequestMapping(value = "/member/modifyPhone", method = RequestMethod.PUT)
 	public ResponseEntity<String> modifyPhone(@RequestBody MemberVO member, HttpSession session) {
-		System.out.println(member);
+		System.out.println("수정 : "+member);
 
 		int result=ms.modifyPhone(member);
 		System.out.println(result);

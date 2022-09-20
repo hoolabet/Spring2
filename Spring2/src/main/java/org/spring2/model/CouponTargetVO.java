@@ -14,10 +14,9 @@ public class CouponTargetVO {
 		this.cpno = 1;
 		this.pno = 0;
 		LocalDateTime ldt = LocalDateTime.now();
-		ldt.plusMonths(3);
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
 		
-		this.exp_date = ldt.format(dtf.BASIC_ISO_DATE);
+		this.exp_date = ldt.plusMonths(3).format(dtf.BASIC_ISO_DATE);
 	}
 	
 	public String getId() {
