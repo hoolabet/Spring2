@@ -108,7 +108,7 @@ var pw = false;
 $("#pwchk").on("blur",function(){
 	const pwval= $("#pwchk").val();
 	
-	const pwpw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/g;
+	const pwpw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[`$@$!%*#?&])[A-Za-z\d`$@$!%*#?&]{8,16}$/g;
 
 	if(pwval==""){
 		$("#pwmsg").text("필수입력정보입니다.").css("color","red");
@@ -117,7 +117,7 @@ $("#pwchk").on("blur",function(){
 		$("#pwmsg").text("");
 		pw = true;
 	}else{
-		$("#pwmsg").text("8~16자 영문 대/소문자 숫자 특수문자를 하나 이상 사용하세요.").css("color","red");
+		$("#pwmsg").text("8~16자 영문 숫자 특수문자를 하나 이상 사용하세요.").css("color","red");
 		pw = false;
 	}
 })

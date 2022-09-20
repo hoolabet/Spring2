@@ -23,11 +23,12 @@
 
 			<h1 id="title">아이디 찾기</h1>
 			<form action="/member/findId" method="post">
-				<div>${id}</div>
-				<div>
-					<input type="radio" name="findId" value="p" checked="checked">전화번호로 찾기
-					<input type="radio" name="findId" value="e">이메일로 찾기
-				</div>
+			
+				<div id="find_result"></div>
+<!-- 				<div> -->
+<!-- 					<input type="radio" name="findId" value="p" checked="checked">전화번호로 찾기 -->
+<!-- 					<input type="radio" name="findId" value="e">이메일로 찾기 -->
+<!-- 				</div> -->
 				<div id="loginTable">
 					<table>
 						<tr>
@@ -37,8 +38,19 @@
 						</tr>
 						<tr>
 							<td>
-							<input type="text" class="findIdInput" id="findIdEP">
+							<input type="text" name="email" class="findIdInput" id="findIdEmail" placeholder="이메일">
 							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="submit" value="인증번호 받기" id="email_btn">
+								<div class="mail-check-box">
+									<input class="form-control mail-check-input"
+										placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled"
+										maxlength="6">
+										<p class="signmsg" id="find_id_msg"></p>
+								</div>
+							</td>s
 						</tr>
 						<tr>
 							<td><input type="submit" value="아이디 찾기" id="findIdsub"></td>

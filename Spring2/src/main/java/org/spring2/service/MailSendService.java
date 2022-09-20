@@ -7,6 +7,8 @@ import javax.mail.internet.MimeMessage;
 
 import org.spring2.model.MemberVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -60,17 +62,18 @@ public class MailSendService {
 	
 	
 	// 아이디 찾기 이메일 보낼 양식!
-	public String findIdEmail(MemberVO member) {
-		System.out.println("MailSendService의 이메일="+member.getEmail());
-		System.out.println("MailSendService의 아이디="+member.getId());
+	public ResponseEntity<String> findIdEmail(MemberVO member) {
+		makeRandomNumber();
+		System.out.println("이메일 찾기 MailSendService의 이메일="+member.getEmail());
+		
 		
 		String setFrom = "dkfkdkfk387@gmail.com"; // email-config에 설정한 자신의 이메일 주소를 입력
 		String toMail = member.getEmail();
 		String title = "아이디찾기 이메일 입니다."; // 이메일 제목
-		String content = "홈페이지를 방문해주셔서 감사합니다." + // html 형식으로 작성 !
-				"<br><br>" + "아이디는 " + member.getId() + "입니다."; // 이메일 내용 삽입
+		String content ="홈페이지를 방문해주셔서 감사합니다." + // html 형식으로 작성 !
+				"<br><br>" + "인증 번호는 " + authNumber + "입니다." + "<br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요."; // 이메일 내용 삽입
 		idEmailSend(setFrom, toMail, title, content);
-		return Integer.toString(authNumber);
+		return new ResponseEntity<>(Integer.toString(authNumber), HttpStatus.OK);
 	}
 
 	// 이메일 전송 메소드
