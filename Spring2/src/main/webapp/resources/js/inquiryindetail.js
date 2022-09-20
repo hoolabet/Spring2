@@ -49,7 +49,6 @@ $(document).ready(function(){
 					if(i==4){
 						break;
 					}
-					str+=`<input type="button" name="abtn" value="답변하기">`
 				}
 				
 				str+="</div>";

@@ -16,7 +16,6 @@
 		<div id="container">
 			<!-- 문의 시작 -->
 			<div id="inquiry">
-				<label>문의</label>
 				<div id="list">
 					<h3>문의 목록</h3>
 					<div id="pro">
@@ -29,28 +28,39 @@
 							</tr>
 						</table>
 						<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
+						<input type="hidden" value="${userInfo.id}" name="userInfo">
 					</div>
 					<!-- 문의사항 목록 -->
 					<div id="list">
-					<c:forEach items="${list}" var="list">
-					<input type="text" name="pno" value="${list.pno}" id="pno">
-						<table>
-							<tr>
-								<th>아이디</th><td>${list.id}</td>
-								<th>등록일</th><td>${list.regdate}</td>
-							</tr>
-							<tr id="question">
-								<th>질문</th>
-								<td colspan="3">${list.question}</td>
-							</tr>
-							<c:if test="${not empty list.answer}">
-								<tr id="answer">
-									<th>답변</th>
-									<td colspan="3">${list.answer}</td>
+					<form>
+						<c:forEach items="${list}" var="list">
+						<input type="hidden" name="pno" value="${list.pno}" id="pno">
+						<input type="hidden" name="id" value="${list.id}" id="id">
+						<input type="hidden" name="answer" value="${list.answer}" id="answer">
+						<input type="hidden" name="ino" value="${list.ino}" class="ino">
+							<table>
+								<tr>
+									<th>아이디</th><td>${list.id}</td>
+									<th>등록일</th><td>${list.regdate}</td>
 								</tr>
-							</c:if>
-						</table>
-					</c:forEach> 
+								<tr id="question">
+									<th>질문</th>
+									<td colspan="3">${list.question}</td>
+								</tr>
+								<!-- 답변이 있는 경우 -->
+								<c:if test="${not empty list.answer}">
+									<tr id="answer">
+										<th>답변</th>
+										<td colspan="3">${list.answer}</td>
+									</tr>
+								</c:if>
+								</table>
+								<div id="ibtn">
+									<input type="button" value="삭제" class="idelete">
+									<input type="button" value="답변 / 수정" class="ianswer"> 
+								</div>
+						</c:forEach>
+					</form> 
 					</div>
 					
 					<div id="paging">

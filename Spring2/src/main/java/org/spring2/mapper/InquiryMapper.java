@@ -20,5 +20,9 @@ public interface InquiryMapper {
 	// 문의 작성 DB설계
 	public int write(InquiryVO ivo);
 	
+	// 문의 디테일 DB설계
+	public InquiryVO detail(InquiryVO ivo);
 	
+	// 문의 답변 DB설계
+	public int answer(InquiryVO ivo);
 }

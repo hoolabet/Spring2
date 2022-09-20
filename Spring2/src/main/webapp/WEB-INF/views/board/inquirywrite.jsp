@@ -15,7 +15,7 @@
 		<div id="container">
 			<div id="write">
 				<h3>문의 작성</h3>
-				<form method="post" action="/board/inquirywrite">
+				<form>
 					<input type="text" name="id" value="${userinfo.id}">
 					<table>
 						<tr>
@@ -26,7 +26,7 @@
 						</tr>
 						<tr>
 							<th>문의사항</th>
-							<td colspan="3"><textarea name="question"></textarea></td>
+							<td colspan="3"><textarea  name="question"></textarea></td>
 						</tr>
 					</table>
 					<input type="button" value="작성" id="wbtn">

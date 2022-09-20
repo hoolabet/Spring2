@@ -2,20 +2,17 @@
 #inquiry{
 	height: 100%;
 	width: 80%;	
-	outline: 1px solid black;
 	margin: 0 auto;
 }
-#list, #write{
+#list, #write, #paging{
 	height: 100%;
-	width:80%;
+	width:100%;
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
-	outline:1px solid black;
-	background-color: white;
 }
 
-#list>table, #write>form>table{
+#list>form>table, #write>form>table, #modify>table, #pro>table{
 	width: 80%;
 	margin: 0 auto;
 	margin-top: 10px;
@@ -27,12 +24,28 @@ table,tr,td,th{
   	border-collapse : collapse;
   	word-break: break-all;
 }
+tr{
+	height: 40px;
+}
 th{
 	width: 20%;
 }
+#pro>a{
+	color:#0000a0;
+	font-weight: bold;
+	margin-left: 70%;
+}
+
 
 #answer{
 	background-color: #e7f5fe;
+}
+.ianswer, .idelete{
+	width: 100px;
+	height: 5px;
+	text-align:center;
+	padding-top: 3px;
+	padding-bottom: 20px;
 }
 h3, #paging{
 	margin-top: 10px;

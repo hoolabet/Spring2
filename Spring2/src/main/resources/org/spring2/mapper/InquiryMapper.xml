@@ -27,10 +27,23 @@
 	
 	<select id="total" resultType="int">
   		select count(*) from inquiry
+  		where pno=#{pno}
   	</select>
 	
 	<insert id="write">
   		insert into inquiry(pno,id,question)
 		values(#{pno},#{id},#{question})
   	</insert> 
+  	
+  	<select id="detail" resultType="org.spring2.model.InquiryVO">
+  		select * from inquiry
+		where ino=#{ino}
+  	</select>
+  	
+  	<insert id="answer">
+  		update inquiry
+		set answer = #{answer}
+		where ino=#{ino}
+  	</insert>
+  	
 </mapper>

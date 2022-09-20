@@ -18,4 +18,10 @@ public interface InquiryService {
 	
 	// 문의 작성 설계
 	public int write(InquiryVO ivo);
+	
+	// 문의 디테일 설계
+	public InquiryVO detail(InquiryVO ivo);
+	
+	// 문의 답변 설계
+	public int answer(InquiryVO ivo);
 }

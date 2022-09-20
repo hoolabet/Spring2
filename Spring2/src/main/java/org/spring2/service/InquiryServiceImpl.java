@@ -17,13 +17,11 @@ public class InquiryServiceImpl implements InquiryService {
 	
 	// 문의 리스트 in 디테일 구현
 	public ArrayList<InquiryVO> Ilist(int pno){
-		System.out.println("Ilist service="+pno);
 		return im.Ilist(pno);
 	}
 	
 	// 문의 리스트 구현
 	public ArrayList<InquiryVO> list(RICriteriaVO cri) {
-		// System.out.println("문의service="+cri);
 		return im.list(cri);
 	}
 	// 문의 전체건수 구현
@@ -32,7 +30,18 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 	// 리뷰 작성 구현
 	public int write(InquiryVO ivo) {
-		System.out.println("문의서비스 impl" + ivo);
 		return im.write(ivo);
+	}
+	
+	// 문의 디테일 구현
+	public InquiryVO detail(InquiryVO ivo){
+		return im.detail(ivo);
+	}
+	
+	// 문의 답변 구현
+	public int answer(InquiryVO ivo) {
+		System.out.println("answer service impl");
+		return im.answer(ivo);
+		
 	}
 }
