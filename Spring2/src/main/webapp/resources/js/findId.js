@@ -26,4 +26,6 @@ function findId(){
 	  
 }
 	
+$("#findIdsub").on("click",function(){
 	
+})

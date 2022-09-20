@@ -36,9 +36,13 @@ $("#idchk").on("blur",function(){
 		$("#idmsg").text("");
 		idd = true;
 	}else{ 
-		$("#idmsg").text("5~20의 소문자 숫자 특수기호 (-)(_)만 사용하여 입력하세요.");
+		$("#idmsg").text("5~20의 소문자나 숫자 또는 특수기호 (-)(_)만 사용하여 입력하세요.");
 		$("#idmsg").css("color","red");
 		idd = false;
+	}
+	if(!id){
+		$("#idmsg").text("아이디 중복체크 하세요.");
+		$("#idmsg").css("color","red");
 	}
 
 })
@@ -102,15 +106,18 @@ function idcheck(idc){
 
 var pw = false;
 $("#pwchk").on("blur",function(){
-	const pwpw = /^[a-zA-Z0-9~!@#$%^&*?-_]{8,16}$/g;
-	if($("#pwchk").val()==""){
+	const pwval= $("#pwchk").val();
+	
+	const pwpw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/g;
+
+	if(pwval==""){
 		$("#pwmsg").text("필수입력정보입니다.").css("color","red");
 		pw = false;
-	}else if(pwpw.test($("#pwchk").val())){
+	}else if(pwpw.test(pwval)){
 		$("#pwmsg").text("");
 		pw = true;
 	}else{
-		$("#pwmsg").text("8~16자 영문 대소문자 숫자 특수문자 사용하세요.").css("color","red");
+		$("#pwmsg").text("8~16자 영문 대/소문자 숫자 특수문자를 하나 이상 사용하세요.").css("color","red");
 		pw = false;
 	}
 })
@@ -233,6 +240,7 @@ $("#email").on("blur",function(){
 })
 
 $("#email_btn").on("click",function(e){
+	
 	e.preventDefault();
 	
 	if($("#direct").val()==""){
@@ -250,30 +258,52 @@ $("#email_btn").on("click",function(e){
 	}
 })
 
-function emcheck(emc){
-	console.log(emc);
+const checkInput = $('.mail-check-input') // 인증번호 입력하는곳 
+function emcheck(email){
+	console.log(email);
 	$.ajax({
-		type: "get",
-		url: "/member/signup/"+emc,
-		data: emc,
-		contentType: "application/json; charset=utf-8"
+		type : 'get',
+		url: "/member/emailchk/"+email,
+		data:email,
+		contentType: "application/json; charset=utf-8",
+		success : function (data) {
+			console.log("data : " +  data);
+			checkInput.attr('disabled',false);
+			code =data;
+			alert('인증번호가 전송되었습니다.')
+		}
 	})
-	.done(function(r){
-		alert("중복된 이메일 입니다.");
-		$("#email_msg").text("중복된 이메일 입니다.");
-		$("#email_msg").css("color","red");
-		em = false;
-	})
+//	.done(function(r){
+//		alert("중복된 이메일 입니다.");
+//		$("#email_msg").text("중복된 이메일 입니다.");
+//		$("#email_msg").css("color","red");
+//		em = false;
+//	})
 	.fail(function(){
-		alert("사용가능한 이메일 입니다.");
-		$("#email_msg").text("사용가능한 이메일 입니다.");
+		alert("실패.");
+		$("#email_msg").text("실패");
 		$("#email_msg").css("color","green");
-		em = true;
+		em = false;
 	})
 }
 
 $("#email_address")
-
+	// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	$('.mail-check-input').blur(function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $('#email_msg');
+		
+		if(inputCode === code){
+			$resultMsg.html('인증번호가 일치합니다.');
+			$resultMsg.css('color','green');
+			em = true;
+		}else{
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+			$resultMsg.css('color','red');
+			em = false;
+		}
+	});
 
 
 
@@ -318,6 +348,9 @@ $("#pchk").on("blur",function(){
 	}else{
 		$("#pmsg").text("전화번호를 다시 확인해 주세요.").css("color","red");
 		phh = false;
+	}
+	if(!ph){
+		$("#pmsg").text("전화번호 중복체크하세요.").css("color","red");
 	}
 })
 

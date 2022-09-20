@@ -46,18 +46,20 @@
 					</tr>
 					<tr>
 						<td class="signtable">이메일</td>
-						<td class="tableInput">
-							<input type="hidden" name="email">
-							<input type="text" id="email">@
-							<input type="text" id="direct">
-							<select id="email_address">
+						<td class="tableInput"><input type="hidden" name="email">
+							<input type="text" id="email">@ <input type="text" id="direct"> 
+						<select id="email_address">
 								<option id="user_email" value="@user">직접입력</option>
 								<option class="NG_email" value="@gmail.com">gmail.com</option>
 								<option class="NG_email" value="@naver.com">naver.com</option>
-							</select>
-							<input type="submit" value="이메일 인증" id="email_btn">
-							<p class="signmsg" id="email_msg"></p>
-						</td>
+						</select> <input type="submit" value="이메일 본인확인" id="email_btn">
+							<div class="mail-check-box">
+								<input class="form-control mail-check-input"
+									placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled"
+									maxlength="6">
+							</div>
+							<p class="signmsg" id="email_msg"></p></td>
+
 					</tr>
 					<tr>
 						<td class="signtable">성별</td>

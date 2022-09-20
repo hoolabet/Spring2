@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 import org.spring2.model.UploadFileVO;
+import org.spring2.service.MailSendService;
 import org.spring2.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnailator;
@@ -33,6 +35,10 @@ import net.coobird.thumbnailator.Thumbnailator;
 public class MemberController {
 	@Autowired
 	MemberService ms;
+
+	@Autowired
+	private MailSendService mailService;
+	
 	
 	// 회원가입
 	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
@@ -53,6 +59,21 @@ public class MemberController {
 	}
 
 
+	
+
+	
+
+	
+	//이메일 인증
+	@RequestMapping(value = "/member/emailchk/{email}", method = RequestMethod.GET)
+	@ResponseBody
+	public String mailCheck(@PathVariable String email) {
+		System.out.println("이메일 인증 요청이 들어옴!");
+		System.out.println("이메일 인증 이메일 : " + email);
+		return mailService.joinEmail(email);
+		
+			
+	}
 	// 아이디, 이메일, 전화번호 중복체크
 	@RequestMapping(value = "/member/signup/{str}", method = RequestMethod.GET)
 	public ResponseEntity<String> emchk(@PathVariable String str) {
@@ -111,13 +132,13 @@ public class MemberController {
 			if(member.getEmail()!=null) {
 				System.out.println("이메일로 아이디 찾기");
 				System.out.println(ms.find(member));
-				model.addAttribute("id",ms.find(member).getId());
-				return "member/findId";
+				model.addAttribute("email",ms.find(member).getEmail());
+				return mailService.findIdEmail(ms.find(member));
 			}else {
 				System.out.println("번호로 아이디 찾기");
 				System.out.println(ms.find(member));
 				model.addAttribute("id",ms.find(member).getId());
-				return "member/findId";
+				return mailService.findIdEmail(ms.find(member));
 			}
 		}catch (Exception e) {
 			e.printStackTrace();

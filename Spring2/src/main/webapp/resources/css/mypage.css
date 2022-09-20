@@ -1,49 +1,63 @@
 @charset "UTF-8";
 
 
-
-
-#mypage_user{
+#mypage_user_list{
 	position:relative;
-	height:120px;
-	width:300px;
+	width:600px;
 	margin-left:auto;
 	margin-right:auto;
 	top:5%;
+}
+
+#mypage_user{
+	position:relative;
+	height:250px;
+	width:600px;
+	border-radius:30px;
+	margin-left:auto;
+	margin-right:auto;
+	top:5%;
+	background-color:#eeeeee;
 	
 }
 
-#mypage_list{
-	position:relative;
-	height:120px;
-	width:300px;
-	margin-left:auto;
-	margin-right:auto;
-	top:15%;
-}
+
 
 #user_img{
-	border-radius:60px;
-	width:120px;
-	height:120px;
+	border-radius:75px;
+	top:50px;
+	left:50px;
+	width:150px;
+	height:150px;
 	background-size:cover;
 	position:absolute;
+	
 }
 
-
+#modi_user_div{
+	position:absolute;
+	width:300px;
+	height:150px;
+	left:250px;
+	top:50px;
+}
 
 #user_name{
 	position:absolute;
-	width:150px;
+	width:300px;
 	height:50px;
-	left:150px;
 	cursor:pointer;
 }
 
 #user_name > p{
 	font-size:25px;
 	text-align:left;
-	margin:10px 0px;
+	width:300px;
+	margin:0px;
+}
+
+#user_name > p > a:hover{
+	color:gray;
 }
 
 #modi_icon{
@@ -53,8 +67,51 @@
 }
 
 
+#mypage_list{
+	position:absolute;
+	width:600px;
+	margin-top:50px;
+}
+
+#user_reserves{
+	position:absolute;
+	width:140px;
+	top:50px;
+	text-align:left;
+}
+
+#user_bar{
+	position:absolute;
+	width:2px;
+	height:38px;
+	background-color:gray;
+	top:60px;
+	left:140px;
+}
+
+#user_coupon{
+	position:absolute;
+	width:148px;
+	top:50px;
+	left:152px;
+	text-align:left;
+}
+
+#user_coupon > p > a:hover{
+	color:gray;
+}
+
+#logout_link{
+	position:absolute;
+	right:0px;
+	bottom:0px;
+}
+
+#logout_link > a{
+	color:gray;
+}
 
 
-
-
-
+#logout_link > a:hover{
+	text-decoration: underline;	
+}

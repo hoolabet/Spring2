@@ -17,20 +17,15 @@
 
 
 			<h1>마이페이지</h1>
-			<input type="text" value="${userInfo.id}" id="user_id">
-			<div id="mypage_user">
-				<div id="user_img"
-					style="background-image:url('${userInfo.userImg}')"></div>
-				<div id="modi_user_div">
-					<div id="user_name">
-						<p>${userInfo.name}<span id="modi_icon"> > </span></p>
-					</div>			
-				</div>
-			</div>
-			<div id="mypage_list">
-			<div id="mypage_login_list"></div>
-			<a href="">배송조회</a>
-			</div>
+			<input type="hidden" value="${userInfo.id}" id="user_id">
+			<input type="hidden" value="${userInfo.userImg}" id="user_img_input">
+			<input type="hidden" value="${userInfo.name}" id="user_name_input">
+			
+			
+			
+			<div id="mypage_user_list"></div>
+			
+			
 
 
 
