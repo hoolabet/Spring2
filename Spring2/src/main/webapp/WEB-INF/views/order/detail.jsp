@@ -20,7 +20,26 @@
 					<td><a href="/board/detail?pno=${detail.pno}">상품명 : ${detail.bvo.pname}</a></td>
 					<td>가격 : ${detail.bvo.price}</td>
 					<td>수량 : ${detail.b_quantity}</td>
-					<td>합계 : ${detail.bvo.price*detail.b_quantity}</td>
+					<td>
+					쿠폰 : 
+					<c:choose>
+					<c:when test="${detail.cpno ne 0}">
+					${detail.cpvo.cpname}
+					</c:when>
+					<c:otherwise>
+					없음
+					</c:otherwise>
+					</c:choose>
+					</td>
+					<td>
+						합계 : <span id="${detail.pno}_p">${detail.bvo.price*detail.b_quantity}</span>
+						<input type="hidden" value="${detail.bvo.price*detail.b_quantity}" id="${detail.pno}_bp">
+						<c:if test="${detail.cpno ne 0}">
+						<input type="hidden" value="${detail.cpvo.cpvalue}" id="${detail.pno}_cpvalue">
+						<input type="hidden" value="${detail.cpvo.cpmax}" id="${detail.pno}_cpmax">
+						<input type="hidden" value="${detail.pno}" class="pno">
+						</c:if>
+					</td>
 					<td>주문 일자 : ${detail.order_date}</td>
 				</tr>
 			</c:forEach>

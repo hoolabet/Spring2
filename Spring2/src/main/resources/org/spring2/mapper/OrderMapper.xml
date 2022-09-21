@@ -3,6 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.spring2.mapper.OrderMapper">
+	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
+		<result column="price" property="price" />
+		<result column="pname" property="pname" />
+		<result column="quantity" property="quantity" />
+	</resultMap>
+	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
+		<result column="fullPath" property="fullPath" />
+	</resultMap>
+
+	<resultMap type="org.spring2.model.CartVO" id="CartVO">
+		<result column="id" property="id" />
+		<result column="pno" property="pno" />
+		<result column="b_quantity" property="b_quantity" />
+		<result column="add_date" property="add_date" />
+		<result column="cpno" property="cpno" />
+		<collection property="bvo" resultMap="BoardVO" />
+		<collection property="ivo" resultMap="ImageVO" />
+	</resultMap>
+
 	<insert id="orderPay">
 		<selectKey keyProperty="payno" order="BEFORE"
 			resultType="int">
@@ -20,14 +39,32 @@
 			max(payno)
 			from payment
 		</selectKey>
-		INSERT INTO orderP (payno,pno,b_quantity,id)
+		INSERT INTO orderP (payno,pno,b_quantity,id,cpno)
 		VALUES
-		(#{payno},#{pno},#{b_quantity},#{id})
+		(#{payno},#{pno},#{b_quantity},#{id},#{cpno})
 	</insert>
-
-	<select id="orderList" resultType="org.spring2.model.CartVO">
-		SELECT * FROM cart WHERE
-		id=#{id} and pno=#{pno}
+	<!-- <select id="orderList" resultType="org.spring2.model.CartVO"> SELECT 
+		* FROM cart WHERE id=#{id} and pno=#{pno} </select> -->
+	<select id="orderList" resultMap="CartVO">
+		select
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno
+		from
+		cart
+		join
+		(
+		select
+		product.pno,price,pname,fullPath,quantity
+		from
+		product
+		join
+		p_image
+		on
+		product.pno = p_image.pno
+		) joined
+		on
+		cart.pno = joined.pno
+		where
+		id=#{id} and doOrder=true and cart.pno=#{pno}
 	</select>
 
 	<update id="orderReady">
@@ -35,27 +72,9 @@
 		#{b_quantity} WHERE id=#{id} and pno=#{pno}
 	</update>
 
-	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
-		<result column="price" property="price" />
-		<result column="pname" property="pname" />
-		<result column="quantity" property="quantity" />
-	</resultMap>
-	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
-		<result column="fullPath" property="fullPath" />
-	</resultMap>
-
-	<resultMap type="org.spring2.model.CartVO" id="CartVO">
-		<result column="id" property="id" />
-		<result column="pno" property="pno" />
-		<result column="b_quantity" property="b_quantity" />
-		<result column="add_date" property="add_date" />
-		<collection property="bvo" resultMap="BoardVO" />
-		<collection property="ivo" resultMap="ImageVO" />
-	</resultMap>
-
 	<select id="orderReadyList" resultMap="CartVO">
 		select
-		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno
 		from
 		cart
 		join
@@ -90,88 +109,110 @@
 	</select>
 
 	<update id="orderAfter">
-		UPDATE product SET quantity=quantity - #{b_quantity}, s_quantity =
+		UPDATE product SET quantity=quantity - #{b_quantity},
+		s_quantity =
 		s_quantity + #{b_quantity}
 		WHERE pno=#{pno}
 	</update>
-	
-	<select id="payResearch" resultType="org.spring2.model.PaymentVO">
+
+	<select id="payResearch"
+		resultType="org.spring2.model.PaymentVO">
 		<if test='search != ""'>
-		SELECT
+			SELECT
 			*
-		FROM(
-			SELECT 
-				*, 
-				ROW_NUMBER() OVER(ORDER BY payno DESC) as num
-			FROM 
-				payment
+			FROM(
+			SELECT
+			*,
+			ROW_NUMBER() OVER(ORDER BY payno DESC) as num
+			FROM
+			payment
 			WHERE
-				id=#{search}
-    		ORDER BY
-				payno DESC
-		) add_pan_payment
+			id=#{search}
+			ORDER BY
+			payno DESC
+			) add_pan_payment
 		<![CDATA[
 		WHERE
 			num > (#{pageNum} - 1)*#{amount} and num <= #{pageNum}*#{amount}
 		]]>
 		</if>
 	</select>
-	
+
 	<select id="maxNumSearch" resultType="int">
 		<if test='search !=""'>
-		SELECT
+			SELECT
 			MAX(num)
-		FROM(
-			SELECT 
-				*, 
-				ROW_NUMBER() OVER(ORDER BY payno DESC) as num
-			FROM 
-				payment
+			FROM(
+			SELECT
+			*,
+			ROW_NUMBER() OVER(ORDER BY payno DESC) as num
+			FROM
+			payment
 			WHERE
-				id=#{search}
-    		ORDER BY
-				payno DESC
-		) add_pan_payment
+			id=#{search}
+			ORDER BY
+			payno DESC
+			) add_pan_payment
 		</if>
 	</select>
-	
+	<resultMap type="org.spring2.model.CouponVO" id="CouponVO">
+		<result column="cptype" property="cptype" />
+		<result column="cpname" property="cpname" />
+		<result column="cpmax" property="cpmax" />
+		<result column="cpreq" property="cpreq" />
+		<result column="cpvalue" property="cpvalue" />
+	</resultMap>
 	<resultMap type="org.spring2.model.OrderVO" id="OrderVO">
 		<result column="id" property="id" />
 		<result column="ono" property="ono" />
 		<result column="payno" property="payno" />
 		<result column="pno" property="pno" />
+		<result column="cpno" property="cpno" />
 		<result column="b_quantity" property="b_quantity" />
 		<result column="order_date" property="order_date" />
 		<collection property="bvo" resultMap="BoardVO" />
 		<collection property="ivo" resultMap="ImageVO" />
+		<collection property="cpvo" resultMap="CouponVO" />
 	</resultMap>
-	
+
 	<select id="orderDetail" resultMap="OrderVO">
-		
-		SELECT 
-			orderP.* ,price,pname,fullPath
+
+		SELECT
+			joined2.* 
+			, coupon.*
 		FROM
-			orderP
-		join
 			(
-				select
-					product.pno,price,pname,fullPath,quantity
-				from
-					product
+				SELECT orderP.* ,price,pname,fullPath
+				FROM
+					orderP
 				join
-					p_image
+					(
+						select
+							product.pno,price,pname,fullPath,quantity
+						from
+							product
+						join
+							p_image
+						on
+							product.pno = p_image.pno
+					) joined
 				on
-					product.pno = p_image.pno
-			) joined
+					orderP.pno = joined.pno
+			) joined2
+		join
+			coupon
 		on
-			orderP.pno = joined.pno
+			joined2.cpno = coupon.cpno
 		where
 			payno=#{payno}
 		ORDER BY
-			order_date desc
+		order_date desc
+
+		;
 	</select>
-	
+
 	<select id="payment" resultType="org.spring2.model.PaymentVO">
-		SELECT * FROM payment WHERE payno=#{payno}
+		SELECT * FROM payment WHERE
+		payno=#{payno}
 	</select>
 </mapper>

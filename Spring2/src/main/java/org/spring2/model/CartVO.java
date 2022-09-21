@@ -6,6 +6,7 @@ public class CartVO {
 	private int b_quantity;
 	private String add_date;
 	private boolean doOrder;
+	private int cpno;
 //	private String pname;
 //	private String price;
 //	private String fullPath;
@@ -33,6 +34,12 @@ public class CartVO {
 	
 	public String getId() {
 		return id;
+	}
+	public int getCpno() {
+		return cpno;
+	}
+	public void setCpno(int cpno) {
+		this.cpno = cpno;
 	}
 	public boolean isDoOrder() {
 		return doOrder;
@@ -77,7 +84,7 @@ public class CartVO {
 	@Override
 	public String toString() {
 		return "CartVO [id=" + id + ", pno=" + pno + ", b_quantity=" + b_quantity + ", add_date=" + add_date
-				+ ", doOrder=" + doOrder + ", ivo=" + ivo + ", bvo=" + bvo + "]";
+				+ ", doOrder=" + doOrder + ", cpno=" + cpno + ", ivo=" + ivo + ", bvo=" + bvo + "]";
 	}
 	
 	

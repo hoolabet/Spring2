@@ -8,17 +8,27 @@ public class CouponTargetVO {
 	private int cpno;
 	private int pno;
 	private String exp_date;
+	private CouponVO cpvo;
 	
+	public CouponTargetVO() {
+	}
+
 	public CouponTargetVO(String id) {
 		this.id = id;
 		this.cpno = 1;
 		this.pno = 0;
 		LocalDateTime ldt = LocalDateTime.now();
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
 		
-		this.exp_date = ldt.plusMonths(3).format(dtf.BASIC_ISO_DATE);
+		this.exp_date = ldt.plusMonths(3).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 	
+	public CouponVO getCpvo() {
+		return cpvo;
+	}
+	
+	public void setCpvo(CouponVO cpvo) {
+		this.cpvo = cpvo;
+	}
 	public String getId() {
 		return id;
 	}
@@ -45,7 +55,8 @@ public class CouponTargetVO {
 	}
 	@Override
 	public String toString() {
-		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", pno=" + pno + ", exp_date=" + exp_date + "]";
+		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", pno=" + pno + ", exp_date=" + exp_date + ", cpvo="
+				+ cpvo + "]";
 	}
 	
 	

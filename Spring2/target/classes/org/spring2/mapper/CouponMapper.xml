@@ -8,4 +8,71 @@
 		INSERT INTO coupon_target (id,cpno,pno,exp_date)
 		VALUES (#{id},#{cpno},#{pno},#{exp_date})
 	</insert>
+	<resultMap type="org.spring2.model.CouponVO" id="CouponVO">
+		<result column="cptype" property="cptype" />
+		<result column="cpname" property="cpname" />
+		<result column="cpmax" property="cpmax" />
+		<result column="cpreq" property="cpreq" />
+		<result column="cpvalue" property="cpvalue" />
+	</resultMap>
+	<resultMap type="org.spring2.model.CouponTargetVO"
+		id="CouponTargetVO">
+		<result column="id" property="id" />
+		<result column="cpno" property="cpno" />
+		<result column="pno" property="pno" />
+		<result column="exp_date" property="exp_date" />
+		<collection property="cpvo" resultMap="CouponVO" />
+	</resultMap>
+	<select id="couponGet" resultMap="CouponTargetVO">
+		SELECT 
+			c.*,exp_date
+		FROM
+			coupon_target ct
+		JOIN
+			coupon c
+		ON
+			ct.cpno = c.cpno
+		WHERE
+			(
+			id=#{id}
+		and
+			pno=#{pno}
+			)
+		or
+			(
+			id=#{id}
+		and
+			pno=0
+			)
+		;
+	</select>
+	
+	<select id="couponGetOnce" resultMap="CouponTargetVO">
+		SELECT 
+			c.*,exp_date
+		FROM
+			coupon_target ct
+		JOIN
+			coupon c
+		ON
+			ct.cpno = c.cpno
+		WHERE
+			id=#{id}
+		and
+			ct.cpno=#{cpno}
+		;
+	</select>
+	
+	<update id="applyCoupon">
+		UPDATE cart
+		SET cpno=#{cpno}
+		<if test="pno == -1">
+		,doOrder=false
+		</if>
+		WHERE id=#{id} 
+		<if test="pno != -1">
+		and 		
+			pno=#{pno}
+		</if>
+	</update>
 </mapper>

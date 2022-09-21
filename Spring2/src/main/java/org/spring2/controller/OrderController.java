@@ -67,7 +67,6 @@ public class OrderController {
 	
 	@RequestMapping(value = "/orderlist", method = RequestMethod.GET)
 	public ResponseEntity<CartVO> orderList(CartVO cvo) {
-		System.out.println(cvo);
 		return new ResponseEntity<>(os.orderList(cvo),HttpStatus.OK);
 	}
 	

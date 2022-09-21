@@ -46,15 +46,19 @@
 							<p>${cart.bvo.pname}</p>
 							<p>
 								가격 : <span>${cart.bvo.price}</span>
+								할인된 가격 : <span id="${cart.pno}_p">${cart.bvo.price}</span>
+								<input type="hidden" id="${cart.pno}_ph" value="${cart.bvo.price}">
 							</p>
 							<p>
 								<input type="text" value="${cart.b_quantity}" size="2" readonly>
 							</p>
 							<p>
-								합계 : <span class="prices">${cart.bvo.price*cart.b_quantity}</span>
+								합계 : <span>${cart.bvo.price*cart.b_quantity}</span>
+								할인된 합계 : <span class="prices" id="${cart.pno}_ps">${cart.bvo.price*cart.b_quantity}</span>
+								<input type="hidden" id="${cart.pno}_psh" value="${cart.bvo.price*cart.b_quantity}">
 							</p>
 							<p>
-								<input type="button" value="쿠폰 사용">
+								<input type="button" value="쿠폰 사용" class="use_coupon" data-pno="${cart.pno}" data-cpno="${cart.cpno}">
 							</p>
 						</td>
 					</tr>

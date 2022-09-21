@@ -4,7 +4,6 @@
 const id = $("input[name='id']").val();
 let price = $("input[name='price']").val();
 
-
 let lastPrice = 0;
 sumPrice();
 $(".prices").on("change", function() {
@@ -63,7 +62,8 @@ $("#pay").on("click", function() {
 						const oData={
 								id:res.id,
 								pno:res.pno,
-								b_quantity:res.b_quantity
+								b_quantity:res.b_quantity,
+								cpno:res.cpno
 						}
 						$.ajax({
 							type:"post",
@@ -98,4 +98,58 @@ $("#pay").on("click", function() {
 		})
 	}
 	
+})
+$(".use_coupon").on("click",function(c){
+	const pno = $(this).data("pno");
+	const cpno = $(this).data("cpno");
+	const bPrice = $(`#${pno}_ph`).val();
+	const bPriceS = $(`#${pno}_psh`).val();
+	let cpnoCheck = cpno;
+	console.log(cpno);
+	window.open("/coupon/coupon?pno="+pno,`${id}님의 쿠폰`,"width=900, height=300");
+	const sIv = setInterval(() => {
+		$.getJSON("/orderlist",{id:id,pno:pno}, function(res) {
+			cpnoCheck = res.cpno;
+			if(cpnoCheck != cpno){
+				clearInterval(sIv);
+				cpnoCheck = -1;
+				$(c.target).data("cpno",res.cpno);
+				$.getJSON("/getcoupon",{id:id,pno:pno,cpno:res.cpno},function(resc){
+					if(resc.cpvo.cpvalue < 100 && resc.cpvo.cpvalue > 0){
+						if((bPriceS*resc.cpvo.cpvalue/100) > resc.cpvo.cpmax){
+							$(`#${pno}_ps`).html(bPriceS - resc.cpvo.cpmax);
+						}else{
+							$(`#${pno}_ps`).html(Math.floor(bPriceS*(100-resc.cpvo.cpvalue)/100));
+						}
+					}else if(resc.cpvo.cpvalue > 100){
+						$(`#${pno}_p`).html(bPrice);
+						$(`#${pno}_ps`).html(bPriceS-resc.cpvo.cpvalue);
+					}else{
+						$(`#${pno}_p`).html(bPrice);
+						$(`#${pno}_ps`).html(bPriceS);
+					}
+					sumPrice();
+				})
+			}else{
+				$(`#${pno}_p`).html(bPrice);
+				$(`#${pno}_ps`).html(bPriceS);
+			}
+		})
+	}, 100);
+})
+
+$(window).on("beforeunload",function() {
+	const cData = {
+			cpno:0,
+			pno:-1,
+			id:id
+	}
+	$.ajax({
+		type:"put",
+		url:"/applycoupon",
+		data:JSON.stringify(cData),
+		contentType:"application/json; charset=utf-8",
+		success:function(){
+		}
+	})
 })
