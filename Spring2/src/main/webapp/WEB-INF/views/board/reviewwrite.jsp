@@ -5,9 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" href="../resources/css/review.css"
 	type="text/css">
-<link rel="stylesheet" href="../resources/css/home.css">
+
 </head>
 <body>
 <div id="entry_area">
@@ -19,7 +20,7 @@
 				<h3>리뷰 작성</h3>
 				
 				<form method="post" id="form" action="/board/reviewwrite">
-					<input type="text" value="${userinfo.id}" name="id">
+					<input type="text" value="${userInfo.id}" name="id">
 					<table>
 						<tr>
 							<th>제품번호</th>

@@ -87,6 +87,7 @@
 				<section id="reviewlist">
 				
 				</section>
+				<div id="reviewPaging"></div>
 				<section id="privqna">
 				
 

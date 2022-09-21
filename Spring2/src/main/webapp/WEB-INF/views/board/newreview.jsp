@@ -17,10 +17,11 @@
 		<div id="container">	
 			<!-- 리뷰 시작 -->
 			<div id="review">
-				<div>
-					
-				</div>
+				
 				<label>리뷰</label>
+				<div>
+				<label><a href="/board/detail?pno=${pro.pno}" id="gotoD">상품페이지 이동</a></label>	
+				</div>
 				<input type="hidden" value="${userInfo.id}" id="userId">
 				<div id="pro">
 					<table>
@@ -35,8 +36,8 @@
 				</div>
 				<div id="scopecnt">	</div>
 				<div id="index">
-					<a href="/board/newreview">최신순 /</a>
-					<a href=""> 베스트순</a>
+					<a href="/board/newreview?pno=${pro.pno}&array=recent">최신순 /</a>
+					<a href="/board/newreview?pno=${pro.pno}"> 베스트순</a>
 				</div> 
 				
 				<!-- 리뷰 목록  -->
@@ -53,6 +54,7 @@
 									<input type="hidden" name="uploadpath" value="${list.uploadpath}">
 									<input type="hidden" name="filename" value="${list.filename}">
 									<input type="hidden" name="image" value="${list.image}">
+									<input type="hidden" name="likeNum" value="${list.likeNum}">
 									${list.rno}
 								</td>
 							</tr>
@@ -90,19 +92,26 @@
 							</tr>
 							<tr><td colspan="4">
 							<img data-rno="${list.rno}" style ="width:30px" class="btn_like" id="${list.rno}_btn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png">
-							</td></tr>
+							${list.likeNum}
+							</td>
+							</tr>
+							<c:if test="${userInfo.id eq list.id}">
+							<tr><td colspan="4"><button data-rno="${list.rno}" class="btn_remove" >삭제</button>
+							<button data-rno="${list.rno}" class="btn_modify" >수정</button></td></tr>
+						</c:if>
+						
 						</table>
 					</c:forEach>
 					
 					<div id="paging">
 						<c:if test="${paging.prev}">
-							<a href="/board/newreview?pno=${paging.cri.pno}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
+							<a href="/board/newreview?pno=${paging.cri.search}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-							<a href="/board/newreview?pno=${paging.cri.pno}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
+							<a href="/board/newreview?pno=${paging.cri.search}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
 						</c:forEach>
 						<c:if test="${paging.next}">
-							<a href="/board/newreview?pno=${paging.cri.pno}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
+							<a href="/board/newreview?pno=${paging.cri.search}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
 						</c:if>
 					</div>
 				</div>

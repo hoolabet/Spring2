@@ -9,15 +9,23 @@
 		select @rownum:=@rownum+1 rownum, r.*
 	    from review r,(select @rownum:=0) as tmp
 		where pno=#{pno}
-	    order by rno desc
+	    order by likeNum desc
   	</select>
 	<select id="list" resultType="org.spring2.model.ReviewVO">
 		select *
 		from(
 			select @rownum:=@rownum+1 rownum, r.*
 		    from review r,(select @rownum:=0) as tmp
-			where pno=#{pno}
-		    order by rno desc
+			where pno=${search}
+			<choose>
+			<when test="array =='recent'">
+			order by rno desc
+			</when>
+			<otherwise>
+			order by likeNum desc
+			</otherwise>
+			</choose>
+		    
 		) as reviewlist
 		<![CDATA[
 		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
@@ -26,7 +34,7 @@
   	
   	<select id="total" resultType="int">
   		select count(*) from review
-  		where pno=#{pno}
+  		where pno=${search}
   	</select>
   	
   	<insert id="write">
@@ -36,7 +44,7 @@
   	
   	<select id="pro" resultType="org.spring2.model.BoardVO">
   		select * from product
-  		where pno=#{pno}
+  		where pno=${search}
   	</select>
   	
   	<select id="findLike" resultType = "int">
@@ -67,5 +75,18 @@
   		WHERE
   			rno=#{rno}
   	</update>
-  		
+  	<delete id="remove">
+  	DELETE FROM	review WHERE rno=#{rno}
+  	</delete>
+  	<select id="findReview" resultType="org.spring2.model.ReviewVO">
+  		select *
+  		from review
+  		where pno=#{pno} and rno=#{rno}
+  	</select>	
+  	<update id="modify">
+  		update review
+		set content = #{content}, scope = #{scope}, uuid = #{uuid}, 
+		uploadpath = #{uploadpath}, filename = #{filename} , image = #{image}
+		where pno=#{pno} and rno=#{rno}
+  	</update>
 </mapper>

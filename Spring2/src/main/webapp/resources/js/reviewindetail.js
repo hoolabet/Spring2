@@ -5,17 +5,17 @@ $(document).ready(function(){
 	
 	var pnoVal=$("#pno").val();
 	var idVal=$("#id").val();
-	
+	var page = 1;
 	// 리뷰 리스트 in detail함수 사용
 	list(pnoVal);
 	
-	
+
 	
 	// 리뷰 리스트 in detail 함수 선언
 	function list(pno){
 		
 		var str=""
-		
+		var input=""
 		str+="<div class='title'>리뷰보기</div>";
 		
 		
@@ -68,7 +68,7 @@ $(document).ready(function(){
 				
 				str+="<div id='Rscopecnt'>";
 				str+="<table>";
-					str+="<tr><td rowspan='5' class='RStitle'>평균평점</td>"
+					str+="<tr><th rowspan='5' class='RStitle'>평균평점</th>"
 					str+="<td rowspan='5'>"+avg+"</td>"
 					str+="<td class='RStitle'>5점</td>"
 					str+="<td>"+sc5+"</td></tr>"
@@ -98,7 +98,7 @@ $(document).ready(function(){
 						str+="<td>"+data[i].regdate+"</td></tr>";
 						str+="<tr><th>평점</th>";
 						str+="<td colspan='3'>"+data[i].scope+"</td></tr>";
-						str+="<tr><th>사진</th>";										// 사진 경로 오류
+						str+="<tr><th>사진</th>";										
 						str+="<td colspan='3'><img src='/display?fileName="+filePath+"'></td></tr>";
 						str+="<tr><th>내용</th>";
 						str+="<td colspan='3'>"+data[i].content+"</td></tr>";
@@ -106,7 +106,8 @@ $(document).ready(function(){
 					if(i==4){
 						break;
 					}
-				}
+					
+				}//for문 끝
 				
 				str+="</div>";
 				str+="<div id='Rmore'>";
@@ -114,12 +115,39 @@ $(document).ready(function(){
 				str+="</div>";
 			}
 				$("#reviewlist").html(str);
-			
+				
+				//paging(data);
+				
 		})
 		
 		$("#reviewlist").html(str);
 		
 	} // list 끝
+	
+	
+	function paging(data){
+		const total = data.length;
+		const amount = 5;
+		let pageNum = 1;
+		let endPage = Math.ceil(pageNum/10.0)*10;
+		let startPage = endPage-9;
+		let realEnd = Math.ceil(total/amount);
+		
+		if(realEnd< endPage){
+			endPage = realEnd;
+		}
+		let input = "";
+		for(let j=1; j<=endPage; j++){
+			input += `<a>${j}</a>`;
+			
+		}
+		console.log(input)
+		$("#reviewPaging").html(input);
+	}
+	
+	
+	
+	
 	
 	
 	

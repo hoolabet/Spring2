@@ -96,6 +96,24 @@ $(document).ready(function(){
 		
 		
 	}) // click end
-	
+	$("#wbtn_m").on("click",function(){
+		var idVal=$("input[name=id]").val();
+		var pnoVal=$("input[name=pno]").val();
+		var scopeVal=$("input[type=radio]:checked").val();
+		var contentVal=$("textarea[name=content]").val();
+		
+		if(idVal=="" || scopeVal=="" || contentVal==""){
+			alert("평점과 내용을 입력해 주세요")
+		}else{
+			if(confirm("완료")){
+				$("#form").submit();
+			}else{
+				return false
+			}
+			
+		}
+		
+		
+	}) // click end
 	
 })	// end

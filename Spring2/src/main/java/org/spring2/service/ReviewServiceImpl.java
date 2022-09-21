@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spring2.mapper.ReviewMapper;
 import org.spring2.model.BoardVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
@@ -23,13 +24,13 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	// 리뷰 리스트 구현
-	public ArrayList<ReviewVO> list(RICriteriaVO cri){
+	public ArrayList<ReviewVO> list(CriteriaVO cri){
 		System.out.println("리뷰service="+cri);
 		return rm.list(cri);
 	}
 	
 	// 리뷰 전체건수 구현
-	public int total(RICriteriaVO cri) {
+	public int total(CriteriaVO cri) {
 		return rm.total(cri);
 		
 	}
@@ -40,7 +41,7 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	
 	// 상품점보 가져오는 구현
-	public BoardVO pro(RICriteriaVO cri) {
+	public BoardVO pro(CriteriaVO cri) {
 		return rm.pro(cri);
 	}
 	
@@ -59,5 +60,15 @@ public class ReviewServiceImpl implements ReviewService{
 	public int likeUpdate(ReviewVO rvo) {
 		return rm.likeUpdate(rvo);
 	}
-	
+	//리뷰삭제
+	public int remove(ReviewVO rvo) {
+		return rm.remove(rvo);
+	}
+	//리뷰수정
+	public ReviewVO findReview(ReviewVO rvo) {
+		return rm.findReview(rvo);
+	}
+	public void modify(ReviewVO rvo) {
+		rm.modify(rvo);
+	}
 }

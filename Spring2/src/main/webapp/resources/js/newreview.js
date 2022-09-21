@@ -112,6 +112,7 @@ $(".btn_like").on("click",function(e){
 					contentType : "application/json;charset=utf-8",
 					success: function(){
 						console.log("-");
+						location.href="/board/newreview?pno="+pnoVal
 					}
 				})
 				r();
@@ -134,6 +135,7 @@ $(".btn_like").on("click",function(e){
 						uuid:uuid
 				}
 				console.log(lData);
+				
 				$.ajax({
 					type:"put",
 					url:"/likeupdate",
@@ -141,6 +143,7 @@ $(".btn_like").on("click",function(e){
 					contentType : "application/json;charset=utf-8",
 					success: function(){
 						console.log("+");
+						location.href="/board/newreview?pno="+pnoVal
 					}
 				})
 				r();
@@ -149,5 +152,25 @@ $(".btn_like").on("click",function(e){
 		})
 	})
 })
+//리뷰삭제
+$(".btn_remove").on("click",function(){
+	var rno = $(this).data("rno")
+	var id =  $("#userId").val();
+	var datacheck = {rno:rno, id:id}
+	$.ajax({
+		type:"delete",
+			url:"/board/reviewremove",
+			data : JSON.stringify(datacheck),
+			contentType : "application/json;charset=utf-8",
+			success: function(){
+				alert('삭제되었습니다.')
+				location.href="/board/newreview?pno="+pnoVal
+			}
+	})
+})
 
-
+//리뷰수정
+$(".btn_modify").on("click",function(){
+	var rnoVal = $(this).data("rno")
+	location.href=`/board/reviewmodify?pno=${pnoVal}&rno=${rnoVal}`
+})

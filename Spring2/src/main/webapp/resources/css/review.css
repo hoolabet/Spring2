@@ -7,6 +7,12 @@
 	height: 100%;
 	margin: 0 auto;
 }
+#gotoD{
+	color: #8bace9;
+    font-weight: bold;
+    position: relative;
+    left: 539px;
+}
 #scopecnt, #pro{
 	height: 100%;
 	width: 80%;

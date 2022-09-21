@@ -3,6 +3,7 @@ package org.spring2.mapper;
 import java.util.ArrayList;
 
 import org.spring2.model.BoardVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
@@ -14,16 +15,16 @@ public interface ReviewMapper {
 	public ArrayList<ReviewVO> Rlist(int pno);
 	
 	// 리뷰 리스트 DB설계
-	public ArrayList<ReviewVO> list(RICriteriaVO cri);
+	public ArrayList<ReviewVO> list(CriteriaVO cri);
 	
 	// 리뷰 전체건수 DB설계
-	public int total(RICriteriaVO cri);
+	public int total(CriteriaVO cri);
 	
 	// 리뷰 작성 DB설계
 	public void write(ReviewVO rvo);
 	
 	// 상품정보 가져오는 DB설계
-	public BoardVO pro(RICriteriaVO cri);
+	public BoardVO pro(CriteriaVO cri);
 	
 	// 이미지 업로드 DB설계
 //	public void uploadimg(ReviewVO rvo);
@@ -35,6 +36,13 @@ public interface ReviewMapper {
 
 	public int likeRemove(ReviewLikeVO rvo);
 
-	public int likeUpdate(ReviewVO rvo); 
+	public int likeUpdate(ReviewVO rvo);
 	
+	//리뷰 삭제 DB설계
+	public int remove(ReviewVO rvo); 
+	
+	//리뷰 수정 DB설계
+	public ReviewVO findReview(ReviewVO rvo);
+
+	public void modify(ReviewVO rvo);
 }

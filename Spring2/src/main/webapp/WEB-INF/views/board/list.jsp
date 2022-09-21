@@ -15,7 +15,7 @@
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<div id="container">
-				<c:if test="${caa.cname == null }">
+				<c:if test="${caa.cname eq null }">
 					<h1>모든제품</h1>
 				</c:if>
 				<h1>${caa.cname}</h1>
@@ -25,7 +25,7 @@
 				<div id="p_list">
 					<ul>
 						<c:forEach items="${category}" var="category">
-							<li id="popular"><a
+							<li id="popular" ><a ${category.cno == paging.cri.category_type ? 'style ="color:red" ' :''}
 								href="/board/list?category_area=${paging.cri.category_area}&category_type=${category.cno}">${category.cname}</a></li>
 						</c:forEach>
 					</ul>
