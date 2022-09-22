@@ -15,9 +15,16 @@ if(dc < 100){
 
 $("input[name='sel']").on("click",function(){
 	const cpreq = $(this).data("cpreq");
-	if(cpreq > $("#bPriceS").val()){
-		alert("최소주문금액보다 적어 쿠폰을 사용 하실 수 없습니다.");
+	const apply = $(this).data("apply");
+	console.log($(this).data("apply"));
+	if(apply){
+		alert("이미 다른 상품에 적용된 쿠폰입니다.");
 		return false;
+	}else{
+		if(cpreq > $("#bPriceS").val()){
+			alert("최소주문금액보다 적어 쿠폰을 사용 하실 수 없습니다.");
+			return false;
+		}
 	}
 })
 
@@ -45,7 +52,7 @@ $("#done").on("click", function() {
 			pno:pno,
 			id:id
 	}
-	if(cpno == ""){
+	if(cpno == 0){
 		alert("쿠폰을 선택하세요.");
 	}else{
 		console.log(cData);
@@ -92,5 +99,7 @@ $(".cancel").on("click",function(){
 	}
 })
 
-
+$("#close").on("click",function(){
+	window.close();
+})
 

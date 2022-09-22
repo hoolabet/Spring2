@@ -7,6 +7,7 @@ public class CouponTargetVO {
 	private String id;
 	private int cpno;
 	private int pno;
+	private boolean doApply;
 	private String exp_date;
 	private CouponVO cpvo;
 	
@@ -22,6 +23,17 @@ public class CouponTargetVO {
 		this.exp_date = ldt.plusMonths(3).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 	
+	
+	
+
+	public boolean isDoApply() {
+		return doApply;
+	}
+
+	public void setDoApply(boolean doApply) {
+		this.doApply = doApply;
+	}
+
 	public CouponVO getCpvo() {
 		return cpvo;
 	}
@@ -55,8 +67,8 @@ public class CouponTargetVO {
 	}
 	@Override
 	public String toString() {
-		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", pno=" + pno + ", exp_date=" + exp_date + ", cpvo="
-				+ cpvo + "]";
+		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", pno=" + pno + ", doApply=" + doApply + ", exp_date="
+				+ exp_date + ", cpvo=" + cpvo + "]";
 	}
 	
 	

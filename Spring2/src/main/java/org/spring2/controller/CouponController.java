@@ -40,9 +40,8 @@ public class CouponController {
 	
 	@RequestMapping(value = "/applycoupon", method = RequestMethod.PUT)
 	public ResponseEntity<String> applyCoupon(@RequestBody CartVO cvo) {
-		int result=cs.applyCoupon(cvo);
-
-		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+		int result=cs.applyCoupon(cvo) + cs.applyCoupon2(cvo);
+		return result==2? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
@@ -50,6 +49,13 @@ public class CouponController {
 	public ResponseEntity<CouponTargetVO> orderList(CouponTargetVO cptvo) {
 		System.out.println(cptvo);
 		return new ResponseEntity<>(cs.couponGetOnce(cptvo),HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/removecoupon", method = RequestMethod.DELETE)
+	public ResponseEntity<String> removeCoupon(@RequestBody CouponTargetVO cptvo) {
+		int result=cs.removeCoupon(cptvo);
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 }

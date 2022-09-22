@@ -9,6 +9,8 @@ import org.spring2.model.CouponVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mysql.cj.xdevapi.Result;
+
 @Service
 public class CouponServiceImpl implements CouponService{
 	@Autowired
@@ -28,5 +30,13 @@ public class CouponServiceImpl implements CouponService{
 	
 	public CouponTargetVO couponGetOnce(CouponTargetVO cptvo) {
 		return cm.couponGetOnce(cptvo);
+	}
+	
+	public int applyCoupon2(CartVO cvo) {
+		return cm.applyCoupon2(cvo);
+	}
+	
+	public int removeCoupon(CouponTargetVO cptvo) {
+		return cm.removeCoupon(cptvo);
 	}
 }

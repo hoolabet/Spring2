@@ -32,7 +32,7 @@
 			</td>
 			<td>사용가능기한 : ~${coupon.exp_date}</td>
 			<td>
-				<input type="radio" name="sel" value="${coupon.cpno}" id="r${coupon.cpno}" data-cpmax="${coupon.cpvo.cpmax}" data-cpreq="${coupon.cpvo.cpreq}">
+				<input type="radio" name="sel" value="${coupon.cpno}" id="r${coupon.cpno}" data-cpmax="${coupon.cpvo.cpmax}" data-cpreq="${coupon.cpvo.cpreq}" data-apply="${coupon.doApply}">
 				<input type="button" value="쿠폰적용취소" class="cancel" data-cpno="${coupon.cpno}">
 				<input type="hidden" value="${coupon.cpvo.cpvalue}" id="${coupon.cpno}">
 			</td>
@@ -55,6 +55,7 @@
 		</tr>
 	</table>
 	<button id="done">적용하기</button>
+	<button id="close">취소</button>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/coupon.js?ver=1"></script>

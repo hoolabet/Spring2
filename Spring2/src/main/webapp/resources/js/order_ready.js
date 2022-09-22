@@ -77,6 +77,15 @@ $("#pay").on("click", function() {
 									data:JSON.stringify(oData),
 									contentType:"application/json; charset=utf-8",
 									success:function(){
+										$.ajax({
+											type:"delete",
+											url:"/removecoupon",
+											data:JSON.stringify(oData),
+											contentType:"application/json; charset=utf-8",
+											success:function(){
+												
+											}
+										})
 									}
 								})
 							},

@@ -20,12 +20,13 @@
 		<result column="id" property="id" />
 		<result column="cpno" property="cpno" />
 		<result column="pno" property="pno" />
+		<result column="doApply" property="doApply" />
 		<result column="exp_date" property="exp_date" />
 		<collection property="cpvo" resultMap="CouponVO" />
 	</resultMap>
 	<select id="couponGet" resultMap="CouponTargetVO">
 		SELECT 
-			c.*,exp_date
+			c.*,exp_date,doApply
 		FROM
 			coupon_target ct
 		JOIN
@@ -75,4 +76,35 @@
 			pno=#{pno}
 		</if>
 	</update>
+	
+	<update id="applyCoupon2">
+		UPDATE coupon_target
+		SET
+		<choose>
+		<when test="cpno == 0">
+		doApply=false
+		</when>
+		<otherwise>
+		doApply=true
+		</otherwise>
+		</choose> 
+		WHERE id=#{id}
+		<choose>
+		<when test="pno != -1 and cpno != 1">
+		and 		
+			pno=#{pno}
+		</when>
+		<when test="pno != -1 and cpno == 1">
+		and 		
+			pno=0
+		</when>
+		</choose>
+	</update>
+	
+	<delete id="removeCoupon">
+		DELETE
+		FROM coupon_target
+		WHERE
+		id=#{id} and cpno=#{cpno} and doApply=true
+	</delete>
 </mapper>

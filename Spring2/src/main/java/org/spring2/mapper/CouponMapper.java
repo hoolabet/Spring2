@@ -13,4 +13,8 @@ public interface CouponMapper {
 	public int applyCoupon(CartVO cvo);
 
 	public CouponTargetVO couponGetOnce(CouponTargetVO cptvo);
+
+	public int applyCoupon2(CartVO cvo);
+
+	public int removeCoupon(CouponTargetVO cptvo);
 }
