@@ -32,7 +32,7 @@ $(document).ready(function(){
 				for(var i=0; i<data.length; i++){
 					
 					str+="<table border='1'>";
-						str+="<tr><th>문의번호</th>";
+						str+="<tr class='hidden'><th>문의번호</th>";
 						str+="<td colspan='3'>"+data[i].ino+"</td></tr>";
 						str+="<tr><th>아이디</th>";
 						str+="<td>"+data[i].id+"</td>";
@@ -42,7 +42,7 @@ $(document).ready(function(){
 						str+="<td colspan='3'>"+data[i].question+"</td></tr>";
 						if(data[i].answer==null){
 						}else{
-							str+="<tr><th>답변</th>";
+							str+="<tr id='answer'><th>답변</th>";
 							str+="<td colspan='3'>"+data[i].answer+"</td></tr>";
 						}
 					str+="</table>";

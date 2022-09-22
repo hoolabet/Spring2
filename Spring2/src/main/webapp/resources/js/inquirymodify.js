@@ -25,7 +25,7 @@ $(document).ready(function(){
 			contentType:"application/json; charset=utf-8",
 			success:function(result){
 				if(result=="success"){
-					window.location.href = '/board/inquiry?pno='+pnoVal;
+					window.location = document.referrer;
 				}
 			}
 		})

@@ -3,8 +3,7 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.mapper.InquiryMapper;
-import org.spring2.model.RICriteriaVO;
-import org.spring2.model.ReviewVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.InquiryVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,11 +20,12 @@ public class InquiryServiceImpl implements InquiryService {
 	}
 	
 	// 문의 리스트 구현
-	public ArrayList<InquiryVO> list(RICriteriaVO cri) {
+	public ArrayList<InquiryVO> list(CriteriaVO cri) {
+		System.out.println("문의 service="+cri);
 		return im.list(cri);
 	}
 	// 문의 전체건수 구현
-	public int total(RICriteriaVO cri) {
+	public int total(CriteriaVO cri) {
 		return im.total(cri);
 	}
 	// 리뷰 작성 구현
@@ -40,8 +40,12 @@ public class InquiryServiceImpl implements InquiryService {
 	
 	// 문의 답변 구현
 	public int answer(InquiryVO ivo) {
-		System.out.println("answer service impl");
 		return im.answer(ivo);
-		
+	}
+	
+	// 문의 삭제 구현
+	public int remove(int ino) {
+		System.out.println("remove serviceimpl connection");
+		return im.remove(ino);
 	}
 }

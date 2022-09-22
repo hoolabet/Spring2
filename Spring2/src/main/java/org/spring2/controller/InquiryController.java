@@ -1,13 +1,13 @@
 package org.spring2.controller;
 
-import org.spring2.model.RICriteriaVO;
 
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.InquiryVO;
-import org.spring2.model.RIPageVO;
+import org.spring2.model.PageVO;
 import org.spring2.service.InquiryService;
 import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,18 +38,27 @@ public class InquiryController {
 	
 	// 문의 목록, 페이징
 	@RequestMapping(value = "/board/inquiry", method = RequestMethod.GET)
-	public String list(Model model,RICriteriaVO cri,HttpSession session) {
+	public String list(Model model,CriteriaVO cri,HttpSession session,int pno) {
+		System.out.println(pno);
+		String n = String.valueOf(pno);
+		cri.setSearch(n);
+		cri.setAmount(5);
+		
 		model.addAttribute("list",is.list(cri));
+		
 		int total = is.total(cri);
 		// System.out.println("문의 : "+total);
+		
 		model.addAttribute("pro",rs.pro(cri));
-		model.addAttribute("paging",new RIPageVO(cri, total));
+		
+		model.addAttribute("paging",new PageVO(cri, total));
+		
 		model.addAttribute("userinfo",session.getAttribute("userInfo"));
 		return "/board/inquiry";
 	}
 	// 문의 작성(get)
 	@RequestMapping(value = "/board/inquirywrite", method = RequestMethod.GET)
-	public String writeGet(Model model,RICriteriaVO cri,HttpSession session) {
+	public String writeGet(Model model,CriteriaVO cri,HttpSession session) {
 		model.addAttribute("userinfo",session.getAttribute("userInfo"));
 		model.addAttribute("pro",rs.pro(cri));
 		return "/board/inquirywrite";
@@ -64,12 +73,14 @@ public class InquiryController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
-	// 문의 수정, 답변(get)
+	// 문의 답변(get)
 	@RequestMapping(value = "/board/inquirymodify", method = RequestMethod.GET)
-	public String modifyGet(Model model,InquiryVO ivo,HttpSession session,RICriteriaVO cri) {
+	public String modifyGet(Model model,InquiryVO ivo,HttpSession session,CriteriaVO cri) {
 		model.addAttribute("userinfo",session.getAttribute("userInfo"));
 		model.addAttribute("detail",is.detail(ivo));
 		model.addAttribute("pro",rs.pro(cri));
+		int total = is.total(cri);
+		model.addAttribute("paging",new PageVO(cri, total));
 		System.out.println("sdfe");
 		return "/board/inquirymodify";
 	}
@@ -82,9 +93,19 @@ public class InquiryController {
 		int result = is.answer(ivo);
 		System.out.println("답변 is.answer(ivo) = "+is.answer(ivo));
 		System.out.println("답변  result = "+result);
+		
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	// 문의 삭제 
+	@RequestMapping(value = "/inquiry/remove/{ino}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> inquiryremove(@PathVariable int ino){
+		System.out.println("삭제="+ino);
+		
+		int result = is.remove(ino);
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	
 }

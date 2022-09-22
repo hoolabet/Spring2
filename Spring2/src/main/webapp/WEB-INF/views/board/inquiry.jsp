@@ -24,10 +24,16 @@
 								<th>상품 번호</th>
 								<td>${pro.pno}</td>
 								<th>상품명</th>
-								<td><a href="/board/detail?pno=${pro.pno}" id="Iwrite">${pro.pname}</td>
+								<td><a class="hv" href="/board/detail?pno=${pro.pno}" id="Iwrite">${pro.pname}</a></td>
 							</tr>
 						</table>
-						<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
+						<p>답변이 있는 문의만 보기</p>
+						<c:if test="${not empty userInfo.id}">
+							<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
+						</c:if>
+						<c:if test="${empty userInfo.id}">
+							<p>문의사항을 작성하시려면 <a class="hv" href="../member/login">로그인</a>해 주세요</p>
+						</c:if>
 						<input type="hidden" value="${userInfo.id}" name="userInfo">
 					</div>
 					<!-- 문의사항 목록 -->
@@ -35,12 +41,13 @@
 					<form>
 						<c:forEach items="${list}" var="list">
 						<input type="hidden" name="pno" value="${list.pno}" id="pno">
-						<input type="hidden" name="id" value="${list.id}" id="id">
+						<input type="hidden" name="id" value="${list.id}" class="id">
 						<input type="hidden" name="answer" value="${list.answer}" id="answer">
 						<input type="hidden" name="ino" value="${list.ino}" class="ino">
+						
 							<table>
 								<tr>
-									<th>아이디</th><td>${list.id}</td>
+									<th>아이디</th><td class="msk"></td>
 									<th>등록일</th><td>${list.regdate}</td>
 								</tr>
 								<tr id="question">
@@ -56,8 +63,14 @@
 								</c:if>
 								</table>
 								<div id="ibtn">
-									<input type="button" value="삭제" class="idelete">
-									<input type="button" value="답변 / 수정" class="ianswer"> 
+									<!-- 로그인 아이디와 작성한 아이디가 같을 경우 삭제버튼 생성 -->
+									<c:if test="${list.id eq userInfo.id }">
+										<input class="delete" type="button" value="삭제" data-ino="${list.ino}">
+									</c:if>
+									<!-- 관리자 아이디로 로그인시 -->
+									<c:if test="${userInfo.id eq 'aaaaa'}">
+										<input class="answer" type="button" value="답변" data-ino="${list.ino}">
+									</c:if>
 								</div>
 						</c:forEach>
 					</form> 
@@ -65,13 +78,13 @@
 					
 					<div id="paging">
 						<c:if test="${paging.prev}">
-							<a href="/board/inquiry?pno=${paging.cri.pno}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
+							<a class="hv" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-							<a href="/board/inquiry?pno=${paging.cri.pno}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
+							<a class="numhv" class="pagenum" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
 						</c:forEach>
 						<c:if test="${paging.next}">
-							<a href="/board/inquiry?pno=${paging.cri.pno}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
+							<a class="hv" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
 						</c:if>
 					</div>
 				</div>

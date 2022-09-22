@@ -1,1 +1,39 @@
 @charset "UTF-8";
+
+/* 문의 작성 링크 */
+#Iwritelink{
+	text-align: right;
+	margin-right: 5%;
+}
+#Iwritelink>p{
+	color:black;
+}
+#Iwritelink>a, #Iwritelink>p>a, #Imore>a{
+	color:#868686;
+	font-weight: bold;
+}
+
+/* 문의 리스트 */
+
+#Ilist>table{
+	height: 100%;
+	width: 90%;
+	background-color: white;
+}
+#Ilist>table,tr,td{
+	border : 1px solid black;
+  	border-collapse : collapse;
+  	word-break: break-all;
+  	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.hidden{
+	display: none;
+}
+tr{
+	height: 40px;
+}
+#answer{
+	background-color: #c0c0c0;
+}

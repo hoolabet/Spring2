@@ -2,7 +2,7 @@ package org.spring2.service;
 
 import java.util.ArrayList;
 
-import org.spring2.model.RICriteriaVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.InquiryVO;
 
 public interface InquiryService {
@@ -11,10 +11,10 @@ public interface InquiryService {
 	public ArrayList<InquiryVO> Ilist(int pno);
 	
 	// 문의 리스트 설계
-	public ArrayList<InquiryVO> list(RICriteriaVO cri);
+	public ArrayList<InquiryVO> list(CriteriaVO cri);
 	
 	// 문의 전체건수 설계
-	public int total(RICriteriaVO cri);
+	public int total(CriteriaVO cri);
 	
 	// 문의 작성 설계
 	public int write(InquiryVO ivo);
@@ -24,4 +24,7 @@ public interface InquiryService {
 	
 	// 문의 답변 설계
 	public int answer(InquiryVO ivo);
+	
+	// 문의 삭제 설계
+	public int remove(int ino);
 }

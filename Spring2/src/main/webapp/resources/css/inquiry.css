@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.numclick{
+	color: red;
+}
 #inquiry{
 	height: 100%;
 	width: 80%;	
@@ -30,15 +33,16 @@ tr{
 th{
 	width: 20%;
 }
-#pro>a{
-	color:#0000a0;
+#pro>a {
 	font-weight: bold;
 	margin-left: 70%;
+	color:#868686;
 }
-
-
+#pro>p{
+	margin-left: 55%;
+}
 #answer{
-	background-color: #e7f5fe;
+	background-color: #c0c0c0;
 }
 .ianswer, .idelete{
 	width: 100px;
@@ -62,9 +66,23 @@ textarea{
 	resize: none;
 	border: 0;
 }
-#wbtn{
+#wbtn, #ibtn>input[type="button"]{
 	margin-top:10px;
 	margin-bottom:10px;
-	height: 50px;
+	height: 30px;
 	width: 70px;
+	padding: 5px;
+	
+}
+#ibtn{
+	width: 80%;
+	margin-left: 46%;
+}
+#paging>a{
+	font-weight: bold;
+}
+
+.hv:hover, .numhv:hover{ 
+	color: #abaaaa; 
+	text-decoration: underline;
 }

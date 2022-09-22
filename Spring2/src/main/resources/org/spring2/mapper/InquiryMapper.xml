@@ -17,7 +17,7 @@
 		from(
 			select @rownum:=@rownum+1 rownum, i.*
 		    from inquiry i,(select @rownum:=0) as tmp
-			where pno=#{pno} 
+			where pno=#{search} 
 		    order by ino desc
 		) as inquirylist
 		<![CDATA[
@@ -27,7 +27,7 @@
 	
 	<select id="total" resultType="int">
   		select count(*) from inquiry
-  		where pno=#{pno}
+  		where pno=#{search}
   	</select>
 	
 	<insert id="write">
@@ -45,5 +45,11 @@
 		set answer = #{answer}
 		where ino=#{ino}
   	</insert>
+  	
+  	<delete id="remove">
+  		delete from inquiry
+		where ino=#{ino}
+  	</delete>
+  	
   	
 </mapper>
