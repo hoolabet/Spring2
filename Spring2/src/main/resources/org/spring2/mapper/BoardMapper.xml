@@ -56,8 +56,13 @@
 			and category_area = #{category_area}
 			and category_type = #{category_type}
 		</when>
+		<otherwise>
+		 	where s_quantity != -1
+		</otherwise>
 		</choose>
-		
+		<if test="type =='except'">
+		 	and p.quantity != 0
+		</if>
 		<choose>
 			<when test="array =='lowprice'">
 				order by price

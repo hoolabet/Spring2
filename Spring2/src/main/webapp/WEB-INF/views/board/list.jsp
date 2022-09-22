@@ -31,6 +31,9 @@
 					</ul>
 				</div>
 				<div>
+				<input type="checkbox" id="ch_soldout" ${paging.cri.type =='except'? 'checked=checked':'' }>
+				<label>품절상품제외</label>
+				<input type="hidden" id="except" value="${paging.cri.type}">
 					<select id="array">
 						<option value="popular"
 							${paging.cri.array == 'popular' ? 'selected="selected"' : '' }>인기순</option>
@@ -91,6 +94,7 @@
 							href="/board/list?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}">다음</a>
 					</c:if>
 				</div>
+				
 			</div>
 		</div>
 		<%@ include file="../footer.jsp"%>

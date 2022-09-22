@@ -47,20 +47,20 @@ function scope(pno){
 
 		str+="<table>";
 		str+="<tr><th rowspan='5' class='RStitle'>평균평점</th>"
-			str+="<td rowspan='5'>"+avg+"</td>"
-			str+="<th class='RStitle'>5점</th>"
-				str+="<td>"+sc5+"</td></tr>"
-				str+="<th class='RStitle'>4점</th>"
-					str+="<td>"+sc4+"</td></tr>"
-					str+="<th class='RStitle'>3점</th>"
-						str+="<td>"+sc3+"</td></tr>"
-						str+="<th class='RStitle'>2점</th>"
-							str+="<td>"+sc2+"</td></tr>"
-							str+="<th class='RStitle'>1점</th>"
-								str+="<td>"+sc1+"</td></tr>"
-								str+="</table>"
+		str+="<td rowspan='5'>"+avg+"</td>"
+		str+="<th class='RStitle'>5점</th>"
+		str+="<td>"+sc5+"</td></tr>"
+		str+="<th class='RStitle'>4점</th>"
+		str+="<td>"+sc4+"</td></tr>"
+		str+="<th class='RStitle'>3점</th>"
+		str+="<td>"+sc3+"</td></tr>"
+		str+="<th class='RStitle'>2점</th>"
+		str+="<td>"+sc2+"</td></tr>"
+		str+="<th class='RStitle'>1점</th>"
+		str+="<td>"+sc1+"</td></tr>"
+		str+="</table>"
 
-									$("#scopecnt").html(str);	
+		$("#scopecnt").html(str);	
 	})
 
 

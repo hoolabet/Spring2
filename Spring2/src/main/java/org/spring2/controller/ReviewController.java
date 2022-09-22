@@ -62,7 +62,7 @@ public class ReviewController {
 		System.out.println(pno);
 		String n = String.valueOf(pno);
 		cri.setSearch(n);
-		cri.setAmount(5);
+		//cri.setAmount(5);
 		// 리스트
 		model.addAttribute("list",rs.list(cri));
 		
