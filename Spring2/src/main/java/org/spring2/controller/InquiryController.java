@@ -9,7 +9,6 @@ import org.spring2.model.CriteriaVO;
 import org.spring2.model.InquiryVO;
 import org.spring2.model.PageVO;
 import org.spring2.service.InquiryService;
-import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +24,6 @@ public class InquiryController {
 	
 	@Autowired
 	InquiryService is;
-	@Autowired
-	ReviewService rs;
 	
 	// 문의리스트 in 디테일
 	@RequestMapping(value = "/inquirylist/{pno}", method = RequestMethod.GET)
@@ -49,7 +46,7 @@ public class InquiryController {
 		int total = is.total(cri);
 		// System.out.println("문의 : "+total);
 		
-		model.addAttribute("pro",rs.pro(cri));
+		model.addAttribute("pro",is.pro(cri));
 		
 		model.addAttribute("paging",new PageVO(cri, total));
 		
@@ -58,9 +55,14 @@ public class InquiryController {
 	}
 	// 문의 작성(get)
 	@RequestMapping(value = "/board/inquirywrite", method = RequestMethod.GET)
-	public String writeGet(Model model,CriteriaVO cri,HttpSession session) {
+	public String writeGet(Model model,CriteriaVO cri,HttpSession session,int pno) {
+		System.out.println(pno);
+		String n = String.valueOf(pno);
+		cri.setSearch(n);
+		
 		model.addAttribute("userinfo",session.getAttribute("userInfo"));
-		model.addAttribute("pro",rs.pro(cri));
+		model.addAttribute("pro",is.pro(cri));
+		System.out.println(is.pro(cri));
 		return "/board/inquirywrite";
 	}
 	// 문의 작성(post)
@@ -78,7 +80,7 @@ public class InquiryController {
 	public String modifyGet(Model model,InquiryVO ivo,HttpSession session,CriteriaVO cri) {
 		model.addAttribute("userinfo",session.getAttribute("userInfo"));
 		model.addAttribute("detail",is.detail(ivo));
-		model.addAttribute("pro",rs.pro(cri));
+		model.addAttribute("pro",is.pro(cri));
 		int total = is.total(cri);
 		model.addAttribute("paging",new PageVO(cri, total));
 		System.out.println("sdfe");

@@ -34,6 +34,9 @@
 tr{
 	height: 40px;
 }
+th,td{
+	width: 20%;
+}
 #answer{
 	background-color: #c0c0c0;
 }

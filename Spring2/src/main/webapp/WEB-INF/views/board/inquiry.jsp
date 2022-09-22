@@ -27,7 +27,6 @@
 								<td><a class="hv" href="/board/detail?pno=${pro.pno}" id="Iwrite">${pro.pname}</a></td>
 							</tr>
 						</table>
-						<p>답변이 있는 문의만 보기</p>
 						<c:if test="${not empty userInfo.id}">
 							<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
 						</c:if>
@@ -49,16 +48,24 @@
 								<tr>
 									<th>아이디</th><td class="msk"></td>
 									<th>등록일</th><td>${list.regdate}</td>
+									<td class="yorn">
+										<c:if test="${not empty list.answer}">
+											답변완료
+										</c:if>
+										<c:if test="${empty list.answer}">
+											미답변
+										</c:if>
+									</td>
 								</tr>
 								<tr id="question">
 									<th>질문</th>
-									<td colspan="3">${list.question}</td>
+									<td colspan="4">${list.question}</td>
 								</tr>
 								<!-- 답변이 있는 경우 -->
 								<c:if test="${not empty list.answer}">
 									<tr id="answer">
 										<th>답변</th>
-										<td colspan="3">${list.answer}</td>
+										<td colspan="4">${list.answer}</td>
 									</tr>
 								</c:if>
 								</table>
@@ -81,7 +88,7 @@
 							<a class="hv" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-							<a class="numhv" class="pagenum" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
+							<a id="${num}" class="numhv" class="pagenum" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
 						</c:forEach>
 						<c:if test="${paging.next}">
 							<a class="hv" href="/board/inquiry?pno=${paging.cri.search}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>

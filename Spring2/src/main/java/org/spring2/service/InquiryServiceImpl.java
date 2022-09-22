@@ -3,6 +3,7 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.mapper.InquiryMapper;
+import org.spring2.model.BoardVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.InquiryVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,12 @@ public class InquiryServiceImpl implements InquiryService {
 	public int total(CriteriaVO cri) {
 		return im.total(cri);
 	}
+	
+	// 상품점보 가져오는 구현
+	public BoardVO pro(CriteriaVO cri) {
+		return im.pro(cri);
+	}
+		
 	// 리뷰 작성 구현
 	public int write(InquiryVO ivo) {
 		return im.write(ivo);

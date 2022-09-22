@@ -29,7 +29,12 @@
   		select count(*) from inquiry
   		where pno=#{search}
   	</select>
-	
+  	
+	<select id="pro" resultType="org.spring2.model.BoardVO">
+  		select * from product
+  		where pno=#{search}
+  	</select>
+  	
 	<insert id="write">
   		insert into inquiry(pno,id,question)
 		values(#{pno},#{id},#{question})
