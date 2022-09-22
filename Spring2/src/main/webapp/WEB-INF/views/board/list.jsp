@@ -51,12 +51,18 @@
 				<div id="list">
 					<ul>
 						<c:forEach items="${list}" var="boardlist">
-							<li><a href="/board/detail?pno=${boardlist.pno}">
-									<div id="${boardlist.pno}">
+							<li><a ${boardlist.quantity == 0? '':'href="/board/detail?pno=${boardlist.pno}"'}>
+									<div id="${boardlist.pno}" class="imglist">
 										<input class="pno" type="hidden" value="${boardlist.pno}">
 										<input type="hidden" value="${boardlist.category_area}"
 											name="category_area">
+											
+											
 									</div>
+									<input type="hidden" value="${boardlist.quantity}" class="quantity">
+											<input type="hidden" value="${boardlist.s_quantity}" class="s_quantity">
+									
+																		
 									<p>${boardlist.pname}</p>
 									<p>
 										가격 : <span class="priceformat">${boardlist.price} 원</span>
