@@ -18,6 +18,7 @@ $(document).ready(function(){
 		})
 		
 		var questionVal=$("textarea[name=question]").val();
+		
 		if(pnoVal=="" || questionVal==""){
 			alert("문의사항을 입력해 주세요")
 		}else if(idVal==""){

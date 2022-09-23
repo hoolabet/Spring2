@@ -56,5 +56,4 @@
 		where ino=#{ino}
   	</delete>
   	
-  	
 </mapper>

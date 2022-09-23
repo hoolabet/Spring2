@@ -66,22 +66,27 @@ $(document).ready(function(){
 						str+="<tr><th>아이디</th>";
 						str+="<td class ='id'>"+msk+"</td>";
 						str+="<th>등록일</th>";
-						str+="<td>"+data[i].regdate+"</td></tr>";
+						str+="<td>"+data[i].regdate+"</td>";
+						if(data[i].answer != null){
+							str+="<td>답변완료</td></tr>";
+						}else{
+							str+="<td>미답변</td></tr>";
+						}
 						str+="<tr><th>문의</th>";
 						// question
 						if(sc == 1){
-							str+="<td colspan='3'>비밀글 입니다.</td></tr>";
+							str+="<td colspan='4'>비밀글 입니다.</td></tr>";
 						}else{
-							str+="<td colspan='3'>"+data[i].question+"</td></tr>";
+							str+="<td colspan='4'>"+data[i].question+"</td></tr>";
 						}
 						// answer
 						
 						if(data[i].answer!=null && sc == 1 && login != data[i].id && login != 'aaaaa'){
 							str+="<tr id='answer'><th>답변</th>";
-							str+="<td colspan='3'>비밀글 입니다.</td></tr>";
+							str+="<td colspan='4'>비밀글 입니다.</td></tr>";
 						}else if(data[i].answer!=null){
 							str+="<tr id='answer'><th>답변</th>";
-							str+="<td colspan='3'>"+data[i].answer+"</td></tr>";
+							str+="<td colspan='4'>"+data[i].answer+"</td></tr>";
 						}else{
 							
 						}

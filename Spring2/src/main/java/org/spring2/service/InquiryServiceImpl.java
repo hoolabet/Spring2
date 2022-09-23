@@ -22,7 +22,7 @@ public class InquiryServiceImpl implements InquiryService {
 	
 	// 문의 리스트 구현
 	public ArrayList<InquiryVO> list(CriteriaVO cri) {
-		System.out.println("문의 service="+cri);
+//		System.out.println("문의 service="+cri);
 		return im.list(cri);
 	}
 	// 문의 전체건수 구현
@@ -37,7 +37,6 @@ public class InquiryServiceImpl implements InquiryService {
 		
 	// 리뷰 작성 구현
 	public int write(InquiryVO ivo) {
-		System.out.println("문의작성 serviceimpl = "+im.write(ivo));
 		return im.write(ivo);
 	}
 	
@@ -53,7 +52,7 @@ public class InquiryServiceImpl implements InquiryService {
 	
 	// 문의 삭제 구현
 	public int remove(int ino) {
-		System.out.println("remove serviceimpl connection");
 		return im.remove(ino);
 	}
+	
 }

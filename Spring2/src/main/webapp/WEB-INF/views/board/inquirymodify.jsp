@@ -17,8 +17,6 @@
 				
 				<h3>문의 답변</h3>
 				<input type="hidden" name="userid" value="${userinfo.id}"> 
-				<%-- <input type="text" name="pageNum" value="${paging.pageNum}"> 
-				<input type="text" name="amount" value="${paging.amount}"> --%> 
 				 
 				<input type="hidden" name="id" value="${detail.id}"> 
 				<input type="hidden" name="id" value="${detail.id}"> 

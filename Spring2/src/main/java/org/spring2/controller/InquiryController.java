@@ -10,6 +10,7 @@ import org.spring2.model.InquiryVO;
 import org.spring2.model.PageVO;
 import org.spring2.service.InquiryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.StaticMessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -77,13 +78,19 @@ public class InquiryController {
 	
 	// 문의 답변(get)
 	@RequestMapping(value = "/board/inquirymodify", method = RequestMethod.GET)
-	public String modifyGet(Model model,InquiryVO ivo,HttpSession session,CriteriaVO cri) {
+	public String modifyGet(Model model,InquiryVO ivo,HttpSession session,CriteriaVO cri,int pno) {
+		System.out.println("문의답변 get ="+pno);
+		String n = String.valueOf(pno);
+		cri.setSearch(n);
+		
 		model.addAttribute("userinfo",session.getAttribute("userInfo"));
 		model.addAttribute("detail",is.detail(ivo));
 		model.addAttribute("pro",is.pro(cri));
+		
+
 		int total = is.total(cri);
 		model.addAttribute("paging",new PageVO(cri, total));
-		System.out.println("sdfe");
+		
 		return "/board/inquirymodify";
 	}
 	// 문의 답변 작성(post)

@@ -27,12 +27,14 @@
 								<td><a class="hv" href="/board/detail?pno=${pro.pno}" id="Iwrite">${pro.pname}</a></td>
 							</tr>
 						</table>
-						<c:if test="${not empty userInfo.id}">
-							<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
-						</c:if>
-						<c:if test="${empty userInfo.id}">
-							<p>문의사항을 작성하시려면 <a class="hv" href="../member/login">로그인</a>해 주세요</p>
-						</c:if>
+						<div id="wrorlo">
+							<c:if test="${not empty userInfo.id}">
+								<a href="/board/inquirywrite?pno=${pro.pno}">문의하기</a>
+							</c:if>
+							<c:if test="${empty userInfo.id}">
+								<p>문의사항을 작성하시려면 <a class="hv" href="../member/login">로그인</a>해 주세요</p>
+							</c:if>
+						</div>
 						<input type="hidden" value="${userInfo.id}" name="userInfo">
 					</div>
 					<!-- 문의사항 목록 -->
