@@ -9,6 +9,7 @@
 	type="text/css">
 <link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" href="../resources/css/reviewInDetail.css">
+
 </head>
 <body>
 	<div id="entry_area">
@@ -84,10 +85,13 @@
 						</form>
 					</div>
 				</section>
+				
 				<section id="reviewlist">
+				<div class='title'>리뷰보기</div>
+				<%@ include file="../board/newreview.jsp"%>
 				
 				</section>
-				<div id="reviewPaging"></div>
+				
 				<section id="privqna">
 				
 
@@ -151,8 +155,9 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript" src="../resources/js/board_detail.js"></script>
-	<script type="text/javascript" src="../resources/js/reviewindetail.js"></script>
+	<!-- <script type="text/javascript" src="../resources/js/reviewindetail.js"></script> -->
 	<script type="text/javascript" src="../resources/js/inquiryindetail.js"></script>	
+	 <script type="text/javascript" src="../resources/js/newreview.js"></script>	
 </body>
 
 </html>

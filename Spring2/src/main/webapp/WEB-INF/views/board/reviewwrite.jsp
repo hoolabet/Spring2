@@ -20,22 +20,23 @@
 				<h3>리뷰 작성</h3>
 				
 				<form method="post" id="form" action="/board/reviewwrite">
-					<input type="text" value="${userInfo.id}" name="id">
-					<table>
+					<input type="hidden" value="${userInfo.id}" name="id" class="input">
+					
+					<table id="t_reviewWrite">
 						<tr>
 							<th>제품번호</th>
-							<td><input type="text"  value="${pro.pno}" name="pno"></td>
+							<td><input type="text"  value="${pro.pno}" name="pno" class="input"></td>
 							<th>제품이름</th>
-							<td><input type="text"  value="${pro.pname}" name="pname"></td>
+							<td><input type="text"  value="${pro.pname}" name="pname" class="input"></td>
 						</tr>
 						<tr>
 							<th>평점</th>
-							<td colspan="3">
-								<input type="radio" value="1" name="scope">1
-								<input type="radio" value="2" name="scope">2
-								<input type="radio" value="3" name="scope">3
-								<input type="radio" value="4" name="scope">4
-								<input type="radio" value="5" name="scope">5
+							<td colspan="3" style="text-align: center">
+								<input type="radio" value="1" name="scope" class="input">1
+								<input type="radio" value="2" name="scope" class="input">2
+								<input type="radio" value="3" name="scope" class="input">3
+								<input type="radio" value="4" name="scope" class="input">4
+								<input type="radio" value="5" name="scope" class="input">5
 							</td>
 						</tr>
 						<tr>
@@ -64,5 +65,6 @@
 </body>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="../resources/js/home.js"></script>
 <script type="text/javascript" src="/resources/js/review.js"></script>
 </html>

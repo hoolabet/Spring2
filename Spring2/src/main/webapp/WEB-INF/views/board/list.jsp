@@ -54,7 +54,15 @@
 				<div id="list">
 					<ul>
 						<c:forEach items="${list}" var="boardlist">
-							<li><a ${boardlist.quantity == 0? '':'href="/board/detail?pno=${boardlist.pno}"'}>
+							<li>
+							<c:choose>
+								<c:when test="${boardlist.quantity ==0 }">
+									<a>
+								</c:when>
+								<c:otherwise>
+									<a href="/board/detail?pno=${boardlist.pno}">
+								</c:otherwise>
+							</c:choose>
 									<div id="${boardlist.pno}" class="imglist">
 										<input class="pno" type="hidden" value="${boardlist.pno}">
 										<input type="hidden" value="${boardlist.category_area}"

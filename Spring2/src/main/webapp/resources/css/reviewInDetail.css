@@ -16,6 +16,9 @@
 #Rwritelink, #Iwritelink{
 	text-align: right;
 	margin-right: 5%;
+	position: relative;
+    left: 58px;
+    bottom: 10px;
 }
 #Rwritelink>p, #Iwritelink>p{
 	color:black;
@@ -39,3 +42,60 @@
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+@charset "UTF-8";
+#detail{
+	height: 100%;
+	margin: 0 auto;
+}
+#review{
+	height: 100%;
+	margin: 0 auto;
+}
+#gotoD{
+	color: #8bace9;
+    font-weight: bold;
+    position: relative;
+    left: 539px;
+}
+#scopecnt, #pro{
+	height: 100%;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#scopecnt>table, #pro>table{
+	height: 100%;
+	width:100%;	
+}
+#index{
+	height: 20px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+#list, #write{
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#list>table, #write>form>table{
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.t_score, .t_score tr,.t_score td,.t_score th{
+	border : 1px solid black;
+  	border-collapse : collapse;
+  	word-break: break-all;
+}
+th{
+	width: 20%;
+}
+h3, #paging{
+	margin-top: 10px;
+	margin-bottom: 10px;
+} 

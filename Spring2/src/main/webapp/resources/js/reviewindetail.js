@@ -7,26 +7,25 @@ $(document).ready(function(){
 	var idVal=$("#id").val();
 	var page = 1;
 	// 리뷰 리스트 in detail함수 사용
-	list(pnoVal);
-	
-
+	list(pnoVal,num);
 	
 	// 리뷰 리스트 in detail 함수 선언
-	function list(pno){
+	 function list(pno,num){
 		
 		var str=""
 		var input=""
+		var curPage = num.value;
+		console.log(curPage)
 		str+="<div class='title'>리뷰보기</div>";
 		
-		
 		$.getJSON("/reviewlist/"+pno+".json",function(data){
-			
+			const total = data.length;
+			var totalPages = Math.ceil(total/10);
 			if(idVal!=""){	// 주문내역이 있는 경우 보이게 추가해야함
 				str+="<div id='Rwritelink'>";	
 				str+="<a href='/board/reviewwrite?pno="+pno+"' id='rwlink'>리뷰 작성하기</a>";
 				str+="</div>";
 			}
-			
 			
 			console.log(data);
 			
@@ -84,8 +83,10 @@ $(document).ready(function(){
 				str+="</div>"
 				
 				str+="<div id='Rlist'>";
-					
-				for(var i=0; i<data.length; i++){
+				
+				
+				
+				for( i=0; i<data.length; i++){
 					
 					var filePath = encodeURIComponent(data[i].uploadpath+"/s_"+data[i].uuid+"_"+data[i].filename);
 					
@@ -103,6 +104,7 @@ $(document).ready(function(){
 						str+="<tr><th>내용</th>";
 						str+="<td colspan='3'>"+data[i].content+"</td></tr>";
 					str+="</table>";
+					
 					if(i==4){
 						break;
 					}
@@ -114,38 +116,54 @@ $(document).ready(function(){
 				str+="<a href='/board/newreview?pno="+pno+"'>리뷰 더보기</a>";
 				str+="</div>";
 			}
-				$("#reviewlist").html(str);
-				
-				//paging(data);
-				
+			$("#reviewlist").html(str);
+			//paging(curPage,totalPages,"list",data);
+			//Reviewlist(curPage,5,data);
+			
 		})
-		
 		$("#reviewlist").html(str);
 		
 	} // list 끝
 	
-	
-	function paging(data){
-		const total = data.length;
-		const amount = 5;
-		let pageNum = 1;
-		let endPage = Math.ceil(pageNum/10.0)*10;
-		let startPage = endPage-9;
-		let realEnd = Math.ceil(total/amount);
-		
-		if(realEnd< endPage){
-			endPage = realEnd;
-		}
-		let input = "";
-		for(let j=1; j<=endPage; j++){
-			input += `<a>${j}</a>`;
+	 function paging(curPage,total,fun,data){
+		 	
+			const amount = 5;
+			let pageNum = 1;
+			let endPage = Math.ceil(pageNum/10.0)*10;
+			let startPage = endPage-9;
+			let realEnd = Math.ceil(total*10/amount);
+			let input = "";
 			
+			if(realEnd< endPage){
+				endPage = realEnd;
+			}
+			if(curPage>1 && amount<curPage){
+			input += `<a href="javascript:${fun}(${pno},1);" id="p-1">1</a>`;
+			}
+			
+			for(let j=startPage; j<=endPage; j++){
+				
+			if(j ==curPage){
+				input += `<a href="javascript:void(0);"><strong>${j}</strong></a>`;
+				}
+			else{
+				input += `<a href="javascript:${fun}(${pno},${j})" id="p-${j}">${j}</a>`;
+			}
+			}
+			console.log(input)
+			$("#reviewPaging").html(input);
 		}
-		console.log(input)
-		$("#reviewPaging").html(input);
-	}
 	
-	
+	 function Reviewlist(curPage,amount,data){
+			let li = "";
+			curPage = Number(curPage);
+			amount = Number(amount);
+			
+			for(var i = (curPage-1)*amount; i< (curPage-1)*amount+amount;i++){
+				li+=`image[${i}]`
+			}
+			$("#reviewl").html(li);
+		}
 	
 	
 	

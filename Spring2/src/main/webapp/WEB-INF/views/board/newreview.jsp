@@ -1,50 +1,22 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/review.css"
-	type="text/css">
-<link rel="stylesheet" href="../resources/css/home.css">
-</head>
-<body>
-<div id="entry_area">
-	<%@ include file="../header.jsp"%>
-	<div id="content_area">
-		<div id="container">	
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+			
 			<!-- 리뷰 시작 -->
 			<div id="review">
-				
-				<label>리뷰</label>
-				<div>
-				<label><a href="/board/detail?pno=${pro.pno}" id="gotoD">상품페이지 이동</a></label>	
-				</div>
 				<input type="hidden" value="${userInfo.id}" id="userId">
-				<div id="pro">
-					<table>
-						<tr>
-							<th>상품 번호</th>
-							<td>${pro.pno}</td>
-							<th>상품명</th>
-							<td><a href="/board/detail?pno=${pro.pno}" id="Rwrite">${pro.pname}</td>
-						</tr>
-					</table>
-					<a href='/board/reviewwrite?pno=${pro.pno}'>리뷰 작성하기</a>
-				</div>
+				
 				<div id="scopecnt">	</div>
 				<div id="index">
-					<a href="/board/newreview?pno=${pro.pno}&array=recent">최신순 /</a>
-					<a href="/board/newreview?pno=${pro.pno}"> 베스트순</a>
+					<a href="/board/detail?pno=${pro.pno}&array=recent#reviewlist">최신순 /</a>
+					<a href="/board/detail?pno=${pro.pno}#reviewlist"> 베스트순</a>
 				</div> 
 				
 				<!-- 리뷰 목록  -->
 				<div id="list">
 					<h3>리뷰 목록</h3>
 					<c:forEach items="${list}" var="list">
-						<table>
+						<table class='t_score'>
 							<tr>
 								<th>리뷰번호</th>
 								<td colspan="3">
@@ -108,7 +80,7 @@
 							<a href="/board/newreview?pno=${paging.cri.search}&pageNum=${paging.startPage-1}&amount=${paging.cri.amount}">이전</a>
 						</c:if>
 						<c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="num">
-							<a href="/board/newreview?pno=${paging.cri.search}&pageNum=${num}&amount=${paging.cri.amount}">${num}</a>
+							<a href="/board/detail?pno=${paging.cri.search}&pageNum=${num}&amount=${paging.cri.amount}#reviewlist">${num}</a>
 						</c:forEach>
 						<c:if test="${paging.next}">
 							<a href="/board/newreview?pno=${paging.cri.search}&pageNum=${paging.endPage+1}&amount=${paging.cri.amount}">다음</a>
@@ -117,14 +89,5 @@
 				</div>
 			</div>
 			<!-- 리뷰 끝 -->
-		</div>
-	</div>
-	<%@ include file="../footer.jsp"%>
 	
-</div>
-</body>
-<script type="text/javascript"
-	src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/resources/js/newreview.js"></script>
-<script type="text/javascript" src="/resources/js/reviewWrite.js"></script>
-</html>
+	

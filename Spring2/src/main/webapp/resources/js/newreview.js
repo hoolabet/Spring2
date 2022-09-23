@@ -4,14 +4,24 @@
 
 
 var pnoVal=$("#pno").val();
-
+var idVal = $("id").val();
 scope(pnoVal);
 
 // 평점 함수 선언
 function scope(pno){
 	$.getJSON("/reviewlist/"+pno+".json",function(data){
 		var str="";
-
+		if(idVal!=""){	// 주문내역이 있는 경우 보이게 추가해야함
+			str+="<div id='Rwritelink'>";	
+			str+="<a href='/board/reviewwrite?pno="+pno+"' id='rwlink'>리뷰 작성하기</a>";
+			str+="</div>";
+		}
+		
+		console.log(data);
+		
+		if(data==""){
+			str+=`<p>작성된 리뷰가 없습니다.`;
+		}else{
 		// 리뷰 평균 평점
 		var sum=0;
 		for(var i=0; i<data.length; i++){
@@ -44,10 +54,10 @@ function scope(pno){
 			}
 		}
 
-
-		str+="<table>";
+		//str+=`<a href='/board/reviewwrite?pno=${pnoVal}'>리뷰 작성하기</a>`
+		str+="<table class='t_score'>";
 		str+="<tr><th rowspan='5' class='RStitle'>평균평점</th>"
-		str+="<td rowspan='5'>"+avg+"</td>"
+		str+="<td rowspan='5'>"+Math.round(avg*100)/100+"</td>"
 		str+="<th class='RStitle'>5점</th>"
 		str+="<td>"+sc5+"</td></tr>"
 		str+="<th class='RStitle'>4점</th>"
@@ -59,13 +69,16 @@ function scope(pno){
 		str+="<th class='RStitle'>1점</th>"
 		str+="<td>"+sc1+"</td></tr>"
 		str+="</table>"
-
+		}
 		$("#scopecnt").html(str);	
 	})
 
 
 
 } // scope 끝
+
+
+
 r();
 function r(){
 	$(".rno").each(function(i,r){
@@ -112,7 +125,8 @@ $(".btn_like").on("click",function(e){
 					contentType : "application/json;charset=utf-8",
 					success: function(){
 						console.log("-");
-						location.href="/board/newreview?pno="+pnoVal
+						location.reload();
+						//location.href="/board/detail?pno="+pnoVal+"#reviewlist"
 					}
 				})
 				r();
@@ -143,12 +157,12 @@ $(".btn_like").on("click",function(e){
 					contentType : "application/json;charset=utf-8",
 					success: function(){
 						console.log("+");
-						location.href="/board/newreview?pno="+pnoVal
+						location.reload();
+						//location.href="/board/detail?pno="+pnoVal+"#reviewlist"
 					}
 				})
 				r();
 			}
-
 		})
 	})
 })
@@ -164,7 +178,7 @@ $(".btn_remove").on("click",function(){
 			contentType : "application/json;charset=utf-8",
 			success: function(){
 				alert('삭제되었습니다.')
-				location.href="/board/newreview?pno="+pnoVal
+				location.href="/board/detail?pno="+pnoVal
 			}
 	})
 })

@@ -32,7 +32,10 @@ h3{
 	text-align: left;
 	padding: 15px;
 }
-
+#t_sell >tr,#t_sell th,#t_sell td{
+	border-collapse: collapse;
+	border: 0;
+}
 #num {
 	width: 39px;
 }

@@ -23,7 +23,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BoardController {
 	@Autowired
 	BoardService bs;
-		
+	@Autowired
+	ReviewService rs;
 	// 상품목록리스트
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
 	public String BoardList(Model model, CriteriaVO cri, CategoryVO cat) {
@@ -47,9 +48,15 @@ public class BoardController {
 	
 	// 상품상세페이지
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public void BoardDetail(BoardVO bvo, Model model) {
+	public void BoardDetail(BoardVO bvo, Model model,CriteriaVO cri,int pno) {
 		model.addAttribute("detail", bs.detail(bvo));
-		
+		cri.setAmount(5);
+		String n = String.valueOf(pno);
+		cri.setSearch(n);
+		int total = rs.total(cri);
+		model.addAttribute("pro",rs.pro(cri));
+		model.addAttribute("paging", new PageVO(cri,total));
+		model.addAttribute("list", rs.list(cri));
 	}
 	
 	// 상품등록
