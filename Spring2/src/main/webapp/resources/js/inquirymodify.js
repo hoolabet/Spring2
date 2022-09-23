@@ -7,12 +7,17 @@ $(document).ready(function(){
 	var inoVal=$("input[name=ino]").val();
 	var questionVal=$("textarea[name=question]").val();
 	
+	var userVal=$("input[name=userid]").val();
+	
 	// 문의 답변 함수 호출
-	$("#wbtn").on("click",function(){
-		var answerVal=$("textarea[name=answer]").val();
-		
-		add({id:idVal,pno:pnoVal,question:questionVal,answer:answerVal,ino:inoVal});
-	})
+	if(userVal=="aaaaa"){
+		$("#wbtn").on("click",function(){
+			var answerVal=$("textarea[name=answer]").val();
+			
+			add({id:idVal,pno:pnoVal,question:questionVal,answer:answerVal,ino:inoVal});
+		})
+	}
+	
 	
 	// 문의 답변 함수 선언
 	function add(inquiry){

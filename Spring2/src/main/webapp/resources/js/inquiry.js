@@ -4,19 +4,6 @@
 $(document).ready(function(){
 	var pnoVal = $("input[name=pno]").val();
 	
-	
-	// 비밀글 처리
-/*	$("input[name=secret]").each(function(i){
-		var scVal = $(this).val();
-		console.log("secret = "+scVal)
-		
-		if(scVal==1){
-			console.log(i+"번째 글 secret 값 ="+scVal)
-//			$(".scac").text("비밀글 입니다.")
-		}
-	})*/
-	
-	
 	// 아이디 마스킹 처리
 	$("input[name=id]").each(function(i){                    
 		var idval = $(this).val(); // 아이디값
@@ -34,9 +21,7 @@ $(document).ready(function(){
 		
 	})
 
-	
-	
-	
+
 	
 	// 문의 삭제 버튼 클릭시
 	$(".delete").on("click",function(){
@@ -74,9 +59,6 @@ $(document).ready(function(){
 	if(pnum==anum){
 		$("#"+pnum).attr("class","red")
 	}
-
-	
-	
 	
 	
 	// 문의 삭제 함수 선언

@@ -49,13 +49,18 @@ textarea{
 	resize: none;
 	border: 0;
 }
+
+
 /* 문의 링크 */
-#pro>a {
+#noanswer{
+	margin-right: 67%;
+}
+#wrorlo>a {
 	font-weight: bold;
 	margin-left: 70%;
 	color:#868686;
 }
-#pro>p{
+#wrorlo>p{
 	margin-left: 55%;
 }
 /* 문의 버튼 */
