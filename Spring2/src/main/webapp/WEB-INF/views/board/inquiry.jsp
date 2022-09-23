@@ -43,6 +43,7 @@
 						<input type="hidden" name="id" value="${list.id}" class="id">
 						<input type="hidden" name="answer" value="${list.answer}" id="answer">
 						<input type="hidden" name="ino" value="${list.ino}" class="ino">
+						<input type="hidden" name="secret" value="${list.secret}" class="secret">
 						
 							<table>
 								<tr>
@@ -59,15 +60,32 @@
 								</tr>
 								<tr id="question">
 									<th>질문</th>
-									<td colspan="4">${list.question}</td>
+									<td colspan="4">
+										<c:choose>
+											<c:when test="${list.secret eq 1 && list.id ne userInfo.id && userInfo.id ne 'aaaaa'}">
+												비밀글 입니다.	
+											</c:when>
+											<c:otherwise>
+												${list.question}
+											</c:otherwise>
+										</c:choose>
+									</td>
 								</tr>
 								<!-- 답변이 있는 경우 -->
-								<c:if test="${not empty list.answer}">
-									<tr id="answer">
-										<th>답변</th>
-										<td colspan="4">${list.answer}</td>
-									</tr>
-								</c:if>
+								<c:choose>
+									<c:when test="${not empty list.answer && list.secret eq 1 && list.id ne userInfo.id && userInfo.id ne 'aaaaa'}">
+										<tr id="answer">
+											<th>답변</th>
+											<td colspan="4">비밀글 입니다.</td>
+										</tr>
+									</c:when>
+									<c:when test="${not empty list.answer}">
+										<tr id="answer">
+											<th>답변</th>
+											<td colspan="4">${list.answer}</td>
+										</tr>
+									</c:when>
+								</c:choose>
 								</table>
 								<div id="ibtn">
 									<!-- 로그인 아이디와 작성한 아이디가 같을 경우 삭제버튼 생성 -->

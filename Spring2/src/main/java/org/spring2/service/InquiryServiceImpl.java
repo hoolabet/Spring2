@@ -37,6 +37,7 @@ public class InquiryServiceImpl implements InquiryService {
 		
 	// 리뷰 작성 구현
 	public int write(InquiryVO ivo) {
+		System.out.println("문의작성 serviceimpl = "+im.write(ivo));
 		return im.write(ivo);
 	}
 	

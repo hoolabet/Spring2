@@ -36,8 +36,8 @@
   	</select>
   	
 	<insert id="write">
-  		insert into inquiry(pno,id,question)
-		values(#{pno},#{id},#{question})
+  		insert into inquiry(pno,id,question,secret)
+		values(#{pno},#{id},#{question},#{secret})
   	</insert> 
   	
   	<select id="detail" resultType="org.spring2.model.InquiryVO">

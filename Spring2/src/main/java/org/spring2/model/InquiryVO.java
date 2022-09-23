@@ -7,6 +7,8 @@ public class InquiryVO {
 	private String question;	// 문의내용
 	private String answer;	// 답변
 	private String regdate;	// 등록일
+	private int secret;
+	
 	public int getIno() {
 		return ino;
 	}
@@ -43,10 +45,17 @@ public class InquiryVO {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+	
+	public int getSecret() {
+		return secret;
+	}
+	public void setSecret(int secret) {
+		this.secret = secret;
+	}
 	@Override
 	public String toString() {
 		return "InquiryVO [ino=" + ino + ", pno=" + pno + ", id=" + id + ", question=" + question + ", answer=" + answer
-				+ ", regdate=" + regdate + "]";
+				+ ", regdate=" + regdate + ", secret=" + secret + "]";
 	}
 	
 	

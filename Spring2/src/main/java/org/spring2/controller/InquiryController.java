@@ -69,7 +69,7 @@ public class InquiryController {
 	@RequestMapping(value = "/board/inquirywrite", method = RequestMethod.POST)
 	public ResponseEntity<String> write(@RequestBody InquiryVO ivo){
 		int result = is.write(ivo);
-		
+		System.out.println("문의작성 controller = "+ivo);
 		
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

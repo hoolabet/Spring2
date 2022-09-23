@@ -25,6 +25,12 @@
 							<td><input type="text"  value="${pro.pname}" name="pname"></td>
 						</tr>
 						<tr>
+							<th>공개 설정</th>
+							<td colspan="3">	
+								<input type="checkbox" name="secret" value="1">비공개
+							</td>
+						</tr>
+						<tr>
 							<th>문의사항</th>
 							<td colspan="3"><textarea  name="question"></textarea></td>
 						</tr>

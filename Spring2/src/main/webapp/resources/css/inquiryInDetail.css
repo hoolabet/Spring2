@@ -9,8 +9,12 @@
 	color:black;
 }
 #Iwritelink>a, #Iwritelink>p>a, #Imore>a{
-	color:#868686;
+	color:#abaaaa;
 	font-weight: bold;
+}
+#Iwritelink>a:hover, #Iwritelink>p>a:hover, #Imore>a:hover{ 
+	color: #868686; 
+	text-decoration: underline;
 }
 
 /* 문의 리스트 */
