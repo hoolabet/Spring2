@@ -46,7 +46,7 @@ $(document).ready(function(){
 			dataType:"json",
 			success: function(result){
 				console.log(result)
-				
+				 
 				var str="";
 					
 				$(result).each(function(i,obj){
@@ -70,6 +70,7 @@ $(document).ready(function(){
 					
 				})
 				$("#uploadResult").html(str);
+				
 				
 			}
 			

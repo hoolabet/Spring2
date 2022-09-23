@@ -15,7 +15,7 @@
 				<!-- 리뷰 목록  -->
 				<div id="list">
 					<h3>리뷰 목록</h3>
-					<c:forEach items="${list}" var="list">
+					<c:forEach items="${list}" var="list"> 
 						<table class='t_score'>
 							<tr>
 								<th>리뷰번호</th>

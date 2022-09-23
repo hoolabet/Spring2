@@ -42,7 +42,7 @@ public class ReviewController {
 	
 	@Autowired
 	ReviewService rs;
-	
+	 
 	// 리뷰리스트 in 디테일
 	@RequestMapping(value = "/reviewlist/{pno}", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<ReviewVO>> getList(@PathVariable int pno , CriteriaVO cri){

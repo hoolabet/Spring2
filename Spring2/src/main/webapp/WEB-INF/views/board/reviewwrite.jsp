@@ -57,7 +57,7 @@
 					<input type="button" value="작성" id="wbtn">
 				</form>
 			</div>
-			<!-- 리뷰 끝 -->
+			<!-- 리뷰 끝 --> 
 		</div>
 	</div>
 	<%@ include file="../footer.jsp"%>

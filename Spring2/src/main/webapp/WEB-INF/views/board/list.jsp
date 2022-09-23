@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../resources/css/home.css">
 </head>
 <body>
-	<div id="entry_area">
+	<div id="entry_area"> 
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<div id="container">

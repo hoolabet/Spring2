@@ -20,7 +20,7 @@
     left: 58px;
     bottom: 10px;
 }
-#Rwritelink>p, #Iwritelink>p{
+#Rwritelink>p, #Iwritelink>p{ 
 	color:black;
 }
 #Rwritelink>a, #Rwritelink>p>a, #Rmore>a, #Iwritelink>a, #Iwritelink>p>a, #Imore>a{

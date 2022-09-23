@@ -46,7 +46,7 @@ public class BoardController {
 		return new ResponseEntity<>(bs.imagelist(pno), HttpStatus.OK);
 	}
 	
-	// 상품상세페이지
+	// 상품상세페이지 
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
 	public void BoardDetail(BoardVO bvo, Model model,CriteriaVO cri,int pno) {
 		model.addAttribute("detail", bs.detail(bvo));

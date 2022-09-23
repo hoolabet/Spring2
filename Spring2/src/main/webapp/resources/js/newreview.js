@@ -53,7 +53,7 @@ function scope(pno){
 				sc1++;
 			}
 		}
-
+ 
 		//str+=`<a href='/board/reviewwrite?pno=${pnoVal}'>리뷰 작성하기</a>`
 		str+="<table class='t_score'>";
 		str+="<tr><th rowspan='5' class='RStitle'>평균평점</th>"
