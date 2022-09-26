@@ -5,18 +5,28 @@ import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Base64.Decoder;
+import java.util.Base64.Encoder;
 import java.util.Date;
+
 import java.util.UUID;
+
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.spring2.model.CouponTargetVO;
 import org.spring2.model.DestinationVO;
 import org.spring2.model.MemberVO;
 import org.spring2.model.UploadFileVO;
 import org.spring2.service.CouponService;
+import org.spring2.service.GetUserInfoService;
 import org.spring2.service.MailSendService;
 import org.spring2.service.MemberService;
+import org.spring2.service.RestJsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -31,6 +41,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import com.mysql.cj.xdevapi.JsonParser;
+
 import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
@@ -43,11 +56,12 @@ public class MemberController {
 
 	@Autowired
 	CouponService cs;
+	
 
 	// 회원가입
 	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
-	public String signup() {
-
+	public String signup(HttpSession session) {
+		session.invalidate();
 		return "member/signup";
 	}
 
@@ -98,8 +112,8 @@ public class MemberController {
 
 	// 로그인
 	@RequestMapping(value = "/member/login", method = RequestMethod.GET)
-	public String login() {
-
+	public String login(HttpSession session,Model model) {
+		session.invalidate();
 		return "member/login";
 	}
 
@@ -115,6 +129,106 @@ public class MemberController {
 			return "member/login";
 		}
 	}
+	@RequestMapping(value = "/snscheck", method = RequestMethod.GET)
+	public String snsCheck(String code,HttpSession session,Model model) {
+		RestJsonService restJsonService = new RestJsonService();
+
+        //access_token이 포함된 JSON String을 받아온다.
+        String accessTokenJsonData = restJsonService.getAccessTokenJsonData(code);
+        System.out.println(accessTokenJsonData);
+        if(accessTokenJsonData=="error") return "error";
+
+        //JSON String -> JSON Object
+        
+        JSONParser parser = new JSONParser();
+        Object obj;
+		try {
+			obj = parser.parse(accessTokenJsonData);
+			JSONObject jsonObj = (JSONObject) obj;
+			System.out.println(jsonObj.get("access_token"));
+			String accessToken = (String) jsonObj.get("access_token");
+			
+			//유저 정보가 포함된 JSON String을 받아온다.
+	        GetUserInfoService getUserInfoService = new GetUserInfoService();
+	        String userInfo = getUserInfoService.getUserInfo(accessToken);
+	        System.out.println(userInfo);
+	        //JSON String -> JSON Object
+	        JSONParser userInfoParser = new JSONParser();
+	        Object uobj = userInfoParser.parse(userInfo);
+	        JSONObject userInfojsonObj = (JSONObject) uobj;
+	        System.out.println(userInfojsonObj.get("id"));
+	        
+	        //유저의 Email 추출
+	        JSONObject kakaoAccountJsonObject = (JSONObject)userInfojsonObj.get("kakao_account");
+	        JSONObject propertiesJsonObject = (JSONObject)userInfojsonObj.get("properties");
+	        String email = kakaoAccountJsonObject.get("email").toString();
+	        String id = userInfojsonObj.get("id").toString();
+	        String nickname = propertiesJsonObject.get("nickname").toString();
+	        String birthday = kakaoAccountJsonObject.get("birthday").toString();
+	        String month = birthday.substring(0,2);
+	        String day = birthday.substring(2);
+
+	        if(month.indexOf("0")==0) {
+	        	month=month.substring(1);
+	        }
+	        if(day.indexOf("0")==0) {
+	        	day=day.substring(1);
+	        }
+	        MemberVO member = new MemberVO();
+	        member.setId(email);
+	        member.setEmail(email);
+	        member.setPassword(id);
+	        member.setName(nickname);
+	        member.setBirth_m(month);
+	        member.setBirth_d(day);
+	        
+	        System.out.println(member);
+	        MemberVO mvo = new MemberVO();
+	        mvo= ms.snsCheck(member.getId());
+	        try {
+	        	ms.snsSignup(member);
+	        }catch(Exception e) {
+	        	e.printStackTrace();
+	        }
+	        session.setAttribute("userInfo",ms.login(member));
+	        
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+
+      
+
+        
+        
+//		MemberVO mvo= new MemberVO();
+//		mvo=ms.snsCheck(code);
+//		
+//		System.out.println(mvo);
+//		
+//		if(mvo==null) {
+//			int result=ms.snsSignup(code);
+//			if(result==1) {
+//				session.setAttribute("userInfo", ms.snsCheck(code));
+//			}else {
+//				System.out.println("jhjh");
+//			}
+//		}else {
+//			session.setAttribute("userInfo", ms.snsCheck(mvo.getId()));
+//		}
+//		
+		return "home";
+//        return null;
+	}
+	
+	@RequestMapping(value = "/dddd", method = RequestMethod.GET)
+	public void ddddd(String jkk) {
+	System.out.println(jkk+"jj");
+	}
+	
+
+
 
 	// 로그아웃
 	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
@@ -128,36 +242,35 @@ public class MemberController {
 	public String findIdGet() {
 		return "member/findId";
 	}
-	
-	
+
 	// 아이디 찾기 이메일 인증
 	@RequestMapping(value = "/member/emailchkID", method = RequestMethod.POST)
-	public ResponseEntity<String> emailchkID(@RequestBody MemberVO member) {
+	public ResponseEntity<String> emailchkID(@RequestBody MemberVO member, Model model) {
 		System.out.println("이메일로 아이디 찾기");
-		System.out.println(ms.find(member));
+
 
 		return mailService.findIdEmail(ms.find(member));
 	}
 
-//	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
-//	public String findIdPost(MemberVO member, Model model) {
-//		try {
-//			if (member.getEmail() != null) {
-//				System.out.println("이메일로 아이디 찾기");
-//				System.out.println(ms.find(member));
-//				model.addAttribute("email", ms.find(member).getEmail());
-//				return mailService.findIdEmail(ms.find(member));
-//			} else {
-//				System.out.println("번호로 아이디 찾기");
-//				System.out.println(ms.find(member));
-//				model.addAttribute("email", ms.find(member).getEmail());
-//				return mailService.findIdEmail(ms.find(member));
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "member/findId";
-//		}
-//	}
+	@RequestMapping(value = "/member/findId", method = RequestMethod.POST)
+	public String findIdPost(MemberVO member, Model model) {
+		try {
+
+			System.out.println("아이디 찾기 버튼눌렀다.");
+			System.out.println(ms.find(member));
+			model.addAttribute("id", ms.find(member).getId());
+			return "member/showId";
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "member/findId";
+		}
+	}
+
+	@RequestMapping(value = "/member/showId", method = RequestMethod.GET)
+	public String showIdGet() {
+		return "member/findId";
+	}
 
 	// 비밀번호 찾기
 	@RequestMapping(value = "/member/findPw", method = RequestMethod.GET)
@@ -165,27 +278,30 @@ public class MemberController {
 		return "member/findPw";
 	}
 
+
+	// 비밀번호 찾기 이메일 인증
+	@RequestMapping(value = "/member/emailchkPW", method = RequestMethod.POST)
+	public ResponseEntity<String> emailchkPW(@RequestBody MemberVO member, Model model) {
+		System.out.println("이메일로 비밀번호 찾기");
+
+
+		return mailService.findPwEmail(ms.find(member));
+	}
+
 	@RequestMapping(value = "/member/findPw", method = RequestMethod.POST)
 	public String findPwPost(MemberVO member, Model model) {
 		try {
-			if (member.getEmail() != null) {
-				System.out.println("이메일로 비밀번호 찾기");
-				System.out.println(ms.find(member));
-				model.addAttribute("id", ms.find(member).getId());
-				if (ms.find(member) != null) {
 
-					return "member/modifyPassword";
-				}
-				return "member/findPw";
-			} else {
-				System.out.println("번호로 비밀번호 찾기");
-				System.out.println(ms.find(member));
-				model.addAttribute("id", ms.find(member).getId());
-				if (ms.find(member) != null) {
-					return "member/modifyPassword";
-				}
-				return "member/findPw";
+			System.out.println("비밀번호 찾기 버튼눌렀다.");
+			System.out.println(ms.find(member));
+			model.addAttribute("id", ms.find(member).getId());
+			
+			if (ms.find(member) != null) {
+
+				return "member/modifyPassword";
 			}
+			return "member/findPw";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "member/findPw";
@@ -249,8 +365,13 @@ public class MemberController {
 
 	// 비밀번호 수정하기
 	@RequestMapping(value = "/member/modifyPassword", method = RequestMethod.GET)
-	public String modifyPasswordGet() {
-		return "member/modifyPassword";
+	public String modifyPasswordGet(MemberVO member) {
+		if(ms.find(member) != null) {
+			return "member/modifyPassword";
+		}else {
+			return "redirect:/";
+		}
+		
 	}
 
 	@RequestMapping(value = "/member/modifyPassword", method = RequestMethod.POST)
@@ -258,19 +379,18 @@ public class MemberController {
 
 		int result = ms.modifyPw(member);
 		System.out.println(result);
-
 		return result == 1 ? "member/login" : "redirect:/member/modifyPassword";
 	}
 
 	// 마이페이지
 	@RequestMapping(value = "/member/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session) {
-//		if(session.getAttribute("userInfo") == null) {
-//			
-//			return "redirect:/member/login";
-//		} else {
+		//		if(session.getAttribute("userInfo") == null) {
+		//			
+		//			return "redirect:/member/login";
+		//		} else {
 		return "member/mypage";
-//		}
+		//		}
 
 	}
 

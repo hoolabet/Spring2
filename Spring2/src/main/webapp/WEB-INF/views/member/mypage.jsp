@@ -17,6 +17,7 @@
 
 
 			<h1>마이페이지</h1>
+			<input type="hidden" value="${userInfo.sns}" id="user_sns">
 			<input type="hidden" value="${userInfo.id}" id="user_id">
 			<input type="hidden" value="${userInfo.userImg}" id="user_img_input">
 			<input type="hidden" value="${userInfo.name}" id="user_name_input">

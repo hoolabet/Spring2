@@ -6,7 +6,7 @@
 	
 	var pw_chk = false;
 	$("#pw_val").on("blur",function(){
-		const pwpw = /^[a-zA-Z0-9~!@#$%^&*?-_]{8,16}$/g;
+		const pwpw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[`$@$!%*#?&])[A-Za-z\d`$@$!%*#?&]{8,16}$/g;
 		if($("#pw_val").val()==""){
 			$("#pw_msg").text("필수입력정보입니다.").css("color","red");
 			pw_chk = false;
@@ -14,7 +14,7 @@
 			$("#pw_msg").text("");
 			pw_chk = true;
 		}else{
-			$("#pw_msg").text("8~16자 영문 대소문자 숫자 특수문자 사용하세요.").css("color","red");
+			$("#pw_msg").text("8~16자 영문 숫자 특수문자를 하나 이상 사용하세요.").css("color","red");
 			pw_chk = false;
 		}
 	})
@@ -39,7 +39,7 @@
 	
 
 	
-	$("#pw_btn").on("click",function(e){
+	$("#modisub").on("click",function(e){
 		if(!(pw_chk && pw_chk2)){
 			e.preventDefault();
 			alert('비밀번호를 다시 확인하세요.');

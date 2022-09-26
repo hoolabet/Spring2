@@ -2,7 +2,7 @@ package org.spring2.model;
 
 public class MemberVO {
 	private boolean admin;
-	
+	private boolean sns;
 	private String id;
 	private String password;
 	private String name;
@@ -16,6 +16,12 @@ public class MemberVO {
 	private String sign_date;
 	private String userImg;
 	
+	public boolean isSns() {
+		return sns;
+	}
+	public void setSns(boolean sns) {
+		this.sns = sns;
+	}
 	public String getUserImg() {
 		return userImg;
 	}
@@ -93,9 +99,9 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [admin=" + admin + ", id=" + id + ", password=" + password + ", name=" + name + ", email="
-				+ email + ", phone=" + phone + ", gender=" + gender + ", birth_y=" + birth_y + ", birth_m=" + birth_m
-				+ ", birth_d=" + birth_d + ", sign_date=" + sign_date + ", userImg=" + userImg + "]";
+		return "MemberVO [admin=" + admin + ", sns=" + sns + ", id=" + id + ", password=" + password + ", name=" + name
+				+ ", email=" + email + ", phone=" + phone + ", gender=" + gender + ", birth_y=" + birth_y + ", birth_m="
+				+ birth_m + ", birth_d=" + birth_d + ", sign_date=" + sign_date + ", userImg=" + userImg + "]";
 	}
 	
 	

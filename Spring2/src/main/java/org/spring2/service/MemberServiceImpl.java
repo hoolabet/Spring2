@@ -81,4 +81,10 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO memberDetail(String id) {
 		return mm.memberDetail(id);
 	}
+	public MemberVO snsCheck(String id) {
+		return mm.snsCheck(id);
+	}
+	public void snsSignup(MemberVO member) {
+		mm.snsSignup(member);
+	}
 }

@@ -1,20 +1,110 @@
 @charset "UTF-8";
 
-table {
-    margin-left:auto; 
-    margin-right:auto;
+#title{
+	margin-top:100px;
 }
+#find_pw_box{
+/* 	border:1px solid green; */
+	position:relative;
+	width:600px;
+	height:680px;
+    margin:50px auto 200px auto;
+    border-radius:30px;
+    background-color:#eeeeee;
+}
+
+table {
+/* 	border:1px solid black; */
+	position:absolute;
+    width:400px;
+	height:320px;
+	left:100px;
+	top:110px;
+}
+
+#link_box{
+/* 	border:1px solid black; */
+	position:absolute;
+	width:310px;
+	height:50px;
+	left:145px;
+	top:520px;
+}
+td{
+/* 	border:1px solid red; */
+	height:80px;
+}
+
+
+
+
 
 .findPwInput{
 	width:300px;
-	height:20px;
-	padding:10px;
-	margin:10px;
+	height:40px;
+	padding-left:10px;	
+}
+
+.mail_check_box{
+/* 	border:1px solid green; */
+	position:relative;
+	width:310px;
+	height:55px;
+	margin-left:auto; 
+    margin-right:auto;
 	
+}
+#email_btn{
+	position:absolute;
+	left:0px;
+	width:100px;
+	height:30px;
+	padding:0px;
+	margin:0px;
+	cursor:pointer;
+}
+#email_num{
+	position:absolute;
+	left:110px;
+	width:196px;
+	height:26px;
+	padding:0px;
+	margin:0px;
+}
+#find_pw_msg{
+/* 	border:1px solid black; */
+	position:absolute;
+	left:0px;
+	top:35px;
+	width:310px;
+	height:20px;
+	padding:0px;
+	margin:0px;
+	font-size:14px;
 }
 
 #findPwsub{
-	width:324px;
-	height:40px;
-	margin:10px;
+	width:310px;
+	height:45px;
+	padding:10px;
+	cursor:pointer;
+}
+#link_findid{
+	position:absolute;
+	width:155px;
+	text-align:left;
+	font-size:14px;
+}
+
+#link_login{
+	position:absolute;
+	width:155px;
+	top:0px;
+	left:155px;
+	text-align:right;
+	font-size:14px;
+}
+
+#link_box > div > a:hover{
+	color:#808080;
 }

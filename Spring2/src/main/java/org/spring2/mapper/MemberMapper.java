@@ -39,4 +39,6 @@ public interface MemberMapper {
 	public int destinationDelete(int dno);
 	public ArrayList<MemberVO> memberListGet(MemberVO member);
 	public MemberVO memberDetail(String id);
+	public MemberVO snsCheck(String id);
+	public void snsSignup(MemberVO member);
 }

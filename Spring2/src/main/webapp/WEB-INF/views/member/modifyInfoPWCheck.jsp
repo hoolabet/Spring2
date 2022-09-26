@@ -16,13 +16,11 @@
 
 
 
-
-
 <h1>회원정보 수정</h1>
 <p>회원정보 확인</p>
-<form action="/member/modifyInfoPWCheck" method="post">
+<form action="/member/modifyInfoPWCheck" method="post" id="form">
 <input type="text" name="id" id="id" readonly value="${userInfo.id}">
-<input type="password" name="password" placeholder="비밀번호를 입력하세요.">
+<input type="password" name="password" placeholder="비밀번호를 입력하세요." id="target">
 <input type="submit" value="수정하기">	
 
 </form>

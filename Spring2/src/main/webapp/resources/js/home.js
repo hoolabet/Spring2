@@ -47,3 +47,39 @@ $("#search_btn").on("click", function(e){
 $("#btnTopImg").on("click",function(){
 	$('html, body').animate({scrollTop:0}, '300');
 })
+
+//displayToken()
+//function displayToken() {
+//    var token = getCookie('authorize-access-token');
+//    if (token) {
+//        Kakao.Auth.setAccessToken(token);
+//        Kakao.Auth.getStatusInfo()
+//            .then(function (res) {
+//                if (res.status === 'connected') {
+//                    const getToken = Kakao.Auth.getAccessToken();
+//                    
+//                }
+//            })
+//            .catch(function (err) {
+//                Kakao.Auth.setAccessToken(null);
+//            });
+//    }
+//}
+//
+//function getCookie(name) {
+//    var parts = document.cookie.split(name + '=');
+//    if (parts.length === 2) { return parts[1].split(';')[0]; }
+//}
+//
+//Kakao.API.request({
+//		url:'/v2/user/me',
+//		data: {
+//		    property_keys: ['kakao_account.email'],
+//		  },
+//		})
+//		  .then(function(response) {
+//		    console.log(response);
+//		  })
+//		  .catch(function(error) {
+//		    console.log(error);
+//		  });

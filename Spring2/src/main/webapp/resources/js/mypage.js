@@ -58,5 +58,8 @@ $("#mypage_user_list").html(str_menu);
 
 
 $("#user_name").on("click",function(){
-	$(location).attr('href', '/member/modifyInfoPWCheck');
+	if($("#user_sns").val()!="true"){
+		$(location).attr('href', '/member/modifyInfoPWCheck');
+		
+	}
 })
