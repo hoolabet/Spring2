@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +39,19 @@
 				<input type="hidden" value="${cart.pno}" class="order_pno">
 				<table border="1" style="display: inline-block; border-collapse: collapse;">
 					<tr>
-						<td><a href="/board/detail?pno=${cart.pno}"> <img
+						<td><a href="/board/detail?pno=${cart.pno}"> 
+								<c:choose>
+								<c:when test="${fn:contains(cart.ivo.fullPath,'http')}">
+								<img
+								src="${cart.ivo.fullPath}"
+								style="width: 200px; height: 200px;">
+								</c:when>
+								<c:otherwise>
+								<img
 								src="/display?fileName=${cart.ivo.fullPath}"
 								style="width: 200px; height: 200px;">
+								</c:otherwise>
+								</c:choose>
 						</a></td>
 						<td style="width: 500px;">
 							<p>${cart.bvo.pname}</p>

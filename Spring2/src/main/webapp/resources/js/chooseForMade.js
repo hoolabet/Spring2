@@ -39,7 +39,7 @@ $("#sub").on("click",function(e){
 	})
 	if(checkSelect){
 		try {
-			alert("장바구니에 담겼습니다.");
+			alert("저장되었습니다.");
 			$('form[action="/made/chooseForMade"]').submit();
 		} catch (e) {
 

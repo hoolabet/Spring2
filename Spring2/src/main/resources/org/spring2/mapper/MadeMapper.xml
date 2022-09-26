@@ -6,7 +6,41 @@
   
   <mapper namespace="org.spring2.mapper.MadeMapper">
   	<insert id="madeOrder">
-  		INSERT INTO made(kind, ingre, len1, len2, len3, color)
-  			VALUES (#{kind}, #{ingre}, #{len1}, #{len2}, #{len3}, #{color})
+  		INSERT INTO made(id,kind, ingre, len1, len2, len3, color)
+  			VALUES (#{id},#{kind}, #{ingre}, #{len1}, #{len2}, #{len3}, #{color})
+  	</insert>
+  	
+  	<select id="madeList" resultType="org.spring2.model.MadeVO">
+  		SELECT * FROM made WHERE id=#{id} ORDER BY mno DESC
+  	</select>
+  	
+  	<insert id="madeAddPimage">
+  		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
+			select
+			ifnull (max(pno)+1 , 1)
+			from product
+		</selectKey>
+  		INSERT INTO p_image(uuid,pno,fullPath)
+  		<choose>
+  			<when test="fileName == '1'.toString()">
+	  		VALUES(#{uuid},#{pno},'https://cdn-icons-png.flaticon.com/512/1663/1663945.png')
+  			</when>
+  			<when test="fileName == '2'.toString()">
+  			VALUES(#{uuid},#{pno},'https://icons.veryicon.com/png/o/miscellaneous/common-home-icon/chair-20.png')
+  			</when>
+  			<otherwise>
+  			VALUES(#{uuid},#{pno},'https://cdn-icons-png.flaticon.com/128/152/152529.png')
+  			</otherwise>
+  		</choose>
+  		
+  	</insert>
+  	
+  	<insert id="madeAddCart">
+  		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
+			select
+			ifnull (max(pno) , 1)
+			from product
+		</selectKey>
+  		INSERT INTO cart(id,pno) VALUES(#{id},#{pno}) 
   	</insert>
   </mapper>

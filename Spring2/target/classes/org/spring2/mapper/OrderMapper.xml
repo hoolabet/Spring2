@@ -7,6 +7,8 @@
 		<result column="price" property="price" />
 		<result column="pname" property="pname" />
 		<result column="quantity" property="quantity" />
+		<result column="category_area" property="category_area" />
+		<result column="category_type" property="category_type" />
 	</resultMap>
 	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
 		<result column="fullPath" property="fullPath" />
@@ -47,13 +49,13 @@
 		* FROM cart WHERE id=#{id} and pno=#{pno} </select> -->
 	<select id="orderList" resultMap="CartVO">
 		select
-		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno,category_type,category_area
 		from
 		cart
 		join
 		(
 		select
-		product.pno,price,pname,fullPath,quantity
+		product.pno,price,pname,fullPath,quantity,category_type,category_area
 		from
 		product
 		join
@@ -74,13 +76,13 @@
 
 	<select id="orderReadyList" resultMap="CartVO">
 		select
-		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno,category_type,category_area
 		from
 		cart
 		join
 		(
 		select
-		product.pno,price,pname,fullPath,quantity
+		product.pno,price,pname,fullPath,quantity,category_type,category_area
 		from
 		product
 		join

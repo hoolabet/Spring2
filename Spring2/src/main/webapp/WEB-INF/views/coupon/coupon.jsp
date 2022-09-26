@@ -32,7 +32,17 @@
 			</td>
 			<td>사용가능기한 : ~${coupon.exp_date}</td>
 			<td>
-				<input type="radio" name="sel" value="${coupon.cpno}" id="r${coupon.cpno}" data-cpmax="${coupon.cpvo.cpmax}" data-cpreq="${coupon.cpvo.cpreq}" data-apply="${coupon.doApply}">
+				<input 
+					type="radio" 
+					name="sel" 
+					value="${coupon.cpno}" 
+					id="r${coupon.cpno}" 
+					data-cpmax="${coupon.cpvo.cpmax}" 
+					data-cpreq="${coupon.cpvo.cpreq}" 
+					data-apply="${coupon.doApply}" 
+					data-area="${coupon.category_area}" 
+					data-type="${coupon.category_type}"
+				>
 				<input type="button" value="쿠폰적용취소" class="cancel" data-cpno="${coupon.cpno}">
 				<input type="hidden" value="${coupon.cpvo.cpvalue}" id="${coupon.cpno}">
 			</td>
@@ -51,6 +61,8 @@
 				<input type="hidden" value="${cart.bvo.price*cart.b_quantity}" id="pp">
 				<input type="hidden" id="cpno_val">
 				<input type="hidden" id="pno_val" value="${cart.pno}">
+				<input type="hidden" id="area_val">
+				<input type="hidden" id="type_val">
 			</td>
 		</tr>
 	</table>

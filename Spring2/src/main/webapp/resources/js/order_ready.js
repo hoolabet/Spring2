@@ -30,7 +30,7 @@ $("input[name='destination']").on("change", function() {
 
 let pnoArr = [];
 $(".order_pno").each(function(i,p) {
-	pnoArr = [...pnoArr,...p.value];
+	pnoArr.push(p.value);
 })
 
 $("#pay").on("click", function() {
@@ -77,10 +77,15 @@ $("#pay").on("click", function() {
 									data:JSON.stringify(oData),
 									contentType:"application/json; charset=utf-8",
 									success:function(){
+										const dData = {
+												id:res.id,
+												cpno:res.cpno
+										}
+										console.log(dData);
 										$.ajax({
 											type:"delete",
 											url:"/removecoupon",
-											data:JSON.stringify(oData),
+											data:JSON.stringify(dData),
 											contentType:"application/json; charset=utf-8",
 											success:function(){
 												
@@ -94,6 +99,9 @@ $("#pay").on("click", function() {
 							}
 						})
 					})
+					.fail(function() {
+						alert("nono")
+					})
 				})
 			},
 			error:function(){
@@ -103,7 +111,7 @@ $("#pay").on("click", function() {
 		.done(function() {
 			setTimeout(() => {
 				location.href = "/order/complete";
-			}, 1000);
+			}, 3000);
 		})
 	}
 	
@@ -123,7 +131,7 @@ $(".use_coupon").on("click",function(c){
 				clearInterval(sIv);
 				cpnoCheck = -1;
 				$(c.target).data("cpno",res.cpno);
-				$.getJSON("/getcoupon",{id:id,pno:pno,cpno:res.cpno},function(resc){
+				$.getJSON("/getcoupon",{id:id,cpno:res.cpno},function(resc){
 					if(resc.cpvo.cpvalue < 100 && resc.cpvo.cpvalue > 0){
 						if((bPriceS*resc.cpvo.cpvalue/100) > resc.cpvo.cpmax){
 							$(`#${pno}_ps`).html(bPriceS - resc.cpvo.cpmax);

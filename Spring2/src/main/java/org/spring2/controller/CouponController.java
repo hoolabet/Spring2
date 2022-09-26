@@ -2,9 +2,11 @@ package org.spring2.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.spring2.model.BoardVO;
 import org.spring2.model.CartVO;
 import org.spring2.model.CouponTargetVO;
 import org.spring2.model.MemberVO;
+import org.spring2.service.BoardService;
 import org.spring2.service.CouponService;
 import org.spring2.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,24 +24,27 @@ public class CouponController {
 	CouponService cs;
 	@Autowired
 	OrderService os;
+	@Autowired
+	BoardService bs;
 	
 	@RequestMapping(value = "/coupon/coupon", method = RequestMethod.GET)
 	public void couponGet(HttpSession session,Model model,int pno) {
 		MemberVO mvo = new MemberVO();
 		mvo = (MemberVO)session.getAttribute("userInfo");
-		CouponTargetVO cptvo = new CouponTargetVO();
-		cptvo.setId(mvo.getId());
-		cptvo.setPno(pno);
-		System.out.println(cptvo);
+		BoardVO bvo = new BoardVO();
+		bvo.setPno(pno);
+		bvo = bs.detail(bvo);
+		bvo.setPname(mvo.getId());
 		CartVO cvo = new CartVO();
 		cvo.setId(mvo.getId());
 		cvo.setPno(pno);
-		model.addAttribute("coupon",cs.couponGet(cptvo));
+		model.addAttribute("coupon",cs.couponGet(bvo));
 		model.addAttribute("cart",os.orderList(cvo));
 	}
 	
 	@RequestMapping(value = "/applycoupon", method = RequestMethod.PUT)
 	public ResponseEntity<String> applyCoupon(@RequestBody CartVO cvo) {
+		System.out.println(cvo);
 		int result=cs.applyCoupon(cvo) + cs.applyCoupon2(cvo);
 		return result==2? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

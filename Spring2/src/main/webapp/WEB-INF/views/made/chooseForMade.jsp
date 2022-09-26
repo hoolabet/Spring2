@@ -15,6 +15,7 @@
             <h1>제작 페이지</h1>
             <div id="choose_div">
                 <form action="/made/chooseForMade" method="post">
+                	<input type="hidden" name="id" value="${userInfo.id}">
                     <table>
                         <tr>
                             <td colspan="3">가구선택</td>
@@ -25,9 +26,9 @@
                             <td>etc</td>
                         </tr>
                         <tr>
-                            <td><input class="choose_1" type="radio" name="kind" value="table"></td>
-                            <td><input class="choose_1" type="radio" name="kind" value="chair"></td>
-                            <td><input class="choose_1" type="radio" name="kind" value="etc"></td>
+                            <td><input class="choose_1" type="radio" name="kind" value="1"></td>
+                            <td><input class="choose_1" type="radio" name="kind" value="2"></td>
+                            <td><input class="choose_1" type="radio" name="kind" value="7"></td>
                         </tr>
                         <tr>
                             <td colspan="3">재료</td>
@@ -71,10 +72,10 @@
                     <div id="black" class="opt_color"></div>
                     <br>
                     <input type="hidden" name="color" id="value_color">
-                    <input type="submit" value="장바구니에 담기" id="sub">
+                    <input type="submit" value="저장하기" id="sub">
                 </form>
             </div>
-            <br> <a href="/">메인으로</a>
+            <br> <a href="/">메인으로</a> <a href="/made/list">목록으로</a>
         </div>
         <div id="result">
             <div id="result_1"></div>

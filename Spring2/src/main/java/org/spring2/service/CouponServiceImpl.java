@@ -3,6 +3,7 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.mapper.CouponMapper;
+import org.spring2.model.BoardVO;
 import org.spring2.model.CartVO;
 import org.spring2.model.CouponTargetVO;
 import org.spring2.model.CouponVO;
@@ -20,8 +21,8 @@ public class CouponServiceImpl implements CouponService{
 		cm.signUpCoupon(cptvo);
 	}
 	
-	public ArrayList<CouponTargetVO> couponGet(CouponTargetVO cptvo){
-		return cm.couponGet(cptvo);
+	public ArrayList<CouponTargetVO> couponGet(BoardVO bvo){
+		return cm.couponGet(bvo);
 	}
 	
 	public int applyCoupon(CartVO cvo) {

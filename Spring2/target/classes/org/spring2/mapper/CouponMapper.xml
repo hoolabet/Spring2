@@ -5,8 +5,8 @@
 
 <mapper namespace="org.spring2.mapper.CouponMapper">
 	<insert id="signUpCoupon">
-		INSERT INTO coupon_target (id,cpno,pno,exp_date)
-		VALUES (#{id},#{cpno},#{pno},#{exp_date})
+		INSERT INTO coupon_target (id,cpno,category_area,category_type,exp_date)
+		VALUES (#{id},#{cpno},#{category_area},#{category_type},#{exp_date})
 	</insert>
 	<resultMap type="org.spring2.model.CouponVO" id="CouponVO">
 		<result column="cptype" property="cptype" />
@@ -19,14 +19,15 @@
 		id="CouponTargetVO">
 		<result column="id" property="id" />
 		<result column="cpno" property="cpno" />
-		<result column="pno" property="pno" />
+		<result column="category_area" property="category_area" />
+		<result column="category_type" property="category_type" />
 		<result column="doApply" property="doApply" />
 		<result column="exp_date" property="exp_date" />
 		<collection property="cpvo" resultMap="CouponVO" />
 	</resultMap>
 	<select id="couponGet" resultMap="CouponTargetVO">
 		SELECT 
-			c.*,exp_date,doApply
+			c.*,exp_date,doApply,category_area,category_type
 		FROM
 			coupon_target ct
 		JOIN
@@ -35,15 +36,21 @@
 			ct.cpno = c.cpno
 		WHERE
 			(
-			id=#{id}
+			id=#{pname}
 		and
-			pno=#{pno}
+			category_area=#{category_area}
 			)
 		or
 			(
-			id=#{id}
+			id=#{pname}
 		and
-			pno=0
+			category_type=#{category_type}
+			)
+		or
+			(
+			id=#{pname}
+		and
+			category_area=0
 			)
 		;
 	</select>
@@ -92,11 +99,13 @@
 		<choose>
 		<when test="pno != -1 and cpno != 1">
 		and 		
-			pno=#{pno}
+			category_area=#{b_quantity}
+		and
+			category_type=#{add_date}
 		</when>
 		<when test="pno != -1 and cpno == 1">
 		and 		
-			pno=0
+			category_area=0
 		</when>
 		</choose>
 	</update>

@@ -4,7 +4,7 @@ let indexArr = [];
 loadCart();
 
 function loadCart() {
-
+	indexArr = [];
 	$.ajax({
 		type:"get",
 		url:"/cartlist/"+id+".json",
@@ -13,25 +13,47 @@ function loadCart() {
 		success:function(res){
 			res.forEach(function(r,i) {
 				indexArr = [...indexArr,i];
-				str += `
-					<table border="1" style="display:inline-block;border-collapse:collapse;">
-					<tr>
-					<td style="width:200px"><input type="checkbox" checked id="${i}" class="select_p" data-pno="${r.pno}"></td>
-					<td><a href="/board/detail?pno=${r.pno}"><img src="/display?fileName=${r.ivo.fullPath}" style="width:200px; height:200px;"></a></td>
-					<td style="width: 800px;">
-					<p>${r.bvo.pname}</p>
-					<p>
-					<input type="button" value="▼" class="d${i}i" id="d${i}">
-					<input type="text" value="${r.b_quantity}" size="2" readonly id="d${i}i">
-					<input type="button" value="▲" class="d${i}i" id="${i}i" data-quan="${r.bvo.quantity}">
-					<input type="hidden" value="${r.bvo.price}" id="d${i}i_price">
-					</p>
-					<p>가격 : <span class="prices" id="d${i}i_price_quan">${r.bvo.price*r.b_quantity}</span></p>
-					<p><input type="button" value="빼기" class="remove_btn" data-pno="${r.pno}"></p>
-					</td>
-					</tr>
-					</table>
-					`;
+				if(r.ivo.fullPath.includes("http")){
+					str += `
+						<table border="1" style="display:inline-block;border-collapse:collapse;">
+						<tr>
+						<td style="width:200px"><input type="checkbox" checked id="${i}" class="select_p" data-pno="${r.pno}"></td>
+						<td><a href="/board/detail?pno=${r.pno}"><img src="${r.ivo.fullPath}"style="width:200px; height:200px;"></a></td>
+						<td style="width: 800px;">
+						<p>${r.bvo.pname}</p>
+						<p>
+						<input type="button" value="▼" class="d${i}i" id="d${i}">
+						<input type="text" value="${r.b_quantity}" size="2" readonly id="d${i}i">
+						<input type="button" value="▲" class="d${i}i" id="${i}i" data-quan="${r.bvo.quantity}">
+						<input type="hidden" value="${r.bvo.price}" id="d${i}i_price">
+						</p>
+						<p>가격 : <span class="prices" id="d${i}i_price_quan">${r.bvo.price*r.b_quantity}</span></p>
+						<p><input type="button" value="빼기" class="remove_btn" data-pno="${r.pno}"></p>
+						</td>
+						</tr>
+						</table>
+						`;
+				}else{
+					str += `
+						<table border="1" style="display:inline-block;border-collapse:collapse;">
+						<tr>
+						<td style="width:200px"><input type="checkbox" checked id="${i}" class="select_p" data-pno="${r.pno}"></td>
+						<td><a href="/board/detail?pno=${r.pno}"><img src="/display?fileName=${r.ivo.fullPath}" style="width:200px; height:200px;"></a></td>
+						<td style="width: 800px;">
+						<p>${r.bvo.pname}</p>
+						<p>
+						<input type="button" value="▼" class="d${i}i" id="d${i}">
+						<input type="text" value="${r.b_quantity}" size="2" readonly id="d${i}i">
+						<input type="button" value="▲" class="d${i}i" id="${i}i" data-quan="${r.bvo.quantity}">
+						<input type="hidden" value="${r.bvo.price}" id="d${i}i_price">
+						</p>
+						<p>가격 : <span class="prices" id="d${i}i_price_quan">${r.bvo.price*r.b_quantity}</span></p>
+						<p><input type="button" value="빼기" class="remove_btn" data-pno="${r.pno}"></p>
+						</td>
+						</tr>
+						</table>
+						`;
+				}
 			})
 			console.log(indexArr);
 			$("#cart_list").html(str);

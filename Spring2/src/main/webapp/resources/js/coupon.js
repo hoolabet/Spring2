@@ -30,6 +30,10 @@ $("input[name='sel']").on("click",function(){
 
 $("input[name='sel']").on("change",function(){
 	$("#cpno_val").val($(this).val());
+	$("#area_val").val($(this).data("area"));
+	$("#type_val").val($(this).data("type"));
+	console.log($("#area_val").val());
+	console.log($("#type_val").val());
 	const dc = Number($("#"+$(this).val()).val());
 	if(dc < 100){
 		if((proto * dc / 100) > $(this).data("cpmax")){
@@ -46,16 +50,20 @@ const id = $("#id").val();
 const pno = $("#pno_val").val();
 
 $("#done").on("click", function() {
+	const area = $("#area_val").val();
+	const type = $("#type_val").val();
 	const cpno = $("#cpno_val").val();
 	const cData = {
 			cpno:cpno,
 			pno:pno,
+			b_quantity:area,
+			add_date:type,
 			id:id
 	}
+	console.log(cData);
 	if(cpno == 0){
 		alert("쿠폰을 선택하세요.");
 	}else{
-		console.log(cData);
 		$.ajax({
 			type:"put",
 			url:"/applycoupon",
@@ -80,6 +88,8 @@ $(".cancel").on("click",function(){
 				const cData = {
 						cpno:0,
 						pno:pno,
+						b_quantity:area,
+						add_date:type,
 						id:id
 				}
 				$.ajax({

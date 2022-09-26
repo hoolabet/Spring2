@@ -2,17 +2,25 @@ package org.spring2.model;
 
 public class MadeVO {
 	private int mno;
+	private String id;
 	private String kind;
 	private String ingre;
 	private int len1;
 	private int len2;
 	private int len3;
 	private String color;
+	
 	public int getMno() {
 		return mno;
 	}
 	public void setMno(int mno) {
 		this.mno = mno;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getKind() {
 		return kind;
@@ -52,8 +60,8 @@ public class MadeVO {
 	}
 	@Override
 	public String toString() {
-		return "MadeVO [mno=" + mno + ", kind=" + kind + ", ingre=" + ingre + ", len1=" + len1 + ", len2=" + len2
-				+ ", len3=" + len3 + ", color=" + color + "]";
+		return "MadeVO [mno=" + mno + ", id=" + id + ", kind=" + kind + ", ingre=" + ingre + ", len1=" + len1
+				+ ", len2=" + len2 + ", len3=" + len3 + ", color=" + color + "]";
 	}
 	
 	

@@ -6,7 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class CouponTargetVO {
 	private String id;
 	private int cpno;
-	private int pno;
+	private int category_area;
+	private int category_type;
 	private boolean doApply;
 	private String exp_date;
 	private CouponVO cpvo;
@@ -17,7 +18,8 @@ public class CouponTargetVO {
 	public CouponTargetVO(String id) {
 		this.id = id;
 		this.cpno = 1;
-		this.pno = 0;
+		this.category_area = 0;
+		this.category_type = 0;
 		LocalDateTime ldt = LocalDateTime.now();
 		
 		this.exp_date = ldt.plusMonths(3).format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
@@ -53,12 +55,36 @@ public class CouponTargetVO {
 	public void setCpno(int cpno) {
 		this.cpno = cpno;
 	}
-	public int getPno() {
-		return pno;
+	
+	
+
+
+	public int getTarget_area() {
+		return category_area;
 	}
-	public void setPno(int pno) {
-		this.pno = pno;
+
+	public void setTarget_area(int target_area) {
+		this.category_area = target_area;
 	}
+
+	
+
+	public int getCategory_area() {
+		return category_area;
+	}
+
+	public void setCategory_area(int category_area) {
+		this.category_area = category_area;
+	}
+
+	public int getCategory_type() {
+		return category_type;
+	}
+
+	public void setCategory_type(int category_type) {
+		this.category_type = category_type;
+	}
+
 	public String getExp_date() {
 		return exp_date;
 	}
@@ -67,8 +93,8 @@ public class CouponTargetVO {
 	}
 	@Override
 	public String toString() {
-		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", pno=" + pno + ", doApply=" + doApply + ", exp_date="
-				+ exp_date + ", cpvo=" + cpvo + "]";
+		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", category_area=" + category_area + ", category_type="
+				+ category_type + ", doApply=" + doApply + ", exp_date=" + exp_date + ", cpvo=" + cpvo + "]";
 	}
 	
 	
