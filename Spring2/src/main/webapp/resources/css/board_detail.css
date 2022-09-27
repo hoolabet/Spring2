@@ -24,13 +24,13 @@ h3{
 	margin: 0 auto;
 	border: 1px solid black;
 }
-#s_form{
-	width: 300px;
-    margin: 0 auto;
-}
+
 #t_sell {
 	text-align: left;
 	padding: 15px;
+	font-size: 19px;
+	display: flex;
+    justify-content: center;
 }
 #t_sell >tr,#t_sell th,#t_sell td{
 	border-collapse: collapse;
@@ -39,14 +39,22 @@ h3{
 #num {
 	width: 39px;
 }
-
+#buy{
+	width: 162px;
+	background-color:black;
+	color: white;
+}
+#add_wishlist{
+	width:50px;
+}
 .btn_p {
 	background-color: white;
 	color: black;
-	border: 1px solid #7d4f37;
-	width: 84px;
-    height: 50px;
-    margin: 5px auto;
+	border: 1px solid #c0c0c0;
+	width: 83px;
+    height: 60px;
+    margin: 21px auto;
+    font-size: 17px;
 }
 
 .btn_p:hover {
