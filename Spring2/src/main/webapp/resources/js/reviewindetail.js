@@ -22,9 +22,9 @@ $(document).ready(function(){
 			const total = data.length;
 			var totalPages = Math.ceil(total/10);
 			if(idVal!=""){	// 주문내역이 있는 경우 보이게 추가해야함
-				str+="<div id='Rwritelink'>";	
-				str+="<a href='/board/reviewwrite?pno="+pno+"' id='rwlink'>리뷰 작성하기</a>";
-				str+="</div>";
+				str+=`<div id='Rwritelink'><p>리뷰를 작성하시려면 <a href="../member/login">로그인</a>해 주세요</p></div>`;
+			}else{
+				str+=`<div id='Rwritelink'><a href='/board/reviewwrite?pno="+pno+"' id='rwlink'>리뷰 작성하기</a></div>`
 			}
 			
 			console.log(data);
@@ -32,6 +32,11 @@ $(document).ready(function(){
 			if(data==""){
 				str+=`<p>작성된 리뷰가 없습니다.`;
 			}else{
+				str+=`<div id="index">
+						<a href="/board/detail?pno=${pro.pno}&array=recent#reviewlist">최신순 /</a>
+						<a href="/board/detail?pno=${pro.pno}#reviewlist"> 베스트순</a>
+					</div> 
+					<h3>리뷰 목록</h3>`
 				
 				// 리뷰 평균 평점
 				var sum=0;

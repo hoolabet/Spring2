@@ -17,14 +17,16 @@
 				<h1>리뷰쓰기</h1>
 				<form action="">
 					<div id="starRate">
-						<input type="radio" value="5" name="star" id="rate1"><label
-							for="rate1">★</label> <input type="radio" value="4" name="star"
-							id="rate2"><label for="rate2">★</label> <input
-							type="radio" value="3" name="star" id="rate3"><label
-							for="rate3">★</label> <input type="radio" value="2" name="star"
-							id="rate4"><label for="rate4">★</label> <input
-							type="radio" value="1" name="star" id="rate5"><label
-							for="rate5">★</label> <span>평점을 남겨주세요</span>
+						<input type="radio" value="5" name="scope" id="rate1">
+						<label for="rate1">★</label> 
+						<input type="radio" value="4" name="scope"id="rate2">
+						<label for="rate2">★</label> 
+						<input type="radio" value="3" name="scope" id="rate3">
+						<label for="rate3">★</label> 
+						<input type="radio" value="2" name="scope"id="rate4">
+						<label for="rate4">★</label> 
+						<input type="radio" value="1" name="scope" id="rate5">
+						<label for="rate5">★</label> <span>평점을 남겨주세요</span>
 					</div>
 					<div id="title">
 						<input type="text" name="title" placeholder="제목을 여기에 쓰세요">

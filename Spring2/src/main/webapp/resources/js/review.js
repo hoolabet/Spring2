@@ -87,7 +87,7 @@ $(document).ready(function(){
 		if(idVal=="" || scopeVal=="" || contentVal==""){
 			alert("평점과 내용을 입력해 주세요")
 		}else{
-			if(confirm("완료")){
+			if(confirm("리뷰작성완료")){
 				$("#form").submit();
 			}else{
 				return false
@@ -106,7 +106,7 @@ $(document).ready(function(){
 		if(idVal=="" || scopeVal=="" || contentVal==""){
 			alert("평점과 내용을 입력해 주세요")
 		}else{
-			if(confirm("완료")){
+			if(confirm("리뷰수정완료")){
 				$("#form").submit();
 			}else{
 				return false

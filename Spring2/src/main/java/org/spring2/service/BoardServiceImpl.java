@@ -9,6 +9,7 @@ import org.spring2.model.CategoryVO;
 import org.spring2.model.Category_AreaVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
+import org.spring2.model.PaymentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 	public Category_AreaVO caa(CriteriaVO cri){
 		return bm.caa(cri);
+	}
+	public ArrayList<PaymentVO> findPay(BoardVO bvo){
+		return bm.findPay(bvo);
 	}
 }

@@ -8,6 +8,7 @@ import org.spring2.model.CategoryVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.PageVO;
+import org.spring2.model.PaymentVO;
 import org.spring2.service.BoardService;
 import org.spring2.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class BoardController {
 	
 	// 상품상세페이지 
 	@RequestMapping(value = "/board/detail", method = RequestMethod.GET)
-	public void BoardDetail(BoardVO bvo, Model model,CriteriaVO cri,int pno) {
+	public void BoardDetail(BoardVO bvo, Model model,CriteriaVO cri,int pno, PaymentVO pvo) {
 		model.addAttribute("detail", bs.detail(bvo));
 		cri.setAmount(5);
 		String n = String.valueOf(pno);

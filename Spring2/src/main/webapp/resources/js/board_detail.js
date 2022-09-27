@@ -197,3 +197,13 @@ $("#add_wishlist").on("click",function(){
 		})
 	})
 })
+$("#remove").on("click",function(e){
+	e.preventDefault();
+	if(confirm("삭제하시겠습니까?")){
+		$("#form_back").submit();
+	}
+})
+$("#modify").on("click",function(e){
+	e.preventDefault();
+	location.href="/board/modify?pno="+pno;
+})

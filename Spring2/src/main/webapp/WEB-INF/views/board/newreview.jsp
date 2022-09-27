@@ -7,14 +7,10 @@
 				<input type="hidden" value="${userInfo.id}" id="userId">
 				
 				<div id="scopecnt">	</div>
-				<div id="index">
-					<a href="/board/detail?pno=${pro.pno}&array=recent#reviewlist">최신순 /</a>
-					<a href="/board/detail?pno=${pro.pno}#reviewlist"> 베스트순</a>
-				</div> 
 				
 				<!-- 리뷰 목록  -->
 				<div id="list">
-					<h3>리뷰 목록</h3>
+					
 					<c:forEach items="${list}" var="list"> 
 						<table class='t_score'>
 							<tr>
@@ -38,8 +34,9 @@
 								<th>등록일</th><td>${list.regdate}</td>
 							</tr>
 								<tr>
-								<th>평점</th>
-								<td colspan="3">${list.scope}</td>
+								<th>평점
+								<input type="hidden" class="Star_scope" value="${list.scope}"></th>
+								<td colspan="3" class="scopeS">${list.scope}</td>
 							</tr>
 							
 							<c:choose>
@@ -49,10 +46,12 @@
 									<tr>
 										<th>사진</th>
 										<td colspan="3">
+										<c:if test="${list.filename ne null}">
 											<c:url value="http://localhost:8080/board/display?" var="url">
 												<c:param name="filename" value="${list.uploadpath}/s_${list.uuid}_${list.filename}" />
 											</c:url>
 											<img src="${url}">
+											</c:if>
 										</td>
 									</tr>
 								</c:otherwise>

@@ -6,6 +6,7 @@ import org.spring2.model.BoardVO;
 import org.spring2.model.CategoryVO;
 import org.spring2.model.Category_AreaVO;
 import org.spring2.model.CriteriaVO;
+import org.spring2.model.PaymentVO;
 
 public interface BoardMapper {
 	public void write(BoardVO bvo);
@@ -23,4 +24,6 @@ public interface BoardMapper {
 	public ArrayList<CategoryVO> category();
 	//장소카테고리
 	public Category_AreaVO caa(CriteriaVO cri);
+	//구매자확인
+	public ArrayList<PaymentVO> findPay(BoardVO bvo);
 }

@@ -7,6 +7,7 @@ import org.spring2.model.CategoryVO;
 import org.spring2.model.Category_AreaVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
+import org.spring2.model.PaymentVO;
 
 public interface BoardService {
 	//상품게시판글쓰기
@@ -27,4 +28,6 @@ public interface BoardService {
 	public ArrayList<CategoryVO> cat();
 	//장소카테고리 리스트
 	public Category_AreaVO caa(CriteriaVO cri);
+	//구매자확인
+	public ArrayList<PaymentVO> findPay(BoardVO bvo);
 }

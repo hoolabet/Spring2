@@ -1,4 +1,32 @@
 @charset "UTF-8";
+/* 리뷰별표 */
+.star-ratings {
+  color: #aaa9a9; 
+  position: relative;
+  unicode-bidi: bidi-override;
+  width: max-content;
+  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1.3px;
+  -webkit-text-stroke-color: #2b2a29;
+  margin: 0 auto;
+}
+ 
+.star-ratings-fill {
+  color: #b6b5af;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  -webkit-text-fill-color: gold;
+}
+ 
+.star-ratings-base {
+  z-index: 0;
+  padding: 0;
+}
 /* 리뷰 평점 */
 #Rscopecnt>table{
 	height: 100%;
@@ -20,14 +48,26 @@
     left: 58px;
     bottom: 10px;
 }
-#Rwritelink>p, #Iwritelink>p{ 
+#Rwritelink>p{ 
 	color:black;
+	position: relative;
+    left: 120px;
 }
-#Rwritelink>a, #Rwritelink>p>a, #Rmore>a, #Iwritelink>a, #Iwritelink>p>a, #Imore>a{
+#Rwritelink>a, #Rwritelink>p>a{
 	color:#8bace9;
 	font-weight: bold;
+	
 }
-
+#rwlink{
+	color:#8bace9;
+	font-weight: bold;
+	position: relative;
+    left: 120px;
+}
+#Rwritelink>a:hover, #Rwritelink>p>a:hover{
+	color: #868686; 
+	text-decoration: underline;
+}
 /* 리뷰 리스트 */
 
 #Rlist>table, #Ilist>table{
@@ -99,3 +139,6 @@ h3, #paging{
 	margin-top: 10px;
 	margin-bottom: 10px;
 } 
+.btn_like:hover{
+	cursor: pointer;
+}

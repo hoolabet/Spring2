@@ -19,9 +19,12 @@
 					<h1>모든제품</h1>
 				</c:if>
 				<h1>${caa.cname}</h1>
+				<c:if test="${userInfo.admin eq true}">
 				<div id="p_write">
 					<button id="btn_Write">상품등록</button>
 				</div>
+				</c:if>
+				
 				<div id="p_list">
 					<ul>
 						<c:forEach items="${category}" var="category">
@@ -85,7 +88,7 @@
 				</div>
 				<div id="paging">
 					<%-- ${paging} --%>
-					<%-- ${num} --%>
+					 ${num} 
 					<!-- prev(이전)이 true이면 이전버튼 활성화 -->
 					<c:if test="${paging.prev}">
 						<a

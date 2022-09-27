@@ -9,6 +9,7 @@
 	type="text/css">
 <link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" href="../resources/css/reviewInDetail.css">
+<link rel="stylesheet" href="../resources/css/inquiryInDetail.css">
 
 </head>
 <body>
@@ -17,7 +18,9 @@
 		<div id="content_area">
 			<div id="container">
 				<h1>상품상세페이지 </h1>
-				
+				<c:forEach items="${pay}" var="pay">
+				<input type="text" value="${pay.id}" class="pay" id="pay">
+				</c:forEach>
 				<input type="hidden" value="${userInfo.id}" id="id">
 				<input type="hidden" value="${detail.pno}" id="pno">
 				<input type="hidden" value="${detail.quantity}" id="quantity">
@@ -77,8 +80,8 @@
 					<div id="back">
 						<form action="/board/remove" method="post" id="form_back">
 							<input type="hidden" value="${detail.pno}" name="pno">
-							<c:if test="${userInfo.id ne null}">
-							<a href="/board/modify?pno=${detail.pno}">수정하기</a> 
+							<c:if test="${userInfo.admin eq true}">
+							<button id="modify">수정</button>
 							<button id="remove">삭제</button>
 							</c:if>
 							<a href="/board/list">목록보기</a>
@@ -155,7 +158,6 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript" src="../resources/js/board_detail.js"></script>
-	<!-- <script type="text/javascript" src="../resources/js/reviewindetail.js"></script> -->
 	<script type="text/javascript" src="../resources/js/inquiryindetail.js"></script>	
 	 <script type="text/javascript" src="../resources/js/newreview.js"></script>	
 </body>

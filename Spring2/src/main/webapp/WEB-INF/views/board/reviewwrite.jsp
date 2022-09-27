@@ -31,12 +31,17 @@
 						</tr>
 						<tr>
 							<th>평점</th>
-							<td colspan="3" style="text-align: center">
-								<input type="radio" value="1" name="scope" class="input">1
-								<input type="radio" value="2" name="scope" class="input">2
-								<input type="radio" value="3" name="scope" class="input">3
-								<input type="radio" value="4" name="scope" class="input">4
-								<input type="radio" value="5" name="scope" class="input">5
+						<td colspan="3" style="text-align: center" id="starRate">
+								<input type="radio" value="5" name="scope" id="rate1">
+									<label for="rate1">★</label> 
+								<input type="radio" value="4" name="scope"id="rate2">
+									<label for="rate2">★</label> 
+								<input type="radio" value="3" name="scope" id="rate3">
+									<label for="rate3">★</label> 
+								<input type="radio" value="2" name="scope"id="rate4">
+									<label for="rate4">★</label> 
+								<input type="radio" value="1" name="scope" id="rate5">
+									<label for="rate5">★</label> 
 							</td>
 						</tr>
 						<tr>

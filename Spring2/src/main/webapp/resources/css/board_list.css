@@ -50,6 +50,7 @@
 	float: left;
 	margin: 12px;
 	border: 1px solid #d6dadd;
+	height:300px;
 }
 
 #list > ul > li > p > a:hover{
@@ -73,5 +74,5 @@
 	display:flex;
 	justify-content: center;
 	font-size:52px;
-	
+	clear:both;
 }
