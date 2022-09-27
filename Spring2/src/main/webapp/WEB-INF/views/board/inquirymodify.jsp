@@ -34,7 +34,7 @@
 					</tr>
 					<tr>
 						<th>답변</th>
-						<td colspan="3"><textarea name="answer" id="answer">${detail.answer}</textarea></td>
+						<td colspan="3"><textarea name="answer" id="adminanswer">${detail.answer}</textarea></td>
 					</tr>
 				</table>
 				<input type="submit" value="작성" id="wbtn">
