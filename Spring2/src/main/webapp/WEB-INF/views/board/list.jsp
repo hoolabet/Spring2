@@ -59,7 +59,7 @@
 						<c:forEach items="${list}" var="boardlist">
 							<li>
 							<c:choose>
-								<c:when test="${boardlist.quantity ==0 }">
+								<c:when test="${boardlist.quantity ==0 and userInfo.admin != true}">
 									<a>
 								</c:when>
 								<c:otherwise>
@@ -88,7 +88,7 @@
 				</div>
 				<div id="paging">
 					<%-- ${paging} --%>
-					 ${num} 
+					<%--  ${num}  --%>
 					<!-- prev(이전)이 true이면 이전버튼 활성화 -->
 					<c:if test="${paging.prev}">
 						<a

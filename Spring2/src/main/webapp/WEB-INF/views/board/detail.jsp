@@ -55,9 +55,9 @@
 									<td><span id="totalPrice">${detail.price}</span></td>
 								</tr>
 								<tr>
-									<td colspan="2"><button class="btn_p">구매하기</button>
+									<td colspan="2"><button class="btn_p" id="buy">구매하기</button>
 										<button class="btn_p" id="add_cart">장바구니</button>
-										<button class="btn_p" id="add_wishlist">관심상품</button>
+										<button class="btn_p" id="add_wishlist">찜</button>
 								</tr>
 							</table>
 						</div>
@@ -91,9 +91,15 @@
 				
 				<section id="reviewlist">
 				<div class='title'>리뷰보기</div>
-				<%@ include file="../board/newreview.jsp"%>
-				
+				<div id='reviewl'></div>
+				<div id="scopecnt"></div>				
 				</section>
+				<input type="hidden" value="${paging.total}" id="Rtotal">
+				<c:if test="${paging.total != 0}">
+					<button id="prev" class="paging">&#60;</button>
+    				<span id="pagination"></span>
+    				<button id="next" class="paging">&#62;</button>
+				</c:if>
 				
 				<section id="privqna">
 				

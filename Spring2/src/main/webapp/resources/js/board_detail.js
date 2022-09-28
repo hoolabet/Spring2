@@ -50,9 +50,9 @@ const minus = document.querySelector('#btn_minus');
 minus.addEventListener('click',()=>{
 	let quantity = parseInt(num.value);
 	num.value = quantity - 1;
-	if(quantity<1){
+	if(quantity<2){
 		num.value = 1;
-		totalPrice.innerText = p;
+		totalPrice.innerText = priceToString(p * num.value);
 	}else{
 		num.value = quantity -1;
 		totalPrice.innerText = priceToString(p * num.value);
@@ -192,7 +192,7 @@ $("#add_wishlist").on("click",function(){
 				alert("관심상품 등록완료")
 			},
 			error:function(){
-				alert("실패")
+				alert("로그인 후 이용가능합니다.")
 			}
 		})
 	})

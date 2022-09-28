@@ -48,22 +48,13 @@
     left: 58px;
     bottom: 10px;
 }
-#Rwritelink>p{ 
-	color:black;
-	position: relative;
-    left: 120px;
-}
+
 #Rwritelink>a, #Rwritelink>p>a{
 	color:#8bace9;
 	font-weight: bold;
 	
 }
-#rwlink{
-	color:#8bace9;
-	font-weight: bold;
-	position: relative;
-    left: 120px;
-}
+
 #Rwritelink>a:hover, #Rwritelink>p>a:hover{
 	color: #868686; 
 	text-decoration: underline;
@@ -141,4 +132,36 @@ h3, #paging{
 } 
 .btn_like:hover{
 	cursor: pointer;
+}
+.likeNum{
+	background-color: transparent;
+	border: none;
+	width: 10px;
+    font-size: 16px;
+}
+.rcontent{
+	text-align: left;
+}
+/* 페이징버튼 */
+.btn_pa{
+	width: 33px;
+    height: 29px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.btn_pa:hover{
+	text-decoration: underline;
+}
+.active{
+	border: 1px solid blue;
+	color: blue;
+}
+.paging{
+	width: 33px;
+    height: 29px;
+    cursor: pointer;
+}
+.click{
+	text-decoration: underline;
 }

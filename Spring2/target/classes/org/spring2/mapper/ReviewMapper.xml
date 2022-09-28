@@ -6,12 +6,6 @@
 <mapper namespace="org.spring2.mapper.ReviewMapper">
   	
 	<select id="Rlist" resultType="org.spring2.model.ReviewVO">
-		select @rownum:=@rownum+1 rownum, r.*
-	    from review r,(select @rownum:=0) as tmp
-		where pno=#{pno}
-	    order by likeNum desc
-  	</select>
-	<select id="list" resultType="org.spring2.model.ReviewVO">
 		select *
 		from(
 			select @rownum:=@rownum+1 rownum, r.*
@@ -30,6 +24,23 @@
 		<![CDATA[
 		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
 		]]>
+  	</select>
+	<select id="list" resultType="org.spring2.model.ReviewVO">
+		select *
+		from(
+			select @rownum:=@rownum+1 rownum, r.*
+		    from review r,(select @rownum:=0) as tmp
+			where pno=${search}
+			<choose>
+			<when test="array =='recent'">
+			order by rno desc
+			</when>
+			<otherwise>
+			order by likeNum desc
+			</otherwise>
+			</choose>
+		    
+		) as reviewlist
   	</select>
   	
   	<select id="total" resultType="int">
