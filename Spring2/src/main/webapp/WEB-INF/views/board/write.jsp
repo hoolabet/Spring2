@@ -19,7 +19,7 @@
 					<table>
 						<tr>
 							<td><label>상품명</label></td>
-							<td><input type="text" name="pname"></td>
+							<td><input type="text" name="pname" id="pname"></td>
 						</tr>
 						<tr>
 							<td><label>가격</label></td>

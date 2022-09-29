@@ -40,7 +40,7 @@
 									<label for="rate3">★</label> 
 								<input type="radio" value="2" name="scope"id="rate4">
 									<label for="rate4">★</label> 
-								<input type="radio" value="1" name="scope" id="rate5">
+								<input type="radio" value="1" name="scope" id="rate5" checked>
 									<label for="rate5">★</label> 
 							</td>
 						</tr>

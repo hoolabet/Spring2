@@ -122,6 +122,11 @@ $("#btn").on("click",function(e){
 	if(isNaN($("#num1").val())||isNaN($("#num2").val())){
 		alert('숫자만 입력하세요')
 	}else{
-		$("#form").submit();
+		if($("#pname").val()==='' || $("#uploadThumb").val()===''||$("#num1").val() ===''||$("#num2").val() ===''){
+			alert('폼을 다 작성해주세요')
+		}else{
+			$("#form").submit();	
+		}
+		
 	}
 })
