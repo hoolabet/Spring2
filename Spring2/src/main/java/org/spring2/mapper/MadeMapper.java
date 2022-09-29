@@ -14,4 +14,6 @@ public interface MadeMapper {
 	public int madeAddCart(CartVO cvo);
 
 	public void madeAddPimage(ImageVO ivo);
+
+	public int madeRemove(MadeVO mvo);
 }

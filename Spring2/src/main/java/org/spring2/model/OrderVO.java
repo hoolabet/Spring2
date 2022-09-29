@@ -7,13 +7,20 @@ public class OrderVO {
 	private int b_quantity;
 	private int point;
 	private String id;
-	private int cpno;
+	private int cptno;
 	private String order_date;
 	private ImageVO ivo;
 	private BoardVO bvo;
 	private CouponVO cpvo;
+	private CouponTargetVO cptvo;
 	
 	
+	public CouponTargetVO getCptvo() {
+		return cptvo;
+	}
+	public void setCptvo(CouponTargetVO cptvo) {
+		this.cptvo = cptvo;
+	}
 	public CouponVO getCpvo() {
 		return cpvo;
 	}
@@ -69,11 +76,11 @@ public class OrderVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getCpno() {
-		return cpno;
+	public int getCptno() {
+		return cptno;
 	}
-	public void setCpno(int cpno) {
-		this.cpno = cpno;
+	public void setCptno(int cptno) {
+		this.cptno = cptno;
 	}
 	public String getOrder_date() {
 		return order_date;
@@ -84,8 +91,8 @@ public class OrderVO {
 	@Override
 	public String toString() {
 		return "OrderVO [ono=" + ono + ", payno=" + payno + ", pno=" + pno + ", b_quantity=" + b_quantity + ", point="
-				+ point + ", id=" + id + ", cpno=" + cpno + ", order_date=" + order_date + ", ivo=" + ivo + ", bvo="
-				+ bvo + ", cpvo=" + cpvo + "]";
+				+ point + ", id=" + id + ", cptno=" + cptno + ", order_date=" + order_date + ", ivo=" + ivo + ", bvo="
+				+ bvo + ", cpvo=" + cpvo + ", cptvo=" + cptvo + "]";
 	}
 	
 	

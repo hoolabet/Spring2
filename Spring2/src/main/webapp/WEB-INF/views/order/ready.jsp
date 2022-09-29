@@ -69,7 +69,7 @@
 								<input type="hidden" id="${cart.pno}_psh" value="${cart.bvo.price*cart.b_quantity}">
 							</p>
 							<p>
-								<input type="button" value="쿠폰 사용" class="use_coupon" data-pno="${cart.pno}" data-cpno="${cart.cpno}">
+								<input type="button" value="쿠폰 사용" class="use_coupon" data-pno="${cart.pno}" data-cptno="${cart.cptno}">
 							</p>
 						</td>
 					</tr>

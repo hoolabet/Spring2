@@ -68,4 +68,12 @@ public class MadeController {
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	@RequestMapping(value = "/maderemove", method = RequestMethod.DELETE)
+	public ResponseEntity<String> madeRemove(@RequestBody MadeVO mvo) {
+		int result=ms.madeRemove(mvo);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 }

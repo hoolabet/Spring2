@@ -19,6 +19,7 @@
 		id="CouponTargetVO">
 		<result column="id" property="id" />
 		<result column="cpno" property="cpno" />
+		<result column="cptno" property="cptno" />
 		<result column="category_area" property="category_area" />
 		<result column="category_type" property="category_type" />
 		<result column="doApply" property="doApply" />
@@ -27,7 +28,7 @@
 	</resultMap>
 	<select id="couponGet" resultMap="CouponTargetVO">
 		SELECT 
-			c.*,exp_date,doApply,category_area,category_type
+			c.*,exp_date,doApply,category_area,category_type,cptno
 		FROM
 			coupon_target ct
 		JOIN
@@ -39,25 +40,31 @@
 			id=#{pname}
 		and
 			category_area=#{category_area}
+		and
+			used = false
 			)
 		or
 			(
 			id=#{pname}
 		and
 			category_type=#{category_type}
+		and
+			used = false
 			)
 		or
 			(
 			id=#{pname}
 		and
 			category_area=0
+		and
+			used = false
 			)
 		;
 	</select>
 	
 	<select id="couponGetOnce" resultMap="CouponTargetVO">
 		SELECT 
-			c.*,exp_date
+			c.*,exp_date,cptno
 		FROM
 			coupon_target ct
 		JOIN
@@ -67,53 +74,89 @@
 		WHERE
 			id=#{id}
 		and
-			ct.cpno=#{cpno}
+			ct.cptno=#{cptno}
 		;
 	</select>
 	
-	<update id="applyCoupon">
+	<update id="attachCoupon">
 		UPDATE cart
-		SET cpno=#{cpno}
-		<if test="pno == -1">
-		,doOrder=false
-		</if>
+		SET 
+		cptno=#{cptno}
 		WHERE id=#{id} 
-		<if test="pno != -1">
-		and 		
-			pno=#{pno}
-		</if>
+		and	pno=#{pno}
 	</update>
 	
-	<update id="applyCoupon2">
+	<update id="attachCoupon2">
 		UPDATE coupon_target
 		SET
-		<choose>
-		<when test="cpno == 0">
-		doApply=false
-		</when>
-		<otherwise>
-		doApply=true
-		</otherwise>
-		</choose> 
+		doApply=#{pno}
 		WHERE id=#{id}
-		<choose>
-		<when test="pno != -1 and cpno != 1">
-		and 		
-			category_area=#{b_quantity}
-		and
-			category_type=#{add_date}
-		</when>
-		<when test="pno != -1 and cpno == 1">
-		and 		
-			category_area=0
-		</when>
-		</choose>
+		and used = false
+		and cptno=#{cptno}
 	</update>
 	
-	<delete id="removeCoupon">
-		DELETE
-		FROM coupon_target
+	<update id="detachCoupon">
+		UPDATE cart
+		SET 
+		cptno=0
+		WHERE id=#{id}
+		<if test="b_quantity != -2">
+		and	pno=#{pno}
+		</if> 
+	</update>
+	
+	<update id="detachCoupon2">
+		UPDATE coupon_target
+		SET
+		doApply=0
+		WHERE id=#{id}
+		and used = false
+		<if test="b_quantity != -2">
+		and doApply=#{pno}
+		</if>
+	</update>
+	
+	<update id="removeCoupon">
+		UPDATE coupon_target
+		SET used = true
 		WHERE
-		id=#{id} and cpno=#{cpno} and doApply=true
+		id=#{id} and cptno=#{cptno} and doApply != 0
+	</update>
+	
+	<insert id="createCoupon">
+		INSERT INTO coupon(cpname,cptype,cpvalue,cpreq,cpmax)
+		VALUES(#{cpname},#{cptype},#{cpvalue},#{cpreq},#{cpmax})
+	</insert>
+	
+	<select id="viewCoupon" resultType="org.spring2.model.CouponVO">
+		SELECT * FROM coupon WHERE cpno != 0
+	</select>
+	
+	<delete id="deleteCoupon">
+		DELETE
+		FROM coupon
+		WHERE cpno = #{cpno}
 	</delete>
+	
+	<select id="couponDetail" resultType="org.spring2.model.CouponVO">
+		SELECT * FROM coupon WHERE cpno = #{cpno}
+	</select>
+	
+	<select id="categoryGet" resultType="org.spring2.model.CategoryVO">
+		SELECT *
+		FROM
+		<choose>
+			<when test="cname == 'area'.toString()">
+			category_area
+			</when>
+			<otherwise>
+			category_type
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="sendCoupon">
+		INSERT INTO coupon_target(id,category_area,category_type,cpno,exp_date)
+		VALUES (#{id},#{category_area},#{category_type},#{cpno},#{exp_date})
+	</insert>
 </mapper>

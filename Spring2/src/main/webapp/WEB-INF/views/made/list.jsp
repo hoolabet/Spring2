@@ -36,6 +36,9 @@
 							data-color="${made.color}"
 						>
 					</td>
+					<td>
+						<input type="button" value="삭제" class="made_remove" data-mno="${made.mno}">
+					</td>
 				</tr>
 				</c:forEach>
 			</table>

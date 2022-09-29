@@ -5,10 +5,12 @@ import java.time.format.DateTimeFormatter;
 
 public class CouponTargetVO {
 	private String id;
+	private int cptno;
 	private int cpno;
 	private int category_area;
 	private int category_type;
-	private boolean doApply;
+	private int doApply;
+	private boolean used;
 	private String exp_date;
 	private CouponVO cpvo;
 	
@@ -28,11 +30,29 @@ public class CouponTargetVO {
 	
 	
 
-	public boolean isDoApply() {
+	public boolean isUsed() {
+		return used;
+	}
+
+	public void setUsed(boolean used) {
+		this.used = used;
+	}
+
+	public int getCptno() {
+		return cptno;
+	}
+
+	public void setCptno(int cptno) {
+		this.cptno = cptno;
+	}
+
+	
+
+	public int getDoApply() {
 		return doApply;
 	}
 
-	public void setDoApply(boolean doApply) {
+	public void setDoApply(int doApply) {
 		this.doApply = doApply;
 	}
 
@@ -93,8 +113,9 @@ public class CouponTargetVO {
 	}
 	@Override
 	public String toString() {
-		return "CouponTargetVO [id=" + id + ", cpno=" + cpno + ", category_area=" + category_area + ", category_type="
-				+ category_type + ", doApply=" + doApply + ", exp_date=" + exp_date + ", cpvo=" + cpvo + "]";
+		return "CouponTargetVO [id=" + id + ", cptno=" + cptno + ", cpno=" + cpno + ", category_area=" + category_area
+				+ ", category_type=" + category_type + ", doApply=" + doApply + ", used=" + used + ", exp_date="
+				+ exp_date + ", cpvo=" + cpvo + "]";
 	}
 	
 	

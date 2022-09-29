@@ -43,4 +43,8 @@
 		</selectKey>
   		INSERT INTO cart(id,pno) VALUES(#{id},#{pno}) 
   	</insert>
+  	
+  	<delete id="madeRemove">
+  		DELETE FROM made WHERE mno=#{mno}
+  	</delete>
   </mapper>

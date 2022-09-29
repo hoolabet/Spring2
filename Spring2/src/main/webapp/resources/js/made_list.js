@@ -13,11 +13,11 @@ $(".cart_btn").on("click",function(){
 	
 	const price = 100000;
 	const pname = id;
-	const content = `가로:${len1},세로:${len2},높이:${len3}`;
+	const content = `가로:${len1},세로:${len2},높이:${len3},색상:${color}`;
 	const quantity = 1;
 	const delivery = "조립배송";
-	const quality = "ingre";
-	const category_area = 0;
+	const quality = ingre;
+	const category_area = 100;
 	const category_type = kind;
 	
 	const mData = {
@@ -48,6 +48,21 @@ $(".cart_btn").on("click",function(){
 					alert("성공")
 				},
 			})
+		}
+	})
+})
+
+$(".made_remove").on("click",function(){
+	const mno = {mno:$(this).data("mno")};
+	
+	$.ajax({
+		type:"delete",
+		url:"/maderemove",
+		data:JSON.stringify(mno),
+		contentType:"application/json; charset=utf-8",
+		success:function(){
+			alert("삭제되었습니다.");
+			location.href="/made/list";
 		}
 	})
 })

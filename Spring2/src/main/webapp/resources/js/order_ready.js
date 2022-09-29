@@ -25,7 +25,7 @@ $("input[name='destination']").on("change", function() {
 	$("#phone").val($(`#${$(this).attr("id")}_phone`).val());
 	$("#address").val($(`#${$(this).attr("id")}_address`).val());
 	$("#dmemo").val($(`#${$(this).attr("id")}_dmemo`).val());
-	
+
 })
 
 let pnoArr = [];
@@ -63,7 +63,7 @@ $("#pay").on("click", function() {
 								id:res.id,
 								pno:res.pno,
 								b_quantity:res.b_quantity,
-								cpno:res.cpno
+								cptno:res.cptno
 						}
 						$.ajax({
 							type:"post",
@@ -79,16 +79,16 @@ $("#pay").on("click", function() {
 									success:function(){
 										const dData = {
 												id:res.id,
-												cpno:res.cpno
+												cptno:res.cptno
 										}
 										console.log(dData);
 										$.ajax({
-											type:"delete",
+											type:"put",
 											url:"/removecoupon",
 											data:JSON.stringify(dData),
 											contentType:"application/json; charset=utf-8",
 											success:function(){
-												
+
 											}
 										})
 									}
@@ -114,56 +114,59 @@ $("#pay").on("click", function() {
 			}, 3000);
 		})
 	}
-	
+
 })
 $(".use_coupon").on("click",function(c){
 	const pno = $(this).data("pno");
-	const cpno = $(this).data("cpno");
+	window.open("/coupon/coupon?pno="+pno,`${id}님의 쿠폰`,"width=900, height=300");
+})
+
+setInterval(() => {
+	
+$(".use_coupon").each(function(i,t) {
+	const pno = $(t).data("pno");
+	let cptno = $(t).data("cptno");
 	const bPrice = $(`#${pno}_ph`).val();
 	const bPriceS = $(`#${pno}_psh`).val();
-	let cpnoCheck = cpno;
-	console.log(cpno);
-	window.open("/coupon/coupon?pno="+pno,`${id}님의 쿠폰`,"width=900, height=300");
-	const sIv = setInterval(() => {
-		$.getJSON("/orderlist",{id:id,pno:pno}, function(res) {
-			cpnoCheck = res.cpno;
-			if(cpnoCheck != cpno){
-				clearInterval(sIv);
-				cpnoCheck = -1;
-				$(c.target).data("cpno",res.cpno);
-				$.getJSON("/getcoupon",{id:id,cpno:res.cpno},function(resc){
-					if(resc.cpvo.cpvalue < 100 && resc.cpvo.cpvalue > 0){
-						if((bPriceS*resc.cpvo.cpvalue/100) > resc.cpvo.cpmax){
-							$(`#${pno}_ps`).html(bPriceS - resc.cpvo.cpmax);
-						}else{
-							$(`#${pno}_ps`).html(Math.floor(bPriceS*(100-resc.cpvo.cpvalue)/100));
-						}
-					}else if(resc.cpvo.cpvalue > 100){
-						$(`#${pno}_p`).html(bPrice);
-						$(`#${pno}_ps`).html(bPriceS-resc.cpvo.cpvalue);
+	let cptnoCheck = cptno;
+	$.getJSON("/orderlist",{id:id,pno:pno}, function(res) {
+		if(cptnoCheck != res.cptno){
+			cptnoCheck = -1;
+			$(t).data("cptno",res.cptno);
+			$.getJSON("/getcoupon",{id:id,cptno:res.cptno},function(resc){
+				if(resc.cpvo.cpvalue < 100 && resc.cpvo.cpvalue > 0){
+					if((bPriceS*resc.cpvo.cpvalue/100) > resc.cpvo.cpmax){
+						$(`#${pno}_ps`).html(bPriceS - resc.cpvo.cpmax);
 					}else{
-						$(`#${pno}_p`).html(bPrice);
-						$(`#${pno}_ps`).html(bPriceS);
+						$(`#${pno}_ps`).html(Math.floor(bPriceS*(100-resc.cpvo.cpvalue)/100));
 					}
-					sumPrice();
-				})
-			}else{
-				$(`#${pno}_p`).html(bPrice);
-				$(`#${pno}_ps`).html(bPriceS);
-			}
-		})
-	}, 100);
+				}else if(resc.cpvo.cpvalue > 100){
+					$(`#${pno}_p`).html(bPrice);
+					$(`#${pno}_ps`).html(bPriceS-resc.cpvo.cpvalue);
+				}else{
+					$(`#${pno}_p`).html(bPrice);
+					$(`#${pno}_ps`).html(bPriceS);
+				}
+				sumPrice();
+			})
+		}else if(cptnoCheck == 0){
+			$(`#${pno}_p`).html(bPrice);
+			$(`#${pno}_ps`).html(bPriceS);
+			sumPrice();
+		}
+	})
 })
+}, 100);
 
 $(window).on("beforeunload",function() {
 	const cData = {
-			cpno:0,
-			pno:-1,
-			id:id
+			cptno:0,
+			id:id,
+			b_quantity:-2
 	}
 	$.ajax({
 		type:"put",
-		url:"/applycoupon",
+		url:"/detachcoupon",
 		data:JSON.stringify(cData),
 		contentType:"application/json; charset=utf-8",
 		success:function(){

@@ -29,4 +29,8 @@ public class MadeServiceImpl implements MadeService{
 	public void madeAddPimage(ImageVO ivo) {
 		mm.madeAddPimage(ivo);
 	}
+	
+	public int madeRemove(MadeVO mvo) {
+		return mm.madeRemove(mvo);
+	}
 }

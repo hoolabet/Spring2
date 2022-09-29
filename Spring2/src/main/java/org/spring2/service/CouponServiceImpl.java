@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.spring2.mapper.CouponMapper;
 import org.spring2.model.BoardVO;
 import org.spring2.model.CartVO;
+import org.spring2.model.CategoryVO;
 import org.spring2.model.CouponTargetVO;
 import org.spring2.model.CouponVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +26,52 @@ public class CouponServiceImpl implements CouponService{
 		return cm.couponGet(bvo);
 	}
 	
-	public int applyCoupon(CartVO cvo) {
-		return cm.applyCoupon(cvo);
+	public int attachCoupon(CartVO cvo) {
+		return cm.attachCoupon(cvo);
 	}
 	
 	public CouponTargetVO couponGetOnce(CouponTargetVO cptvo) {
 		return cm.couponGetOnce(cptvo);
 	}
 	
-	public int applyCoupon2(CartVO cvo) {
-		return cm.applyCoupon2(cvo);
+	public int attachCoupon2(CartVO cvo) {
+		return cm.attachCoupon2(cvo);
 	}
 	
 	public int removeCoupon(CouponTargetVO cptvo) {
 		return cm.removeCoupon(cptvo);
 	}
+	
+	public int createCoupon(CouponVO cpvo) {
+		return cm.createCoupon(cpvo);
+	}
+	
+	public ArrayList<CouponVO> viewCoupon(){
+		return cm.viewCoupon();
+	}
+	
+	public int deleteCoupon(CouponVO cpvo) {
+		return cm.deleteCoupon(cpvo);
+	}
+	
+	public CouponVO couponDetail(int cpno) {
+		return cm.couponDetail(cpno);
+	}
+	
+	public ArrayList<CategoryVO> categoryGet(CategoryVO cgvo){
+		return cm.categoryGet(cgvo);
+	}
+	
+	public int sendCoupon(CouponTargetVO cptvo) {
+		return cm.sendCoupon(cptvo);
+	}
+	
+	public int detachCoupon(CartVO cvo) {
+		return cm.detachCoupon(cvo);
+	}
+
+	public int detachCoupon2(CartVO cvo) {
+		return cm.detachCoupon2(cvo);
+	}
+	
 }

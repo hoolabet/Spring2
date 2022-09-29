@@ -19,7 +19,7 @@
 		<result column="pno" property="pno" />
 		<result column="b_quantity" property="b_quantity" />
 		<result column="add_date" property="add_date" />
-		<result column="cpno" property="cpno" />
+		<result column="cptno" property="cptno" />
 		<collection property="bvo" resultMap="BoardVO" />
 		<collection property="ivo" resultMap="ImageVO" />
 	</resultMap>
@@ -41,15 +41,15 @@
 			max(payno)
 			from payment
 		</selectKey>
-		INSERT INTO orderP (payno,pno,b_quantity,id,cpno)
+		INSERT INTO orderP (payno,pno,b_quantity,id,cptno)
 		VALUES
-		(#{payno},#{pno},#{b_quantity},#{id},#{cpno})
+		(#{payno},#{pno},#{b_quantity},#{id},#{cptno})
 	</insert>
 	<!-- <select id="orderList" resultType="org.spring2.model.CartVO"> SELECT 
 		* FROM cart WHERE id=#{id} and pno=#{pno} </select> -->
 	<select id="orderList" resultMap="CartVO">
 		select
-		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno,category_type,category_area
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cptno,category_type,category_area
 		from
 		cart
 		join
@@ -76,7 +76,7 @@
 
 	<select id="orderReadyList" resultMap="CartVO">
 		select
-		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cpno,category_type,category_area
+		id,cart.pno,price,pname,fullPath,b_quantity,joined.quantity,cptno,category_type,category_area
 		from
 		cart
 		join
@@ -164,49 +164,62 @@
 		<result column="cpreq" property="cpreq" />
 		<result column="cpvalue" property="cpvalue" />
 	</resultMap>
+	<resultMap type="org.spring2.model.CouponTargetVO" id="CouponTargetVO">
+		<result column="cpno" property="cpno" />
+		<result column="cptno" property="cptno" />
+	</resultMap>
 	<resultMap type="org.spring2.model.OrderVO" id="OrderVO">
 		<result column="id" property="id" />
 		<result column="ono" property="ono" />
 		<result column="payno" property="payno" />
 		<result column="pno" property="pno" />
-		<result column="cpno" property="cpno" />
+		<result column="cptno" property="cptno" />
 		<result column="b_quantity" property="b_quantity" />
 		<result column="order_date" property="order_date" />
 		<collection property="bvo" resultMap="BoardVO" />
 		<collection property="ivo" resultMap="ImageVO" />
 		<collection property="cpvo" resultMap="CouponVO" />
+		<collection property="cptvo" resultMap="CouponTargetVO" />
 	</resultMap>
 
 	<select id="orderDetail" resultMap="OrderVO">
-
 		SELECT
-			joined2.* 
-			, coupon.*
+			joined3.*,
+			coupon.*
 		FROM
-			(
-				SELECT orderP.* ,price,pname,fullPath
-				FROM
-					orderP
-				join
-					(
-						select
-							product.pno,price,pname,fullPath,quantity
-						from
-							product
-						join
-							p_image
-						on
-							product.pno = p_image.pno
-					) joined
-				on
-					orderP.pno = joined.pno
-			) joined2
-		join
+		(
+			SELECT
+				joined2.*,coupon_target.cpno
+			FROM
+				(
+					SELECT orderP.* ,price,pname,fullPath
+					FROM
+						orderP
+					join
+						(
+							select
+								product.pno,price,pname,fullPath,quantity
+							from
+								product
+							join
+								p_image
+							on
+								product.pno = p_image.pno
+						) joined
+					on
+						orderP.pno = joined.pno
+				) joined2
+			left join
+				coupon_target
+			on
+				joined2.cptno = coupon_target.cptno
+			) joined3
+		left join
 			coupon
 		on
-			joined2.cpno = coupon.cpno
+			joined3.cpno = coupon.cpno
 		where
-			payno=#{payno}
+			joined3.payno=#{payno}
 		ORDER BY
 		order_date desc
 

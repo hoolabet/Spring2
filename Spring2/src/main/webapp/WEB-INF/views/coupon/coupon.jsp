@@ -9,7 +9,7 @@
 </head>
 <body>
 	<input type="hidden" value="${userInfo.id}" id="id">
-	<input type="hidden" value="${cart.cpno}" id="already">
+	<input type="hidden" value="${cart.cptno}" id="already">
 	<table>
 	<c:forEach items="${coupon}" var="coupon">
 		<tr>
@@ -35,16 +35,17 @@
 				<input 
 					type="radio" 
 					name="sel" 
-					value="${coupon.cpno}" 
-					id="r${coupon.cpno}" 
+					value="${coupon.cptno}" 
+					id="r${coupon.cptno}" 
+					data-cpno="${coupon.cpno}"
 					data-cpmax="${coupon.cpvo.cpmax}" 
 					data-cpreq="${coupon.cpvo.cpreq}" 
 					data-apply="${coupon.doApply}" 
 					data-area="${coupon.category_area}" 
 					data-type="${coupon.category_type}"
 				>
-				<input type="button" value="쿠폰적용취소" class="cancel" data-cpno="${coupon.cpno}">
-				<input type="hidden" value="${coupon.cpvo.cpvalue}" id="${coupon.cpno}">
+				<input type="button" value="쿠폰적용취소" class="cancel" data-cptno="${coupon.cptno}">
+				<input type="hidden" value="${coupon.cpvo.cpvalue}" id="${coupon.cptno}">
 			</td>
 		</tr>
 	</c:forEach>
@@ -59,6 +60,7 @@
 			<td>
 				할인적용금액 : <span id="dcp"></span>
 				<input type="hidden" value="${cart.bvo.price*cart.b_quantity}" id="pp">
+				<input type="hidden" id="cptno_val">
 				<input type="hidden" id="cpno_val">
 				<input type="hidden" id="pno_val" value="${cart.pno}">
 				<input type="hidden" id="area_val">
