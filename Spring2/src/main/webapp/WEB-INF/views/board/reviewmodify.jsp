@@ -56,7 +56,7 @@
 						<tr>
 							<th>사진 미리보기</th>
 							<td colspan="3"><div id="uploadResult">
-							<c:if test="${rlist.filename ne ''}">
+							<c:if test="${rlist.filename ne null}">
 								<c:url value="http://localhost:8080/board/display?" var="url">
 									<c:param name="filename" value="${rlist.uploadpath}/s_${rlist.uuid}_${rlist.filename}" />
 								</c:url>

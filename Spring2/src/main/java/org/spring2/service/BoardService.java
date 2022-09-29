@@ -30,4 +30,6 @@ public interface BoardService {
 	public Category_AreaVO caa(CriteriaVO cri);
 	//구매자확인
 	public ArrayList<PaymentVO> findPay(BoardVO bvo);
+	//위시업데이트
+	public int wishNumUpdate(BoardVO bvo);
 }

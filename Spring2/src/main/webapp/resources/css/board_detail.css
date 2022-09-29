@@ -21,6 +21,7 @@ h3{
 }
 #sell {
 	width : 400px;
+	height: 404px;
 	margin: 0 auto;
 	border: 1px solid black;
 }
@@ -59,7 +60,12 @@ h3{
 
 .btn_p:hover {
 	cursor: pointer;
-	background-color: #7d4f37;
+	font-weight:bold;
+	height: 65px;
+	
+}
+.wishch{
+	background-color: yellow;
 }
 /* 내비게이션  */
 #detail {

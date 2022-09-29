@@ -121,6 +121,7 @@ public class ReviewController {
 	// 리뷰 작성(post)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.POST)
 	public String writePost (ReviewVO rvo,Model model,CriteriaVO cri) {
+		rvo.setContent(rvo.getContent().replaceAll("\r\n","<br>"));
 		rs.write(rvo);
 		cri.setSearch(String.valueOf(rvo.getPno()));
 		return "redirect:/board/detail?pno="+cri.getSearch();
@@ -146,6 +147,7 @@ public class ReviewController {
 	}
 	@RequestMapping(value = "/board/reviewmodify", method = RequestMethod.POST)
 	public String rModifyPost(ReviewVO rvo) {
+		rvo.setContent(rvo.getContent().replaceAll("\r\n","<br>"));
 		rs.modify(rvo);
 		return "redirect:/board/detail?pno="+rvo.getPno();
 	}

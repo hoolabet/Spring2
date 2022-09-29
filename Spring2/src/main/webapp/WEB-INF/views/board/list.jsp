@@ -42,10 +42,13 @@
 							${paging.cri.array == 'popular' ? 'selected="selected"' : '' }>인기순</option>
 						<option value="last"
 							${paging.cri.array == 'last' ? 'selected="selected"' : '' }>최근등록순</option>
+						<option value="sell"
+							${paging.cri.array == 'sell' ? 'selected="selected"' : '' }>판매량많은순</option>
 						<option value="lowprice"
 							${paging.cri.array == 'lowprice' ? 'selected="selected"' : '' }>가격낮은순</option>
 						<option value="highprice"
 							${paging.cri.array == 'highprice' ? 'selected="selected"' : '' }>가격높은순</option>
+							
 					</select>
 				</div>
 				<%-- ${paging.cri.array} --%>

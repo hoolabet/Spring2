@@ -20,55 +20,62 @@
 		select @rownum:=@rownum+1 rownum, p.*
 		from product p,
 		(select @rownum:=0) as tmp
-		
+
 		<choose>
-		<when test="search != ''.toString() and category_area == 0 and category_type == 0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and quality != "ingre"
-		</when>
-		<when test="search == ''.toString() and category_area != 0 and category_type ==0">
-			where category_area = #{category_area}
-			and quality != "ingre"
-		</when>
-		<when test="search == ''.toString() and category_area == 0 and category_type !=0">
-			where category_type = #{category_type}
-			and quality != "ingre"
-		</when>
-		<when test="search != ''.toString() and category_area != 0 and category_type ==0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and category_area = #{category_area}
-			and quality != "ingre"
-		</when>
-		<when test="search == ''.toString() and category_area != 0 and category_type !=0">
-			where category_area = #{category_area}
-			and category_type = #{category_type}
-			and quality != "ingre"
-		</when>
-		<when test="search != ''.toString() and category_area == 0 and category_type !=0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and category_type = #{category_type}
-			and quality != "ingre"
-		</when>
-		<when test="search != ''.toString() and category_area != 0 and category_type != 0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and category_area = #{category_area}
-			and category_type = #{category_type}
-			and quality != "ingre"
-		</when>
-		<otherwise>
-		 	where s_quantity != -1 and quality != "ingre"
-		</otherwise>
+			<when
+				test="search != ''.toString() and category_area == 0 and category_type == 0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and quality != "ingre"
+			</when>
+			<when
+				test="search == ''.toString() and category_area != 0 and category_type ==0">
+				where category_area = #{category_area}
+				and quality != "ingre"
+			</when>
+			<when
+				test="search == ''.toString() and category_area == 0 and category_type !=0">
+				where category_type = #{category_type}
+				and quality != "ingre"
+			</when>
+			<when
+				test="search != ''.toString() and category_area != 0 and category_type ==0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and category_area = #{category_area}
+				and quality != "ingre"
+			</when>
+			<when
+				test="search == ''.toString() and category_area != 0 and category_type !=0">
+				where category_area = #{category_area}
+				and category_type = #{category_type}
+				and quality != "ingre"
+			</when>
+			<when
+				test="search != ''.toString() and category_area == 0 and category_type !=0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and category_type = #{category_type}
+				and quality != "ingre"
+			</when>
+			<when
+				test="search != ''.toString() and category_area != 0 and category_type != 0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and category_area = #{category_area}
+				and category_type = #{category_type}
+				and quality != "ingre"
+			</when>
+			<otherwise>
+				where s_quantity != -1 and quality != "ingre"
+			</otherwise>
 		</choose>
 		<if test="type =='except'">
-		 	and p.quantity != 0 and quality != "ingre"
+			and p.quantity != 0 and quality != "ingre"
 		</if>
 		<choose>
 			<when test="array =='lowprice'">
@@ -78,6 +85,9 @@
 				order by price desc
 			</when>
 			<when test="array == 'popular'">
+				order by wishNum desc
+			</when>
+			<when test="array == 'sell'">
 				order by s_quantity desc
 			</when>
 			<otherwise>
@@ -98,8 +108,8 @@
 	</select>
 	<select id="findPay" resultType="org.spring2.model.OrderVO">
 		select*
-		from orderP 
-		where pno = #{pno} 
+		from orderP
+		where pno = #{pno}
 	</select>
 	<update id="modify">
 		update product
@@ -110,56 +120,63 @@
 		category_type=#{category_type}
 		where pno = #{pno};
 	</update>
-	
+
 	<delete id="remove">
 		delete from product
 		where pno=#{pno};
 	</delete>
-	
+
 	<select id="total" resultType="int">
 		select count(*)
 		from product
 		<choose>
-		<when test="search != ''.toString() and category_area == 0 and category_type == 0">
-			where pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%')
-		</when>
-		<when test="search == ''.toString() and category_area != 0 and category_type ==0">
-			where category_area = #{category_area}
-		</when>
-		<when test="search == ''.toString() and category_area == 0 and category_type !=0">
-			where category_type = #{category_type}
-		</when>
-		<when test="search != ''.toString() and category_area != 0 and category_type ==0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and category_area = #{category_area}
-		</when>
-		<when test="search == ''.toString() and category_area != 0 and category_type !=0">
-			where category_area = #{category_area}
-			and category_type = #{category_type}
-		</when>
-		<when test="search != ''.toString() and category_area == 0 and category_type !=0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and category_type = #{category_type}
-		</when>
-		<when test="search != ''.toString() and category_area != 0 and category_type != 0">
-			where (pname like concat('%',#{search},'%')
-			or content like
-			concat('%',#{search},'%'))
-			and category_area = #{category_area}
-			and category_type = #{category_type}
-		</when>
-		<otherwise>
-		 	where s_quantity != -1
-		</otherwise>
+			<when
+				test="search != ''.toString() and category_area == 0 and category_type == 0">
+				where pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%')
+			</when>
+			<when
+				test="search == ''.toString() and category_area != 0 and category_type ==0">
+				where category_area = #{category_area}
+			</when>
+			<when
+				test="search == ''.toString() and category_area == 0 and category_type !=0">
+				where category_type = #{category_type}
+			</when>
+			<when
+				test="search != ''.toString() and category_area != 0 and category_type ==0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and category_area = #{category_area}
+			</when>
+			<when
+				test="search == ''.toString() and category_area != 0 and category_type !=0">
+				where category_area = #{category_area}
+				and category_type = #{category_type}
+			</when>
+			<when
+				test="search != ''.toString() and category_area == 0 and category_type !=0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and category_type = #{category_type}
+			</when>
+			<when
+				test="search != ''.toString() and category_area != 0 and category_type != 0">
+				where (pname like concat('%',#{search},'%')
+				or content like
+				concat('%',#{search},'%'))
+				and category_area = #{category_area}
+				and category_type = #{category_type}
+			</when>
+			<otherwise>
+				where s_quantity != -1
+			</otherwise>
 		</choose>
 		<if test="type =='except'">
-		 	and quantity != 0
+			and quantity != 0
 		</if>
 	</select>
 	<select id="category" resultType="org.spring2.model.CategoryVO">
@@ -169,6 +186,20 @@
 	<select id="caa" resultType="org.spring2.model.Category_AreaVO">
 		select *
 		from category_area
-		where cno = #{category_area}
+		where cno
+		= #{category_area}
 	</select>
+	<update id="wishNumUpdate">
+		update 	product 
+		set
+		<choose>
+			<when test="refund == 'd'.toString()">
+				wishNum = wishNum + 1
+			</when>
+			<otherwise>
+				wishNum = wishNum - 1
+			</otherwise>
+		</choose>
+		where pno = #{pno}
+	</update>
 </mapper>

@@ -26,4 +26,6 @@ public interface BoardMapper {
 	public Category_AreaVO caa(CriteriaVO cri);
 	//구매자확인
 	public ArrayList<PaymentVO> findPay(BoardVO bvo);
+	//위시넘
+	public int wishNumUpdate(BoardVO bvo);
 }

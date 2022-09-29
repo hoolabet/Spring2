@@ -9,8 +9,6 @@ var scVal = $(".Star_scope").val();
 const Rtotal = document.getElementById('Rtotal')
 const list_element = document.getElementById('scopecnt');
 const pagination_element = document.getElementById('pagination');
-const prev = document.getElementById('prev');
-const next = document.getElementById('next');
 
 let current_page = 1; // 현재페이지
 let amount = 5; // 페이지에 나타낼 갯수
@@ -109,26 +107,36 @@ function scope(pno){
 		DisplayList(data, list_element, amount, current_page);
 		SetupPagination(data, pagination_element, amount, current_page,1);
 		if(data!=''){
-			$("#next").on("click", function () {
-		        startPage = startPage+10;
+			$("#next").on("click", function (e) {
+				console.log(current_page)
+				startPage = startPage+10;
 		        if(startPage > total){
-		            startPage = startPage -10
+		            startPage = startPage -10;
+		        }else{
+		        	current_page = startPage;
 		        }
-		        current_page = startPage;
-		        DisplayList(data, list_element, amount, startPage);
+		        console.log(current_page)
+		        DisplayList(data, list_element, amount, current_page);
+		        console.log(current_page)
 		        SetupPagination(data, pagination_element, amount, current_page,startPage);
+		        
 			})
-			$("#prev").on("click",function(){
-				startPage = startPage-10;
-				if(startPage<1){
-					startPage = 1;
-					DisplayList(data, list_element, amount, current_page);
+			$("#prev").on("click",function(e){
+				if(startPage = 1){
+					e.preventDefault();
 				}else{
-					endPage= startPage+9
-					DisplayList(data, list_element, amount, endPage);
+					startPage = startPage-10;
+					if(startPage<1){
+						startPage = 1;
+						DisplayList(data, list_element, amount, current_page);
+					}else{
+						endPage= startPage+9
+						DisplayList(data, list_element, amount, endPage);
+					}
+					current_page = endPage;
+					SetupPagination(data, pagination_element, amount, current_page,startPage);	
 				}
-				current_page = endPage;
-				SetupPagination(data, pagination_element, amount, current_page,startPage);
+				
 			})
 		}
 		//최신순 클릭
@@ -142,9 +150,10 @@ function scope(pno){
 		})
 		//베스트순 클릭
 		$("#best").on("click",function(){
-			const likeBest = data.sort((a,b)=> b.likeNum - a.likeNum)
 			$("#recent").removeClass("click")
 			$("#best").addClass("click")
+			const reverseOrderDate = data.sort((a,b) => a.rno - b.rno)
+			const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
 			DisplayList(likeBest, list_element, amount, 1);
 			current_page = 1;
 			SetupPagination(data, pagination_element, amount, current_page,1);
@@ -153,6 +162,10 @@ function scope(pno){
 	})// getJSON끝
 
 } // scope 끝
+
+//이전다음버튼클릭이벤트
+
+	
 
 
 //좋아요버튼 클릭
@@ -189,7 +202,6 @@ function DisplayList(items, wrapper, amount, page) {
 			<tr><th>리뷰번호</th>
 			<input type="hidden" name="pno" value="${paginatedItems[i].pno}" id="pno" class="pno">
 			<input type="hidden" name="rno" value="${paginatedItems[i].rno}" id="rno" class="rno">
-			
 			<td colspan='3'>${paginatedItems[i].rno}</td></tr>
 			<tr><th>아이디</th>
 			<td>${paginatedItems[i].id}
@@ -201,7 +213,6 @@ function DisplayList(items, wrapper, amount, page) {
 			<td colspan='3' class="scopeS">${paginatedItems[i].scope}</td></tr>`
 			// console.log(data[i].filename)
 			if(paginatedItems[i].filename != null){
-				// console.log("그림")
 				var filePath = encodeURIComponent(paginatedItems[i].uploadpath+"/s_"+paginatedItems[i].uuid+"_"+paginatedItems[i].filename);
 				str+=`<tr><th>사진</th>
 				<td colspan='3'><img src='/display?fileName=${filePath}'></td></tr>`
@@ -253,6 +264,7 @@ function DisplayList(items, wrapper, amount, page) {
     						uuid:uuid
     				}
     				console.log(lData);
+    				
     				$.ajax({
     					type:"put",
     					url:"/likeupdate",
@@ -261,12 +273,19 @@ function DisplayList(items, wrapper, amount, page) {
     					success: function(){
     						console.log("-");
     						like_val = parseInt($(`input[ldata-rno="${lData.rno}"]`).val())
+    						console.log(like_val)
     						$(`input[ldata-rno="${lData.rno}"]`).val(like_val-1)
-    						location.href = location.href;
+    						
+    						//location.href = location.href;
     						
     					}
     				})
     				r();
+    				scope(pnoVal);
+    				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
+    				//const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
+    				DisplayList(items, list_element, amount, 1);
+    				SetupPagination(items, pagination_element, amount, current_page,1);
     			}
 
     		})
@@ -295,13 +314,21 @@ function DisplayList(items, wrapper, amount, page) {
     					contentType : "application/json;charset=utf-8",
     					success: function(){
     						console.log("+");
-    						like_val = parseInt($(`input[ldata-rno="${lData.rno}"]`).val())
-    						$(`input[ldata-rno="${lData.rno}"]`).val(like_val+1)
-    						location.href = location.href;
+    						like_val = parseInt($(`input[ldata-rno="${datacheck.rno}"]`).val())
+    						console.log(like_val)
+    						console.log($(`input[ldata-rno="${datacheck.rno}"]`).val())
+    						$(`input[ldata-rno="${datacheck.rno}"]`).val(like_val+1)
+    						//location.href = location.href;
     					},
     					
     				})
+    				
     				r();
+    				scope(pnoVal);
+    				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
+    				//const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
+    				DisplayList(items, list_element, amount, 1);
+    				SetupPagination(items, pagination_element, amount, current_page,1);
     			}
     		})
     	})
@@ -321,7 +348,7 @@ function DisplayList(items, wrapper, amount, page) {
     			success: function(){
     				if(confirm("리뷰를 삭제하시겠습니까?")){
     					alert('삭제되었습니다.')
-    					location.href=location.href
+    					location.reload();
     				}
     				
     			}
@@ -342,7 +369,7 @@ function DisplayList(items, wrapper, amount, page) {
 
 //버튼 안에 숫자를 넣는 함수
 function SetupPagination(items, wrapper, amount, current_page , startPage) {
-	if(Rtotal != 0){
+	if(Rtotal.value != 0){
     	wrapper.innerHTML = "";
         let page_count = Math.ceil(items.length / amount); 
         let PageGroup = Math.ceil(current_page / 10) * 10; 
@@ -362,6 +389,7 @@ function PaginationButton(page, items) {
     let button = document.createElement('button');
     button.innerText = page;
     button.classList.add("btn_pa")
+    
     if (current_page == page) {
         button.classList.add("active")
     }
@@ -370,8 +398,10 @@ function PaginationButton(page, items) {
         const btn_act = document.querySelector(".active");
         btn_act.classList.remove("active")
         button.classList.add("active")
+        r();
+    	scope(pnoVal);
         DisplayList(items, list_element, amount, current_page);
-        location.href=`/board/detail?pno=${pnoVal}#scopecnt`;
+        //location.href=`/board/detail?pno=${pnoVal}#scopecnt`;
     })
     return button;
 }

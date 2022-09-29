@@ -46,7 +46,7 @@
 						</tr>
 						<tr>
 							<th>내용</th>
-							<td colspan="3"><textarea name="content"></textarea></td>
+							<td colspan="3"><textarea name="content" cols="100" wrap="hard"></textarea></td>
 						</tr>
 						<tr>
 							<th>사진 첨부</th>

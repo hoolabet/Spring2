@@ -9,13 +9,17 @@ import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.PageVO;
 import org.spring2.model.PaymentVO;
+import org.spring2.model.ReviewVO;
+import org.spring2.model.WishListVO;
 import org.spring2.service.BoardService;
 import org.spring2.service.ReviewService;
+import org.spring2.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,6 +30,8 @@ public class BoardController {
 	BoardService bs;
 	@Autowired
 	ReviewService rs;
+	@Autowired
+	WishListService ws;
 	// 상품목록리스트
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
 	public String BoardList(Model model, CriteriaVO cri, CategoryVO cat) {
@@ -58,6 +64,7 @@ public class BoardController {
 		model.addAttribute("pro",rs.pro(cri));
 		model.addAttribute("paging", new PageVO(cri,total));
 		model.addAttribute("list", rs.list(cri));
+		
 	}
 	
 	// 상품등록
@@ -90,7 +97,15 @@ public class BoardController {
 	bs.remove(bvo);
 	return "redirect:/board/list";
 	}
-	
+	//위시리스트 컬럼 수정
+	@RequestMapping(value = "/wishNumUpdate", method = RequestMethod.PUT)
+	public ResponseEntity<String> likeUpdate(@RequestBody BoardVO bvo) {
+		System.out.println(bvo);
+		int result=bs.wishNumUpdate(bvo);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
 	// 상품리뷰
 	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
 	public void BoardReview() {

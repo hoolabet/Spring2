@@ -65,4 +65,7 @@ public class BoardServiceImpl implements BoardService{
 	public ArrayList<PaymentVO> findPay(BoardVO bvo){
 		return bm.findPay(bvo);
 	}
+	public int wishNumUpdate(BoardVO bvo) {
+		return bm.wishNumUpdate(bvo);
+	}
 }

@@ -156,7 +156,14 @@ $("#add_cart").on("click",function(){
 	})
 })
 
-
+const data_ = {
+			pno:$("#pno").val(),
+			id:$("#id").val()
+	}
+$.getJSON("/wishListcheck",data_, function(){
+	$("#add_wishlist").addClass("wishch")
+	
+})
 // 괸심상품 클릭시 위시리스트담기
 $("#add_wishlist").on("click",function(){
 	const data_ = {
@@ -175,6 +182,22 @@ $("#add_wishlist").on("click",function(){
 				contentType:"application/json; charset=utf-8",
 				success:function(){
 					alert("삭제되었습니다.")
+					$("#add_wishlist").removeClass("wishch")
+					const refund = "i";
+    				const wData = {
+    						pno:pno,
+    						refund:refund
+    				}
+					$.ajax({
+					type:"put",
+					url:"/wishNumUpdate",
+					data:JSON.stringify(wData),
+					contentType : "application/json;charset=utf-8",
+					success: function(){
+						console.log("-");						
+						location.href = location.href;
+					}
+				})
 				},
 				error:function(){
 					alert("삭제하는데 실패했습니다.")
@@ -190,6 +213,22 @@ $("#add_wishlist").on("click",function(){
 			contentType:"application/json; charset=utf-8",
 			success:function(){
 				alert("관심상품 등록완료")
+				$("#add_wishlist").addClass("wishch")
+				const refund = "d";
+    			const wData = {
+    						pno:pno,
+    						refund:refund
+    				}
+				$.ajax({
+					type:"put",
+					url:"/wishNumUpdate",
+					data:JSON.stringify(wData),
+					contentType : "application/json;charset=utf-8",
+					success: function(){
+						console.log("-");						
+						location.href = location.href;
+					}
+				})
 			},
 			error:function(){
 				alert("로그인 후 이용가능합니다.")

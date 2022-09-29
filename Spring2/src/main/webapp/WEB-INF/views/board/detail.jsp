@@ -59,6 +59,7 @@
 										<button class="btn_p" id="add_cart">장바구니</button>
 										<button class="btn_p" id="add_wishlist">찜</button>
 								</tr>
+								
 							</table>
 						</div>
 					</div>
