@@ -157,16 +157,40 @@ function scope(pno){
 			DisplayList(likeBest, list_element, amount, 1);
 			current_page = 1;
 			SetupPagination(data, pagination_element, amount, current_page,1);
-		})	
+		})
+		// 리뷰삭제
+    $(".btn_remove").on("click",function(){
+    	var rno = $(this).data("rno")
+    	var id =  $("#userId").val();
+    	var datacheck = {rno:rno, id:id}
+    	$.ajax({
+    		type:"delete",
+    			url:"/board/reviewremove",
+    			data : JSON.stringify(datacheck),
+    			contentType : "application/json;charset=utf-8",
+    			success: function(){
+    				if(confirm("리뷰를 삭제하시겠습니까?")){
+    					alert('삭제되었습니다.')
+    					location.reload();
+    				}
+    				
+    			}
+    	})
+    })
+
+    // 리뷰수정
+    $(".btn_modify").on("click",function(){
+    	console.log("수정클릭")
+    	var rnoVal = $(this).data("rno")
+    	if(confirm("리뷰를 수정하시겠습니까?")){
+    		location.href=`/board/reviewmodify?pno=${pnoVal}&rno=${rnoVal}`	
+    	}
+    	
+    })
 	
 	})// getJSON끝
 
 } // scope 끝
-
-//이전다음버튼클릭이벤트
-
-	
-
 
 //좋아요버튼 클릭
 function r(){
@@ -195,6 +219,7 @@ function DisplayList(items, wrapper, amount, page) {
     let end = start + amount; // 5+5 = 10
     let paginatedItems = items.slice(start, end); // 6-10번까지 불러오기
     str="";
+    //데이터 jsp에 보여질 곳
     for (let i = 0; i < paginatedItems.length; i++) { // 5개까지 불러옴
     	str+=`
     	<div id='Rlist'>
@@ -228,8 +253,11 @@ function DisplayList(items, wrapper, amount, page) {
 					<button data-rno="${paginatedItems[i].rno}" class="btn_modify" >수정</button></td></tr>`
 			}
 			str+=`</table></div>`				
-    }wrapper.innerHTML = str;
+    }
+    wrapper.innerHTML = str;
+    
     r();
+    // 리뷰 별표찢기
     $(".Star_scope").each(function(i,scope){
 		let rate = "";
 		for(let j=0; j<scope.value; j++){
@@ -240,7 +268,8 @@ function DisplayList(items, wrapper, amount, page) {
 		}
 		rate+=`(${scope.value})`;
 		$(".scopeS").eq(i).text(rate);
-	})	
+	})
+	//좋아요 버튼 클릭이벤트
     $(".btn_like").on("click",function(e){
     	console.log(e)
     	var rno = $(this).data("rno")
@@ -250,7 +279,7 @@ function DisplayList(items, wrapper, amount, page) {
     		alert("로그인 후 이용가능합니다.")
     	}
     	$.getJSON("/likecheck",datacheck,function(d){
-    		$.ajax({
+    		$.ajax({ // 좋아요버튼이 활성화 되었을 때 비활성화
     			type:"delete",
     			url:"/likeremove",
     			data : JSON.stringify(datacheck),
@@ -264,8 +293,7 @@ function DisplayList(items, wrapper, amount, page) {
     						uuid:uuid
     				}
     				console.log(lData);
-    				
-    				$.ajax({
+    				$.ajax({ // review 테이블에서 likeNum 삭제
     					type:"put",
     					url:"/likeupdate",
     					data:JSON.stringify(lData),
@@ -275,23 +303,21 @@ function DisplayList(items, wrapper, amount, page) {
     						like_val = parseInt($(`input[ldata-rno="${lData.rno}"]`).val())
     						console.log(like_val)
     						$(`input[ldata-rno="${lData.rno}"]`).val(like_val-1)
-    						
     						//location.href = location.href;
-    						
-    					}
+    						}
     				})
     				r();
     				scope(pnoVal);
     				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
-    				//const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
+    				const likeBest = items.sort((a,b)=> b.likeNum - a.likeNum)
     				DisplayList(items, list_element, amount, 1);
     				SetupPagination(items, pagination_element, amount, current_page,1);
     			}
 
-    		})
-    	})
+    		})//ajax끝
+    	})//getJSON끝
     	.fail(function(){
-    		$.ajax({
+    		$.ajax({  //비활성화 된 좋아요버튼클릭시 활성화
     			type:"post",
     			url:"/likeadd",
     			data : JSON.stringify(datacheck),
@@ -299,15 +325,12 @@ function DisplayList(items, wrapper, amount, page) {
     			success: function(){
     				alert(rno);
     				$(`img[data-rno="${datacheck.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/1125px-Love_Heart_symbol.svg.png")
-    				
     				const uuid = "u";
     				const lData = {
     						rno:rno,
     						uuid:uuid
     				}
-    				console.log(lData);
-    				
-    				$.ajax({
+    				$.ajax({ //리뷰테이블 likeNum 삭제
     					type:"put",
     					url:"/likeupdate",
     					data:JSON.stringify(lData),
@@ -320,51 +343,19 @@ function DisplayList(items, wrapper, amount, page) {
     						$(`input[ldata-rno="${datacheck.rno}"]`).val(like_val+1)
     						//location.href = location.href;
     					},
-    					
-    				})
+    				})//ajax끝
     				
     				r();
     				scope(pnoVal);
     				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
-    				//const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
+    				const likeBest = items.sort((a,b)=> b.likeNum - a.likeNum)
     				DisplayList(items, list_element, amount, 1);
     				SetupPagination(items, pagination_element, amount, current_page,1);
     			}
-    		})
-    	})
-    	
-    })
-
-    // 리뷰삭제
-    $(".btn_remove").on("click",function(){
-    	var rno = $(this).data("rno")
-    	var id =  $("#userId").val();
-    	var datacheck = {rno:rno, id:id}
-    	$.ajax({
-    		type:"delete",
-    			url:"/board/reviewremove",
-    			data : JSON.stringify(datacheck),
-    			contentType : "application/json;charset=utf-8",
-    			success: function(){
-    				if(confirm("리뷰를 삭제하시겠습니까?")){
-    					alert('삭제되었습니다.')
-    					location.reload();
-    				}
-    				
-    			}
-    	})
-    })
-
-    // 리뷰수정
-    $(".btn_modify").on("click",function(){
-    	console.log("수정클릭")
-    	var rnoVal = $(this).data("rno")
-    	if(confirm("리뷰를 수정하시겠습니까?")){
-    		location.href=`/board/reviewmodify?pno=${pnoVal}&rno=${rnoVal}`	
-    	}
-    	
-    })
-    
+    		})//ajax끝
+    	})//.fail끝
+    })//좋아요버튼 클릭이벤트 끝
+	
 }//DisplayList 끝
 
 //버튼 안에 숫자를 넣는 함수
@@ -384,12 +375,12 @@ function SetupPagination(items, wrapper, amount, current_page , startPage) {
         }
     }
 }
+
 // 버튼만들어 페이징 하는 함수
 function PaginationButton(page, items) {
     let button = document.createElement('button');
     button.innerText = page;
     button.classList.add("btn_pa")
-    
     if (current_page == page) {
         button.classList.add("active")
     }
