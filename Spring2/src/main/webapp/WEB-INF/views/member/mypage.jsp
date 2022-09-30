@@ -22,7 +22,7 @@
 			<input type="hidden" value="${userInfo.userImg}" id="user_img_input">
 			<input type="hidden" value="${userInfo.name}" id="user_name_input">
 			
-			
+
 			
 			<div id="mypage_user_list"></div>
 			

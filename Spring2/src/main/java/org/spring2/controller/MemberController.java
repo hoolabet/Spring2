@@ -1,16 +1,32 @@
 package org.spring2.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
+import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Base64.Decoder;
 import java.util.Base64.Encoder;
+import java.util.Collections;
 import java.util.Date;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
+
 
 
 import javax.servlet.http.HttpSession;
@@ -41,6 +57,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mysql.cj.xdevapi.JsonParser;
 
@@ -56,7 +73,7 @@ public class MemberController {
 
 	@Autowired
 	CouponService cs;
-	
+
 
 	// 회원가입
 	@RequestMapping(value = "/member/signup", method = RequestMethod.GET)
@@ -105,7 +122,6 @@ public class MemberController {
 				return new ResponseEntity<>(ms.idchk(str).getId(), HttpStatus.OK);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -129,113 +145,209 @@ public class MemberController {
 			return "member/login";
 		}
 	}
+	
+// 카카오 로그인(js에서 js키 사용해서 서버로 인증코드 보내기 -> 인증코드 사용해서 엑세스 코드 받기 -> 엑세스 토큰 사용해서 사용자 정보 받기)
+// 1번-login.js 확인하기. RestJsonService.java , GetUserInfoService.java , pom.xml의 문자열json변환(추가) 확인하기
 	@RequestMapping(value = "/snscheck", method = RequestMethod.GET)
 	public String snsCheck(String code,HttpSession session,Model model) {
+		
+// 2. 받은 인증코드를 카카오로 보내서 엑세스 토큰을 받아내는 클래스(서비스에 만들어져있음.)
 		RestJsonService restJsonService = new RestJsonService();
 
-        //access_token이 포함된 JSON String을 받아온다.
-        String accessTokenJsonData = restJsonService.getAccessTokenJsonData(code);
-        System.out.println(accessTokenJsonData);
-        if(accessTokenJsonData=="error") return "error";
+		//access_token이 포함된 JSON String을 받아온다.
+		String accessTokenJsonData = restJsonService.getAccessTokenJsonData(code);
+		System.out.println(accessTokenJsonData);
+		if(accessTokenJsonData=="error") return "error";
 
-        //JSON String -> JSON Object
-        
-        JSONParser parser = new JSONParser();
-        Object obj;
+		//JSON String -> JSON Object
+
+		JSONParser parser = new JSONParser();
+		Object obj;
 		try {
 			obj = parser.parse(accessTokenJsonData);
 			JSONObject jsonObj = (JSONObject) obj;
 			System.out.println(jsonObj.get("access_token"));
 			String accessToken = (String) jsonObj.get("access_token");
+			session.setAttribute("accessToken",accessToken);
 			
+// 3. 받아낸 엑세스 토큰을 보내서 사용자 정보를 받아내는 클래스(서비스에 만들어져있음.)
+			GetUserInfoService getUserInfoService = new GetUserInfoService();
 			//유저 정보가 포함된 JSON String을 받아온다.
-	        GetUserInfoService getUserInfoService = new GetUserInfoService();
-	        String userInfo = getUserInfoService.getUserInfo(accessToken);
-	        System.out.println(userInfo);
-	        //JSON String -> JSON Object
-	        JSONParser userInfoParser = new JSONParser();
-	        Object uobj = userInfoParser.parse(userInfo);
-	        JSONObject userInfojsonObj = (JSONObject) uobj;
-	        System.out.println(userInfojsonObj.get("id"));
-	        
-	        //유저의 Email 추출
-	        JSONObject kakaoAccountJsonObject = (JSONObject)userInfojsonObj.get("kakao_account");
-	        JSONObject propertiesJsonObject = (JSONObject)userInfojsonObj.get("properties");
-	        String email = kakaoAccountJsonObject.get("email").toString();
-	        String id = userInfojsonObj.get("id").toString();
-	        String nickname = propertiesJsonObject.get("nickname").toString();
-	        String birthday = kakaoAccountJsonObject.get("birthday").toString();
-	        String month = birthday.substring(0,2);
-	        String day = birthday.substring(2);
+			String userInfo = getUserInfoService.getUserInfo(accessToken);
+			System.out.println(userInfo);
+			//JSON String -> JSON Object
+			JSONParser userInfoParser = new JSONParser();
+			Object uobj = userInfoParser.parse(userInfo);
+			JSONObject userInfojsonObj = (JSONObject) uobj;
+			System.out.println(userInfojsonObj.get("id"));
 
-	        if(month.indexOf("0")==0) {
-	        	month=month.substring(1);
-	        }
-	        if(day.indexOf("0")==0) {
-	        	day=day.substring(1);
-	        }
-	        MemberVO member = new MemberVO();
-	        member.setId(email);
-	        member.setEmail(email);
-	        member.setPassword(id);
-	        member.setName(nickname);
-	        member.setBirth_m(month);
-	        member.setBirth_d(day);
-	        
-	        System.out.println(member);
-	        MemberVO mvo = new MemberVO();
-	        mvo= ms.snsCheck(member.getId());
-	        try {
-	        	ms.snsSignup(member);
-	        }catch(Exception e) {
-	        	e.printStackTrace();
-	        }
-	        session.setAttribute("userInfo",ms.login(member));
-	        
+// 4. 사용자 정보 추출
+			JSONObject kakaoAccountJsonObject = (JSONObject)userInfojsonObj.get("kakao_account");
+			JSONObject propertiesJsonObject = (JSONObject)userInfojsonObj.get("properties");
+			String email = kakaoAccountJsonObject.get("email").toString();
+			String id = userInfojsonObj.get("id").toString();
+			String nickname = propertiesJsonObject.get("nickname").toString();
+			String birthday = kakaoAccountJsonObject.get("birthday").toString();
+			String month = birthday.substring(0,2);
+			String day = birthday.substring(2);
+
+			if(month.indexOf("0")==0) {
+				month=month.substring(1);
+			}
+			if(day.indexOf("0")==0) {
+				day=day.substring(1);
+			}
+// 5. MemberVO에 담기. ---- 끝!
+			MemberVO member = new MemberVO();
+			member.setId(email);
+			member.setEmail(email);
+			member.setPassword(id);
+			member.setName(nickname);
+			member.setBirth_m(month);
+			member.setBirth_d(day);
+
+			System.out.println(member);
+			MemberVO mvo = new MemberVO();
+			mvo= ms.snsCheck(member.getId());
+			try {
+				ms.snsSignup(member);
+					        	CouponTargetVO ctvo = new CouponTargetVO(member.getId());
+								System.out.println(ctvo);
+								cs.signUpCoupon(ctvo);
+			}catch(Exception e) {
+
+				e.printStackTrace();
+			}
+			session.setAttribute("userInfo",ms.login(member));
+
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        
 
-      
 
-        
-        
-//		MemberVO mvo= new MemberVO();
-//		mvo=ms.snsCheck(code);
-//		
-//		System.out.println(mvo);
-//		
-//		if(mvo==null) {
-//			int result=ms.snsSignup(code);
-//			if(result==1) {
-//				session.setAttribute("userInfo", ms.snsCheck(code));
-//			}else {
-//				System.out.println("jhjh");
-//			}
-//		}else {
-//			session.setAttribute("userInfo", ms.snsCheck(mvo.getId()));
-//		}
-//		
-		return "home";
-//        return null;
+		return "redirect:/";
+	}
+
+
+
+
+// 네이버 로그인(인증부터 사용자 정보받는것까지 js에서 모두 처리)
+// 1번-login.js , 2번3번-naverlogin.jsp 확인하기
+// 4. login.js에서 인증요청할때의 주소. naverlogin.jsp의 js에서 받은 정보를 처리할것이다.
+	@RequestMapping(value="/member/naverlogin", method=RequestMethod.GET)
+	public String callBack(MemberVO member, HttpSession session){
+		
+		return null;
+	}
+// 5. naverlogin.jsp의 input정보를 post로 받아서 MemberVO에 바로 넣어준다. ---- 끝!
+	@RequestMapping(value="/member/naverlogin", method=RequestMethod.POST)
+	public String callBackPost(MemberVO member, HttpSession session){
+		System.out.println(member);
+		MemberVO mvo = new MemberVO();
+		mvo= ms.snsCheck(member.getId());
+		try {
+			ms.naverSignup(member);
+			        	CouponTargetVO ctvo = new CouponTargetVO(member.getId());
+						System.out.println(ctvo);
+						cs.signUpCoupon(ctvo);
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		member.setPassword(member.getEmail());
+		session.setAttribute("userInfo",ms.login(member));
+		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/dddd", method = RequestMethod.GET)
-	public void ddddd(String jkk) {
-	System.out.println(jkk+"jj");
-	}
-	
+// 구글 로그인(js에서 인증과정을 통해 아이디토큰까지 받음 -> 서버에서 아이디 토큰 검사후 사용자 정보 추출)
+// login.js , pom.xml의 구글 소셜로그인(추가) 부분 확인하기
+	@RequestMapping(value="/googlelogin", method= RequestMethod.POST)
 
+	public String googleLogin(String idtoken, Model model, HttpSession session) throws GeneralSecurityException, IOException {
+// 3. js에서 서버로 보낸 아이디 토큰에는 이미 사용자의 정보가 들어있다. 아이디 토큰 확인하기
+		System.out.println(idtoken);
+		GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
+			    // Specify the CLIENT_ID of the app that accesses the backend:
+			    .setAudience(Collections.singletonList("757014794840-uob6irtj1rk48pr65ckeor3ichdktgpc.apps.googleusercontent.com"))
+			    // Or, if multiple clients access the backend:
+			    //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
+			    .build();
+
+			// (Receive idTokenString by HTTPS POST)
+// 4. 확인된 아이디 토큰으로 사용자 정보 추출
+			GoogleIdToken idToken = verifier.verify(idtoken);
+			if (idToken != null) {
+			  Payload payload = idToken.getPayload();
+
+			  // Print user identifier
+			  String userId = payload.getSubject();
+			  System.out.println("User ID: " + userId);
+
+			  // Get profile information from payload
+			  String email = payload.getEmail();
+			  boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+			  String name = (String) payload.get("name");
+			  String pictureUrl = (String) payload.get("picture");
+			  String locale = (String) payload.get("locale");
+			  String familyName = (String) payload.get("family_name");
+			  String givenName = (String) payload.get("given_name");
+			  // Use or store profile information
+			  // ...
+
+			  
+			  
+// 5. MemberVO에 담기 ---- 끝!
+			  MemberVO member = new MemberVO();
+				member.setId(userId);
+				member.setEmail(userId);
+				member.setPassword(userId);
+				member.setName(name);
+				member.setUserImg(pictureUrl);
+				member.setPhone(userId);
+				member.setBirth_d("1");
+				member.setBirth_m("1");
+				member.setBirth_y("1000");
+				System.out.println(member);
+			  
+				MemberVO mvo = new MemberVO();
+				mvo= ms.snsCheck(member.getId());
+				try {
+					ms.googleSignup(member);
+						        	CouponTargetVO ctvo = new CouponTargetVO(member.getId());
+									System.out.println(ctvo);
+									cs.signUpCoupon(ctvo);
+				}catch(Exception e) {
+
+					e.printStackTrace();
+				}
+				session.setAttribute("userInfo",ms.login(member));
+				System.out.println(session.getAttribute("userInfo"));
+				return "redirect:/";
+			  
+			  
+			} else {
+			  System.out.println("Invalid ID token.");
+			  return "/member/login";
+			}		
+		//		return null;
+
+	}//googleLogin
 
 
 	// 로그아웃
 	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
 	public String logoutget(HttpSession session) {
+
+		
+
 		session.invalidate();
 		return "redirect:/";
 	}
+
+
+
+
+
 
 	// 아이디찾기
 	@RequestMapping(value = "/member/findId", method = RequestMethod.GET)
@@ -295,7 +407,7 @@ public class MemberController {
 			System.out.println("비밀번호 찾기 버튼눌렀다.");
 			System.out.println(ms.find(member));
 			model.addAttribute("id", ms.find(member).getId());
-			
+
 			if (ms.find(member) != null) {
 
 				return "member/modifyPassword";
@@ -371,7 +483,7 @@ public class MemberController {
 		}else {
 			return "redirect:/";
 		}
-		
+
 	}
 
 	@RequestMapping(value = "/member/modifyPassword", method = RequestMethod.POST)

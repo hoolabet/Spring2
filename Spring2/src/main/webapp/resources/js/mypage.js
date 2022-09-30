@@ -9,6 +9,11 @@ const uname=$("#user_name_input").val();
 
 
 
+
+
+
+
+
 let str_menu="";
 if($("#user_id").val()!=""){
 

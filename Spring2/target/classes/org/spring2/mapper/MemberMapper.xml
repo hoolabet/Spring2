@@ -144,4 +144,14 @@
 		(id,password,name,email,phone,gender,birth_y,birth_m,birth_d,sns)
 		values(#{id},#{password},#{name},#{email},#{id},"m","1000",#{birth_m},#{birth_d},true);
 	</insert>
+	<insert id="naverSignup">
+		insert into member
+		(id,password,name,email,phone,gender,birth_y,birth_m,birth_d,sns,userImg)
+		values(#{id},#{email},#{name},#{email},#{email},#{gender},"1000",#{birth_m},#{birth_d},true,#{userImg});
+	</insert>
+	<insert id="googleSignup">
+		insert into member
+		(id,password,name,email,phone,gender,birth_y,birth_m,birth_d,sns,userImg)
+		values(#{id},#{password},#{name},#{email},#{phone},"m",#{birth_y},#{birth_m},#{birth_d},true,#{userImg});
+	</insert>
 </mapper>

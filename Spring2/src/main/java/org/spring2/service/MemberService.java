@@ -40,4 +40,6 @@ public interface MemberService {
 	public MemberVO memberDetail(String id);
 	public MemberVO snsCheck(String id);
 	public void snsSignup(MemberVO member);
+	public void naverSignup(MemberVO member);
+	public void googleSignup(MemberVO member);
 }

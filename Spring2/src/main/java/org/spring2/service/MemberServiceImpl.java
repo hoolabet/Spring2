@@ -87,4 +87,10 @@ public class MemberServiceImpl implements MemberService{
 	public void snsSignup(MemberVO member) {
 		mm.snsSignup(member);
 	}
+	public void naverSignup(MemberVO member) {
+		mm.naverSignup(member);
+	}
+	public void googleSignup(MemberVO member) {
+		mm.googleSignup(member);
+	}
 }

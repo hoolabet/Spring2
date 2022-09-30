@@ -3,12 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../resources/css/home.css">
 
 <link rel="stylesheet" type="text/css" href="/resources/css/login.css"></link>
 
+    
 </head>
 <body>
 	<div id="entry_area">
@@ -39,28 +41,32 @@
 									<p id="login_msg"></p>
 									<input type="submit" value="로그인" id="loginsub">
 								</div>
-								
-								<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-								<div id="google_id_login" style="text-align: center">
-								<a href="${google_url}">구글 로그인</a>
-								</div>
-							</td>
-						</tr>
-<!-- 						카카오톡로그인 -->
-						<tr>
-							<td>
-								<div class="kakaobtn">
-									<input type="hidden" name="kakaoemail" id="kakaoemail">
-									<input type="hidden" name="kakaoname" id="kakaoname">
-									<input type="hidden" name="kakaobirth" id="kakaobirth">
-									<input type="hidden" name="kakaogender" id="kakaogender">
-									<a href="javascript:loginWithKakao();">
-										카카오로그인
-									</a>
-								</div>
 							</td>
 						</tr>
 					</table>
+					<div id="social_login_box">
+						<!-- 네이버로그인 -->
+						<div id="naver_img_box" class="social_btn">
+							<a id="naverIdLogin_loginButton" href="#">
+								<img src="http://vonpat01.cafe24.com/wp-content/uploads/2020/08/naver.png" height="60">
+							</a>
+						</div>	
+						<div id="naverIdLogin" ></div>
+						<!-- 구글로그인 -->	
+						<div id="google_img_box" class="social_btn">
+							<img id="google_img" src="https://littledeep.com/wp-content/uploads/2020/09/google-icon-styl.png" height="60">
+						</div>
+						<div id="buttonDiv"></div> 
+						<!-- 카카오톡로그인 -->
+						<div id="kakao_img_box" class="social_btn">
+							<div class="kakaobtn">
+								<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+								<img src="https://www.ssghero.com/assets/images/login/kakao_login_circle.png" 
+									width="60" alt="카카오 로그인 버튼" />
+								</a>
+							</div>
+						</div>
+					</div>
 					<div id="link_box">
 						<div id="link_findId">
 							<a href="/member/findId">아이디/비밀번호 찾기</a>
@@ -72,7 +78,8 @@
 				</div>
 			</form>
 
-
+ 
+ 
  
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.0.0/kakao.min.js"
   integrity="sha384-PFHeU/4gvSH8kpvhrigAPfZGBDPs372JceJq3jAXce11bVA6rMvGWzvP4fMQuBGL" crossorigin="anonymous"></script>
@@ -81,57 +88,21 @@
    Kakao.init('f1c123290b579c96921a1001465238ef'); // 사용하려는 앱의 JavaScript 키 입력
 </script>
 
-<a id="kakao-login-btn" href="javascript:loginWithKakao()">
-  <img src="https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg" width="222"
-    alt="카카오 로그인 버튼" />
-</a>
-<p id="token-result"></p>
-<!-- 
-<script>
-  function loginWithKakao() {
-    Kakao.Auth.authorize({
-      redirectUri: 'http://localhost:8080/oauth2/code/kakao',
-      scope:'profile_nickname,account_email,gender,birthday'
-    });
-    
-  }
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-  // 아래는 데모를 위한 UI 코드입니다.
-  displayToken()
-  function displayToken() {
-    var token = getCookie('authorize-access-token');
 
-    if(token) {
-      Kakao.Auth.setAccessToken(token);
-      Kakao.Auth.getStatusInfo()
-        .then(function(res) {
-          if (res.status === 'connected') {
-            document.getElementById('token-result').innerText
-              = 'login success, token: ' + Kakao.Auth.getAccessToken();
-            consloe.log(Kakao.Auth.getAccessToken());
-          }
-        })
-        .catch(function(err) {
-        	consloe.log("aa");
-          Kakao.Auth.setAccessToken(null);
-        });
-    }
-  }
 
-  function getCookie(name) {
-    var parts = document.cookie.split(name + '=');
-    if (parts.length === 2) { return parts[1].split(';')[0]; }
-  }
-</script>
-
- -->
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
 
 		</div>
 		<%@ include file="../footer.jsp"%>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 	<script -->
+<!-- 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript" src="/resources/js/login.js"></script>
 </body>

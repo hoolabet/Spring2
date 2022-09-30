@@ -19,7 +19,7 @@
 				</c:when>
 				<c:otherwise>
 				<ul id="header_login_ul">
-					<li class="header_login_li" id="header_user_id">${userInfo.id}
+					<li class="header_login_li" id="header_user_id">${userInfo.name}
 						<ul id="header_user_menu">
 							<li><a href="/cart/list">장바구니</a></li>
 							<li><a href="/member/mypage">마이페이지</a></li>
