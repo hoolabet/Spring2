@@ -116,7 +116,7 @@ function calcProduct (){
 		}
 	})
 	$("#price").val(price);
-}
+}  
 
 
 $("#select_btn").on("click", function() {

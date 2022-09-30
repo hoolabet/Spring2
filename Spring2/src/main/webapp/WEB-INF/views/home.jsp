@@ -8,8 +8,8 @@
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../resources/css/home.css?ver=1">
 <link rel="stylesheet" href="../resources/css/home_slick.css?ver=1">
+<link rel="stylesheet" href="../resources/css/home.css?ver=1">
 <title>Home</title>
 </head>
 <body>

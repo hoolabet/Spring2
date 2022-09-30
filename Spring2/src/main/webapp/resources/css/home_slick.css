@@ -37,15 +37,13 @@
 #banner ul {
 	list-style: none;
 }
-/*
-li {
+[role="presentation"] {
 	width: 20px;
 	height: 4px;
 	background: #aaa;
 	margin: 0 6px;
 	transition: 0.4s;
 }
-*/
 .slick-active {
 	background: white;
 	width: 40px;
