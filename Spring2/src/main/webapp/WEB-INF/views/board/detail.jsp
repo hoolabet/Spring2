@@ -23,7 +23,7 @@
 				</c:forEach>
 				<input type="hidden" value="${userInfo.id}" id="id">
 				<input type="hidden" value="${detail.pno}" id="pno">
-				<input type="hidden" value="${detail.quantity}" id="quantity">
+				<input type="text" value="${detail.quantity}" id="quantity">
 				<div id="d_title">
 					<span id="uploadimg"></span>
 					<div id="sell">
@@ -55,9 +55,10 @@
 									<td><span id="totalPrice">${detail.price}</span></td>
 								</tr>
 								<tr>
-									<td colspan="2"><button class="btn_p" id="buy">구매하기</button>
+									<td colspan="2" id="btn_s_form"><button class="btn_p" id="buy">구매하기</button>
 										<button class="btn_p" id="add_cart">장바구니</button>
 										<button class="btn_p" id="add_wishlist">찜</button>
+										</td>
 								</tr>
 								
 							</table>

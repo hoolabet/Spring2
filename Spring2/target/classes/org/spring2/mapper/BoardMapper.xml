@@ -75,7 +75,7 @@
 			</otherwise>
 		</choose>
 		<if test="type =='except'">
-			and p.quantity != 0 and category_area != 100
+			and quantity != 0 and category_area != 100
 		</if>
 		<choose>
 			<when test="array =='lowprice'">
@@ -183,7 +183,7 @@
 			</otherwise>
 		</choose>
 		<if test="type =='except'">
-			and p.quantity != 0 and category_area != 100
+			and quantity != 0 and category_area != 100
 		</if>
 	</select>
 	<select id="category" resultType="org.spring2.model.CategoryVO">

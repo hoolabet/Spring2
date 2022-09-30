@@ -276,6 +276,8 @@ $("#buy").on("click",function(){
 })
 
 
-
+if($("#quantity").val() === 0){
+	$("#btn_s_form").text("품절입니다.")
+}
 
 
