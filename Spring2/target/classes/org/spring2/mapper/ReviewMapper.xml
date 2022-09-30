@@ -21,7 +21,10 @@
 		<result column="filename" property="filename" />
 		<collection property="mvo" resultMap="MemberVO"></collection>
   	</resultMap>
-  	
+  	<select id="reviewable" resultType="org.spring2.model.OrderVO">
+  		select * from orderP
+  		where id=#{id} and pno =#{pno}
+  	</select>
 	<select id="Rlist" resultType="org.spring2.model.ReviewVO">
 		select *
 		from(

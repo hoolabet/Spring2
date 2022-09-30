@@ -1,7 +1,6 @@
 /**
  * 
  */
-var pnoVal=$("#pno").val();
-$.getJSON({
-	
+$(document).ready(function(){
+	console.log($("#modify_Content").val())
 })

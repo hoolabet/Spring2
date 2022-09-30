@@ -1,5 +1,6 @@
 //상세페이지 이미지 불러오기
 const pno = $("input[name='pno']").val();
+
 $.getJSON("/attachlist", {pno:pno},function(attachlist){
 	//console.log(attachlist)
 	var str="";
@@ -276,8 +277,9 @@ $("#buy").on("click",function(){
 })
 
 
-if($("#quantity").val() === 0){
-	$("#btn_s_form").text("품절입니다.")
+if($("#quantity").val() === '0'){
+	str=`<div id="soldOut" style="font-size: 43px;">품절입니다.</div>`
+	$("#btn_s_form").html(str)
 }
 
 

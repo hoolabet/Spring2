@@ -5,6 +5,20 @@
 var pnoVal=$("#pno").val();
 var idVal = $("#id").val();
 var scVal = $(".Star_scope").val();
+console.log(pnoVal)
+console.log(idVal)
+let able = false;
+
+$.getJSON("/reviewable",{id:idVal,pno:pnoVal},function(daa){
+	console.log(daa.length)
+	console.log(daa)
+	if(daa.length !== 0){
+		able = true;
+	}
+	
+	console.log(able)
+})
+
 
 const Rtotal = document.getElementById('Rtotal')
 const list_element = document.getElementById('scopecnt');
@@ -14,8 +28,9 @@ let current_page = 1; // 현재페이지
 let amount = 5; // 페이지에 나타낼 갯수
 let startPage = 1;
 let endPage = startPage + 9;
-scope(pnoVal);
 
+
+scope(pnoVal);
 
 
 // 평점 함수 선언
@@ -23,7 +38,10 @@ function scope(pno){
 	$.getJSON("/reviewlist/"+pno+".json",function(data){
 		var str2="";
 		if(idVal!=""){	// 주문내역이 있는 경우 보이게 추가해야함
-			str2+=`<div id='Rwritelink'><a href="/board/reviewwrite?pno=${pnoVal}" id='rwlink'>리뷰 작성하기</a></div>`;
+			if(able){
+				str2+=`<div id='Rwritelink'><a href="/board/reviewwrite?pno=${pnoVal}" id='rwlink'>리뷰 작성하기</a></div>`;	
+			}
+			
 		}else{
 			str2+=`<div id='Rwritelink'><p>리뷰를 작성하시려면 <a href="../member/login">로그인</a>해 주세요</p></div>`;
 		}
@@ -183,6 +201,7 @@ function scope(pno){
     $(".btn_modify").on("click",function(){
     	console.log("수정클릭")
     	var rnoVal = $(this).data("rno")
+    	console.log(rnoVal)
     	if(confirm("리뷰를 수정하시겠습니까?")){
     		location.href=`/board/reviewmodify?pno=${pnoVal}&rno=${rnoVal}`	
     	}

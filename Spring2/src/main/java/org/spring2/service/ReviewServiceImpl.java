@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.spring2.mapper.ReviewMapper;
 import org.spring2.model.BoardVO;
 import org.spring2.model.CriteriaVO;
+import org.spring2.model.OrderVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
@@ -70,5 +71,8 @@ public class ReviewServiceImpl implements ReviewService{
 	}
 	public void modify(ReviewVO rvo) {
 		rm.modify(rvo);
+	}
+	public ArrayList<OrderVO> reviewable(OrderVO ovo){
+		return rm.reviewable(ovo);
 	}
 }

@@ -113,8 +113,7 @@ $(document).ready(function(){
 			}
 			
 		}
-		
-		
 	}) // click end
+	
 	
 })	// end

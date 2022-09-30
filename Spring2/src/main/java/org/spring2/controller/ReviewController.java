@@ -16,6 +16,7 @@ import org.spring2.model.BoardVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.MemberVO;
+import org.spring2.model.OrderVO;
 import org.spring2.model.PageVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.RIPageVO;
@@ -55,7 +56,12 @@ public class ReviewController {
 		System.out.println(rs.list(cri));
 		return new ResponseEntity<>(rs.list(cri),HttpStatus.OK);
 	}
-	
+	@RequestMapping(value = "/reviewable", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<OrderVO>> reviewable(OrderVO ovo){
+		System.out.println("리뷰셀렉"+rs.reviewable(ovo));
+		
+		return new ResponseEntity<>(rs.reviewable(ovo),HttpStatus.OK);
+	}
 	// 리뷰리스트, 페이징
 	@RequestMapping(value = "/board/newreview", method = RequestMethod.GET)
 	public String list(Model model,CriteriaVO cri,int pno) {

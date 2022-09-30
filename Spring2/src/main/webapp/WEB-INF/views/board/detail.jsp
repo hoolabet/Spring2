@@ -23,7 +23,7 @@
 				</c:forEach>
 				<input type="hidden" value="${userInfo.id}" id="id">
 				<input type="hidden" value="${detail.pno}" id="pno">
-				<input type="text" value="${detail.quantity}" id="quantity">
+				<input type="hidden" value="${detail.quantity}" id="quantity">
 				<div id="d_title">
 					<span id="uploadimg"></span>
 					<div id="sell">

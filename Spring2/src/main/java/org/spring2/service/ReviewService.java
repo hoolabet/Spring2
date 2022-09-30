@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.spring2.model.BoardVO;
 import org.spring2.model.CriteriaVO;
+import org.spring2.model.OrderVO;
 import org.spring2.model.RICriteriaVO;
 import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
@@ -39,5 +40,7 @@ public interface ReviewService {
 	public ReviewVO findReview(ReviewVO rvo);
 	//리뷰수정
 	public void modify(ReviewVO rvo);
+
+	public ArrayList<OrderVO> reviewable(OrderVO ovo);
 	
 }	
