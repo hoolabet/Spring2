@@ -228,8 +228,21 @@ function DisplayList(items, wrapper, amount, page) {
 			<input type="hidden" name="pno" value="${paginatedItems[i].pno}" id="pno" class="pno">
 			<input type="hidden" name="rno" value="${paginatedItems[i].rno}" id="rno" class="rno">
 			<td colspan='3'>${paginatedItems[i].rno}</td></tr>
-			<tr><th>아이디</th>
-			<td>${paginatedItems[i].id}
+			<tr><th>이름</th>
+			<td><div style="border: 1px #abaaaa solid;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-size: cover;
+    display: inline-block; background-image:url(`
+			
+    		if(paginatedItems[i].mvo.userImg.includes("http")){
+    			str += `${paginatedItems[i].mvo.userImg});"></div>`
+    		}else{
+    			str += `/member/${paginatedItems[i].mvo.userImg});"></div>`
+    		}
+    		
+    		str+=`${paginatedItems[i].mvo.name}
 			<input type="hidden" value="${paginatedItems[i].id}" class="id"></td>
 			<th>등록일</th>
 			<td>${paginatedItems[i].regdate}</td></tr>

@@ -14,7 +14,7 @@ public class ReviewVO {
 	private String uploadpath; // 파일경로
 	private String filename; // 파일명
 	private boolean image; // 이미지여부
-	
+	private MemberVO mvo;
 	public int getRno() {
 		return rno;
 	}
@@ -83,10 +83,16 @@ public class ReviewVO {
 	public void setLikeNum(int likeNum) {
 		this.likeNum = likeNum;
 	}
+	public MemberVO getMvo() {
+		return mvo;
+	}
+	public void setMvo(MemberVO mvo) {
+		this.mvo = mvo;
+	}
 	@Override
 	public String toString() {
 		return "ReviewVO [rno=" + rno + ", pno=" + pno + ", id=" + id + ", content=" + content + ", scope=" + scope
 				+ ", regdate=" + regdate + ", likeNum=" + likeNum + ", uuid=" + uuid + ", uploadpath=" + uploadpath
-				+ ", filename=" + filename + ", image=" + image + "]";
+				+ ", filename=" + filename + ", image=" + image + ", mvo=" + mvo + "]";
 	}
 }
