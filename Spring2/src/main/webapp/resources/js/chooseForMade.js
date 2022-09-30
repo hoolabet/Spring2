@@ -31,6 +31,11 @@ $(".opt_color").on("click",function(){
 
 $("#sub").on("click",function(e){
 	e.preventDefault();
+	if($("input[name='id']").val()==""){
+		alert("로그인이 필요합니다.");
+		location.href = "/member/login";
+		return false;
+	}
 	let checkSelect = true;
 	choose.forEach((x) => {
 		if($("#result_"+x).text() == "" || !checkColor){

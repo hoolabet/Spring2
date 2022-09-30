@@ -119,7 +119,7 @@ function calcProduct (){
 }
 
 
-$("#all_btn").on("click", function() {
+$("#select_btn").on("click", function() {
 	let howManyChecked = 0;
 	indexArr.forEach(function(i) {
 		if($(`#${i}`).prop("checked")){
@@ -146,6 +146,12 @@ $("#all_btn").on("click", function() {
 	}
 })
 
+$("#all_btn").on("click", function() {
+	indexArr.forEach(function(i) {
+		$(`#${i}`).prop("checked",true);
+	})
+	$("#select_btn").click();
+})
 
 
 

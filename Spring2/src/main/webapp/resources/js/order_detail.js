@@ -13,7 +13,7 @@ pnoArr.forEach(function(p) {
 	let ap = 0;
 	
 	if(cpvalue < 100){
-		if((bp * (100 - cpvalue) / 100) > cpmax){
+		if((bp * cpvalue / 100) > cpmax){
 			ap = bp - cpmax;
 		}else{
 			ap = Math.floor(bp * (100 - cpvalue) / 100);
