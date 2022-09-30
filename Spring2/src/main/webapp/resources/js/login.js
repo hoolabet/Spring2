@@ -51,7 +51,7 @@ $("#google_img").on("click",function(){
 
 	$(".nsm7Bb-HzV7m-LgbsSe").click();
 })
-	// 1. 구글 버튼 부분. 인증 요청
+	// 1. 구글 버튼 부분. 인증 요청 
   window.onload = function () {
     google.accounts.id.initialize({
       client_id: "757014794840-uob6irtj1rk48pr65ckeor3ichdktgpc.apps.googleusercontent.com",
