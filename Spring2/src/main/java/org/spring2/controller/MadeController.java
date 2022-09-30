@@ -53,10 +53,11 @@ public class MadeController {
 			ivo.setUuid(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 			ivo.setFileName(Integer.toString(bvo.getCategory_type()));
 			System.out.println(ivo);
+			ms.addProduct(bvo);
 			ms.madeAddPimage(ivo);
-			bs.write(bvo);
 			return new ResponseEntity<>("success",HttpStatus.OK);
 		}catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

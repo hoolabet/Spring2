@@ -37,8 +37,6 @@ $(".cart_btn").on("click",function(){
 		data:JSON.stringify(mData),
 		contentType:"application/json; charset=utf-8",
 		success:function(){
-		},
-		error:function(){
 			$.ajax({
 				type:"post",
 				url:"/madeaddcart",
@@ -46,7 +44,7 @@ $(".cart_btn").on("click",function(){
 				contentType:"application/json; charset=utf-8",
 				success:function(){
 					alert("성공")
-				},
+				}
 			})
 		}
 	})
