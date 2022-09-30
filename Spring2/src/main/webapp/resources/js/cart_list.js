@@ -1,7 +1,11 @@
 const id = $("#id").val();
 let str = '';
 let indexArr = [];
-loadCart();
+if(id == ""){
+	console.log("haha");
+}else{
+	loadCart();
+}
 
 function loadCart() {
 	indexArr = [];

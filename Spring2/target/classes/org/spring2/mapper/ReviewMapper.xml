@@ -4,6 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="org.spring2.mapper.ReviewMapper">
+  	<resultMap type="org.spring2.model.MemberVO" id="MemberVO">
+  		<result column="name" property="name" />
+		<result column="userImg" property="userImg" />
+		
+  	</resultMap>
+  	<resultMap type="org.spring2.model.ReviewVO" id="ReviewVO">
+  		<result column="id" property="id" />
+  		<result column="rno" property="rno" />
+  		<result column="content" property="content" />
+  		<result column="scope" property="scope" />
+		<result column="regdate" property="regdate" />
+		<result column="likeNum" property="likeNum" />
+		<result column="uuid" property="uuid" />
+		<result column="uploadpath" property="uploadpath" />
+		<result column="filename" property="filename" />
+		<collection property="mvo" resultMap="MemberVO"></collection>
+  	</resultMap>
   	
 	<select id="Rlist" resultType="org.spring2.model.ReviewVO">
 		select *
@@ -25,7 +42,7 @@
 		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
 		]]>
   	</select>
-	<select id="list" resultType="org.spring2.model.ReviewVO">
+	<select id="list" resultMap="ReviewVO">
 		select *
 		from(
 			select @rownum:=@rownum+1 rownum, r.*
@@ -41,6 +58,8 @@
 			</choose>
 		    
 		) as reviewlist
+		join member
+		on reviewlist.id = member.id
   	</select>
   	
   	<select id="total" resultType="int">

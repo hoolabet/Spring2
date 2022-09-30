@@ -27,17 +27,17 @@
 				where (pname like concat('%',#{search},'%')
 				or content like
 				concat('%',#{search},'%'))
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area != 0 and category_type ==0">
 				where category_area = #{category_area}
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area == 0 and category_type !=0">
 				where category_type = #{category_type}
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area != 0 and category_type ==0">
@@ -45,13 +45,13 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area != 0 and category_type !=0">
 				where category_area = #{category_area}
 				and category_type = #{category_type}
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area == 0 and category_type !=0">
@@ -59,7 +59,7 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_type = #{category_type}
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area != 0 and category_type != 0">
@@ -68,14 +68,14 @@
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
 				and category_type = #{category_type}
-				and quality != "ingre"
+				and category_area != 100
 			</when>
 			<otherwise>
-				where s_quantity != -1 and quality != "ingre"
+				where s_quantity != -1 and category_area != 100
 			</otherwise>
 		</choose>
 		<if test="type =='except'">
-			and p.quantity != 0 and quality != "ingre"
+			and p.quantity != 0 and category_area != 100
 		</if>
 		<choose>
 			<when test="array =='lowprice'">
@@ -132,17 +132,20 @@
 		<choose>
 			<when
 				test="search != ''.toString() and category_area == 0 and category_type == 0">
-				where pname like concat('%',#{search},'%')
+				where (pname like concat('%',#{search},'%')
 				or content like
-				concat('%',#{search},'%')
+				concat('%',#{search},'%'))
+				and category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area != 0 and category_type ==0">
 				where category_area = #{category_area}
+				and category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area == 0 and category_type !=0">
 				where category_type = #{category_type}
+				and category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area != 0 and category_type ==0">
@@ -150,11 +153,13 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
+				and category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area != 0 and category_type !=0">
 				where category_area = #{category_area}
 				and category_type = #{category_type}
+				and category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area == 0 and category_type !=0">
@@ -162,6 +167,7 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_type = #{category_type}
+				and category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area != 0 and category_type != 0">
@@ -170,13 +176,14 @@
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
 				and category_type = #{category_type}
+				and category_area != 100
 			</when>
 			<otherwise>
-				where s_quantity != -1
+				where s_quantity != -1 and category_area != 100
 			</otherwise>
 		</choose>
 		<if test="type =='except'">
-			and quantity != 0
+			and p.quantity != 0 and category_area != 100
 		</if>
 	</select>
 	<select id="category" resultType="org.spring2.model.CategoryVO">

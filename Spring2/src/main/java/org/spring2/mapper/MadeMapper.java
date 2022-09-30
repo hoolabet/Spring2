@@ -2,6 +2,7 @@ package org.spring2.mapper;
 
 import java.util.ArrayList;
 
+import org.spring2.model.BoardVO;
 import org.spring2.model.CartVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.MadeVO;
@@ -16,4 +17,6 @@ public interface MadeMapper {
 	public void madeAddPimage(ImageVO ivo);
 
 	public int madeRemove(MadeVO mvo);
+
+	public void addProduct(BoardVO bvo);
 }

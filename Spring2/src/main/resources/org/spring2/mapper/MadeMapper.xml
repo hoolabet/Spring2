@@ -14,10 +14,15 @@
   		SELECT * FROM made WHERE id=#{id} ORDER BY mno DESC
   	</select>
   	
+  	<insert id="addProduct">
+  		INSERT INTO product(pname,price,content,quantity,delivery,quality,category_area,category_type)
+		values(#{pname},#{price},#{content},#{quantity},#{delivery},#{quality},#{category_area},#{category_type})
+  	</insert>
+  	
   	<insert id="madeAddPimage">
   		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
 			select
-			ifnull (max(pno)+1 , 1)
+			ifnull (max(pno) , 1)
 			from product
 		</selectKey>
   		INSERT INTO p_image(uuid,pno,fullPath)

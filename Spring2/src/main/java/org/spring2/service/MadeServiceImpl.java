@@ -3,6 +3,7 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.mapper.MadeMapper;
+import org.spring2.model.BoardVO;
 import org.spring2.model.CartVO;
 import org.spring2.model.ImageVO;
 import org.spring2.model.MadeVO;
@@ -32,5 +33,9 @@ public class MadeServiceImpl implements MadeService{
 	
 	public int madeRemove(MadeVO mvo) {
 		return mm.madeRemove(mvo);
+	}
+	
+	public void addProduct(BoardVO bvo) {
+		mm.addProduct(bvo);
 	}
 }

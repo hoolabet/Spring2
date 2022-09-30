@@ -157,185 +157,8 @@ function scope(pno){
 			DisplayList(likeBest, list_element, amount, 1);
 			current_page = 1;
 			SetupPagination(data, pagination_element, amount, current_page,1);
-		})	
-	
-	})// getJSON끝
-
-} // scope 끝
-
-//이전다음버튼클릭이벤트
-
-	
-
-
-//좋아요버튼 클릭
-function r(){
-	$(".rno").each(function(i,r){
-		var rno = $(this).val();
-		var id = $("#id").val();
-		var rdata = {rno:rno, id:id}
-		likecheck(rdata);
-		
-	})
-}
-
-function likecheck(rdata){
-	$.getJSON("/likecheck",rdata,function(d){
-		console.log(rdata.rno+">셀렉");
-		$(`img[data-rno="${rdata.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/1125px-Love_Heart_symbol.svg.png")
-	})
-}
-
-// 데이터 리스트를 보여주는 함수 
-function DisplayList(items, wrapper, amount, page) {
-    wrapper.innerHTML = "";
-    page--; // 페이지번호를 1 다운
-
-    let start = amount * page; // 현재페이지:(2-1)*5 = 5
-    let end = start + amount; // 5+5 = 10
-    let paginatedItems = items.slice(start, end); // 6-10번까지 불러오기
-    str="";
-    for (let i = 0; i < paginatedItems.length; i++) { // 5개까지 불러옴
-    	str+=`
-    	<div id='Rlist'>
-    	<table border='1'>
-			<tr><th>리뷰번호</th>
-			<input type="hidden" name="pno" value="${paginatedItems[i].pno}" id="pno" class="pno">
-			<input type="hidden" name="rno" value="${paginatedItems[i].rno}" id="rno" class="rno">
-			<td colspan='3'>${paginatedItems[i].rno}</td></tr>
-			<tr><th>아이디</th>
-			<td>${paginatedItems[i].id}
-			<input type="hidden" value="${paginatedItems[i].id}" class="id"></td>
-			<th>등록일</th>
-			<td>${paginatedItems[i].regdate}</td></tr>
-			<tr><th>평점
-			<input type="hidden" class="Star_scope" value="${paginatedItems[i].scope}"></th>
-			<td colspan='3' class="scopeS">${paginatedItems[i].scope}</td></tr>`
-			// console.log(data[i].filename)
-			if(paginatedItems[i].filename != null){
-				var filePath = encodeURIComponent(paginatedItems[i].uploadpath+"/s_"+paginatedItems[i].uuid+"_"+paginatedItems[i].filename);
-				str+=`<tr><th>사진</th>
-				<td colspan='3'><img src='/display?fileName=${filePath}'></td></tr>`
-			}
-			str +=`<tr><th>내용</th>
-			<td colspan='3' class="rcontent">${paginatedItems[i].content}</td></tr>
-			<tr><td colspan="4">
-			<img data-rno="${paginatedItems[i].rno}" style ="width:30px" class="btn_like" id="${paginatedItems[i].rno}_btn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png">
-			<input type="text" name="likeNum" value="${paginatedItems[i].likeNum}" readonly class="likeNum" ldata-rno="${paginatedItems[i].rno}">
-			</td></tr>`
-			if($("#id").val()===paginatedItems[i].id){
-				str+=`<tr><td colspan="4"><button data-rno="${paginatedItems[i].rno}" class="btn_remove" >삭제</button>
-					<button data-rno="${paginatedItems[i].rno}" class="btn_modify" >수정</button></td></tr>`
-			}
-			str+=`</table></div>`				
-    }wrapper.innerHTML = str;
-    r();
-    $(".Star_scope").each(function(i,scope){
-		let rate = "";
-		for(let j=0; j<scope.value; j++){
-			rate += "★";
-		}
-		for(let i=0; i<5-scope.value ;i++){
-			rate+="☆";
-		}
-		rate+=`(${scope.value})`;
-		$(".scopeS").eq(i).text(rate);
-	})	
-    $(".btn_like").on("click",function(e){
-    	console.log(e)
-    	var rno = $(this).data("rno")
-    	var id =  $("#id").val();
-    	var datacheck = {rno:rno, id:id}
-    	if(id==''){
-    		alert("로그인 후 이용가능합니다.")
-    	}
-    	$.getJSON("/likecheck",datacheck,function(d){
-    		$.ajax({
-    			type:"delete",
-    			url:"/likeremove",
-    			data : JSON.stringify(datacheck),
-    			contentType : "application/json;charset=utf-8",
-    			success: function(){
-    				alert(rno);
-    				$(`img[data-rno="${datacheck.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png");
-    				const uuid = "d";
-    				const lData = {
-    						rno:rno,
-    						uuid:uuid
-    				}
-    				console.log(lData);
-    				
-    				$.ajax({
-    					type:"put",
-    					url:"/likeupdate",
-    					data:JSON.stringify(lData),
-    					contentType : "application/json;charset=utf-8",
-    					success: function(){
-    						console.log("-");
-    						like_val = parseInt($(`input[ldata-rno="${lData.rno}"]`).val())
-    						console.log(like_val)
-    						$(`input[ldata-rno="${lData.rno}"]`).val(like_val-1)
-    						
-    						//location.href = location.href;
-    						
-    					}
-    				})
-    				r();
-    				scope(pnoVal);
-    				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
-    				//const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
-    				DisplayList(items, list_element, amount, 1);
-    				SetupPagination(items, pagination_element, amount, current_page,1);
-    			}
-
-    		})
-    	})
-    	.fail(function(){
-    		$.ajax({
-    			type:"post",
-    			url:"/likeadd",
-    			data : JSON.stringify(datacheck),
-    			contentType : "application/json;charset=utf-8",
-    			success: function(){
-    				alert(rno);
-    				$(`img[data-rno="${datacheck.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/1125px-Love_Heart_symbol.svg.png")
-    				
-    				const uuid = "u";
-    				const lData = {
-    						rno:rno,
-    						uuid:uuid
-    				}
-    				console.log(lData);
-    				
-    				$.ajax({
-    					type:"put",
-    					url:"/likeupdate",
-    					data:JSON.stringify(lData),
-    					contentType : "application/json;charset=utf-8",
-    					success: function(){
-    						console.log("+");
-    						like_val = parseInt($(`input[ldata-rno="${datacheck.rno}"]`).val())
-    						console.log(like_val)
-    						console.log($(`input[ldata-rno="${datacheck.rno}"]`).val())
-    						$(`input[ldata-rno="${datacheck.rno}"]`).val(like_val+1)
-    						//location.href = location.href;
-    					},
-    					
-    				})
-    				
-    				r();
-    				scope(pnoVal);
-    				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
-    				//const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
-    				DisplayList(items, list_element, amount, 1);
-    				SetupPagination(items, pagination_element, amount, current_page,1);
-    			}
-    		})
-    	})
-    	
-    })
-
-    // 리뷰삭제
+		})
+		// 리뷰삭제
     $(".btn_remove").on("click",function(){
     	var rno = $(this).data("rno")
     	var id =  $("#userId").val();
@@ -364,7 +187,188 @@ function DisplayList(items, wrapper, amount, page) {
     	}
     	
     })
+	
+	})// getJSON끝
+
+} // scope 끝
+
+//좋아요버튼 클릭
+function r(){
+	$(".rno").each(function(i,r){
+		var rno = $(this).val();
+		var id = $("#id").val();
+		var rdata = {rno:rno, id:id}
+		likecheck(rdata);
+		
+	})
+}
+
+function likecheck(rdata){
+	$.getJSON("/likecheck",rdata,function(d){
+		console.log(rdata.rno+">셀렉");
+		$(`img[data-rno="${rdata.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/1125px-Love_Heart_symbol.svg.png")
+	})
+}
+
+// 데이터 리스트를 보여주는 함수 
+function DisplayList(items, wrapper, amount, page) {
+    wrapper.innerHTML = "";
+    page--; // 페이지번호를 1 다운
+
+    let start = amount * page; // 현재페이지:(2-1)*5 = 5
+    let end = start + amount; // 5+5 = 10
+    let paginatedItems = items.slice(start, end); // 6-10번까지 불러오기
+    str="";
+    //데이터 jsp에 보여질 곳
+    for (let i = 0; i < paginatedItems.length; i++) { // 5개까지 불러옴
+    	str+=`
+    	<div id='Rlist'>
+    	<table border='1'>
+			<tr><th>리뷰번호</th>
+			<input type="hidden" name="pno" value="${paginatedItems[i].pno}" id="pno" class="pno">
+			<input type="hidden" name="rno" value="${paginatedItems[i].rno}" id="rno" class="rno">
+			<td colspan='3'>${paginatedItems[i].rno}</td></tr>
+			<tr><th>이름</th>
+			<td><div style="border: 1px #abaaaa solid;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-size: cover;
+    display: inline-block; background-image:url(`
+			
+    		if(paginatedItems[i].mvo.userImg.includes("http")){
+    			str += `${paginatedItems[i].mvo.userImg});"></div>`
+    		}else{
+    			str += `/member/${paginatedItems[i].mvo.userImg});"></div>`
+    		}
+    		
+    		str+=`${paginatedItems[i].mvo.name}
+			<input type="hidden" value="${paginatedItems[i].id}" class="id"></td>
+			<th>등록일</th>
+			<td>${paginatedItems[i].regdate}</td></tr>
+			<tr><th>평점
+			<input type="hidden" class="Star_scope" value="${paginatedItems[i].scope}"></th>
+			<td colspan='3' class="scopeS">${paginatedItems[i].scope}</td></tr>`
+			// console.log(data[i].filename)
+			if(paginatedItems[i].filename != null){
+				var filePath = encodeURIComponent(paginatedItems[i].uploadpath+"/s_"+paginatedItems[i].uuid+"_"+paginatedItems[i].filename);
+				str+=`<tr><th>사진</th>
+				<td colspan='3'><img src='/display?fileName=${filePath}'></td></tr>`
+			}
+			str +=`<tr><th>내용</th>
+			<td colspan='3' class="rcontent">${paginatedItems[i].content}</td></tr>
+			<tr><td colspan="4">
+			<img data-rno="${paginatedItems[i].rno}" style ="width:30px" class="btn_like" id="${paginatedItems[i].rno}_btn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png">
+			<input type="text" name="likeNum" value="${paginatedItems[i].likeNum}" readonly class="likeNum" ldata-rno="${paginatedItems[i].rno}">
+			</td></tr>`
+			if($("#id").val()===paginatedItems[i].id){
+				str+=`<tr><td colspan="4"><button data-rno="${paginatedItems[i].rno}" class="btn_remove" >삭제</button>
+					<button data-rno="${paginatedItems[i].rno}" class="btn_modify" >수정</button></td></tr>`
+			}
+			str+=`</table></div>`				
+    }
+    wrapper.innerHTML = str;
     
+    r();
+    // 리뷰 별표찢기
+    $(".Star_scope").each(function(i,scope){
+		let rate = "";
+		for(let j=0; j<scope.value; j++){
+			rate += "★";
+		}
+		for(let i=0; i<5-scope.value ;i++){
+			rate+="☆";
+		}
+		rate+=`(${scope.value})`;
+		$(".scopeS").eq(i).text(rate);
+	})
+	//좋아요 버튼 클릭이벤트
+    $(".btn_like").on("click",function(e){
+    	console.log(e)
+    	var rno = $(this).data("rno")
+    	var id =  $("#id").val();
+    	var datacheck = {rno:rno, id:id}
+    	if(id==''){
+    		alert("로그인 후 이용가능합니다.")
+    	}
+    	$.getJSON("/likecheck",datacheck,function(d){
+    		$.ajax({ // 좋아요버튼이 활성화 되었을 때 비활성화
+    			type:"delete",
+    			url:"/likeremove",
+    			data : JSON.stringify(datacheck),
+    			contentType : "application/json;charset=utf-8",
+    			success: function(){
+    				alert(rno);
+    				$(`img[data-rno="${datacheck.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png");
+    				const uuid = "d";
+    				const lData = {
+    						rno:rno,
+    						uuid:uuid
+    				}
+    				console.log(lData);
+    				$.ajax({ // review 테이블에서 likeNum 삭제
+    					type:"put",
+    					url:"/likeupdate",
+    					data:JSON.stringify(lData),
+    					contentType : "application/json;charset=utf-8",
+    					success: function(){
+    						console.log("-");
+    						like_val = parseInt($(`input[ldata-rno="${lData.rno}"]`).val())
+    						console.log(like_val)
+    						$(`input[ldata-rno="${lData.rno}"]`).val(like_val-1)
+    						//location.href = location.href;
+    						}
+    				})
+    				r();
+    				scope(pnoVal);
+    				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
+    				const likeBest = items.sort((a,b)=> b.likeNum - a.likeNum)
+    				DisplayList(items, list_element, amount, 1);
+    				SetupPagination(items, pagination_element, amount, current_page,1);
+    			}
+
+    		})//ajax끝
+    	})//getJSON끝
+    	.fail(function(){
+    		$.ajax({  //비활성화 된 좋아요버튼클릭시 활성화
+    			type:"post",
+    			url:"/likeadd",
+    			data : JSON.stringify(datacheck),
+    			contentType : "application/json;charset=utf-8",
+    			success: function(){
+    				alert(rno);
+    				$(`img[data-rno="${datacheck.rno}"]`).attr("src","https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Love_Heart_symbol.svg/1125px-Love_Heart_symbol.svg.png")
+    				const uuid = "u";
+    				const lData = {
+    						rno:rno,
+    						uuid:uuid
+    				}
+    				$.ajax({ //리뷰테이블 likeNum 삭제
+    					type:"put",
+    					url:"/likeupdate",
+    					data:JSON.stringify(lData),
+    					contentType : "application/json;charset=utf-8",
+    					success: function(){
+    						console.log("+");
+    						like_val = parseInt($(`input[ldata-rno="${datacheck.rno}"]`).val())
+    						console.log(like_val)
+    						console.log($(`input[ldata-rno="${datacheck.rno}"]`).val())
+    						$(`input[ldata-rno="${datacheck.rno}"]`).val(like_val+1)
+    						//location.href = location.href;
+    					},
+    				})//ajax끝
+    				
+    				r();
+    				scope(pnoVal);
+    				//const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
+    				const likeBest = items.sort((a,b)=> b.likeNum - a.likeNum)
+    				DisplayList(items, list_element, amount, 1);
+    				SetupPagination(items, pagination_element, amount, current_page,1);
+    			}
+    		})//ajax끝
+    	})//.fail끝
+    })//좋아요버튼 클릭이벤트 끝
+	
 }//DisplayList 끝
 
 //버튼 안에 숫자를 넣는 함수
@@ -384,12 +388,12 @@ function SetupPagination(items, wrapper, amount, current_page , startPage) {
         }
     }
 }
+
 // 버튼만들어 페이징 하는 함수
 function PaginationButton(page, items) {
     let button = document.createElement('button');
     button.innerText = page;
     button.classList.add("btn_pa")
-    
     if (current_page == page) {
         button.classList.add("active")
     }

@@ -246,3 +246,36 @@ $("#modify").on("click",function(e){
 	e.preventDefault();
 	location.href="/board/modify?pno="+pno;
 })
+
+$("#buy").on("click",function(){
+	const buyData = {
+			pno:$("#pno").val(),
+			id:$("#id").val(),
+			b_quantity:$("#num").val(),
+			doOrder:false
+	}
+	$.getJSON("/cartcheck", buyData,function(){
+		if(confirm("이미 장바구니에 있습니다. 장바구니로 가겠습니까?")){
+			location.href="/cart/list"
+		}
+	})
+	.fail(function(){
+		buyData.doOrder = true;
+		$.ajax({
+			type:"post",
+			url:"/cartadd",
+			data:JSON.stringify(buyData),
+			contentType:"application/json; charset=utf-8",
+			success:function(){
+				location.href="/order/ready"
+			}
+		})
+	})
+	
+	
+})
+
+
+
+
+

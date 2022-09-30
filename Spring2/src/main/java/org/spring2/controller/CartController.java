@@ -35,8 +35,12 @@ public class CartController {
 	
 	@RequestMapping(value = "/cartadd", method = RequestMethod.POST)
 	public ResponseEntity<String> cartAdd(@RequestBody CartVO cvo) {
+		if(!cvo.isDoOrder()) {
+			cvo.setDoOrder(false);
+		}
+		System.out.println("cvo="+cvo);
 		int result=cs.cartAdd(cvo);
-
+		
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

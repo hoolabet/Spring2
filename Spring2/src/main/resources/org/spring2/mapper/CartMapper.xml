@@ -49,8 +49,8 @@
 	</select>
 
 	<insert id="cartAdd">
-		INSERT INTO cart(id,pno,b_quantity)
-		VALUES(#{id},#{pno},#{b_quantity})
+		INSERT INTO cart(id,pno,b_quantity,doOrder)
+		VALUES(#{id},#{pno},#{b_quantity},#{doOrder})
 	</insert>
 
 	<update id="cartUpdate">
