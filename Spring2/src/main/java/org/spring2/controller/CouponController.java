@@ -66,8 +66,13 @@ public class CouponController {
 	@RequestMapping(value = "/detachcoupon", method = RequestMethod.PUT)
 	public ResponseEntity<String> detachCoupon(@RequestBody CartVO cvo) {
 		System.out.println(cvo);
-		int result=cs.detachCoupon(cvo) + cs.detachCoupon2(cvo);
-		return result==2? new ResponseEntity<>("success",HttpStatus.OK)
+		int result = 0;
+		int result1=cs.detachCoupon(cvo);
+		int result2=cs.detachCoupon2(cvo);
+		result = result1+result2;
+		System.out.println(result1);
+		System.out.println(result2);
+		return result >=1 ? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	

@@ -99,6 +99,9 @@
 		UPDATE cart
 		SET 
 		cptno=0
+		<if test="b_quantity == -2">
+		, doOrder = false
+		</if>
 		WHERE id=#{id}
 		<if test="b_quantity != -2">
 		and	pno=#{pno}
