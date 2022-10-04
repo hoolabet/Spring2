@@ -45,6 +45,9 @@ h3{
 	background-color:black;
 	color: white;
 }
+#buy:hover{
+	filter: brightness(1.1);
+}
 #add_wishlist{
 	width:50px;
 }
@@ -56,16 +59,20 @@ h3{
     height: 60px;
     margin: 21px auto;
     font-size: 17px;
+    border-radius: 6px;
+    font-weight: bold;
 }
 
 .btn_p:hover {
 	cursor: pointer;
 	font-weight:bold;
-	height: 65px;
+	filter: brightness(90%);
 	
 }
+
 .wishch{
-	background-color: yellow;
+	background-color: #ff0000;
+    color: white;
 }
 /* 내비게이션  */
 #detail {

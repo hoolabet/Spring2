@@ -1,6 +1,9 @@
-if ($("#entry_area").height() < "1000") {
-    $("#content_area").height(800);
-}
+setTimeout(()=>{
+	if ($("#entry_area").height() < "1000") {
+	    $("#content_area").height(800);
+	}
+	
+},1500)
 
 // $("#categori_btn_img").on("click", function () {
 //     if ($("#categori").css("display") == "none") {

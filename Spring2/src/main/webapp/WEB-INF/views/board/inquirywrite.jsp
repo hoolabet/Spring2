@@ -20,9 +20,9 @@
 					<table>
 						<tr>
 							<th>제품번호</th>
-							<td><input type="text" value="${pro.pno}" name="pno" readonly></td>
+							<td><input type="text" value="${pro.pno}" name="pno" readonly class="input"></td>
 							<th>제품이름</th>
-							<td><input type="text"  value="${pro.pname}" name="pname" readonly></td>
+							<td><input type="text"  value="${pro.pname}" name="pname" readonly class="input"></td>
 						</tr>
 						<tr>
 							<th>공개 설정</th>

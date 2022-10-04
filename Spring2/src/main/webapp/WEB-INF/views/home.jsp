@@ -22,7 +22,9 @@
 					<div class="slider-wrap">
 						<c:forEach items="${homeImage}" var="homeImage" begin="0" end="9">
 						<div class="cont">
+						<a href="/board/detail?pno=${homeImage.pno}">
 						<img src="/display?fileName=${homeImage.img.fullPath}">
+						</a>
 						</div>
 						</c:forEach>
 						</div>

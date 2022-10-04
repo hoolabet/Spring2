@@ -16,7 +16,7 @@ h3, #paging{
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-input[type="text"]{
+.input{
 	height: 100%;
 	width: 97%;
 	border: 0;
@@ -79,8 +79,8 @@ textarea[readonly] ,input[readonly]{
 #wbtn, #ibtn>input[type="button"]{
 	margin-top:10px;
 	margin-bottom:10px;
-	height: 30px;
-	width: 70px;
+	height: 41px;
+    width: 95px;
 	padding: 5px;
 	
 }
