@@ -77,6 +77,11 @@
 				<br>
 			</c:forEach>
 			<p>
+				<span>보유적립금 : </span>
+				<span id="research_point"></span>
+				<input type="hidden" id="able_point"><br>
+				<input type="text" value="0" id="use_point">
+				<input type="button" value="사용하기" id="point_btn" data-point="0"><br>
 				총 결제금액 : <span id="last_price"></span> 
 				<input type="hidden" name="price"> <br> 
 				<input type="button" value="결제하기"	id="pay">

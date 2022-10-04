@@ -11,8 +11,15 @@ public class PaymentVO {
 	private String state;
 	private int delivery_cost;
 	private String payment_date;
+	private int use_point;
 	
 	
+	public int getUse_point() {
+		return use_point;
+	}
+	public void setUse_point(int use_point) {
+		this.use_point = use_point;
+	}
 	public int getPhone() {
 		return phone;
 	}
@@ -78,7 +85,7 @@ public class PaymentVO {
 	public String toString() {
 		return "PaymentVO [payno=" + payno + ", price=" + price + ", name=" + name + ", id=" + id + ", address="
 				+ address + ", phone=" + phone + ", dmemo=" + dmemo + ", state=" + state + ", delivery_cost="
-				+ delivery_cost + ", payment_date=" + payment_date + "]";
+				+ delivery_cost + ", payment_date=" + payment_date + ", use_point=" + use_point + "]";
 	}
 	
 }

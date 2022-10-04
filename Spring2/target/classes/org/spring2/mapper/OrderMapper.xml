@@ -31,8 +31,8 @@
 			ifnull (max(payno)+1 , 1)
 			from payment
 		</selectKey>
-		INSERT INTO payment (payno,price, name, id, address, phone, dmemo)
-		VALUES (#{payno},#{price},#{name},#{id},#{address},#{phone},#{dmemo})
+		INSERT INTO payment (payno,price, name, id, address, phone, dmemo, use_point)
+		VALUES (#{payno},#{price},#{name},#{id},#{address},#{phone},#{dmemo},#{use_point})
 	</insert>
 	<insert id="orderAdd">
 		<selectKey keyProperty="payno" order="BEFORE"
@@ -230,4 +230,25 @@
 		SELECT * FROM payment WHERE
 		payno=#{payno}
 	</select>
+	
+	<select id="researchPoint" resultType="org.spring2.model.PointVO">
+		SELECT *
+		FROM point
+		WHERE id=#{id}
+	</select>
+	
+	<insert id="usePoint">
+		UPDATE point 
+		SET 
+		<choose>
+		<when test="state == 'use'">
+		point = point - #{use_point} 
+		</when>
+		<otherwise>
+		point = point + #{use_point}
+		</otherwise>
+		</choose>
+		WHERE id=#{id}
+	</insert>
+	
 </mapper>

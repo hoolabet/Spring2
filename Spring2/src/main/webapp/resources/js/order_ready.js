@@ -13,11 +13,28 @@ function sumPrice() {
 	$(".prices").each(function(i,p) {
 		lastPrice += Number(p.innerText);
 	})
+	lastPrice -= $("#point_btn").data("point");
 	$("#last_price").html(lastPrice);
 	$("input[name='price']").val(lastPrice);
 	price = $("input[name='price']").val();
 	lastPrice = 0;
 }
+
+$("#point_btn").on("click", function() {
+	if(Number($("#use_point").val()) > Number(price)){
+		alert("상품 가격보다 많습니다.");
+	}else{
+		if($("#use_point").val() < 5000){
+			alert("적립금은 5000원 부터 사용가능합니다.");
+		}else if(Number($("#use_point").val()) > Number($("#able_point").val())){
+			alert("적립금이 부족합니다.");
+		}
+		else{
+			$(this).data("point",$("#use_point").val());
+			sumPrice();
+		}
+	}
+})
 
 $("input[name='destination']").on("change", function() {
 	$("#dname").val($(`#${$(this).attr("id")}_dname`).val());
@@ -38,16 +55,19 @@ $("#pay").on("click", function() {
 	const address = $("#address").val();
 	const phone = $("#phone").val();
 	const dmemo = $("#dmemo").val();
+	const use_point = $("#point_btn").data("point");
+	console.log(use_point);
 	if(name == "" || address == "" || phone == "" || dmemo == ""){
 		alert("배송지 정보를 입력하세요.");
 	}else{
 		const pmData = {
-				id:id,
-				price:price,
-				name:name,
-				address:address,
-				phone:phone,
-				dmemo:dmemo
+				id,
+				price,
+				name,
+				address,
+				phone,
+				dmemo,
+				use_point
 		}
 		$.ajax({
 			type:"post",
@@ -56,6 +76,23 @@ $("#pay").on("click", function() {
 			contentType:"application/json; charset=utf-8",
 			success:function(){
 				alert("결제 완료");
+				$.ajax({
+					type:"put",
+					url:"/usepoint",
+					data:JSON.stringify({id,use_point,state:"use"}),
+					contentType:"application/json; charset=utf-8",
+					success:function(){
+						$.ajax({
+							type:"put",
+							url:"/usepoint",
+							data:JSON.stringify({id,use_point:price*0.05}),
+							contentType:"application/json; charset=utf-8",
+							success:function(){
+								
+							}
+						})
+					}
+				})
 				pnoArr.forEach(function(p) {
 					const dataP = {id:id, pno:p};
 					$.getJSON("/orderlist",dataP,function(res){
@@ -88,7 +125,7 @@ $("#pay").on("click", function() {
 											data:JSON.stringify(dData),
 											contentType:"application/json; charset=utf-8",
 											success:function(){
-
+												
 											}
 										})
 									}
@@ -157,6 +194,12 @@ $(".use_coupon").each(function(i,t) {
 	})
 })
 }, 100);
+
+$.getJSON("/researchpoint",{id},function(res){
+	console.log(res);
+	$("#research_point").html(res.point);
+	$("#able_point").val(res.point);
+})
 
 $(window).on("beforeunload",function() {
 	const cData = {

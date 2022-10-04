@@ -7,6 +7,7 @@ import org.spring2.model.CartVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.OrderVO;
 import org.spring2.model.PaymentVO;
+import org.spring2.model.PointVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,4 +59,13 @@ public class OrderServiceImpl implements OrderService{
 	public PaymentVO payment(int payno) {
 		return om.payment(payno);
 	}
+	
+	public PointVO researchPoint(PointVO pvo) {
+		return om.researchPoint(pvo);
+	}
+	
+	public int usePoint(PaymentVO pvo) {
+		return om.usePoint(pvo);
+	}
+	
 }

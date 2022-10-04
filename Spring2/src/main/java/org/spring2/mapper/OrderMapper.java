@@ -6,6 +6,7 @@ import org.spring2.model.CartVO;
 import org.spring2.model.CriteriaVO;
 import org.spring2.model.OrderVO;
 import org.spring2.model.PaymentVO;
+import org.spring2.model.PointVO;
 
 public interface OrderMapper {
 
@@ -30,5 +31,9 @@ public interface OrderMapper {
 	public ArrayList<OrderVO> orderDetail(int payno);
 
 	public PaymentVO payment(int payno);
+
+	public PointVO researchPoint(PointVO pvo);
+
+	public int usePoint(PaymentVO pvo);
 
 }

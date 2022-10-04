@@ -10,6 +10,7 @@ import org.spring2.model.MemberVO;
 import org.spring2.model.OrderVO;
 import org.spring2.model.PageVO;
 import org.spring2.model.PaymentVO;
+import org.spring2.model.PointVO;
 import org.spring2.service.CartService;
 import org.spring2.service.MemberService;
 import org.spring2.service.OrderService;
@@ -49,6 +50,22 @@ public class OrderController {
 		System.out.println(ms.destinationGet(mvo.getId()));
 		model.addAttribute("cart",os.orderReadyList(mvo.getId()));
 		model.addAttribute("des",ms.destinationGet(mvo.getId()));
+	}
+	
+	@RequestMapping(value = "/researchpoint", method = RequestMethod.GET)
+	public ResponseEntity<PointVO> researchPoint(PointVO pvo) {
+		System.out.println(pvo);
+		return new ResponseEntity<>(os.researchPoint(pvo),HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/usepoint", method = RequestMethod.PUT)
+	public ResponseEntity<String> usePoint(@RequestBody PaymentVO pvo) {
+		
+		System.out.println(pvo);
+		int result=os.usePoint(pvo);
+
+		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
+				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@RequestMapping(value = "/order/complete", method = RequestMethod.GET)
