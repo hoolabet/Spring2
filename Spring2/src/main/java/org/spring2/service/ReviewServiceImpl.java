@@ -18,12 +18,6 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired
 	ReviewMapper rm;
 	
-	// 리뷰 리스트 in 디테일 구현
-	public ArrayList<ReviewVO> Rlist(int pno){
-		System.out.println("Rlist service="+pno);
-		return rm.Rlist(pno);
-	}
-	
 	// 리뷰 리스트 구현
 	public ArrayList<ReviewVO> list(CriteriaVO cri){
 		System.out.println("리뷰service="+cri);

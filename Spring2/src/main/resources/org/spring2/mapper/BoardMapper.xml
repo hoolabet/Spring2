@@ -3,6 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.spring2.mapper.BoardMapper">
+
+	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
+		<result column="pno" property="pno" />
+		<result column="fullPath" property="fullPath" />
+
+
+	</resultMap>
+	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
+		<result column="pno" property="pno" />
+		<result column="quantity" property="quantity" />
+		<result column="s_quantity" property="s_quantity" />
+		
+		<collection property="img" resultMap="ImageVO"></collection>
+	</resultMap>
+
+	<select id="homeImage" resultMap="BoardVO">
+		select *
+		from product
+		join P_image
+		on product.pno = p_image.pno
+		where quantity !=0 and category_area !=100
+		order by s_quantity desc;
+	</select>
+
 	<insert id="write">
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
 			select
@@ -45,12 +69,14 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
-				and category_area != 100
+				and
+				category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area != 0 and category_type !=0">
 				where category_area = #{category_area}
-				and category_type = #{category_type}
+				and category_type =
+				#{category_type}
 				and category_area != 100
 			</when>
 			<when
@@ -59,7 +85,8 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_type = #{category_type}
-				and category_area != 100
+				and
+				category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area != 0 and category_type != 0">
@@ -67,7 +94,8 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
-				and category_type = #{category_type}
+				and
+				category_type = #{category_type}
 				and category_area != 100
 			</when>
 			<otherwise>
@@ -109,7 +137,8 @@
 	<select id="findPay" resultType="org.spring2.model.OrderVO">
 		select*
 		from orderP
-		where pno = #{pno}
+		where pno =
+		#{pno}
 	</select>
 	<update id="modify">
 		update product
@@ -153,12 +182,14 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
-				and category_area != 100
+				and
+				category_area != 100
 			</when>
 			<when
 				test="search == ''.toString() and category_area != 0 and category_type !=0">
 				where category_area = #{category_area}
-				and category_type = #{category_type}
+				and category_type =
+				#{category_type}
 				and category_area != 100
 			</when>
 			<when
@@ -167,7 +198,8 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_type = #{category_type}
-				and category_area != 100
+				and
+				category_area != 100
 			</when>
 			<when
 				test="search != ''.toString() and category_area != 0 and category_type != 0">
@@ -175,7 +207,8 @@
 				or content like
 				concat('%',#{search},'%'))
 				and category_area = #{category_area}
-				and category_type = #{category_type}
+				and
+				category_type = #{category_type}
 				and category_area != 100
 			</when>
 			<otherwise>
@@ -197,7 +230,7 @@
 		= #{category_area}
 	</select>
 	<update id="wishNumUpdate">
-		update 	product 
+		update product
 		set
 		<choose>
 			<when test="refund == 'd'.toString()">

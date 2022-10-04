@@ -9,6 +9,8 @@ import org.spring2.model.CriteriaVO;
 import org.spring2.model.PaymentVO;
 
 public interface BoardMapper {
+	public ArrayList<BoardVO> homeImage();
+	
 	public void write(BoardVO bvo);
 	//상품리스트 DB설계
 	public ArrayList<BoardVO> list(CriteriaVO cri);

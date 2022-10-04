@@ -20,34 +20,19 @@
 			<div id="banner">
 				<div id="area">
 					<div class="slider-wrap">
+						<c:forEach items="${homeImage}" var="homeImage" begin="0" end="9">
 						<div class="cont">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Eo_circle_red_number-1.svg/800px-Eo_circle_red_number-1.svg.png">
+						<img src="/display?fileName=${homeImage.img.fullPath}">
 						</div>
-						<div class="cont">
-							<img
-								src="https://cdn-icons-png.flaticon.com/512/3601/3601634.png">
+						</c:forEach>
 						</div>
-						<div class="cont">
-							<img
-								src="https://w.namu.la/s/3db13b3fdd97ce006e49fa8be1ee4ca464806aa4d559b44e72a4fdd43d7cddc7f23cb592ca44e4c38209e9964ec0d5df6186fb3705ff348f0105c467ca70a529d7a7f75b3ae6226c69ff7a8bd731c950691b5b15b438c429a65e87b597cc4941">
-						</div>
-						<div class="cont">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Icon_4_yellow.svg/1200px-Icon_4_yellow.svg.png">
-						</div>
-						<div class="cont">
-							<img
-								src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/5_icon.svg/1024px-5_icon.svg.png">
-						</div>
-					</div>
 					<div class="slick-arrow slick-prev">
 						<i class="fa fa-angle-left"></i>
 					</div>
 					<div class="slick-arrow slick-next">
 						<i class="fa fa-angle-right"></i>
 					</div>
-				</div>
+				
 			</div>
 			<a href="/cart/list">장바구니</a> <a href="/made/chooseForMade">제작</a> <a
 				href="/member/login">로그인</a> <a href="/board/list">상품목록</a> <a

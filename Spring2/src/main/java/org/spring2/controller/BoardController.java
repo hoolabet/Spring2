@@ -106,14 +106,5 @@ public class BoardController {
 		return result==1? new ResponseEntity<>("success",HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
-	// 상품리뷰
-	@RequestMapping(value = "/board/review", method = RequestMethod.GET)
-	public void BoardReview() {
-
-	}
-
-	@RequestMapping(value = "/board/review", method = RequestMethod.POST)
-	public void BoardReviewPost() {
-
-	}
+	
 }

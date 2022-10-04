@@ -25,44 +25,17 @@
   		select * from orderP
   		where id=#{id} and pno =#{pno}
   	</select>
-	<select id="Rlist" resultType="org.spring2.model.ReviewVO">
-		select *
-		from(
-			select @rownum:=@rownum+1 rownum, r.*
-		    from review r,(select @rownum:=0) as tmp
-			where pno=${search}
-			<choose>
-			<when test="array =='recent'">
-			order by rno desc
-			</when>
-			<otherwise>
-			order by likeNum desc
-			</otherwise>
-			</choose>
-		    
-		) as reviewlist
-		<![CDATA[
-		where rownum > (#{pageNum}-1)*#{amount} and rownum <= #{pageNum}*#{amount}
-		]]>
-  	</select>
+	
 	<select id="list" resultMap="ReviewVO">
 		select *
 		from(
 			select @rownum:=@rownum+1 rownum, r.*
 		    from review r,(select @rownum:=0) as tmp
-			where pno=${search}
-			<choose>
-			<when test="array =='recent'">
-			order by rno desc
-			</when>
-			<otherwise>
-			order by likeNum desc
-			</otherwise>
-			</choose>
-		    
+			where pno=${search}		    
 		) as reviewlist
 		join member
 		on reviewlist.id = member.id
+		order by likeNum desc;
   	</select>
   	
   	<select id="total" resultType="int">

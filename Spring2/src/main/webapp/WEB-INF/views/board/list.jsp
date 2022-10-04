@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../resources/css/home.css">
 </head>
 <body>
-	<div id="entry_area"> 
+	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<div id="container">
@@ -20,23 +20,24 @@
 				</c:if>
 				<h1>${caa.cname}</h1>
 				<c:if test="${userInfo.admin eq true}">
-				<div id="p_write">
-					<button id="btn_Write">상품등록</button>
-				</div>
+					<div id="p_write">
+						<button id="btn_Write">상품등록</button>
+					</div>
 				</c:if>
-				
+
 				<div id="p_list">
 					<ul>
 						<c:forEach items="${category}" var="category">
-							<li id="popular" ><a ${category.cno == paging.cri.category_type ? 'style ="color:red" ' :''}
+							<li id="popular"><a
+								${category.cno == paging.cri.category_type ? 'style ="color:red" ' :''}
 								href="/board/list?category_area=${paging.cri.category_area}&category_type=${category.cno}">${category.cname}</a></li>
 						</c:forEach>
 					</ul>
 				</div>
 				<div>
-				<input type="checkbox" id="ch_soldout" ${paging.cri.type =='except'? 'checked=checked':'' }>
-				<label>품절상품제외</label>
-				<input type="hidden" id="except" value="${paging.cri.type}">
+					<input type="checkbox" id="ch_soldout"
+						${paging.cri.type =='except'? 'checked=checked':'' }> <label>품절상품제외</label>
+					<input type="hidden" id="except" value="${paging.cri.type}">
 					<select id="array">
 						<option value="popular"
 							${paging.cri.array == 'popular' ? 'selected="selected"' : '' }>인기순</option>
@@ -48,7 +49,7 @@
 							${paging.cri.array == 'lowprice' ? 'selected="selected"' : '' }>가격낮은순</option>
 						<option value="highprice"
 							${paging.cri.array == 'highprice' ? 'selected="selected"' : '' }>가격높은순</option>
-							
+
 					</select>
 				</div>
 				<%-- ${paging.cri.array} --%>
@@ -60,26 +61,16 @@
 				<div id="list">
 					<ul>
 						<c:forEach items="${list}" var="boardlist">
-							<li>
-							<c:choose>
-								<c:when test="${boardlist.quantity ==0 and userInfo.admin != true}">
-									<a>
-								</c:when>
-								<c:otherwise>
-									<a href="/board/detail?pno=${boardlist.pno}">
-								</c:otherwise>
-							</c:choose>
+							<li><a href="/board/detail?pno=${boardlist.pno}">
 									<div id="${boardlist.pno}" class="imglist">
 										<input class="pno" type="hidden" value="${boardlist.pno}">
 										<input type="hidden" value="${boardlist.category_area}"
 											name="category_area">
-											
-											
-									</div>
-									<input type="hidden" value="${boardlist.quantity}" class="quantity">
-											<input type="hidden" value="${boardlist.s_quantity}" class="s_quantity">
-									
-																		
+
+									</div> <input type="hidden" value="${boardlist.quantity}"
+									class="quantity"> <input type="hidden"
+									value="${boardlist.s_quantity}" class="s_quantity">
+
 									<p>${boardlist.pname}</p>
 									<p>
 										가격 : <span class="priceformat">${boardlist.price} 원</span>
@@ -108,7 +99,7 @@
 							href="/board/list?pageNum=${paging.endPage+1}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}">다음</a>
 					</c:if>
 				</div>
-				
+
 			</div>
 		</div>
 		<%@ include file="../footer.jsp"%>

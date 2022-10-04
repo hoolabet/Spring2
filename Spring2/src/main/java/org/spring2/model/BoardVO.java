@@ -18,7 +18,7 @@ public class BoardVO {
 	private int category_type;
 	private int wishNum;
 	private ArrayList<ImageVO> image;
-	
+	private ImageVO img;
 	public int getPno() {
 		return pno;
 	}
@@ -110,13 +110,19 @@ public class BoardVO {
 	public void setWishNum(int wishNum) {
 		this.wishNum = wishNum;
 	}
+	public ImageVO getImg() {
+		return img;
+	}
+	public void setImg(ImageVO img) {
+		this.img = img;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [pno=" + pno + ", price=" + price + ", pname=" + pname + ", content=" + content + ", quantity="
 				+ quantity + ", s_quantity=" + s_quantity + ", regdate=" + regdate + ", delivery=" + delivery
 				+ ", quality=" + quality + ", t_estimate=" + t_estimate + ", refund=" + refund + ", category_area="
 				+ category_area + ", category_type=" + category_type + ", wishNum=" + wishNum + ", image=" + image
-				+ "]";
+				+ ", img=" + img + "]";
 	}
 	
 	

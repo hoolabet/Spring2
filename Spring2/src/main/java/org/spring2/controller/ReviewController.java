@@ -10,16 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
-
-import org.spring2.model.BoardVO;
 import org.spring2.model.CriteriaVO;
-import org.spring2.model.ImageVO;
-import org.spring2.model.MemberVO;
+
 import org.spring2.model.OrderVO;
 import org.spring2.model.PageVO;
-import org.spring2.model.RICriteriaVO;
-import org.spring2.model.RIPageVO;
+
 import org.spring2.model.ReviewLikeVO;
 import org.spring2.model.ReviewVO;
 import org.spring2.service.ReviewService;
@@ -62,30 +57,7 @@ public class ReviewController {
 		
 		return new ResponseEntity<>(rs.reviewable(ovo),HttpStatus.OK);
 	}
-	// 리뷰리스트, 페이징
-	@RequestMapping(value = "/board/newreview", method = RequestMethod.GET)
-	public String list(Model model,CriteriaVO cri,int pno) {
-		System.out.println(pno);
-		String n = String.valueOf(pno);
-		cri.setSearch(n);
-		//cri.setAmount(5);
-		// 리스트
-		model.addAttribute("list",rs.list(cri));
-		
-		
-		// 전체 평점 건수
-		int total = rs.total(cri);
-		
-		// 상품정보
-		model.addAttribute("pro",rs.pro(cri));
-		
-		System.out.println("상품정보"+cri);
-		
-		
-		// 페이징
-		model.addAttribute("paging",new PageVO(cri, total));
-		return "/board/newreview";
-	}
+	
 	//좋아요 버튼 체크
 	@RequestMapping(value = "/likecheck", method = RequestMethod.GET)
 	public ResponseEntity<Integer> likelist(ReviewLikeVO rvo) {

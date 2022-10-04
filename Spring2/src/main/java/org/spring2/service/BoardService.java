@@ -10,6 +10,8 @@ import org.spring2.model.ImageVO;
 import org.spring2.model.PaymentVO;
 
 public interface BoardService {
+	//홈 상품불러오기
+	public ArrayList<BoardVO> homeImage();
 	//상품게시판글쓰기
 	public void write(BoardVO bvo);
 	//상품리스트
@@ -32,4 +34,5 @@ public interface BoardService {
 	public ArrayList<PaymentVO> findPay(BoardVO bvo);
 	//위시업데이트
 	public int wishNumUpdate(BoardVO bvo);
+	
 }

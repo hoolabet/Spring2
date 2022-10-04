@@ -20,6 +20,10 @@ public class BoardServiceImpl implements BoardService{
 	
 	@Autowired
 	BoardImageMapper bim;
+	//홈 상품불러오기
+	public ArrayList<BoardVO> homeImage(){
+			return bm.homeImage();
+	}
 	//글쓰기페이지
 	public void write(BoardVO bvo) {
 		bm.write(bvo);

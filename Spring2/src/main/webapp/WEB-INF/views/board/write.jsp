@@ -93,7 +93,7 @@
 							<td><div contenteditable="true" id="divContent"></div>
 								<div>
 								<input type="text" name="content" id="content" >
-									<!-- <textarea name="content" id="content"></textarea> --> 
+									
 								</div></td>
 						</tr>
 					</table>
