@@ -74,4 +74,8 @@ public class CouponServiceImpl implements CouponService{
 		return cm.detachCoupon2(cvo);
 	}
 	
+	public void refreshCoupon() {
+		cm.refreshCoupon();
+	}
+	
 }

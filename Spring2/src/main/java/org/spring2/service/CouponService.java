@@ -36,4 +36,6 @@ public interface CouponService {
 	public int detachCoupon(CartVO cvo);
 
 	public int detachCoupon2(CartVO cvo);
+
+	public void refreshCoupon();
 }

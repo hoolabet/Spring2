@@ -159,4 +159,12 @@
 		INSERT INTO coupon_target(id,category_area,category_type,cpno,exp_date)
 		VALUES (#{id},#{category_area},#{category_type},#{cpno},#{exp_date})
 	</insert>
+	
+	<delete id="refreshCoupon">
+		DELETE FROM coupon_target
+		<![CDATA[
+		WHERE
+			exp_date < now() and used = false
+		]]>
+	</delete>
 </mapper>

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.spring2.model.BoardVO;
 import org.spring2.model.OrderVO;
 import org.spring2.service.BoardService;
+import org.spring2.service.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +27,14 @@ public class HomeController {
 	@Autowired
 	BoardService bs;
 	
+	@Autowired
+	CouponService cps;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		model.addAttribute("homeImage", bs.homeImage());
+		cps.refreshCoupon();
 		return "home";
 	}
-	@RequestMapping(value = "/homeImage", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<BoardVO>> homeImage(){
-		System.out.println("홈이미지"+bs.homeImage());
-		return new ResponseEntity<>(bs.homeImage(),HttpStatus.OK);
-	}
+	
 }
