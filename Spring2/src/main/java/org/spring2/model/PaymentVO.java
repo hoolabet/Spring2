@@ -6,7 +6,7 @@ public class PaymentVO {
 	private String name;
 	private String id;
 	private String address;
-	private int phone;
+	private String phone;
 	private String dmemo;
 	private String state;
 	private int delivery_cost;
@@ -20,10 +20,11 @@ public class PaymentVO {
 	public void setUse_point(int use_point) {
 		this.use_point = use_point;
 	}
-	public int getPhone() {
+	
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getDmemo() {

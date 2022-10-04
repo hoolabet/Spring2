@@ -82,15 +82,17 @@ $("#pay").on("click", function() {
 					data:JSON.stringify({id,use_point,state:"use"}),
 					contentType:"application/json; charset=utf-8",
 					success:function(){
-						$.ajax({
-							type:"put",
-							url:"/usepoint",
-							data:JSON.stringify({id,use_point:price*0.05}),
-							contentType:"application/json; charset=utf-8",
-							success:function(){
-								
-							}
-						})
+						if(Number(price) > 5000){
+							$.ajax({
+								type:"put",
+								url:"/usepoint",
+								data:JSON.stringify({id,use_point:Math.ceil(price*0.05)}),
+								contentType:"application/json; charset=utf-8",
+								success:function(){
+									
+								}
+							})
+						}
 					}
 				})
 				pnoArr.forEach(function(p) {

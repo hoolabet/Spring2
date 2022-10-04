@@ -57,7 +57,9 @@
 				<tr>
 					<td>사용 적립금 : ${payment.use_point}</td>
 					<td colspan="2">결제 금액 : ${payment.price}</td>
-					<td>적립금 : ${payment.price*0.05}</td>
+					<td>
+						적립금 : <span id="point_span" data-point="${payment.price*0.05}"></span>
+					</td>
 					<td>수령인 : ${payment.name}</td>
 					<td colspan="2">주소 : ${payment.address}</td>
 				</tr>

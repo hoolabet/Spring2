@@ -5,7 +5,7 @@ let pnoArr = [];
 $(".pno").each(function() {
 	pnoArr = [...pnoArr, $(this).val()];
 })
-
+$("#point_span").html(Math.ceil($("#point_span").data("point")));
 pnoArr.forEach(function(p) {
 	const bp = $(`#${p}_bp`).val();
 	const cpvalue = $(`#${p}_cpvalue`).val();
