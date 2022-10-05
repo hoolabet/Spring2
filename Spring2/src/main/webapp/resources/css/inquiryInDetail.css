@@ -9,7 +9,7 @@
 	color:black;
 }
 #Iwritelink>a, #Iwritelink>p>a, #Imore>a{
-	color:#abaaaa;
+	color:#8bace9;
 	font-weight: bold;
 }
 #Iwritelink>a:hover, #Iwritelink>p>a:hover, #Imore>a:hover{ 
@@ -25,7 +25,7 @@
 	background-color: white;
 }
 #Ilist>table,tr,td{
-	border : 1px solid black;
+	border : 1px solid #c0c0c0;
   	border-collapse : collapse;
   	word-break: break-all;
   	margin: 0 auto;

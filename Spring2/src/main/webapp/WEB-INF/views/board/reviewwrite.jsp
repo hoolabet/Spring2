@@ -20,7 +20,7 @@
 		<div id="container">
 			<!-- 리뷰 시작 -->
 			<div id="write">
-				<h3>리뷰 작성</h3>
+				<h1>리뷰 작성</h1>
 				
 				<form method="post" id="form" action="/board/reviewwrite">
 					<input type="hidden" value="${userInfo.id}" name="id" class="input">

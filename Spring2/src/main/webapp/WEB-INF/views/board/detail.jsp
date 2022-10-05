@@ -90,7 +90,7 @@
 							<button id="modify">수정</button>
 							<button id="remove">삭제</button>
 							</c:if>
-							<a href="/board/list">목록보기</a>
+							<a href="/board/list" id="goList">목록보기</a>
 						</form>
 					</div>
 				</section>

@@ -206,7 +206,7 @@ function DisplayList(items, wrapper, amount, page) {
     for (let i = 0; i < paginatedItems.length; i++) { // 5개까지 불러옴
     	str+=`
     	<div id='Rlist'>
-    	<table border='1'>
+    	<table >
 			
 			<input type="hidden" name="pno" value="${paginatedItems[i].pno}" id="pno" class="pno">
 			<input type="hidden" name="rno" value="${paginatedItems[i].rno}" id="rno" class="rno">
@@ -242,7 +242,7 @@ function DisplayList(items, wrapper, amount, page) {
 			<td colspan='3' class="rcontent">${paginatedItems[i].content}</td></tr>
 			<tr><td colspan="4">
 			<img data-rno="${paginatedItems[i].rno}" style ="width:30px" class="btn_like" id="${paginatedItems[i].rno}_btn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png">
-			<input type="text" name="likeNum" value="${paginatedItems[i].likeNum}" readonly class="likeNum" ldata-rno="${paginatedItems[i].rno}">
+			<input type="text" name="likeNum" value="${paginatedItems[i].likeNum}" readonly class="likeNum" ldata-rno="${paginatedItems[i].rno}" style="border:none">
 			</td></tr>`
 			if($("#id").val()===paginatedItems[i].id){
 				str+=`<tr><td colspan="4"><button data-rno="${paginatedItems[i].rno}" class="btn_remove" >삭제</button>

@@ -25,7 +25,9 @@ h2{
 	margin: 0 auto;
 	border: 1px solid #dae1e6;
 }
-
+tbody{
+	width: 312px;
+}
 #t_sell {
 	text-align: left;
 	padding: 15px;
@@ -130,18 +132,20 @@ nav ul li a {
 #d_img > div{
 	font-size:25px;
 }
+#goList{
+	font-weight: bold;
+}
+#goList:hover{
+	text-decoration: underline;
+}
 /* 수정,삭제하기 */
 #form_back{
 	font-size:15px;
 	margin-top:15px;
 }
-#remove{
-	
-}
+
 /* 리뷰  */
-#reviewlist {
-	
-}
+
 
 #totalRe {
 	border: 1px solid black;

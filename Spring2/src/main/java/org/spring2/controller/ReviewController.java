@@ -45,9 +45,7 @@ public class ReviewController {
 		String n = String.valueOf(pno);
 		cri.setSearch(n);
 		//cri.setAmount(5);
-		int total = rs.total(cri);
-		PageVO p = new PageVO(cri,total);
-		System.out.println(p);
+				
 		System.out.println(rs.list(cri));
 		return new ResponseEntity<>(rs.list(cri),HttpStatus.OK);
 	}
@@ -99,6 +97,8 @@ public class ReviewController {
 	// 리뷰 작성(post)
 	@RequestMapping(value = "/board/reviewwrite", method = RequestMethod.POST)
 	public String writePost (ReviewVO rvo,Model model,CriteriaVO cri) {
+		rvo.setContent(rvo.getContent().replaceAll("<","&lt;"));
+		rvo.setContent(rvo.getContent().replaceAll(">","&gt;"));
 		rvo.setContent(rvo.getContent().replaceAll("\r\n","<br>"));
 		rs.write(rvo);
 		cri.setSearch(String.valueOf(rvo.getPno()));
@@ -125,6 +125,8 @@ public class ReviewController {
 	}
 	@RequestMapping(value = "/board/reviewmodify", method = RequestMethod.POST)
 	public String rModifyPost(ReviewVO rvo) {
+		rvo.setContent(rvo.getContent().replaceAll("<","&lt;"));
+		rvo.setContent(rvo.getContent().replaceAll(">","&gt;"));
 		rvo.setContent(rvo.getContent().replaceAll("\r\n","<br>"));
 		rs.modify(rvo);
 		return "redirect:/board/detail?pno="+rvo.getPno();
