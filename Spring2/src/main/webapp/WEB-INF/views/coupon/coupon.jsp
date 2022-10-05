@@ -6,6 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>쿠폰적용</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../resources/css/home.css?ver=1">
 </head>
 <body>
 	<input type="hidden" value="${userInfo.id}" id="id">

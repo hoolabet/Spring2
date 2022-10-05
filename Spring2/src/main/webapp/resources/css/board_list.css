@@ -21,9 +21,12 @@
 #p_list > ul > li{
 	float : left;
 	padding: 0 20px;
-    border: 1px solid black;
+    border: 1px solid #dae1e6;
 }
-
+#p_list > ul > li:hover{
+	cursor: pointer;
+	text-decoration: underline;
+}
 /* 셀렉트 정렬 */
 #array{
 	clear: both;

@@ -39,7 +39,12 @@ h3{
 }
 #num {
 	width: 39px;
+	position: relative;
 }
+#btn_minus,#btn_plus{
+	color:white;
+}
+
 #buy{
 	width: 162px;
 	background-color:black;
@@ -58,7 +63,7 @@ h3{
 	width: 83px;
     height: 60px;
     margin: 21px auto;
-    font-size: 17px;
+    font-size: 14px;
     border-radius: 6px;
     font-weight: bold;
 }

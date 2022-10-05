@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../resources/css/board_detail.css"
 	type="text/css">
 <link rel="stylesheet" href="../resources/css/home.css">
@@ -47,8 +50,9 @@
 								<tr>
 									<td>구매수량</td>
 									<td><input type="text" value="1" id="num" readonly>
-										<button id="btn_minus" type="button">-</button>
-										<button id="btn_plus" type="button">+</button></td>
+									<input type="button" value="▼"id="btn_minus">
+									<input type="button"  value="▲" id="btn_plus">
+										</td>
 								</tr>
 								<tr>
 									<td>총가격</td>

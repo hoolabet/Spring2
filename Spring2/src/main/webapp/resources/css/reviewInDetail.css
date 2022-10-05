@@ -144,8 +144,7 @@ h3, #paging{
 }
 /* 페이징버튼 */
 .btn_pa{
-	width: 33px;
-    height: 29px;
+	
     background: transparent;
     border: none;
     cursor: pointer;

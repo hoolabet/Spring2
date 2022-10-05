@@ -5,6 +5,9 @@
 $("#btn_Write").on("click",function(){
 	location.href="/board/write"
 })
+$(".category_type").on("click",function(){
+	location.href=$(this).children().first().prop("href")
+})
 
 const searchValue = $("#searchValue").val();
 //console.log(searchValue)

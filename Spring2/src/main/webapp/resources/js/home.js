@@ -50,7 +50,17 @@ $("#search_btn").on("click", function(e){
 $("#btnTopImg").on("click",function(){
 	$('html, body').animate({scrollTop:0}, '300');
 })
-
+$(".cates li").on("click",function(){
+	location.href=$(this).children().first().prop("href")
+})
+$(".cat_area").on("click",function(){
+	console.log($(this).children().first().val());
+	location.href=`/board/list?category_area=${$(this).children().first().val()}`
+})
+$("#categori_0").on("click",function(){
+	console.log("aaaaaa")
+	location.href="/board/list"
+})
 //displayToken()
 //function displayToken() {
 //    var token = getCookie('authorize-access-token');

@@ -2,22 +2,61 @@
 
 body {
 	text-align: center;
+	font-family: 'Nanum Gothic', sans-serif;
+	
 }
 
 a {
 	text-decoration: none;
 	color: black;
+	font-size:18px;
 }
 
-input[type="submit"], input[type="button"] {
-	background-color: #abaaaa;
-	border: 1px solid black;
-	padding: 15px;
+input[type="submit"], input[type="button"], button {
+	background-color: #35c5f0;
+    border: 1px solid #35c5f0;
+    padding: 13px;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+input[type="submit"]:hover, input[type="button"]:hover, button:hover{
+	cursor: pointer;
+	filter: brightness(90%);
+}
+input[type="text"]{
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	background-color: transparent;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+input[type="password"]{
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+select{
+	font-size: 15px;
+    height: 31px;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+table,tr,td{
+	font-size: 15px;
+	border:1px solid #dae1e6;
 }
 
+#Company{
+	font-size: 47px;
+    position: absolute;
+    top: 45px
+}
 #entry_area {
 	width: 1503px;
-	background-color: #e7e7e7;
+	
 	margin: auto;
 }
 
@@ -38,8 +77,8 @@ input[type="submit"], input[type="button"] {
 	position: relative;
 	height: 100px;
 	width: 1503px;
-	background-color: #abaaaa;
-	margin-bottom: 0px;
+	border-bottom:2px solid #b4b6b7;
+	margin-bottom: 50px;
 }
 
 #header_bottom h1 {
@@ -50,7 +89,7 @@ input[type="submit"], input[type="button"] {
 	position: relative;
 	height: 300px;
 	width: 1503px;
-	background-color: #abaaaa;
+	background-color: #e4e8eb;
 	margin-top: 50px;
 }
 
@@ -126,26 +165,27 @@ input[type="submit"], input[type="button"] {
 }
 
 #categori {
-	border: 1px solid gray;
+	border: 1px solid #35c5f0;
 	border-radius: 15px;
-	background-color: black;
+	background-color: #35c5f0;
 	color: white;
 	display: none;
 	list-style: none;
 	position: absolute;
-	bottom:  -542px;
+	    bottom: -508px;
 	left: 0px;
 	padding-left: 0;
 	margin: 0;
 	width: 201px;
 	z-index: 100;
 }
-#cat{
-	font-size: 15px;
-	cursor: pointer;
-	width: 100px;
-	color:white;
-	display:block;
+#categori_0:hover, .cates li:first-child:hover{
+	border-top-left-radius: 13px;
+	border-top-right-radius: 13px;
+}
+#categori_h:hover{
+	border-bottom-left-radius: 13px;
+	border-bottom-right-radius: 13px;
 }
 #categori li {
 	font-size: 15px;
@@ -157,10 +197,10 @@ input[type="submit"], input[type="button"] {
 }
 
 #categori_a_list, #categori_b_list, #categori_c_list, #categori_d_list,
-	#categori_e_list {
-	border: 1px solid gray;
+	#categori_e_list,#categori_f_list,#categori_g_list,#categori_h_list {
+	border: 1px solid #31a7cb;
 	border-radius: 15px;
-	background-color: black;
+	background-color: #35c5f0;
 	color: white;
 	display: none;
 	list-style: none;
@@ -168,17 +208,26 @@ input[type="submit"], input[type="button"] {
 	top: 0;
 	left: 184px;
 	padding-left: 0;
+	height: 512px;
+}
+#categori_0:hover,#categori_a:hover,#categori_b:hover,#categori_c:hover,#categori_d:hover,#categori_e:hover,#categori_f:hover,#categori_g:hover,#categori_h:hover{
+	background-color: #146b85;
+	text-decoration: underline;
 }
 
 #categori_a_list li a, #categori_b_list li a, #categori_c_list li a,
-	#categori_d_list li a, #categori_e_list li a {
+	#categori_d_list li a, #categori_e_list li a , #categori_f_list li a, #categori_g_list li a, #categori_h_list li a{
 	font-size: 15px;
 	cursor: pointer;
 	color: white;
 }
-
+#categori_a_list li:hover, #categori_b_list li:hover, #categori_c_list li:hover,
+	#categori_d_list li:hover, #categori_e_list li:hover , #categori_f_list li:hover, #categori_g_list li:hover, #categori_h_list li:hover{
+	background-color: #146b85;
+	text-decoration: underline;
+}
 #categori_a:hover .cates, #categori_b:hover .cates, #categori_c:hover .cates,
-	#categori_d:hover .cates, #categori_e:hover .cates {
+	#categori_d:hover .cates, #categori_e:hover .cates,#categori_f:hover .cates ,#categori_g:hover .cates,#categori_h:hover .cates{
 	display: block;
 }
 

@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/home.css?ver=1">
 <title>쿠폰 지급 페이지</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div id="entry_area">

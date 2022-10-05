@@ -4,6 +4,9 @@
 
 <html>
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 <link rel="stylesheet"
@@ -11,6 +14,7 @@
 <link rel="stylesheet" href="../resources/css/home_slick.css?ver=1">
 <link rel="stylesheet" href="../resources/css/home.css?ver=1">
 <title>Home</title>
+
 </head>
 <body>
 

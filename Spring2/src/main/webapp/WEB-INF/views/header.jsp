@@ -5,7 +5,7 @@
 <div id="header">
 	<div id="header_top">
 		<h1>
-			<a href="/">title</a>
+			<a href="/" id="Company">title</a>
 		</h1>
 		<div id="a_list"> 
 				<c:choose>
@@ -45,8 +45,8 @@
 			<img id="categori_btn_img"
 				src="https://cdn3.iconfinder.com/data/icons/text/100/list-512.png">
 			<ul id="categori">
-			<li id="categori_0"><a href="/board/list" id="cat">모든제품</a></li>
-				<li id="categori_a">거실
+				<li id="categori_0" >모든제품</li>
+				<li id="categori_a" class="cat_area">거실<input type="hidden" value="10">
 					<ul id="categori_a_list" class="cates">
 						<li><a href="/board/list?category_area=10&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=10&category_type=2">의자</a></li>
@@ -57,7 +57,7 @@
 						<li><a href="/board/list?category_area=10&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_b">주방
+				<li id="categori_b" class="cat_area">주방<input type="hidden" value="20">
 					<ul id="categori_b_list" class="cates">
 						<li><a href="/board/list?category_area=20&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=20&category_type=2">의자</a></li>
@@ -68,7 +68,7 @@
 						<li><a href="/board/list?category_area=20&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_c">옷방,드레스룸
+				<li id="categori_c" class="cat_area">옷방,드레스룸<input type="hidden" value="30">
 					<ul id="categori_c_list" class="cates">
 						<li><a href="/board/list?category_area=30&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=30&category_type=2">의자</a></li>
@@ -79,7 +79,7 @@
 						<li><a href="/board/list?category_area=30&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_d">침실
+				<li id="categori_d" class="cat_area">침실<input type="hidden" value="40">
 					<ul id="categori_d_list" class="cates">
 						<li><a href="/board/list?category_area=40&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=40&category_type=2">의자</a></li>
@@ -90,7 +90,7 @@
 						<li><a href="/board/list?category_area=40&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_e">화장실
+				<li id="categori_e" class="cat_area">화장실<input type="hidden" value="50">
 					<ul id="categori_e_list" class="cates">
 						<li><a href="/board/list?category_area=50&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=50&category_type=2">의자</a></li>
@@ -101,8 +101,8 @@
 						<li><a href="/board/list?category_area=50&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_b">서재
-					<ul id="categori_b_list" class="cates">
+				<li id="categori_f" class="cat_area">서재<input type="hidden" value="60">
+					<ul id="categori_f_list" class="cates">
 						<li><a href="/board/list?category_area=60&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=60&category_type=2">의자</a></li>
 						<li><a href="/board/list?category_area=60&category_type=3">침대</a></li>
@@ -112,8 +112,8 @@
 						<li><a href="/board/list?category_area=60&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_b">아이방
-					<ul id="categori_b_list" class="cates">
+				<li id="categori_g" class="cat_area">아이방<input type="hidden" value="70">
+					<ul id="categori_g_list" class="cates">
 						<li><a href="/board/list?category_area=70&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=70&category_type=2">의자</a></li>
 						<li><a href="/board/list?category_area=70&category_type=3">침대</a></li>
@@ -123,8 +123,8 @@
 						<li><a href="/board/list?category_area=70&category_type=7">기타소품</a></li>
 					</ul>
 				</li>
-				<li id="categori_b">야외
-					<ul id="categori_b_list" class="cates">
+				<li id="categori_h" class="cat_area">야외<input type="hidden" value="80">
+					<ul id="categori_h_list" class="cates">
 						<li><a href="/board/list?category_area=80&category_type=1">테이블</a></li>
 						<li><a href="/board/list?category_area=80&category_type=2">의자</a></li>
 						<li><a href="/board/list?category_area=80&category_type=3">침대</a></li>

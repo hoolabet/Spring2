@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../resources/css/board_list.css"
 	type="text/css">
 <link rel="stylesheet" href="../resources/css/home.css">
@@ -28,7 +31,7 @@
 				<div id="p_list">
 					<ul>
 						<c:forEach items="${category}" var="category">
-							<li id="popular"><a
+							<li class="category_type"><a
 								${category.cno == paging.cri.category_type ? 'style ="color:red" ' :''}
 								href="/board/list?category_area=${paging.cri.category_area}&category_type=${category.cno}">${category.cname}</a></li>
 						</c:forEach>
