@@ -13,17 +13,17 @@
 
 #d_title img {
 	width: 700px;
-	height: 400px;
+	height: 412px;
 	margin: 0 45px;
 }
-h3{
+h2{
 	text-align:center;
 }
 #sell {
 	width : 400px;
-	height: 404px;
+	height: 412px;
 	margin: 0 auto;
-	border: 1px solid black;
+	border: 1px solid #dae1e6;
 }
 
 #t_sell {
@@ -32,10 +32,12 @@ h3{
 	font-size: 19px;
 	display: flex;
     justify-content: center;
+    border:none;
 }
 #t_sell >tr,#t_sell th,#t_sell td{
 	border-collapse: collapse;
 	border: 0;
+	font-size: 18px;
 }
 #num {
 	width: 39px;

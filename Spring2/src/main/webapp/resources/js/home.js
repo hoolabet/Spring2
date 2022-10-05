@@ -47,7 +47,7 @@ $("#search_btn").on("click", function(e){
 	}
 	
 })
-$("#btnTopImg").on("click",function(){
+$("#btnTop").on("click",function(){
 	$('html, body').animate({scrollTop:0}, '300');
 })
 $(".cates li").on("click",function(){

@@ -241,7 +241,7 @@ table,tr,td{
 	bottom: 10px;
 }
 
-#search_div input {
+#search_input {
 	height: 30px;
 	padding: 10px;
 	margin-right: 20px;
@@ -260,6 +260,11 @@ table,tr,td{
     bottom: 52px;
     z-index: 999;
     cursor: pointer;
+    background-image: url(https://toppng.com/uploads/preview/light-blue-up-arrow-11550117759k4je61afsa.png);
+    background-size: cover;
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
 }
 #btnTopImg{
 	width: 37px;

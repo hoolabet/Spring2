@@ -14,27 +14,40 @@
     right: 20px
 }
 /* 가구 종류 카테고리 */
+#p_list{
+	position: relative;
+	left: 10px;
+}
 #p_list > ul {
 	list-style : none;
 }
 
 #p_list > ul > li{
 	float : left;
-	padding: 0 20px;
+	padding: 20px;
     border: 1px solid #dae1e6;
+    width: 128px;
+    margin: 72px 0;
+    
 }
 #p_list > ul > li:hover{
 	cursor: pointer;
 	text-decoration: underline;
 }
 /* 셀렉트 정렬 */
-#array{
-	clear: both;
-	float:right;
-	position: relative;
-    right: 20px;
+#chAndSelect{
+	float: right;
 }
-
+#divExcept{
+	position: relative;
+    top: 175px;
+    right: 197px;
+}
+#array{
+	position: relative;
+    top: 146px;
+    right: 19px;
+}
 /* 제품들을 나열하는 리스트 */
 #list{
 	clear:both;
@@ -78,4 +91,11 @@
 	justify-content: center;
 	font-size:52px;
 	clear:both;
+}
+.pageNumber{
+	margin:0 5px;
+}
+.pageNumber:hover{
+	text-decoration: underline;
+	
 }

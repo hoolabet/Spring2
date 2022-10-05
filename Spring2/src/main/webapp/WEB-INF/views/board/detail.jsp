@@ -33,7 +33,7 @@
 						<div id="s_form">
 							<table id="t_sell">
 								<tr>
-									<td colspan="2"><h3>${detail.pname}</h3></td>
+									<td colspan="2"><h2>${detail.pname}</h2></td>
 								</tr>
 								<tr>
 									<td>판매가</td>

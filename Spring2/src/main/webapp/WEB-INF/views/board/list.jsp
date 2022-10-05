@@ -37,10 +37,12 @@
 						</c:forEach>
 					</ul>
 				</div>
-				<div>
+				<div id="chAndSelect">
+					<div id="divExcept">
 					<input type="checkbox" id="ch_soldout"
 						${paging.cri.type =='except'? 'checked=checked':'' }> <label>품절상품제외</label>
 					<input type="hidden" id="except" value="${paging.cri.type}">
+					</div>
 					<select id="array">
 						<option value="popular"
 							${paging.cri.array == 'popular' ? 'selected="selected"' : '' }>인기순</option>
@@ -94,7 +96,7 @@
 					<c:forEach begin="${paging.startPage}" end="${paging.endPage}"
 						var="num">
 						<a
-							href="/board/list?pageNum=${num}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}">${num}</a>
+							href="/board/list?pageNum=${num}&amount=${paging.cri.amount}&search=${paging.cri.search}&type=${paging.cri.type}&array=${paging.cri.array}&category_area=${paging.cri.category_area}&category_type=${paging.cri.category_type}" class="pageNumber">${num}</a>
 					</c:forEach>
 					<!-- next(다음)이 true이면 다음버튼 활성화 -->
 					<c:if test="${paging.next}">
