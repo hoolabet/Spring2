@@ -43,7 +43,7 @@
   	
   	<select id="maxNumSearch" resultType="int">
 		SELECT
-			MAX(num)
+			ifnull(MAX(num),1)
 		FROM(
 			SELECT 
 				*, 
@@ -82,26 +82,12 @@
   		INSERT INTO notice(title, content, nono) 
   		VALUES(#{title},#{content},#{nono})
   	</insert>
-  	
-  	<insert id="upload">
-		INSERT INTO noticeFile(uuid, path, fileName, fullPath, checkI, nono) 
-			VALUES(#{uuid},#{path},#{fileName},#{fullPath},#{checkI},#{nono})
-	</insert>
 	
 	<select id="noDetail" resultType="org.spring2.model.NoticeVO">
 		SELECT
 			*
 		FROM
 			notice
-		WHERE
-			nono=#{nono}
-	</select>
-	
-	<select id="detailFile" resultType="org.spring2.model.UploadFileVO">
-		SELECT
-			*
-		FROM
-			noticefile
 		WHERE
 			nono=#{nono}
 	</select>

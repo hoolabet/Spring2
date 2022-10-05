@@ -75,7 +75,7 @@ $("#upload_input").on("change",function(e){
 $("#sub").on("click",function(e){
 	e.preventDefault();
 	$("#content").val($("#editor").html());
-	$("form").submit();
+	$("form[action='write']").submit();
 })
 
 

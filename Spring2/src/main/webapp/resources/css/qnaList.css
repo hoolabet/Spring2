@@ -2,11 +2,10 @@
 
 table {
 	display: inline;
-	border-collapse: collapse;
+	border: 0px;
 }
 
 td {
-	border: 1px solid black;
 	padding: 10px;
 }
 

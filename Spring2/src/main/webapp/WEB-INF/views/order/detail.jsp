@@ -11,13 +11,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <title>주문 내역</title>
 <link rel="stylesheet" href="../resources/css/home.css?ver=1">
+<link rel="stylesheet" href="../resources/css/order_detail.css?ver=1">
 </head>
 <body>
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<input type="hidden" value="${userInfo.id}" id="id">
-			<table border="1" style="display: inline">
+			<table id="det">
 				<c:forEach items="${detail}" var="detail">
 					<tr>
 						<td><c:choose>

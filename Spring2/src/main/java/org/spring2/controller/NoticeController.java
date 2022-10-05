@@ -176,9 +176,4 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 
-	@RequestMapping(value = "/files/{nono}", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<UploadFileVO>> files(@PathVariable int nono){
-
-		return new ResponseEntity<>(ns.detailFile(nono),HttpStatus.OK);
-	}
 }

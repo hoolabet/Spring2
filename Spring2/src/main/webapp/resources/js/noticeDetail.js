@@ -25,26 +25,6 @@ $("#modi").on("click",function(e){
 	$(".modify_tr").toggle();
 })
 
-const nono = $("#nono").val();
-$.ajax({
-	type: "get",
-	url: "/files/"+nono+".json",
-	data: nono,
-	contentType: "application/json; charset=utf-8",
-	success: function(r) {
-		let str = "";
-		r.forEach(function(a) {
-			if(a.checkI){
-
-			}else{
-				str += `<a href="download?fileName=${a.fullPath}">${a.fileName}</a><br>`;
-			}
-		})
-		$(".files").each(function() {
-			$(this).html(str);
-		});
-	}
-})
 
 $("#sub").on("click", function(e) {
 	e.preventDefault();

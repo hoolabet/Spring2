@@ -20,12 +20,6 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	public void noWrite(NoticeVO nvo) {
 		nm.noWrite(nvo);
-		if(nvo.getUvo() != null) {
-			for(UploadFileVO a: nvo.getUvo()) {
-				a.setNono(nvo.getNono());
-				nm.upload(a);
-			}
-		}
 	}
 	
 	public NoticeVO noDetail(int nono) {
@@ -34,12 +28,6 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	public void noModify(NoticeVO nvo) {
 		nm.noModify(nvo);
-		if(nvo.getUvo() != null) {
-			for(UploadFileVO a: nvo.getUvo()) {
-				a.setNono(nvo.getNono());
-				nm.upload(a);
-			}
-		}
 	}
 	
 	public void noRemove(int nono) {
@@ -48,9 +36,5 @@ public class NoticeServiceImpl implements NoticeService{
 	
 	public int maxNumSearch(CriteriaVO cri) {
 		return nm.maxNumSearch(cri);
-	}
-	
-	public ArrayList<UploadFileVO> detailFile(int nono){
-		return nm.detailFile(nono);
 	}
 }

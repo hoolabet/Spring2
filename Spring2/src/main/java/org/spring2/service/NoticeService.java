@@ -18,6 +18,4 @@ public interface NoticeService {
 	public void noRemove(int nono);
 	
 	public int maxNumSearch(CriteriaVO cri);
-	
-	public ArrayList<UploadFileVO> detailFile(int nono);
 }

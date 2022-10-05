@@ -6,4 +6,14 @@
 
 table{
 	display: inline;
+	border: 0px;
+}
+
+td {
+	padding: 10px;
+}
+
+#td_1 {
+	padding-left: 500px;
+	padding-right: 500px;
 }

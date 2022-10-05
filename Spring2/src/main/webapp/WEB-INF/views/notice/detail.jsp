@@ -20,7 +20,7 @@
 				<table>
 					<tr class="content_tr">
 						<td>제목</td>
-						<td>${detail.title}</td>
+						<td id="td_1">${detail.title}</td>
 					</tr>
 					<tr class="content_tr">
 						<td>내용</td>

@@ -157,7 +157,7 @@ $("#pay").on("click", function() {
 })
 $(".use_coupon").on("click",function(c){
 	const pno = $(this).data("pno");
-	window.open("/coupon/coupon?pno="+pno,`${id}님의 쿠폰`,"width=900, height=300");
+	window.open("/coupon/coupon?pno="+pno,`${id}님의 쿠폰`,"width=1200, height=300");
 })
 
 setInterval(() => {

@@ -10,18 +10,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <title>주문 내역</title>
 <link rel="stylesheet" href="../resources/css/home.css?ver=1">
+<link rel="stylesheet" href="../resources/css/order_research.css?ver=1">
 </head>
 <body>
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<input type="hidden" value="${userInfo.id}" id="id">
-			<table border="1" style="display:inline";"border-collapse:collapse";>
+			<table id="tab">
 			<c:forEach items="${payment}" var="payment">
 				<tr>
 					<td>${payment.payno}</td>
 					<td><a href="/order/detail?payno=${payment.payno}">주문상세정보</a></td>
-					<td>${payment.price}</td>
+					<td>₩ ${payment.price}</td>
 					<td>${payment.payment_date}</td>
 				</tr>
 			</c:forEach>

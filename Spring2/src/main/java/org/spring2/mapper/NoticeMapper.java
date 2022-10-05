@@ -12,8 +12,6 @@ public interface NoticeMapper {
 	
 	public void noWrite(NoticeVO nvo);
 	
-	public void upload(UploadFileVO uvo);
-	
 	public NoticeVO noDetail(int nono);
 	
 	public void noModify(NoticeVO nvo);
@@ -21,7 +19,5 @@ public interface NoticeMapper {
 	public void noRemove(int nono);
 	
 	public int maxNumSearch(CriteriaVO cri);
-	
-	public ArrayList<UploadFileVO> detailFile(int nono);
 	
 }
