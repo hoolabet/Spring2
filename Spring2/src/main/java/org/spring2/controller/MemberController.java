@@ -35,8 +35,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.spring2.model.CouponTargetVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.DestinationVO;
+import org.spring2.model.InquiryVO;
 import org.spring2.model.MemberVO;
+import org.spring2.model.PageVO;
+import org.spring2.model.ReviewVO;
 import org.spring2.model.UploadFileVO;
 import org.spring2.service.CouponService;
 import org.spring2.service.GetUserInfoService;
@@ -90,6 +94,7 @@ public class MemberController {
 			CouponTargetVO ctvo = new CouponTargetVO(member.getId());
 			System.out.println(ctvo);
 			cs.signUpCoupon(ctvo);
+			ms.point(member.getId());
 			return "member/login";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +103,7 @@ public class MemberController {
 	}
 
 	// 이메일 인증
-	@RequestMapping(value = "/member/emailchk/{email}", method = RequestMethod.GET)
+	@RequestMapping(value = "/member/emailchk/{email}/", method = RequestMethod.GET)
 	@ResponseBody
 	public String mailCheck(@PathVariable String email) {
 		System.out.println("이메일 인증 요청이 들어옴!");
@@ -496,15 +501,14 @@ public class MemberController {
 
 	// 마이페이지
 	@RequestMapping(value = "/member/mypage", method = RequestMethod.GET)
-	public String mypage(HttpSession session) {
-		//		if(session.getAttribute("userInfo") == null) {
-		//			
-		//			return "redirect:/member/login";
-		//		} else {
+	public String mypage() {
+		
+		
 		return "member/mypage";
 		//		}
 
 	}
+	
 
 	// 개인정보 수정 전 비밀번호 확인
 	@RequestMapping(value = "/member/modifyInfoPWCheck", method = RequestMethod.GET)
@@ -725,5 +729,54 @@ public class MemberController {
 		return result == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+	
+	
+//	@RequestMapping(value = "/member/memberDetail", method = RequestMethod.GET)
+//	public void memberDetail(String id, Model model) {
+//		model.addAttribute("detail", ms.memberDetail(id));
+//	}
+	// 마이페이지 글 목록
+	@RequestMapping(value = "/member/mypageBoardList", method = RequestMethod.GET)
+	public void BoardList(String id, Model model, CriteriaVO cri) {
+		cri.setSearch(id);
+		int total = ms.total(cri);
+		model.addAttribute("paging",new PageVO(cri,total));
+		System.out.println("1="+cri);
+		System.out.println("1="+total);
+	}
+	
+	@RequestMapping(value = "/mypagereviewlist", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<ReviewVO>> mypageReviewList(ReviewVO rvo, CriteriaVO cri) {
+		cri.setSearch(rvo.getId());
+		int total = ms.total(cri);
+		System.out.println(cri);
+		System.out.println(total);
+		PageVO p = new PageVO(cri,total);
+		System.out.println(p);
+		System.out.println("리뷰목록"+ms.mypageReviewList(cri));
+		return new ResponseEntity<>(ms.mypageReviewList(cri),HttpStatus.OK);
+//		return new ResponseEntity<>(ms.mypageReviewList(rvo), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/mypageqnalist", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<InquiryVO>> mypageQnaList(InquiryVO ivo) {
+		
+		return new ResponseEntity<>(ms.mypageQnaList(ivo), HttpStatus.OK);
+	}
+	
+	// 마이페이지 쿠폰조회
+	@RequestMapping(value = "/member/mypageCouponList", method = RequestMethod.GET)
+	public void CouponList() {
+		
+	}
+	
+	@RequestMapping(value = "/mypagecouponlist", method = RequestMethod.GET)
+	public ResponseEntity<ArrayList<CouponTargetVO>> mypageCouponList(CouponTargetVO coupon) {
+		
+		return new ResponseEntity<>(ms.mypageCouponList(coupon), HttpStatus.OK);
+	}
 
 }
+
+

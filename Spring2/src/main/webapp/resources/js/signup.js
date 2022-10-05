@@ -258,11 +258,10 @@ $("#email_btn").on("click",function(e){
 		if(Email_check.test($("#direct").val())){
 			
 			$("#email_msg").text("이메일 전송중...").css("color","green");
+			emcheck(emc);
 		}else{
 			$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
 		}
-
-		emcheck(emc);
 	}else{
 		$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
 //		alert("부적절한 이메일 입니다.")
@@ -275,7 +274,7 @@ function emcheck(email){
 	console.log(email);
 	$.ajax({
 		type : 'get',
-		url: "/member/emailchk/"+email,
+		url: "/member/emailchk/"+email+"/",
 		data:email,
 		contentType: "application/json; charset=utf-8",
 		success : function (data) {

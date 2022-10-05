@@ -5,7 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>${detail.id}의 상세페이지</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/memberDetail.css"></link>

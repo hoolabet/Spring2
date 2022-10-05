@@ -15,6 +15,13 @@ public class ReviewVO {
 	private String filename; // 파일명
 	private boolean image; // 이미지여부
 	private MemberVO mvo;
+	private BoardVO bvo;
+	public BoardVO getBvo() {
+		return bvo;
+	}
+	public void setBvo(BoardVO bvo) {
+		this.bvo = bvo;
+	}
 	public int getRno() {
 		return rno;
 	}
@@ -93,6 +100,6 @@ public class ReviewVO {
 	public String toString() {
 		return "ReviewVO [rno=" + rno + ", pno=" + pno + ", id=" + id + ", content=" + content + ", scope=" + scope
 				+ ", regdate=" + regdate + ", likeNum=" + likeNum + ", uuid=" + uuid + ", uploadpath=" + uploadpath
-				+ ", filename=" + filename + ", image=" + image + ", mvo=" + mvo + "]";
+				+ ", filename=" + filename + ", image=" + image + ", mvo=" + mvo + ", bvo=" + bvo + "]";
 	}
 }

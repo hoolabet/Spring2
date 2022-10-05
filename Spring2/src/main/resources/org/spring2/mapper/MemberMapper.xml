@@ -154,4 +154,64 @@
 		(id,password,name,email,phone,gender,birth_y,birth_m,birth_d,sns,userImg)
 		values(#{id},#{password},#{name},#{email},#{phone},"m",#{birth_y},#{birth_m},#{birth_d},true,#{userImg});
 	</insert>
+	<resultMap type="org.spring2.model.CouponTargetVO" id="CouponTargetVO">
+		<result column="exp_date" property="exp_date" />
+		<collection property="cpvo" resultMap="CouponVO" />
+	</resultMap>
+	<resultMap type="org.spring2.model.CouponVO" id="CouponVO">
+		<result column="cptype" property="cptype" />
+		<result column="cpname" property="cpname" />
+		<result column="cpvalue" property="cpvalue" />
+		<result column="cpmax" property="cpmax" />
+		<result column="cpreq" property="cpreq" />
+	</resultMap>
+	
+	<select id="mypageCouponList" resultMap="CouponTargetVO">
+		select cptype,cpname,cpvalue,cpmax,cpreq,EXP_DATE
+		from COUPON_TARGET ct
+		join COUPON c
+		on c.CPNO =ct.CPNO
+		where id=#{id} and used=0;
+	</select>
+	<insert id="point">
+		insert into point(id)
+		value(#{id});
+	</insert>
+	<resultMap type="org.spring2.model.ReviewVO" id="ReviewVO">
+		<result column="pno" property="pno" />
+		<result column="content" property="content" />
+		<result column="regdate" property="regdate" />
+		<result column="uuid" property="uuid" />
+		<result column="uploadpath" property="uploadpath" />
+		<result column="filename" property="filename" />
+		<result column="image" property="image" />
+		<collection property="bvo" resultMap="BoardVO" />
+	</resultMap>
+	<resultMap type="org.spring2.model.BoardVO" id="BoardVO">
+		<result column="pname" property="pname" />
+		<collection property="img" resultMap="ImageVO" />
+	</resultMap>
+	<resultMap type="org.spring2.model.ImageVO" id="ImageVO">
+		<result column="fullPath" property="fullPath" />
+	</resultMap>
+	<select id="mypageReviewList" resultMap="ReviewVO">
+		select r.*, fullPath, pname
+		from review r
+		left join
+		(select p.pno, fullPath, pname
+				from product p
+				join p_image i
+				on p.pno=i.pno) as pi
+		on r.pno=pi.pno
+		where id=#{search}
+		order by regdate desc;
+		
+	</select>
+	<select id="mypageQnaList" resultType="org.spring2.model.InquiryVO">
+		select * from inquiry where id=#{id};
+	</select>
+	<select id="total" resultType="int">
+  		select count(*) from review
+  		where id=#{search};
+  	</select>
 </mapper>

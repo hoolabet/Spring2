@@ -3,8 +3,12 @@ package org.spring2.service;
 import java.util.ArrayList;
 
 import org.spring2.mapper.MemberMapper;
+import org.spring2.model.CouponTargetVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.DestinationVO;
+import org.spring2.model.InquiryVO;
 import org.spring2.model.MemberVO;
+import org.spring2.model.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,5 +96,20 @@ public class MemberServiceImpl implements MemberService{
 	}
 	public void googleSignup(MemberVO member) {
 		mm.googleSignup(member);
+	}
+	public ArrayList<CouponTargetVO> mypageCouponList(CouponTargetVO coupon){
+		return mm.mypageCouponList(coupon);
+	}
+	public void point(String id) {
+		mm.point(id);
+	}
+	public ArrayList<ReviewVO> mypageReviewList(CriteriaVO cri){
+		return mm.mypageReviewList(cri);
+	}
+	public ArrayList<InquiryVO> mypageQnaList(InquiryVO ivo){
+		return mm.mypageQnaList(ivo);
+	}
+	public int total(CriteriaVO cri) {
+		return mm.total(cri);
 	}
 }

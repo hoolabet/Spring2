@@ -2,8 +2,12 @@ package org.spring2.service;
 
 import java.util.ArrayList;
 
+import org.spring2.model.CouponTargetVO;
+import org.spring2.model.CriteriaVO;
 import org.spring2.model.DestinationVO;
+import org.spring2.model.InquiryVO;
 import org.spring2.model.MemberVO;
+import org.spring2.model.ReviewVO;
 
 public interface MemberService {
 	// 회원가입
@@ -42,4 +46,9 @@ public interface MemberService {
 	public void snsSignup(MemberVO member);
 	public void naverSignup(MemberVO member);
 	public void googleSignup(MemberVO member);
+	public ArrayList<CouponTargetVO> mypageCouponList(CouponTargetVO coupon);
+	public void point(String id);
+	public ArrayList<ReviewVO> mypageReviewList(CriteriaVO cri);
+	public ArrayList<InquiryVO> mypageQnaList(InquiryVO ivo);
+	public int total(CriteriaVO cri);
 }
