@@ -95,7 +95,7 @@
 							<td><label id="label_content">내용</label></td>
 							<td><div contenteditable="true" id="divContent"></div>
 								<div>
-								<input type="text" name="content" id="content" >
+								<input type="hidden" name="content" id="content" >
 									
 								</div></td>
 						</tr>

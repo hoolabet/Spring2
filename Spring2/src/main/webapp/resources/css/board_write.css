@@ -24,7 +24,7 @@ td{
 table input{
 	width : 500px;
 	height: 33px;
-	border:none;
+	border:none !important;
 }
 select{
 	width : 504px;

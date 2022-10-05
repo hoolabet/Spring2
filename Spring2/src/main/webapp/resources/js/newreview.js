@@ -307,8 +307,8 @@ function DisplayList(items, wrapper, amount, page) {
     				scope(pnoVal);
     				const reverseOrderDate = items.sort((a,b) => a.rno - b.rno)
     				const likeBest = reverseOrderDate.sort((a,b)=> b.likeNum - a.likeNum)
-    				DisplayList(items, list_element, amount, current_page);
-    				SetupPagination(items, pagination_element, amount, current_page, startPage);
+    				DisplayList(likeBest, list_element, amount, current_page);
+    				SetupPagination(likeBest, pagination_element, amount, current_page, startPage);
     			}
 
     		})// ajax끝
