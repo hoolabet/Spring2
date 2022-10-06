@@ -49,8 +49,8 @@ function scope(pno){
 			str2+=`<p>작성된 리뷰가 없습니다.`;
 		}else{
 		str2+=`<div id="index">
-					<a href="javascript:void(0)" id="recent">최신순 /</a>
-					<a href="javascript:void(0)" id="best"> 베스트순</a>
+					<a href="javascript:void(0)" id="recent">최신순 </a>/
+					<a href="javascript:void(0)" id="best" class="click"> 베스트순</a>
 				</div> 
 				<h3>리뷰 목록</h3>`	
 		// 리뷰 평균 평점
@@ -234,9 +234,9 @@ function DisplayList(items, wrapper, amount, page) {
 			<td colspan='3' class="scopeS">${paginatedItems[i].scope}</td></tr>`
 			// console.log(data[i].filename)
 			if(paginatedItems[i].filename != null){
-				var filePath = encodeURIComponent(paginatedItems[i].uploadpath+"/s_"+paginatedItems[i].uuid+"_"+paginatedItems[i].filename);
+				var filePath = encodeURIComponent(paginatedItems[i].uploadpath+"/"+paginatedItems[i].uuid+"_"+paginatedItems[i].filename);
 				str+=`<tr><th>사진</th>
-				<td colspan='3'><img src='/display?fileName=${filePath}'></td></tr>`
+				<td colspan='3'><img src='/display?fileName=${filePath}'class='reviewImg'></td></tr>`
 			}
 			str +=`<tr><th>내용</th>
 			<td colspan='3' class="rcontent">${paginatedItems[i].content}</td></tr>
@@ -244,10 +244,14 @@ function DisplayList(items, wrapper, amount, page) {
 			<img data-rno="${paginatedItems[i].rno}" style ="width:30px" class="btn_like" id="${paginatedItems[i].rno}_btn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Heart_icon_red_hollow.svg/497px-Heart_icon_red_hollow.svg.png">
 			<input type="text" name="likeNum" value="${paginatedItems[i].likeNum}" readonly class="likeNum" ldata-rno="${paginatedItems[i].rno}" style="border:none">
 			</td></tr>`
-			if($("#id").val()===paginatedItems[i].id){
-				str+=`<tr><td colspan="4"><button data-rno="${paginatedItems[i].rno}" class="btn_remove" >삭제</button>
-					<button data-rno="${paginatedItems[i].rno}" class="btn_modify" >수정</button></td></tr>`
+			if($("#id").val() === paginatedItems[i].id){
+					str+=`<tr><td colspan="4"><button data-rno="${paginatedItems[i].rno}" class="btn_remove" >삭제</button>`
+					str+=`	<button data-rno="${paginatedItems[i].rno}" class="btn_modify" >수정</button></td></tr>`
 			}
+			else if($("#admin").val() === 'true'){
+				str+=`<tr><td colspan="4"><button data-rno="${paginatedItems[i].rno}" class="btn_remove" >삭제</button>`
+			}
+			
 			str+=`</table></div>`				
     }
     wrapper.innerHTML = str;
@@ -384,6 +388,10 @@ function DisplayList(items, wrapper, amount, page) {
 			}
 	
 	})
+	//리뷰사진 클릭시 팝업창으로 원본보기
+	$(".reviewImg").on("click",function(){
+		window.open($(this).attr('src'),"pop","left=100,top=100,width=400,height=500,history=no,resizable=no,status=no,scrollbars=yes,menubar=no")
+	})
 }// DisplayList 끝
 
 // 버튼 안에 숫자를 넣는 함수
@@ -435,3 +443,10 @@ function PaginationButton(page, items) {
     })
     return button;
 }
+
+
+
+
+
+
+

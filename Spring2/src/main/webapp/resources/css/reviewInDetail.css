@@ -142,7 +142,15 @@ h3, #paging{
 .rcontent{
 	text-align: left;
 }
-
+/* 이미지크기조절 */
+.reviewImg{
+	width: 100px;
+    height: 104px;
+    object-fit: cover;
+}
+.reviewImg:hover{
+	cursor: pointer;
+}
 /* 페이징버튼 */
 .btn_pa{
 	color:black;

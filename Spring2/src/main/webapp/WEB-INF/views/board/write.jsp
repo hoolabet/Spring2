@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품등록</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
+		<input type="hidden" value="${userInfo.admin}" id="adminCheck">
 			<div id="container">
 				<h1>상품등록</h1>
 				<form action="/board/write" method="post" id="form">
@@ -100,7 +101,7 @@
 								</div></td>
 						</tr>
 					</table>
-					<button id="btn">글쓰기</button>
+					<button class="btn">글쓰기</button>
 				</form>
 			</div>
 		</div>

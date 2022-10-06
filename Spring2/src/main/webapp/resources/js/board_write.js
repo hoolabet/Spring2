@@ -1,6 +1,10 @@
 /**
  * 
  */
+if($("#adminCheck").val() === "false" ||$("#adminCheck").val() === ""){
+	alert("관리자 외 접근불가")
+	location.href="/board/list"
+}
 const reg = new RegExp("(.*)\.(exe|zip|alz)$")
 const maxSize = 5242880;
 function checkExtension(fileName, fileSize) {
@@ -16,6 +20,7 @@ function checkExtension(fileName, fileSize) {
 }
 
 let i = 0;
+
 $("#upload").on("change",function(e) {
 		e.preventDefault();
 		// .jsp의 form태그를 대체(FormData함수)
@@ -66,6 +71,18 @@ $("#divContent").on("input",function(){
 	$("#content").val($("#divContent").html())
 })
 
+	var reg2 =  new RegExp("(.*?)\.(jpg|jpeg|png)$")
+	function checkExtension2(fileName, fileSize){
+		if(fileSize >= maxSize){
+			alert("파일 사이즈 초과");
+			return false;
+		}
+		if(!reg2.test(fileName)){
+			alert("해당 종류의 파일은 업로드 할 수 없습니다.");
+			return false;
+		}
+		return true;
+	}
 
 $("#uploadThumb").on("change",function(){
 	const formData = new FormData();
@@ -74,7 +91,7 @@ $("#uploadThumb").on("change",function(){
 	console.log(files);
 	for (let i = 0;  i < files.length; i++) {
 		// 함수 호출(checkExtension)
-		if (!checkExtension(files[i].name, files[i].size)) {
+		if (!checkExtension2(files[i].name, files[i].size)) {
 			return false;
 		}
 		// .jsp의 파일선택을 통해 선택한 파일들을 form태그에 추가
@@ -95,34 +112,39 @@ $("#uploadThumb").on("change",function(){
 					$(result).each(function(i,obj) {
 							// console.log(obj.uploadPath)
 							console.log(i)
-							input += `<input type="text" name="image[${i}].fileName" value="${obj.fileName}"><br>`;
-							input += `<input type="text" name="image[${i}].uuid" value="${obj.uuid}"><br>`;
-							input += `<input type="text" name="image[${i}].image" value="${obj.image}"><br>`;
-							input += `<input type="text" name="image[${i}].uploadPath" value="${obj.uploadPath}"><br>`;
+							input += `<input type="hidden" name="image[${i}].fileName" value="${obj.fileName}" class="fileName"><br>`;
+							input += `<input type="hidden" name="image[${i}].uuid" value="${obj.uuid}"><br>`;
+							input += `<input type="hidden" name="image[${i}].image" value="${obj.image}"><br>`;
+							input += `<input type="hidden" name="image[${i}].uploadPath" value="${obj.uploadPath}"><br>`;
 							if (obj.image) {
 								var filePath = encodeURIComponent(obj.uploadPath+ "/"	+ obj.uuid+ "_"	+ obj.fileName);
 								var ThumbPath = encodeURIComponent(obj.uploadPath+ "/s_"	+ obj.uuid+ "_"	+ obj.fileName);
-								input += `<input type="text" name="image[${i}].fullPath" value="${filePath}"><br>`;
+								input += `<input type="hidden" name="image[${i}].fullPath" value="${filePath}"><br>`;
 								console.log(filePath)
 								str += `<img src = "/display?fileName=${ThumbPath}"><br>`;					
 							} else {
-								var filePath = encodeURIComponent(obj.uploadPath+ "/"+ obj.uuid	+ "_"+ obj.fileName);
-								input += `<input type="text" name="image[${i}].fullPath" value="${filePath}"><br>`;
-								str += `<a href="/download?fileName=${filePath}">${obj.fileName}</a>`
+								alert('이미지만 등록가능합니다.')
+								return false;
 							}
-							console.log(input)										
+							console.log(input)
+							
 						})//each문 끝
 						$("#thumbImg").html(str);
 						$("#thumb").html(input);
 					}
 		})// ajax끝
 })
-$("#btn").on("click",function(e){
+
+$(".btn").on("click",function(e){
 	e.preventDefault();
-	if(isNaN($("#num1").val())||isNaN($("#num2").val())){
+	
+	if(Math.ceil($("#num1").val())!=$("#num1").val()||$("#num1").val()<=0||Math.ceil($("#num2").val())!=$("#num2").val()||$("#num2").val()<=0){
+		alert("양의 정수만 입력하세요")
+	}
+	else if(isNaN($("#num1").val())||isNaN($("#num2").val())){
 		alert('숫자만 입력하세요')
 	}else{
-		if($("#pname").val()==='' || $("#fileName").val()===''||$("#num1").val() ===''||$("#num2").val() ===''){
+		if($("#pname").val()==='' || $("#thumb").html()===''||$("#num1").val() ===''||$("#num2").val() ===''){
 			alert('폼을 다 작성해주세요')
 		}else{
 			$("#form").submit();	

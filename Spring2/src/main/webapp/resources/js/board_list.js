@@ -18,10 +18,6 @@ $("#array").on("change",function(){
 	location.href=`list?pageNum=1&amount=12&search=${searchValue}&type=${$("#except").val()}&array=${this.value}&category_area=${caValue}&category_type=${catValue}`;
 })
 
-$(".priceformat").each(function(i, price){
-	//console.log(i);
-	//console.log(price);
-})
 
 function priceToString(price) {
 	return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -41,3 +37,14 @@ $("#ch_soldout").on("click",function(){
 		location.href=`list?pageNum=1&amount=12&search=${searchValue}&type=except&array=${$("#array").val()}&category_area=${caValue}&category_type=${catValue}`;
 	}
 })
+
+
+$(".pageNumber").each(function(i,page){
+	if(page.innerText == $("#currentPageNum").val()){
+		$(this).css("font-weight","bold")
+	}
+})
+
+
+
+

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>shopping</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -86,8 +86,8 @@
 					</ul>
 				</div>
 				<div id="paging">
-					<%-- ${paging} --%>
-					<%--  ${num}  --%>
+					 <input type="hidden" value="${paging.cri.pageNum}" id="currentPageNum">  
+					 
 					<!-- prev(이전)이 true이면 이전버튼 활성화 -->
 					<c:if test="${paging.prev}">
 						<a

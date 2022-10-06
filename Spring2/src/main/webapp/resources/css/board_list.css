@@ -5,13 +5,12 @@
     margin: 0 auto;
 }
 /* 글쓰기버튼 */
-#p_write{
-	float: right;
-}
+
 #btn_Write{
 	margin-bottom: 5px;
     position: relative;
-    right: 20px
+    right: -608px;
+    bottom: -71px;
 }
 /* 가구 종류 카테고리 */
 #p_list{
@@ -33,7 +32,9 @@
 #p_list > ul > li:hover{
 	cursor: pointer;
 	text-decoration: underline;
+	
 }
+
 /* 셀렉트 정렬 */
 #chAndSelect{
 	float: right;

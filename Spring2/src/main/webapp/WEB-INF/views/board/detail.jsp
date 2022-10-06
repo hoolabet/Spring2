@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품상세페이지</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -20,11 +20,12 @@
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<div id="container">
-				<h1>상품상세페이지 </h1>
+				
 				<c:forEach items="${pay}" var="pay">
 				<input type="text" value="${pay.id}" class="pay" id="pay">
 				</c:forEach>
 				<input type="hidden" value="${userInfo.id}" id="id">
+				<input type="hidden" value="${userInfo.admin}" id="admin">
 				<input type="hidden" value="${detail.pno}" id="pno">
 				<input type="hidden" value="${detail.quantity}" id="quantity">
 				<div id="d_title">
@@ -90,7 +91,7 @@
 							<button id="modify">수정</button>
 							<button id="remove">삭제</button>
 							</c:if>
-							<a href="/board/list" id="goList">목록보기</a>
+							<a href="/board/list" id="goList">상품목록보기</a>
 						</form>
 					</div>
 				</section>

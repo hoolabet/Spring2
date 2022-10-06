@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품수정</title>
 <link rel="stylesheet" href="../resources/css/board_write.css"
 	type="text/css">
 <link rel="stylesheet" href="../resources/css/home.css">
@@ -146,7 +146,7 @@
 								</div></td>
 						</tr>
 					</table>
-					<button id="btn">수정하기</button>
+					<button class="btn">수정하기</button>
 				</form>
 			</div>
 		</div>
