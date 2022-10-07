@@ -1,103 +1,176 @@
 @charset "UTF-8";
 /* 문의 전체 틀 */
-#inquiry{
+#inquiry {
 	height: 100%;
-	width: 80%;	
+	width: 80%;
 	margin: 0 auto;
 }
-#list, #write, #paging{
+
+#list, #write, #paging {
 	height: 100%;
-	width:100%;
+	width: 100%;
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-h3, #paging{
+
+h3, #paging {
 	margin-top: 10px;
 	margin-bottom: 10px;
+	text-align: center;
 }
-.input{
+
+.input {
 	height: 100%;
 	width: 97%;
-	border: 0;
+}
+input[readonly]{
+	border: none;
 }
 /* 문의 테이블 */
-#list>form>table, #write>form>table, #modify>table, #pro>table{
+#list>form>table, #write>form>table, #modify>table, #pro>table {
 	width: 80%;
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	background-color: white;
 }
-table,tr,td,th{
-	border : 1px solid black;
-  	border-collapse : collapse;
-  	word-break: break-all;
+
+table, tr, td, th {
+	border: 1px solid #c0c0c0;
+	border-collapse: collapse;
+	word-break: break-all;
+	font-family: 'Nanum Gothic', sans-serif;
 }
-tr{
+
+tr {
 	height: 40px;
 }
-th,td{
+
+th, td {
 	width: 20%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	line-height: 150%;
 }
-#answer{
-	background-color: #c0c0c0;
+.tdleft{
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
 }
-textarea{
+.fixhv{
+	width:25%;
+}
+.hv{
+	display:block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width:100px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+input[name="pno"]{
+	text-align: center;
+}
+#Iwrite{
+	font-size: medium;
+}
+#answer, #modifyanswer {
+	background-color: #f2f7fd;
+}
+#modifyanswer>td>textarea{
+	background-color: #f2f7fd;
+}
+textarea {
 	height: 150px;
-	width: 99%;
+	width: 95%;
 	resize: none;
 	border: 0;
+	line-height: 120%;
+	text-align: left;
 }
-#adminanswer{
+
+#adminanswer {
 	background-color: white;
 }
-textarea[readonly] ,input[readonly]{
+
+textarea, input {
 	outline: none;
+}
+.yorn{
+	font-weight: bold;
+	color:#c0c0c0;
+}
+#complete {
+	color: #8bace9;
+	font-weight: bold;
 }
 
 /* 문의 링크 */
-#noanswer{
+#noanswer {
 	margin-right: 67%;
 }
+
 #wrorlo>a {
 	font-weight: bold;
 	margin-left: 70%;
-	color:#868686;
+	color: #8bace9;
 }
-#wrorlo>p{
-	margin-left: 55%;
-}
-/* 문의 버튼 */
-.ianswer, .idelete{
-	width: 100px;
-	height: 5px;
-	text-align:center;
-	padding-top: 3px;
-	padding-bottom: 20px;
-}
-#wbtn, #ibtn>input[type="button"]{
-	margin-top:10px;
-	margin-bottom:10px;
-	height: 41px;
-    width: 95px;
-	padding: 5px;
-	
-}
-#ibtn{
-	width: 80%;
-	margin-left: 46%;
-}
-/* 문의 페이징 */
-#paging>a{
+
+#wrorlo>p>a {
 	font-weight: bold;
+	color: #8bace9;
 }
-.red{
-	color: red;
-} 
-.hv:hover, .numhv:hover{ 
-	color: #abaaaa; 
+
+#wrorlo>a:hover, #wrorlo>p>a:hover {
+	color: #868686;
 	text-decoration: underline;
 }
 
+#wrorlo>p {
+	margin-left: 55%;
+}
+/* 문의 버튼 */
+.ianswer, .idelete {
+	width: 100px;
+	height: 5px;
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 20px;
+}
 
+#wbtn, #ibtn>input[type="button"] {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	height: 41px;
+	width: 95px;
+	padding: 5px;
+}
+
+#ibtn {
+	width: 80%;
+	margin-left: 46%;
+}
+.back, #listback{
+	float: left;
+	margin-left: 10%;
+	margin-bottom: 5px;
+}
+#pro, .cp{
+	clear:both;
+}
+/* 문의 페이징 */
+#paging>a {
+	font-weight: bold;
+}
+
+.red {
+	color: #8bace9;
+}
+
+.hv:hover, .numhv:hover {
+	color: #abaaaa;
+	text-decoration: underline;
+}

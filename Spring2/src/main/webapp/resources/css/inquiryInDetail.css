@@ -19,6 +19,11 @@
 
 /* 문의 리스트 */
 
+#privqna>.title{
+	font-weight: bold;
+	font-size: 20px;
+}
+
 #Ilist>table{
 	height: 100%;
 	width: 90%;
@@ -31,6 +36,9 @@
   	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-family: 'Nanum Gothic', sans-serif;
 }
 .hidden{
 	display: none;
@@ -41,6 +49,21 @@ tr{
 th,td{
 	width: 20%;
 }
-#answer{
-	background-color: #c0c0c0;
+.tal{
+	text-align: left;
+	padding-left: 20px;
+	padding-right: 20px;
 }
+#answer{
+	background-color: #f2f7fd;
+}
+#notcomplete{
+	font-weight: bold;
+	color:#c0c0c0;
+}
+#complete {
+	color: #8bace9;
+	font-weight: bold;
+}
+
+

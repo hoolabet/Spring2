@@ -6,13 +6,26 @@ $(document).ready(function(){
 	var pnoVal=$("input[name=pno]").val();
 	var inoVal=$("input[name=ino]").val();
 	var questionVal=$("textarea[name=question]").val();
-	
+	var answerI=$("input[name=answer]").val();
 	var userVal=$("input[name=userid]").val();
+	
 	
 	// 문의 답변 함수 호출
 	if(userVal=="aaaaa"){
+
+		answerI = answerI.replaceAll("<br>", "\n"  || "&gt;", ">" || "&lt;", ">");
+		
+		str="";
+		
+		str+=`<textarea name="answer" id="adminanswer">${answerI}</textarea>`;
+		
+		$("#reanswer").html(str);
+		
+		
 		$("#wbtn").on("click",function(){
 			var answerVal=$("textarea[name=answer]").val();
+			
+			answerVal = answerVal.replaceAll(/(\n|\r\n)/g, "<br>" || ">", "&gt;" || "<", "&lt;");
 			
 			add({id:idVal,pno:pnoVal,question:questionVal,answer:answerVal,ino:inoVal});
 		})

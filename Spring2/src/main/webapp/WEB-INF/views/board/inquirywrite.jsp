@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../resources/css/home.css">
 <link rel="stylesheet" href="../resources/css/inquiry.css" type="text/css">
 </head>
@@ -15,7 +18,8 @@
 		<div id="container">
 			<div id="write">
 				<h3>문의 작성</h3>
-				<form>
+				<input type="button" value="뒤로가기" class="back">
+				<form class="cp">
 					<input type="hidden" name="id" value="${userinfo.id}">
 					<table>
 						<tr>
@@ -32,7 +36,7 @@
 						</tr>
 						<tr>
 							<th>문의사항</th>
-							<td colspan="3"><textarea  name="question"></textarea></td>
+							<td colspan="3"><textarea  name="question"  class="tdleft"></textarea></td>
 						</tr>
 						<tr>
 							<th colspan="4">안내사항</th>
@@ -55,4 +59,5 @@
 </body>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/resources/js/inquiryWrite.js"></script>
+<script type="text/javascript" src="/resources/js/inquirybackbtn.js"></script>
 </html>
