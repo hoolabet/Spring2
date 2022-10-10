@@ -18,7 +18,7 @@ function loadWishList() {
 						<li>
 							<div class="img_wishlist">
 								<a href="/board/detail?pno=${r.pno}">
-									<img src="/display?fileName=${r.ivo.fullPath}" style="width:250px; height:250px;">
+									<img src="/display?fileName=${r.ivo.fullPath}" style="width:200px; height:200px; border-radius:30px;">
 								</a>
 								<div class="remove_icon">
 									<img src="https://emojigraph.org/media/microsoft/white-heart_1f90d.png" style="width:50px; height:50px;">

@@ -14,18 +14,25 @@ function getDes(){
 		let des='';
 		console.log(res);
 		if(res.length==0){
-			$("#des").html("없음")
+			$("#des").html("배송지를 추가하세요")
 		}else{
 			res.forEach(function(r){
 				des+=`
-					<div class="modi_div" id="${r.dno}">
-					<p>배송지명 : <input type="text"id="dname${r.dno}" value="${r.dname}"></p>
-					<p>수령인 : <input type="text" id="name${r.dno}" value="${r.name}"></p>
-					<p>수령인 번호 : <input type="text" id="phone${r.dno}" value="${r.phone}"></p>
-					<p>주소 : <input type="text" id="address${r.dno}" value="${r.address}"></p>
-					<p>배송 요청사항 : <input type="text" id="dmemo${r.dno}" value="${r.dmemo}"></p>
-					<img class="modi_input" width="50px" src="https://illustoon.com/photo/dl/3122.png">
-					<img class="remove_input" width="50px" src="https://cdn-icons-png.flaticon.com/512/75/75519.png">
+					<div class="modi_box" id="${r.dno}">
+						<div class="modi_box_text">
+						<h4 class="modi_text">배송지명</h4>
+						<input type="text" class="mody_text_input" id="dname${r.dno}" value="${r.dname}">
+						<h4 class="modi_text">수령인</h4>
+						<input type="text" class="mody_text_input" id="name${r.dno}" value="${r.name}">
+						<h4 class="modi_text">수령인 번호</h4>
+						<input type="text" class="mody_text_input" id="phone${r.dno}" value="${r.phone}">
+						<h4 class="modi_text">주소</h4>
+						<input type="text" class="mody_text_input" id="address${r.dno}" value="${r.address}">
+						<h4 class="modi_text">배송 요청사항</h4>
+						<input type="text" class="mody_text_input" id="dmemo${r.dno}" value="${r.dmemo}">
+						<img class="modi_input" width="50px" src="https://illustoon.com/photo/dl/3122.png">
+						<img class="remove_input" width="40px" src="https://cdn-icons-png.flaticon.com/512/75/75519.png">
+						</div>
 					</div>
 					<br>
 					`
@@ -160,10 +167,15 @@ function addDes(a){
 		data:JSON.stringify(a),
 		contentType:"application/json; charset=utf-8",
 		success:function(){
-			alert("성공");
+			alert("배송지가 등록되었습니다.");
 			setTimeout(function(){
 			getDes();
 			},1000)
+			$("#dname").val("집")
+			$("#name").val("")
+			$("#phone").val("")
+			$("#address").val("")
+			$("#dmemo").val("문 앞에 놓아주세요.")
 			getDes();
 		}
 	})

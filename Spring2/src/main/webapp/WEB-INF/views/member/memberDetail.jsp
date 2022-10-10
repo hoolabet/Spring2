@@ -16,19 +16,19 @@
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
-
-
+			<input type="hidden" value="${userInfo.admin}" id="admin_check">
+			<input type="hidden" id="id" value="${detail.id}">
 
 			<h1>회원 상세</h1>
-			<div id="member_detail">
-			<table border="0">
+			<div id="member_detail_box">
+			<table id="member_detail">
 				<tr>
 					<td rowspan="4" id="user_img_td"><img src="${detail.userImg}" width="120px"></td>
-					<td>아이디 : ${detail.id}</td>
-					<td colspan="2">이름 : ${detail.name}</td>
+					<td colspan="3">아이디 : ${detail.id}</td>
 				</tr>
 				<tr>
-					<td colspan="3">이메일 : ${detail.email}</td>
+					<td>이메일 : ${detail.email}</td>
+					<td colspan="2">이름 : ${detail.name}</td>
 				</tr>
 				<tr>
 					<td>전화번호 : ${detail.phone}</td>
@@ -43,10 +43,35 @@
 			
 			</div>
 
+			<h2>리뷰목록</h2>
+			
+			<div id="review_list">
+			
+			</div>
+			
+			<input type="hidden" value="${paging.total}" id="Rtotal">
+			<div class="page_button">
+				<c:if test="${paging.total != 0}">
+					<button id="prev" class="paging">&#60;</button>
+    				<span id="pagination"></span>
+    				<button id="next" class="paging">&#62;</button>
+				</c:if>
+			</div>
+			<h2>문의목록</h2>
+			<div id="qna_list">
+			
+			</div>
+			<input type="hidden" value="${pagingQna.total}" id="RtotalQna">
+			<div class="page_button">
+				<c:if test="${pagingQna.total != 0}">
+					<button id="prevQ" class="pagingQ">&#60;</button>
+    				<span id="paginationQna"></span>
+    				<button id="nextQ" class="pagingQ">&#62;</button>
+				</c:if>
+			</div>
+	
+	
 
-	
-	
-	
 	
 		</div>
 		<%@ include file="../footer.jsp"%>
@@ -54,5 +79,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript"src="/resources/js/memberDetail.js"></script>
+	<script type="text/javascript" src="/resources/js/mypageBoardList.js?ver=1.1"></script>
 </body>
 </html>

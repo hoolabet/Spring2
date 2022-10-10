@@ -464,8 +464,12 @@ public class MemberController {
 
 	// 회원목록
 	@RequestMapping(value = "/member/memberList", method = RequestMethod.GET)
-	public void memberList() {
-
+	public String memberList(HttpSession session) {
+		if (session.getAttribute("userInfo") == null) {
+			return "redirect:/";
+		} else {
+			return "member/memberList";
+		}
 	}
 
 	@RequestMapping(value = "/memberList/select", method = RequestMethod.GET)
@@ -476,7 +480,16 @@ public class MemberController {
 
 	// 회원 상세정보
 	@RequestMapping(value = "/member/memberDetail", method = RequestMethod.GET)
-	public void memberDetail(String id, Model model) {
+	public void memberDetail(String id, Model model, CriteriaVO cri) {
+		cri.setSearch(id);
+//		cri.setAmount(5);
+		int total = ms.total(cri);
+		int totalQna = ms.totalQna(cri);
+		
+		model.addAttribute("paging",new PageVO(cri,total));
+		System.out.println("1="+total);
+		model.addAttribute("pagingQna",new PageVO(cri,totalQna));
+		System.out.println("1="+totalQna);
 		model.addAttribute("detail", ms.memberDetail(id));
 	}
 
@@ -740,29 +753,43 @@ public class MemberController {
 	@RequestMapping(value = "/member/mypageBoardList", method = RequestMethod.GET)
 	public void BoardList(String id, Model model, CriteriaVO cri) {
 		cri.setSearch(id);
+//		cri.setAmount(5);
 		int total = ms.total(cri);
+		int totalQna = ms.totalQna(cri);
+		
 		model.addAttribute("paging",new PageVO(cri,total));
-		System.out.println("1="+cri);
 		System.out.println("1="+total);
+		model.addAttribute("pagingQna",new PageVO(cri,totalQna));
+		System.out.println("1="+totalQna);
 	}
 	
 	@RequestMapping(value = "/mypagereviewlist", method = RequestMethod.GET)
 	public ResponseEntity<ArrayList<ReviewVO>> mypageReviewList(ReviewVO rvo, CriteriaVO cri) {
 		cri.setSearch(rvo.getId());
+//		cri.setAmount(5);
 		int total = ms.total(cri);
-		System.out.println(cri);
-		System.out.println(total);
+		System.out.println("리뷰 cri="+cri);
+		System.out.println("리뷰갯수="+total);
 		PageVO p = new PageVO(cri,total);
-		System.out.println(p);
+		
+		System.out.println("리뷰페이지="+p);
 		System.out.println("리뷰목록"+ms.mypageReviewList(cri));
 		return new ResponseEntity<>(ms.mypageReviewList(cri),HttpStatus.OK);
 //		return new ResponseEntity<>(ms.mypageReviewList(rvo), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/mypageqnalist", method = RequestMethod.GET)
-	public ResponseEntity<ArrayList<InquiryVO>> mypageQnaList(InquiryVO ivo) {
-		
-		return new ResponseEntity<>(ms.mypageQnaList(ivo), HttpStatus.OK);
+	public ResponseEntity<ArrayList<InquiryVO>> mypageQnaList(InquiryVO ivo, CriteriaVO cri) {
+		cri.setSearch(ivo.getId());
+//		cri.setAmount(5);
+		int total = ms.totalQna(cri);
+		System.out.println("qna cri="+cri);
+		System.out.println("qna갯수="+total);
+		PageVO p = new PageVO(cri,total);
+		System.out.println("qna페이지="+p);
+		System.out.println("qna목록"+ms.mypageQnaList(cri));
+		return new ResponseEntity<>(ms.mypageQnaList(cri),HttpStatus.OK);
+//		return new ResponseEntity<>(ms.mypageQnaList(ivo), HttpStatus.OK);
 	}
 	
 	// 마이페이지 쿠폰조회

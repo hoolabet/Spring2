@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원가입</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -79,7 +79,7 @@
 						<div class="mail_check_box">
 							<input type="submit" value="인증번호받기" id="email_btn">
 							<input class="mail_check_input" disabled="disabled"
-								placeholder="인증번호 6자리를 입력해주세요." maxlength="6" id="email_num">
+								placeholder="인증번호 6자리를 입력해주세요" maxlength="6" id="email_num">
 						</div>
 						<p class="signup_msg" id="email_msg"></p>
 						

@@ -1,16 +1,129 @@
 @charset "UTF-8";
 
-table {
-    margin-left:auto; 
-    margin-right:auto;
+#member_detail_box{
+/* 	border:1px solid green; */
+	position:relative;
+	width:1000px;
+	height:200px;
+    margin:50px auto 150px auto;
+}
+
+#member_detail {
+	position:absolute;
+    width:1000px;
+    top:50px;
 }
 
 
-td{
+#member_detail > tbody> tr > td{
 	text-align: left;
 	padding:5px;
 }
 
 #user_img_td{
-	/*padding:20px 20px 20px 20px;*/
+	width:120px;
+}
+
+.review_list_table{
+	border:0px;
+	border-collapse: collapse;
+	width:1000px;
+	margin:100px auto;
+}
+
+.review_list_table > thead{
+	border-top:3px solid black;
+	border-bottom:3px solid #e7e7e7;
+	height:80px;
+}
+
+.review_list_table > tbody{
+	border-bottom:3px solid black;
+}
+
+.review_list_table > thead > tr {
+	border:0px;
+}
+
+.review_list_table > thead > tr >td {
+	border:0px;
+	text-align: left;
+	padding:0px 10px;
+}
+
+.user_box_regdate{
+	width:180px;
+}
+
+.user_box_likeNum{
+	width:80px;
+}
+
+.review_list_table > tbody > tr{
+	border:0px;
+}
+
+.review_list_table > tbody > tr >td {
+	border:0px;
+	text-align: left;
+	padding:20px 10px;
+}
+
+.user_box_img{
+	width:100px;
+}
+
+
+
+.qna_table{
+	border:0px;
+	border-collapse: collapse;
+	width:1000px;
+	margin:100px auto;
+}
+
+.qna_table > thead{
+	border-bottom:3px solid #e7e7e7;
+	height:50px;
+}
+
+.qna_table > thead > tr {
+	border:0px;
+}
+
+.qna_table > thead > tr >td {
+	border:0px;
+}
+
+
+.qna_table_regdate{
+	width:180px;
+}
+
+.qna_table > tbody > tr{
+	border:0px;
+}
+
+.qna_table > tbody > tr >td {
+	background-color:#f8fcfc;
+	border:0px;
+	border-bottom:3px solid white;
+	text-align: left;
+	padding:20px 10px;
+}
+
+.qna_icon{
+	color:#35c5f0;
+	font-size:17px;
+}
+
+.qna_text{
+	padding:0px 20px 0px 10px;
+	color:#35c5f0;
+	font-weight:bold;
+	font-size:30px;
+}
+
+.page_button{
+	margin-bottom:150px;
 }

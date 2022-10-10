@@ -178,6 +178,7 @@
 		value(#{id});
 	</insert>
 	<resultMap type="org.spring2.model.ReviewVO" id="ReviewVO">
+		<result column="rno" property="rno" />
 		<result column="pno" property="pno" />
 		<result column="content" property="content" />
 		<result column="regdate" property="regdate" />
@@ -200,18 +201,22 @@
 		left join
 		(select p.pno, fullPath, pname
 				from product p
-				join p_image i
+				left join p_image i
 				on p.pno=i.pno) as pi
 		on r.pno=pi.pno
 		where id=#{search}
-		order by regdate desc;
+		order by rno desc;
 		
 	</select>
 	<select id="mypageQnaList" resultType="org.spring2.model.InquiryVO">
-		select * from inquiry where id=#{id};
+		select * from inquiry where id=#{search} order by ino desc;
 	</select>
 	<select id="total" resultType="int">
   		select count(*) from review
+  		where id=#{search};
+  	</select>
+  	<select id="totalQna" resultType="int">
+  		select count(*) from inquiry
   		where id=#{search};
   	</select>
 </mapper>

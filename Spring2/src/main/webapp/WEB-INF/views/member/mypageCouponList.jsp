@@ -9,14 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../resources/css/home.css">
-<!-- <link rel="stylesheet" type="text/css" href="/resources/css/mypage.css"></link> -->
+
+<link rel="stylesheet" type="text/css" href="/resources/css/mypageCouponList.css"></link>
 </head>
 <body>
 	<div id="entry_area">
 		<%@ include file="../header.jsp"%>
 		<div id="content_area">
 			<h1 id="title">쿠폰 목록</h1>
-			<input type="text" id="id" value="${userInfo.id}">
+			<input type="hidden" id="id" value="${userInfo.id}">
 			<div id="cp_list">
 			
 			</div>

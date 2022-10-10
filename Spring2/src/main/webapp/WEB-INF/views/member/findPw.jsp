@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 찾기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -57,10 +57,10 @@
 					</table>
 					<div id="link_box">
 						<div id="link_findid">
-							<a href="/member/findId">아이디 찾기</a>
+							<a href="/member/findId"><h5>아이디 찾기</h5></a>
 						</div>
 						<div id="link_login">
-							<a href="/member/login">로그인</a>
+							<a href="/member/login"><h5>로그인</h5></a>
 						</div>
 					</div>
 				</div>

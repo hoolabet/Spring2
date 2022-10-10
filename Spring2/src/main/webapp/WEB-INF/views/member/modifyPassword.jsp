@@ -52,9 +52,6 @@
 				</div>
 			</form>
 
-			<table id="mypage_list">
-
-			</table>
 
 
 

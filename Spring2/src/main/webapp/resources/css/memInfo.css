@@ -1,46 +1,166 @@
 @charset "UTF-8";
 
-
-
-
-.signtable{
-	height:50px;
+#mody_box{
+/* 	border:1px solid red; */
+	width:600px;
+	height:1600px;
+	margin:0px auto;
 }
 
-td{
-	vertical-align:top;
+#mody_info_box{
+/* 	border:1px solid green; */
+	position:relative;
+	width:600px;
+	height:850px;
+    margin:50px auto;
+    border-radius:30px;
+    background-color:#f8fcfc;
 }
 
-.signmsg{
-	font-size:5px;
+.mody_box_text{
+	padding-top:50px;
 }
 
-table {
-    margin-left:auto; 
-    margin-right:auto;
+.modi_btn{
+	width:150px;
+	margin:0px 125px 70px 125px;
 }
 
-.tableInput{
-	padding-left:30px;
-	text-align:left;
-	
+.modi_msg{
+	margin:10px 0px;
+	height:18px;
+}
+
+#mody_info_text {
+/* 	border:1px solid black; */
+	position:absolute;
+    width:400px;
+	height:650px;
+	left:100px;
+	top:100px;
 }
 
 #user_img{
-	border-radius:100px;
-	width:200px;
-	height:200px;
+	border-radius:75px;
+	width:150px;
+	height:150px;
 	background-size:cover;
 	position:relative;
+	left:125px;
+	margin-bottom:15px;
 }
+
+.e_select{
+	width:96px;
+	height:43px;
+	padding-left:10px;
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	background-color: transparent;
+}
+
+.e_input{
+	width:130px;
+	height:40px;
+	padding:0px 0px 0px 10px;
+}
+
+.mail_check_box{
+/* 	border:1px solid green; */
+	position:relative;
+	width:400px;
+	height:48px;
+	margin-left:auto; 
+    margin-right:auto;
+	
+}
+
+
+#email_btn{
+	position:absolute;
+	top:5px;
+	left:0px;
+	width:120px;
+	height:42px;
+	padding:0px;
+	margin:0px;
+	cursor:pointer;
+}
+#email_num{
+	position:absolute;
+	top:5px;
+	left:125px;
+	width:265px;
+	height:40px;
+	padding:0px;
+	padding-left:10px;
+	margin:0px;
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+/* 	background-color: transparent; */
+}
+
+.p_select{
+	width:129px;
+	height:43px;
+	padding-left:10px;
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	background-color: transparent;
+}
+
+.p_input{
+	width:251.4px;
+	height:40px;
+	padding:0px 0px 0px 10px;
+}
+
+#mody_pw_box{
+/* 	border:1px solid green; */
+	position:relative;
+	width:600px;
+	height:400px;
+    margin:50px auto;
+    border-radius:30px;
+    background-color:#f8fcfc;
+}
+
+#mody_pw_text {
+/* 	border:1px solid black; */
+	position:absolute;
+    width:400px;
+	height:200px;
+	left:100px;
+	top:100px;
+}
+
+.pw_input{
+	width:385px;
+	height:40px;
+	padding-left:10px;	
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	background-color: transparent;
+}
+
+#pw_val{
+	margin-bottom:30px;
+}
+
+
+
 
 #modify_img{
 	width:50px;
 	height:50px;
 	background-size:cover;
 	position:absolute;
-	bottom:20px;
-	right:20px;
+	bottom:5px;
+	right:5px;
 	cursor:pointer;
 }
 

@@ -34,11 +34,11 @@
 					<p id="text_3">입니다.</p>
 				</div>
 				<div id="link_box">
-					<div id="link_findId">
-						<a href="/member/findPw">비밀번호 찾기</a>
+					<div id="link_findpw">
+						<a href="/member/findPw"><h5>비밀번호 찾기</h5></a>
 					</div>
 					<div id="link_login">
-						<a href="/member/login">로그인</a>
+						<a href="/member/login"><h5>로그인</h5></a>
 					</div>
 				</div>
 			</div>

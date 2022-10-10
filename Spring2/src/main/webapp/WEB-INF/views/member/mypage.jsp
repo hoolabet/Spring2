@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
 
 
 			<h1>마이페이지</h1>
+			<input type="hidden" value="${userInfo.admin}" id="admin_check">
 			<input type="hidden" value="${userInfo.sns}" id="user_sns">
 			<input type="hidden" value="${userInfo.id}" id="user_id">
 			<input type="hidden" value="${userInfo.userImg}" id="user_img_input">

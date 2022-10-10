@@ -9,16 +9,19 @@ let str='';
 $.getJSON("/mypagecouponlist",{id},function(res){
 	res.forEach(function(r){
 		str+=`
-			<div id="coupon_box">
-				<p>${r.cpvo.cpname}</p>
-				<p>${r.cpvo.cpreq}원 이상 구매시 `
-				
+			<div class="coupon_box">
+			<div class="coupon_text_box">
+				<p class="coupon_name">${r.cpvo.cpname}</p>
+				<p class="coupon_value">`
 		str+=
 			(r.cpvo.cptype=="P"?
-			`${r.cpvo.cpvalue}% 할인</P>`
-			:`${r.cpvo.cpvalue}원 할인</P>`)
-		str+=`<p>최대 적용금액${r.cpvo.cpmax}원</p>
-			<p>${r.exp_date}까지 사용가능</p>
+			`${r.cpvo.cpvalue}%</P>
+			<p class="coupon_detail">${r.cpvo.cpreq}원 이상 구매시 최대 ${r.cpvo.cpmax}원 할인</p>`
+			:`${r.cpvo.cpvalue}원</P>
+			<p class="coupon_detail">${r.cpvo.cpreq}원 이상 구매시 ${r.cpvo.cpvalue}원 할인</p>`)
+		str+=`
+			<p class="coupon_date">사용기간 : ${r.exp_date} 까지</p>
+			</div>
 			</div>
 			`
 	})

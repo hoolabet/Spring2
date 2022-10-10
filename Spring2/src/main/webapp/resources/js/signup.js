@@ -235,7 +235,7 @@ $("#email").on("keyup",function(){
 	}else if(Email.test($("#email").val())){
 		$("#email_msg").text("");
 		if($("#direct").val()!=""){
-			$("#email_msg").text("인증").css("color","red");
+			$("#email_msg").text("이메일 인증이 필요합니다.").css("color","red");
 		}
 		emm = true;
 	}else{
@@ -311,7 +311,7 @@ $("#email_address")
 			$resultMsg.css('color','green');
 			em = true;
 		}else{
-			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!.');
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
 			$resultMsg.css('color','red');
 			em = false;
 		}

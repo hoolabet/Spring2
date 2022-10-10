@@ -17,103 +17,67 @@
 		<div id="content_area">
 
 
+			<input type="hidden" id="admin_check" value="${userInfo.admin}">
+			<input type="hidden" id="id" value="${userInfo.id}">
+			<div id="form"></div>
 
 
 
 			<h1>회원정보수정</h1>
-			<input type="text" id="admin_check" value="${userInfo.admin}"><br>
-			
-			<div id="form"></div>
-		
-			
-			<table>
-				<tr>
-					<td colspan="2"><p>기본 정보</p></td>
-				</tr>
-				<tr>
-					<td class="signtable">
+			<div id="mody_box">
+			<div id="mody_info_box">
+				<h3 class="mody_box_text">기본정보 수정</h3>
+				<div id="mody_info_text">
 					<div id="user_img" style="background-image:url('${userInfo.userImg}')">
-						<div id="modify_img" style="background-image:url('https://illustoon.com/photo/dl/3122.png')">
+						<div id="modify_img" style="background-image:url('https://mblogthumb-phinf.pstatic.net/20151004_30/koowq_1443929591075FUCQX_PNG/%C4%AB%B8%DE%B6%F3_%BF%F8%C7%FC_%BE%C6%C0%CC%C4%DC-02.png?type=w2')">
 						</div>
 						<input type="file" id="user_imgfile">
 					</div>
+					<input type="button" value="프로필사진 수정" id="modify_u_img" class="modi_btn">
 					
+					<input type="hidden" value="${userInfo.email}" name="email" id="email_all">
+					<input type="hidden" name="email">
+					<input class="e_input" type="text" id="email">@<input class="e_input" type="text" id="direct"> 
+					<select class="e_select" id="email_address">
+						<option id="user_email" value="@user">직접입력</option>
+						<option class="NG_email" value="@gmail.com">gmail.com</option>
+						<option class="NG_email" value="@naver.com">naver.com</option>
+					</select> 
+					<div class="mail_check_box">
+						<input type="submit" value="인증번호받기" id="email_btn">
+						<input class="mail_check_input" disabled="disabled" placeholder="인증번호 6자리를 입력해주세요" maxlength="6" id="email_num">
+					</div>
+					<p class="modi_msg" id="email_msg"></p>
+					<input type="button" value="이메일 수정" id="email_mody_btn" class="modi_btn">
 					
-					</td>
-					<td class="tableInput">
-						<input type="text" name="id" id="id" readonly value="${userInfo.id}">
-						<p class="signmsg" id="idmsg"></p>
-						<input type="button" value="프로필사진 수정" id="modify_u_img">
-					</td>
-				</tr>
-				<tr>
-					<td class="signtable">이메일</td>
-					<td class="tableInput">
-						<input type="hidden" value="${userInfo.email}" name="email" id="email_all">
-						<input type="text" id="email_val">@
-						<input type="text" id="direct">
-						<select id="email_address">
-							<option id="user_email" value="@user">직접입력</option>
-							<option class="NG_email" value="@gmail.com">gmail.com</option>
-							<option class="NG_email" value="@naver.com">naver.com</option>
-						</select>
-						
-						<input type="button" value="수정" id="email_btn">
-						<p class="signmsg" id="email_msg"></p>
-					</td>
-				</tr>
-				<tr>
-					<td class="signtable">전화번호</td>
-					<td class="tableInput">
-						<input type="hidden" value="${userInfo.phone}" name="phone" id="phone_all">
-						<select id="phone_number">
-							<option value="!010">010</option>
-							<option value="!011">011</option>
-							<option value="!018">018</option>
-							<option value="!019">019</option>
-						</select>
-						<input type="text" id="phone_val">
-						<input type="button" value="수정" id="phone_btn">
-						<p class="signmsg" id="phone_msg"></p>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2"><p>비밀번호 변경</p></td>
-				</tr>
-						
-				<tr>
-					<td class="signtable">새 비밀번호</td>
-					<td class="tableInput">
-						<input type="password" name="password" id="pw_val">
-						<p class="signmsg" id="pw_msg"></p>
-					</td>
-				</tr>
-				<tr>
-					<td class="signtable">비밀번호 확인</td>
-					<td class="tableInput">
-						<input type="password" name="password2" id="pw_val2">
-						<p class="signmsg" id="pw_msg2"></p>
-					</td>
-				</tr>
-
-
-				<tr>
-					<td colspan="2" class="signtable">
-						<input type="button" value="비밀번호 수정" id="pw_btn">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<input type="button" value="계정삭제" id="delete">
-						<a href="/member/mypage">마이페이지</a><br>
-					</td>
-				</tr>
-			</table>
+					<input type="hidden" value="${userInfo.phone}" name="phone" id="phone_all">
+					<select class="p_select" id="phone_number">
+						<option value="!010">010</option>
+						<option value="!011">011</option>
+						<option value="!018">018</option>
+						<option value="!019">019</option>
+					</select> 
+					<input class="p_input" type="text" id="phone_val">
+					<p class="modi_msg" id="phone_msg"></p>
+					<input type="button" value="전화번호 수정" id="phone_btn" class="modi_btn">
+				</div>
+			</div>
+			<div id="mody_pw_box">
+				<h3 class="mody_box_text">비밀번호 수정</h3>
+				<div id="mody_pw_text">
+					<input type="password" placeholder="새로운 비밀번호" name="password" class="pw_input" id="pw_val">
+					<input type="password" placeholder="비밀번호 재확인" name="password2" class="pw_input" id="pw_val2">
+					<p class="modi_msg" id="pw_msg"></p>
+					<input type="button" value="비밀번호 수정" id="pw_btn" class="modi_btn">
+				</div>
+			</div>
+			<input type="button" value="계정삭제" id="delete" class="modi_btn">
+			</div>
 		
 			
-			<table id="mypage_list">
-				
-			</table>
+
+		
+			
 
 	
 	
@@ -125,6 +89,5 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="../resources/js/home.js"></script>
 	<script type="text/javascript"src="/resources/js/memInfo.js"></script>
-	<script type="text/javascript"src="/resources/js/memberList.js?ver=1.1"></script>
 </body>
 </html>

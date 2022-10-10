@@ -106,10 +106,13 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<ReviewVO> mypageReviewList(CriteriaVO cri){
 		return mm.mypageReviewList(cri);
 	}
-	public ArrayList<InquiryVO> mypageQnaList(InquiryVO ivo){
-		return mm.mypageQnaList(ivo);
+	public ArrayList<InquiryVO> mypageQnaList(CriteriaVO cri){
+		return mm.mypageQnaList(cri);
 	}
 	public int total(CriteriaVO cri) {
 		return mm.total(cri);
+	}
+	public int totalQna(CriteriaVO cri) {
+		return mm.totalQna(cri);
 	}
 }

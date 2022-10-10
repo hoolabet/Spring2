@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.coupon_box{
+	width:500px;
+	height:250px;
+	margin: 100px auto;
+/* 	border:1px solid black; */
+	background-image: url("https://www.pngall.com/wp-content/uploads/2018/04/Coupon-PNG-Image-HD.png");
+	background-repeat: no-repeat;
+	background-size: 500px 250px;
+	position:relative;
+}
+
+.coupon_text_box{
+	position:absolute;
+/* 	border:1px solid black; */
+	width:320px;
+	height:250px;
+	right:12px;
+}
+
+.coupon_name {
+/* 	border: 1px solid black; */
+	position:absolute;
+	width:300px;
+	top:15px;
+	font-size:20px;
+	font-weight:bold;
+	padding-left:20px;
+	text-align:left;
+}
+
+.coupon_value {
+/* 	border: 1px solid black; */
+	position:absolute;
+	width:240px;
+	top:90px;
+	font-size:60px;
+	margin:0px;
+	font-weight:bold;
+	color:red;
+	padding-left:20px;
+	text-align:left;
+}
+
+.coupon_detail {
+/* 	border: 1px solid black; */
+	position:absolute;
+	width:300px;
+	bottom:35px;
+	font-size:14px;
+	padding-left:20px;
+	text-align:left;
+}
+
+.coupon_date {
+/* 	border: 1px solid black; */
+	position:absolute;
+	width:300px;
+	bottom:10px;
+	font-size:14px;
+	padding-left:20px;
+	text-align:left;
+}

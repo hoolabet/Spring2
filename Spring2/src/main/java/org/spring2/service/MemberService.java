@@ -49,6 +49,7 @@ public interface MemberService {
 	public ArrayList<CouponTargetVO> mypageCouponList(CouponTargetVO coupon);
 	public void point(String id);
 	public ArrayList<ReviewVO> mypageReviewList(CriteriaVO cri);
-	public ArrayList<InquiryVO> mypageQnaList(InquiryVO ivo);
+	public ArrayList<InquiryVO> mypageQnaList(CriteriaVO cri);
 	public int total(CriteriaVO cri);
+	public int totalQna(CriteriaVO cri);
 }

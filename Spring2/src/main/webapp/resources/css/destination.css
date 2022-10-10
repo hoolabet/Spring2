@@ -1,11 +1,83 @@
 @charset "UTF-8";
 
+#des{
+	margin-top:50px;
+}
+
+.modi_box{
+/* 	border:1px black solid; */
+	position:relative;
+	width:600px;
+	height:700px;
+	display:inline-block;
+	margin:50px;
+	border-radius:30px;
+    background-color:#f8fcfc;
+}
+
+.modi_box_text {
+/* 	border:1px solid black; */
+	position:absolute;
+    width:400px;
+	height:500px;
+	left:100px;
+	top:100px;
+}
+
+.modi_text{
+/* 	border:1px solid red; */
+	text-align:left;
+	margin-top:0px;
+	margin-bottom:7px;
+}
+
+.mody_text_input{
+	width:387px;
+	height:40px;
+	margin-bottom:21px;
+	padding:0px 0px 0px 10px;	
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	background-color: transparent;
+}
+
 .modi_input{
+	position:absolute;
+	bottom:0px;
+	left:0px;
 	cursor:pointer;
 }
 
-.modi_div{
-	border:1px black solid;
-	display:inline-block;
-	margin:50px;
+.remove_input{
+	position:absolute;
+	bottom:0px;
+	right:0px;
+	cursor:pointer;
+}
+
+#input_toggle{
+	margin:50px auto;
+}
+
+.toggle_text{
+	width:300px;
+	height:40px;
+	padding-left:10px;	
+	font-size: 15px;
+	border:1px solid #dae1e6;
+	border-radius: 6px;
+	margin:10px;
+	background-color: transparent;
+}
+
+#input_toggle{
+	width:314px;
+	height:45px;
+}
+
+#add_btn{
+	margin:10px auto 100px auto;
+	width:314px;
+	height:45px;
 }

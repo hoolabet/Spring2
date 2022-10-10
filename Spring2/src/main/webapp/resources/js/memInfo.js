@@ -1,6 +1,6 @@
 
 const emailArr=$("#email_all").val().split("@")	
-$("#email_val").val(emailArr[0]);
+$("#email").val(emailArr[0]);
 $("#email_address").val($("#user_email").val());
 
 let emailAddChk = true;
@@ -40,36 +40,132 @@ $("#email_address").on("change",function(){
 
 //이메일 수정
 
-var email_chk = true;
-$("#email_val").on("blur",function(){
+//var email_chk = true;
+//$("#email_val").on("blur",function(){
+//	const Email = /^([a-z0-9_\.-]+)$/g;
+//	if($("#email_val").val()==""){
+//		$("#email_msg").text("필수입력정보입니다.").css("color","red");
+//		email_chk = false;
+//	}else if(Email.test($("#email_val").val())){
+//		$("#email_msg").text("");
+//		email_chk = true;
+//	}else{
+//		$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
+//		email_chk = false;
+//	}
+//})
+
+
+var em = false;
+let emm = false;
+$("#email").on("keyup",function(){
+	
 	const Email = /^([a-z0-9_\.-]+)$/g;
-	if($("#email_val").val()==""){
+	if($("#email").val()==""){
 		$("#email_msg").text("필수입력정보입니다.").css("color","red");
-		email_chk = false;
-	}else if(Email.test($("#email_val").val())){
+		emm = false;
+	}else if(Email.test($("#email").val())){
 		$("#email_msg").text("");
-		email_chk = true;
+		if($("#direct").val()!=""){
+			$("#email_msg").text("이메일 인증이 필요합니다.").css("color","red");
+		}
+		emm = true;
 	}else{
 		$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
-		email_chk = false;
+		emm = false;
 	}
 })
 
-$("#email_btn").on("click",function(){
+$("#email_btn").on("click",function(e){
+	const Email_check= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	e.preventDefault();
+	
+	if($("#direct").val()==""){
+		$("#email_msg").text("이메일을 입력해주세요.").css("color","red");
+		emm = false;
+	}
+	if(emm){
+		$("input[name='email']").val($("#email").val()+"@"+$("#direct").val());
+		var emc=$("input[name='email']").val();
+		if(Email_check.test($("#direct").val())){
+			
+			$("#email_msg").text("이메일 전송중...").css("color","green");
+			emcheck(emc);
+		}else{
+			$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
+		}
+	}else{
+		$("#email_msg").text("이메일 주소를 다시 확인해 주세요.").css("color","red");
+//		alert("부적절한 이메일 입니다.")
+	}
+	
+})
 
-	if(email_chk){
-		$("input[name='email']").val($("#email_val").val()+"@"+$("#direct").val());
+const checkInput = $('.mail_check_input') // 인증번호 입력하는곳 
+function emcheck(email){
+	console.log(email);
+	$.ajax({
+		type : 'get',
+		url: "/member/emailchk/"+email+"/",
+		data:email,
+		contentType: "application/json; charset=utf-8",
+		success : function (data) {
+			$("#email_msg").text("");
+			console.log("data : " +  data);
+			checkInput.attr('disabled',false);
+			code =data;
+			alert('인증번호가 전송되었습니다.')
+		}
+	})
+//	.done(function(r){
+//		alert("중복된 이메일 입니다.");
+//		$("#email_msg").text("중복된 이메일 입니다.");
+//		$("#email_msg").css("color","red");
+//		em = false;
+//	})
+	.fail(function(){
+		alert("실패.");
+		$("#email_msg").text("실패");
+		$("#email_msg").css("color","green");
+		em = false;
+	})
+}
+
+$("#email_address")
+	// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	$('.mail_check_input').blur(function () {
+		const inputCode = $(this).val();
+		const $resultMsg = $('#email_msg');
+		
+		if(inputCode === code){
+			$resultMsg.html('인증번호가 일치합니다.');
+			$resultMsg.css('color','green');
+			em = true;
+		}else{
+			$resultMsg.html('인증번호가 불일치 합니다. 다시 확인해주세요!');
+			$resultMsg.css('color','red');
+			em = false;
+		}
+	});
+
+
+
+$("#email_mody_btn").on("click",function(){
+
+	if(em){
+		$("input[name='email']").val($("#email").val()+"@"+$("#direct").val());
 		const emc=$("input[name='email']").val()
 		console.log(emc);
-		emcheck(emc);
+		modyEmcheck(emc);
 
 
 	}else{
-		alert("이메일 주소를 다시 확인해 주세요.");
+		$("#email_msg").text("이메일 인증이 필요합니다.").css("color","red");
 	}
 })
 
-function emcheck(emc){
+function modyEmcheck(emc){
 	console.log(emc);
 	$.ajax({
 		type: "get",
@@ -78,14 +174,12 @@ function emcheck(emc){
 		contentType: "application/json; charset=utf-8"
 	})
 	.done(function(r){
-		alert("중복된 이메일 입니다.");
 		$("#email_msg").text("중복된 이메일 입니다.");
 		$("#email_msg").css("color","red");
 	})
 	.fail(function(){
 		var id=$("#id").val();
 		var email=$("input[name='email']").val();
-		alert("id="+id+", email="+email);
 		modifyEmail({id:id,email:email});
 	})
 }
@@ -98,6 +192,9 @@ function modifyEmail(member){
 		contentType: "application/json; charset=utf-8",
 		success:function(result){
 			if(result=="success"){
+				$("#email_msg").text("");
+				checkInput.attr('disabled',true);
+				checkInput.val('');
 				alert("이메일수정 성공")
 			}
 		}
@@ -150,14 +247,12 @@ function phcheck(pmc){
 		contentType: "application/json; charset=utf-8"
 	})
 	.done(function(r){
-		alert("중복된 전화번호 입니다.");
 		$("#phone_msg").text("중복된 전화번호 입니다.");
 		$("#phone_msg").css("color","red");
 	})
 	.fail(function(){
 		var id=$("#id").val();
 		var phone=($("input[name='phone']").val()).slice(1);
-		alert("id="+id+", phone="+phone);
 		modifyPhone({id:id,phone:phone});
 	})
 }
@@ -183,8 +278,8 @@ function modifyPhone(member){
 //비밀번호 수정	
 
 var pw_chk = false;
-$("#pw_val").on("blur",function(){
-	const pwpw = /^[a-zA-Z0-9~!@#$%^&*?-_]{8,16}$/g;
+$("#pw_val").on("keyup",function(){
+	const pwpw = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[`$@$!%*#?&])[A-Za-z\d`$@$!%*#?&]{8,16}$/g;
 	if($("#pw_val").val()==""){
 		$("#pw_msg").text("필수입력정보입니다.").css("color","red");
 		pw_chk = false;
@@ -203,14 +298,14 @@ var pw_chk2=false;
 $("#pw_val2").on("keyup",function(){
 	if(pw_chk){
 		if($("#pw_val2").val()===$("#pw_val").val()){
-			$("#pw_msg2").text("정상입니다.").css("color","green");
+			$("#pw_msg").text("정상입니다.").css("color","green");
 			pw_chk2 = true;
 		}else{
-			$("#pw_msg2").text("비밀번호가 일치하지 않습니다.").css("color","red");
+			$("#pw_msg").text("비밀번호가 일치하지 않습니다.").css("color","red");
 			pw_chk2 = false
 		}
 	}else{
-		$("#pw_msg2").text("비밀번호를 다시 확인해주세요.").css("color","red");
+		$("#pw_msg").text("비밀번호를 다시 확인해주세요.").css("color","red");
 		pw_chk2 = false
 	}
 })	
